@@ -1,3 +1,7 @@
+thesis.pdf
+examples/
+example_and_documentation.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -114,6 +118,10 @@ acs-*.bib
 
 # uncomment this for glossaries-extra (will ignore makeindex's style files!)
 # *.ist
+
+
+# mac
+*.DS_Store
 
 # gnuplottex
 *-gnuplottex-*
