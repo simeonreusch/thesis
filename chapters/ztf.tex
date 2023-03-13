@@ -19,24 +19,34 @@ The two other telescopes located on Mount Palomar. The 1.5 m (60 inch) P60 teles
 \end{figure*}
 
 \section{Telescope Design}
-A \textit{Schmidt telescope} is by design dedicated to taking images, contrary to earlier designs allowing actually looking through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a \textit{Schmidt camera}. The design goal is a wide FoV. This makes it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets entirely rid of comatic aberration. Until the end of the 20th century, around ten Schmidt telescopes have been built, most of them to conduct sky surveys \sidecite{Cannon1995}. At least two of them were space telescopes: ESA's astrometry mission \textit{HIPPARCOS} \sidecite{ESA1997} (1989--1993) and the NASA explanet mission \textit{Kepler} \sidecite{Koch2010} (2009--2018). In both cases, the mission entailed monitoring of large areas of the sky; prime territory for Schmidt telescopes.
+A \textit{Schmidt telescope} is by design dedicated to taking images, contrary to earlier designs allowing actually looking through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a \textit{Schmidt camera}. The design goal is a wide FoV. This makes it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets entirely rid of comatic aberration.
 
 \begin{figure}[]
     \includegraphics[width=1\textwidth]{schmidt_telescope_design.pdf}
-    \caption[Schmidt telescope schematics]{Schmidt telescope schematics. Figure from \url{https://commons.wikimedia.org/wiki/File:Schmidt-Teleskop.svg}, annotations by the author.}
+    \caption[Schmidt telescope schematic]{Schmidt telescope schematic. Light enters from the left, passes the Schmidt plate (an aspherical correcting lens), gets reflected by a spherical mirror at the end onto a photographic plate or camera halfway down the tube. Figure from \url{https://commons.wikimedia.org/wiki/File:Schmidt-Teleskop.svg}, annotations by the author.}
     \labfig{schmidt_telescope}
 \end{figure}
 
+Until the end of the 20th century, around ten Schmidt telescopes have been built, most of them to conduct sky surveys \sidecite{Cannon1995}. At least two of them were space telescopes: ESA's astrometry mission \textit{HIPPARCOS} \sidecite{ESA1997} (1989--1993) and the NASA explanet mission \textit{Kepler} \sidecite{Koch2010} (2009--2018). In both cases, the mission entailed monitoring of large areas of the sky; prime territory for Schmidt telescopes.
+
+\begin{figure}[]
+    \includegraphics[width=1\textwidth]{ztf_fov.png}
+    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST). Note also the 6.5 increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
+    \labfig{ztf_fov}
+\end{figure}
+
+
+
 \section{Camera}
 The ZTF camera is a CCD design, consisting of 16 individual CCDs by commercial manufacturer e2v (\textit{Science CCD231-C6}), each having 6144x6160 pixels, resulting in a total camera resolution of $\approx 600$ Megapixels \sidecite{Dekany2016}. As one can see in Fig. \ref{fig:ztf_camera}, the array of 16 CCDs is slightly bent. This is necessitated by the Schmidt design, where the camera needs to be spherical, matching the spherical mirror. As individual CCDs are flat, each of the 16 sensors is is installed slightly tilted, tracing the overall curvature. To get rid of residual deviations from the global curvature, in front of each sensor a field flattener lens is mounted \sidecite{Bellm2019}.
-
-CCDs are silicon-based light sensors. They consist of arrays of coupled metal-oxide semiconductor (MOS) capacitors, each one able to store the charge created by incident photons; one capacitor per pixel of the sensor array. The array is exposed to light for an amount of time (exposure time). During the exposure, incident photons create a charge proportional to the amount of light hitting each capacitor via the photo-electric effect. This charge is accumulated in each capacitor until the exposure is finished. To read out the CCD, the charges need to be moved to neighboring capacitors. When the MOS capacitors are tightly placed, one can move the charges from one capacitor to the next by changing the voltages on the capacitor's gates.
 
 \begin{marginfigure}
     \includegraphics{ccd_buckets.png}
     \caption[CCD operational principle]{CCD operational principle, explained with buckets and rain water. From \cite{Janesick1987}.}
     \labfig{ccd_buckets}
 \end{marginfigure}
+
+CCDs are silicon-based light sensors. They consist of arrays of coupled metal-oxide semiconductor (MOS) capacitors, each one able to store the charge created by incident photons; one capacitor per pixel of the sensor array. The array is exposed to light for an amount of time (exposure time). During the exposure, incident photons create a charge proportional to the amount of light hitting each capacitor via the photo-electric effect. This charge is accumulated in each capacitor until the exposure is finished. To read out the CCD, the charges need to be moved to neighboring capacitors. When the MOS capacitors are tightly placed, one can move the charges from one capacitor to the next by changing the voltages on the capacitor's gates.
 
 In Fig. \ref{fig:ccd_buckets} the principle of a CCD is explained with little buckets collecting rain water. Each bucket symbolizes one capacitor or one pixel of the sensor array respectively. After the rain has stopped (the exposure is finished), each bucket naturally contains an amount of water proportional to the amount of water that rained down over it. Now the amount of water in each bucket (the charge deposited by incident light in each capacitor) needs to be measure. To do this, the buckets in each row are moved one position to the left with horicontal conveyor belts. Each bucket at the left end of the horicontal conveyor belt is then emptied into the bucket on the single vertical conveyor belt. The buckets of this vertical belt are then one by one drained into the meausuring bucket on the bottom left. After all buckets on the vertical belt are emptied, the process starts anew, until all buckets are empty. As one can see, the time this process takes scales linearly with the amount of buckets (or pixels) \sidecite{Janesick1987}. To speed up the process, one can subdivide the sensor area into smaller sections, which are read out in parallel.
 
@@ -53,17 +63,18 @@ An additional four smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt
 \end{figure}
 
 \section{Optical System}
+
+As the CCDs of the camera cannot ``see'' color, different filters need to be put in front of the camera to obtain color information. With ZTF, there are three different filters available: A \textit{g}-band filter with a median wavelength of 472 nm (corresponding to blue light), an \textit{r}-band filter (median wavelength: 634 nm, red light) and an \textit{i}-band filter (789 nm, near-infrared). These filters can be changed with a robotic arm, securely stowing the replaced filter and magnetically attaching the new one \cite{Dekany2020}.
+
+The main decision goal for the filter selection was to the maximize signal-to-noise ratio by avoiding major sky emission lines at Mt. Palomar while avoiding excessive costs. ZTF does not exactly match the filters of potential calibrators, e.g. the Sloan Digital Sky Survey (SDSS) \sidecite{York2000}, PanSTARRS (PS1) \sidecite{Kaiser2002} or \textit{Gaia} \sidecite{Prusti2016}.\newpage This was justified with the overall different telescope design of ZTF \cite{Bellm2019}.
+
 \begin{marginfigure}
     \includegraphics{ztf_throughput.png}
     \caption[ZTF Filter Transmission]{ZTF filter transmission for the three different bands (\textit{g}-band: blue, \textit{r}-band: orange, \textit{i}-band: red). The green and gray datapoints show the CCD quantum efficiency measurements (single and double-layer reflective coating). From \cite{Bellm2019}.}
     \labfig{ztf_transmission}
 \end{marginfigure}
 
-As the CCDs of the camera cannot ``see'' color, different filters need to be put in front of the camera to obtain color information. With ZTF, there are three different filters available: A \textit{g}-band filter with a median wavelength of 472 nm (corresponding to blue light), an \textit{r}-band filter (median wavelength: 634 nm, red light) and an \textit{i}-band filter (789 nm, near-infrared). These filters can be changed with a robotic arm, securely stowing the replaced filter and magnetically attaching the new one \cite{Dekany2020}.
-
-The transmission of each filter and the CCD quantum efficiency curve can be seen in Fig. \ref{fig:ztf_transmission}. As one can see, the quantum efficiency starts to decrease within the \textit{r}-band towards higher wavelengths, rendering the \textit{i}-abnd the least sensitive ZTF band. The $5-\sigma$ median sensitivity for a 30s exposure reflects that fact. It is 21.1 mag in the \textit{g}-band, 20.9 in the \textit{r}-band and 20.2 mag in the \textit{i}-band for optimal conditions (new moon) \cite{Bellm2019}.
-
-The main decision goal for the filter selection was to the maximize signal-to-noise ratio by avoiding major sky emission lines at Mt. Palomar while avoiding excessive costs. Not exactly matching the filters of potential calibrators (e.g. the Sloan Digital Sky Survey [SDSS]\sidecite{York2000}, PanSTARRS [PS1] \sidecite{Kaiser2002} or \textit{Gaia} \sidecite{Prusti2016}) was argued with the overall different telescope design of ZTF \cite{Bellm2019}.
+The transmission of each filter and the CCD quantum efficiency curve can be seen in Fig. \ref{fig:ztf_transmission}. As one can see, the quantum efficiency starts to decrease within the \textit{r}-band towards higher wavelengths, rendering the \textit{i}-band the least sensitive of the three filters. The $5\sigma$ median sensitivity for a 30s exposure reflects that fact. It is 21.1 mag in the \textit{g}-band, 20.9 in the \textit{r}-band and 20.2 mag in the \textit{i}-band for optimal conditions (new moon) \cite{Bellm2019}.
 
 
 
