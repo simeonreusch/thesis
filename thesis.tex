@@ -22,6 +22,7 @@
 \usepackage{blindtext}
 \usepackage{orcidlink}
 \usepackage{siunitx}
+\usepackage{astro}
 % \usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
 %\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
 
@@ -183,7 +184,7 @@
 \labch{ZTF}
 The second instrument relevant for this thesis is the Zwicky Transient Facility (ZTF). It is named after the notorious Swiss-American astronomer Fritz Zwicky, who e.g. first employed the Virial theorem to infer the existence of dark matter \sidecite{Zwicky1933}. Furthermore, together with Walter Baade, he posited the existence of supernovae and the creation of neutron stars in such events \sidecite{Baade1934}.
 
-ZTF is a wide-field optical survey telescope. This means that it normally operates by scanning the full sky with a fixed cadence, in contrast to pointing to specific objects. It is located at Mount Palomar in California, United States, at \SI{1700}{\meter} above sea level, roughly \SI{130}{\kilo \meter} southeast of Los Angeles. Its optical system, the \SI{1.2}{\meter} (48 inch) Samuel Oschin telescope, is a Schmidt design (see below) and was inaugurated in 1948 \cite{Harrington1952}. At the time of inauguration and for years to come, it was the largest Schmidt telescope in the world. Originally, the telescope used photographic plates, covering a field of view (FoV) of \SI{44}{\square\deg}. As these have obvious drawbacks, and because technological progress made it possible, the Near-Earth Asteroid Tracking (NEAT) program \sidecite{Pravdo1999} replaced the photographic plates with a charge-coupled device (CCD) camera in the early 2000s.\marginnote{See \url{https://sites.astro.caltech.edu/palomar/about/telescopes/oschin.html} for a historical overview.}
+ZTF is a wide-field optical survey telescope. This means that it normally operates by scanning the full sky with a fixed cadence, in contrast to pointing to specific objects. It is located at Mount Palomar in California, United States, at \SI{1700}{\m} above sea level, roughly \SI{130}{\km} southeast of Los Angeles. Its optical system, the \SI{1.2}{\m} (48 inch) Samuel Oschin telescope, is a Schmidt design (see below) and was inaugurated in 1948 \cite{Harrington1952}. At the time of inauguration and for years to come, it was the largest Schmidt telescope in the world. Originally, the telescope used photographic plates, covering a field of view (FoV) of \SI{44}{\square\deg}. As these have obvious drawbacks, and because technological progress made it possible, the Near-Earth Asteroid Tracking (NEAT) program \sidecite{Pravdo1999} replaced the photographic plates with a charge-coupled device (CCD) camera in the early 2000s.\marginnote{See \url{https://sites.astro.caltech.edu/palomar/about/telescopes/oschin.html} for a historical overview.}
 
 The camera was updated several times over the course of the next years. The immediate predecessor of ZTF, the Palomar Transient Factory (PTF) \sidecite{Law2009}, began operation in 2009. Equipped with a 96 Megapixel camera, it already had many of the characteristics of ZTF: A fully automated survey, searching for optical transients with a CCD camera.
 
@@ -292,10 +293,10 @@ The full calibration and image processing pipeline is shown in Fig. \ref{fig:ztf
 Each image taken on site (calibration and science exposures alike) is stored as FITS file and subsequently compressed loslessly. The compressed images on average use \SI{5}{\bit} per pixel, so the full image is roughly \SI{380}{\mega\byte} large. These images are immediately sent to IPAC with the High Performance Wireless Research \& Educational Network (HPWREN)\sidenote{\url{https://hpwren.ucsd.edu/}}, a microwave-based data network, linking Palomar Observatory with the IPAC post-processing site. Each transfer typically takes \SI{20}{\second}, keeping up with the pace of ZTF observations \cite{Dekany2020}.
 
 \subsection*{Overscan correction}
-As the temperature of the CCDs changes with time, each image is subject to a time-dependent global offset induced by thermal noise. To correct for this, an \textit{overscan} region is used. In the case of the ZTF CCDs, this region does not correspond to physical pixels, but is created during CCD readout. If one reads out more clock cycles then pixels are available, the charge that has gathered during science readout can be accessed. For ZTF, this is done for an additional 24 cycles, corresponding to 24 overscan pixels for each sensor row. After this, the median of these 24 pixels is taken and the full overscan column is fitted with a quadratic function. For each and every image taken by the camera, the bias described by this quadratic function is then subtracted from the image \sidecite{Masci2019}.
+As the temperature of the CCDs changes with time, each image is subject to a time-dependent global offset induced by thermal noise. To correct for this, an \textit{overscan} region is used. In the case of the ZTF CCDs, this region does not correspond to physical pixels, but is created during CCD readout. If one reads out more clock cycles then pixels are available, the charge that has gathered during science readout can be accessed. For ZTF, this is done for an additional 24 cycles, corresponding to 24 overscan pixels for each sensor row. After this, the median of these 24 pixels is taken and the full overscan column is fitted with a quadratic function. For each and every image taken by the camera, the bias described by this quadratic function is then subtracted from the image \sidecite{Masci2019a}.
 
 \subsection*{Bias correction}
-The CCD pixels also have different zeropoints. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textit{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019}.
+The CCD pixels also have different zeropoints. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textit{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019a}.
 
 \begin{marginfigure}
     \includegraphics{ztf_flatfield_illuminator.png}
@@ -307,12 +308,12 @@ The CCD pixels also have different zeropoints. Luckily, this variation has a hig
 
 The pixels in the CCDs do not only differ in zero point, they also have slightly different gain or quantum efficiency. This means, their \textit{response} to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with light emitting diodes (LEDs), each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
 
-Each afternoon, before science operations begin, at least 20 images per filter are taken of the flat field illuminator. These are then overscan corrected, the bias image is subtracted, and the pixel values are normalized to a truncated global mean of 1 over the image (to allow for later division). After this individual treatment, all flat field images per filter are stacked to a truncated mean per pixel and outlier rejection is applied to isolate additional noisy pixels. All science images taken during the night are divided by this flat field image \cite{Masci2019}.
+Each afternoon, before science operations begin, at least 20 images per filter are taken of the flat field illuminator. These are then overscan corrected, the bias image is subtracted, and the pixel values are normalized to a truncated global mean of 1 over the image (to allow for later division). After this individual treatment, all flat field images per filter are stacked to a truncated mean per pixel and outlier rejection is applied to isolate additional noisy pixels. All science images taken during the night are divided by this flat field image \cite{Masci2019a}.
 
 \subsection*{Astrometric calibration}
-Astrometric calibration is the mapping of image pixel coordinates to an on-sky coordinate system. For ZTF, this is performed with stars contained in the Gaia Data Release 1 (Gaia DR1, \sidecite{Brown2016}). As it is a mission designated to high-precision astrometry, Gaia is the ideal reference for this task. Only sources that are neither too faint, nor run risk of saturating the detector are used ($12 \leq G \leq 18$ mag). The astrometric solution is derived using the \texttt{SCAMP} \sidecite{Bertin2006} package \cite{Masci2019}.
+Astrometric calibration is the mapping of image pixel coordinates to an on-sky coordinate system. For ZTF, this is performed with stars contained in the Gaia Data Release 1 (Gaia DR1, \sidecite{Brown2016}). As it is a mission designated to high-precision astrometry, Gaia is the ideal reference for this task. Only sources that are neither too faint, nor run risk of saturating the detector are used ($12 \leq G \leq 18$ mag). The astrometric solution is derived using the \texttt{SCAMP} \sidecite{Bertin2006} package \sidecite{Masci2019}.
 
-\subsection*{PSF photometry}
+\subsection*{PSF photometry} \label{psfphot}
 After astrometric calibration, sources in the image need to be extracted to perform photometric calibration (to compare star brightnesses to reference measurements, one first needs stars...). To do so, point spread function (PSF) photometry is employed. Each telescope has a finite aperture, therefore suffering from diffraction. Additionally, earth's atmosphere is constantly and turbulently changing, with different atmospheric layers having different refractive indices, depending on their temperature. This smears out the light from the original point source, an effect known as \textit{seeing} (see Fig. \ref{fig:seeing}).
 
 \begin{figure}[h!]
@@ -324,39 +325,61 @@ After astrometric calibration, sources in the image need to be extracted to perf
 The PSF is describing the way an ideal point source is smeared out spatially after being subjected to atmospheric and optical effects in the telescope, and seeing is the FWHM of the PSF. The algorithm used to reconstruct the PSF of a ZTF exposure is \texttt{DAOphot} \sidecite{Stetson1987}. It fits an analytic Gaussian profile to all point sources within an image. After subtracting this profile, it is iteratively updated with the residuals after subtraction. The background estimate needed for this procedure is extracted from the peak brightness value of a histogram of evenly distributed pixels within the image \cite{Stetson1987}.
 
 \subsection*{Photometric calibration and magnitudes}
-\marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal} \cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured \textit{Calspec} standard stars. For details, see \cite{Magnier2020}}Not only the source positions in the images need to be calibrated (astrometry), but their brightness as well (photometry). To simplify matters, ZTF is photometrically calibrated against a reference survey, namely PS1. To do this, a catalog of useful calibrator stars from the PS1 survey has been curated. These stars are required to fulfill some basic quality criteria: They should be stable over multiple PS1 survey epochs in most PS1 filters (\textit{g}, \textit{r}, \textit{i}, \textit{z}) and should be fairly bright, but not so bright that they saturate the ZTF sensors. Furthermore, they are required to be fairly isolated to avoid blending with neighboring objects and need to have a high probability of being in fact stars (as opposed to galaxies) \cite{Masci2019}.
+\marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal} \cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured \textit{Calspec} standard stars. For details, see \cite{Magnier2020}}Not only the source positions in the images need to be calibrated (astrometry), but their brightness as well (photometry). To simplify matters, ZTF is photometrically calibrated against a reference survey, namely PS1. To do this, a catalog of useful calibrator stars from the PS1 survey has been curated. These stars are required to fulfill some basic quality criteria: They should be stable over multiple PS1 survey epochs in most PS1 filters (\textit{g}, \textit{r}, \textit{i}, \textit{z}) and should be fairly bright, but not so bright that they saturate the ZTF sensors. Furthermore, they are required to be fairly isolated to avoid blending with neighboring objects and need to have a high probability of being in fact stars (as opposed to galaxies) \cite{Masci2019a}.
 
-The brightness of both ZTF and PS1 are measured in AB magnitudes \sidecite{Oke1983}. Magnitudes are somewhat counterintuitive, as a higher value corresponds to a fainter source.\sidenote{This can be traced back over 2000 years to Greek/Roman astronomers Hipparchus and Ptolemy \cite{Krisciunas2001}. These classified the brightest stars to be of ``first order'' or ``first magnitude'', with subsequently dimmer stars assigned lower magnitudes until the dimmest stars visible to the naked eye were of ``sixth magnitude''. The system stuck and was put on firm footing by Norman Pogson in 1856. He defined a star being 5 magnitudes brighter than another one to be 100 times brighter \cite{Jones1968}.} The following definition holds:
+The brightness of both ZTF and PS1 are measured in magnitudes. Magnitudes are somewhat counterintuitive, as a higher value corresponds to a fainter source.\sidenote{This can be traced back over 2000 years to Greek/Roman astronomers Hipparchus and Ptolemy \cite{Krisciunas2001}. These classified the brightest stars to be of ``first order'' or ``first magnitude'', with subsequently dimmer stars assigned lower magnitudes until the dimmest stars visible to the naked eye were of ``sixth magnitude''. The system stuck and was put on firm footing by Norman Pogson in 1856. He defined a star being 5 magnitudes brighter than another one to be 100 times brighter \cite{Jones1968}.} The following definition holds:
 
 \begin{definition}
 \labdef{magnitude}
-A star one magnitude brighter than another star is $\sqrt[5]{100}$ times brighter.
+A star one magnitude brighter than another star is $\sqrt[5]{100} \approx 2.512$ times brighter
 \end{definition}
+If one uses flux density (power per unit area) on earth as a measure of brightness, it follows from Def. \ref{def:magnitude} that the difference between two objects with magnitudes $m_1$ and $m_2$ and respective flux densities $f_1$ and $f_2$ is:
+\begin{equation}
+m_1 - m_2 = -2.5 \log_{10}{\frac{f_1}{f_2}}
+\end{equation}
+Now we have a \textit{relative} definition of an source's magnitude, but we need an absolute one. In other words, one needs to know what constitutes a magnitude of 0 (the zero point of the magnitude scale). ZTF uses AB magnitudes \sidecite{Oke1983}, which are defined via the spectral flux density $f_\nu$ [\unit{\W\per\m\per\Hz}]. In this sytem, the magnitude is a logarithm of the spectral flux density: 
 
-From this, it follows that the difference between two objects with magnitudes $m_1$ and $m_2$ and the brightness $I_1$ and $I_2$ is:
 \begin{definition}
-\labdef{magdiff}
-$m_1 - m_2 = -2.5 \log{\frac{I_1}{I_2}}$.
+\labdef{abmag_density}
+$m_{\text{AB}}(\nu) = -2.5 \log_{10}{(f_\nu/\SI{3631}{\jansky})}$
 \end{definition}
 
-Now we have a \textit{relative} definition of an object's magnitude, but we need an absolute one.
+As one can see, a source with constant spectral flux density $f_{\nu,0} = \SI{3631e-23}{\W\per\cm\per\Hz} = \SI{3631}{\jansky}$ corresponds to a magnitude of 0.\sidenote{The value of $f_\nu,0$ is not entirely random: The traditional zero point was the star Vega. Vega's magnitude in the AB system as defined above, integrated over the \textit{V}-band, is 0.03, close to the traditional 0. The AB system has the advantage of not relying on a physical source.} Now, telescopes like ZTF and PS1 use bandpass filters, so the spectral flux density is integrated over the filter wavelengths. Therefore, the magnitude definition changes to \sidecite{Tonry2012}:
 
-All extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one needs to deal with the difference in filters between PS1 and ZTF: They are fairly similar, but not exactly so. This means that a celestial object that does not have a constant spectrum (i.e. almost all of them) have slightly different brightness values when measured with the ZTF and the corresponding PS1 filter. To account for this, a filter-dependent \textit{color correction} needs to be applied.
+\begin{definition}
+\labdef{abmag}
+$m = -2.5 \log_{10}{\frac{\int{f_\nu(h \nu)^{-1}A(\nu)\,d\nu}}{\int{\SI{3631}{\jansky}(h \nu)^{-1}A(\nu)\,d\nu }}}$
+\end{definition}
+Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross section (i.e. the chance of an incoming photon to produce an electron in the detector\sidenote{More general, $A(\nu)$ is $A(\nu,\theta,t)$, also depending on the angle of the incoming photon and therefore the atmospheric column along the line of sight, as well as time.}). ZTF does not use a precisely modeled response function $A(\nu)$, but relies on PS1. To first order, ZTF magnitudes are tied to the PS1 system via their zero point:
+
+\begin{equation}
+m_\text{cal} = m_\text{instr} + \text{ZP}
+\end{equation}
+
+To do this, all extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one could to first order calculate $m_\text{cal}$.
+
+But there is a potential complication: The ZTF and PS1 filters are fairly similar, but not exactly so. This means that a celestial object that does not have a constant spectrum (i.e. almost all of them) will have slightly different brightness values when measured with the ZTF and the corresponding PS1 filter. To account for this, a linear, filter-dependent \textit{color correction} $c_f$ needs to be applied:
+
+\begin{equation}
+m_\text{cal} = m_\text{instr} + \text{ZP}_f + c_f \times \text{PS1}_\text{clr}
+\end{equation}
+where $\text{PS1}_\text{clr}$ is filter dependent ($g_\text{PS1}-r_\text{PS1}$ for the ZTF \textit{g}/\textit{r}-band, and $r_\text{PS1}-i_\text{PS1}$ for the \textit{i}-band).
+
+In the photometric calibration step, $\text{ZP}_f$ and $c_f$ are chosen to globally minimize $\Delta m_f = \text{ZP}_f + c_f \times \text{PS1}_\text{clr}$ for all calibrator stars in the respective image \cite{Masci2019a}.
+
+\subsection*{Image subtraction}
+Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many of the science goals concern observing sources that are \textit{new} or \textit{changing}. To do so, one needs to detect changes in the nightly observations with regard to \textit{reference images}. New images are then subtracted from those reference images, and all remaining signals are new with respect to the epoch of reference image creation. All reference images in ZTF are stacked images of 15--40 individual high-quality images. Quality criteria for the individual images comprise good seeing, low errors on the astrometric and photometric calibrations, as well as background levels falling into filter-specific ranges \cite{Masci2019}.
+
+\texttt{SWarp} \sidecite{Bertin2010} is used to interpolate and resample the reference image onto the science image, while subsequent subtraction and PSF photometry (see \nameref{psfphot}) is performed with the \texttt{ZOGY} algorithm \sidecite{Zackay2016}.
+
+\subsection*{Alert packages}
+the last step in the imaging pipeline is alerting an array of upstream transient alert brokers. The information on new transients or updates on existing ones therefore need to be packaged into a convenient format. All positive detections after image subtraction with a signal-to-noise greater than 5 are subjected to a machine-learning algorithm designated to discriminate between ``real'' (most likely astrophysical) and ``bogus'' (e.g. subtraction artifacts) events \sidecite{Mahabal2019}. 
 
 %\chapter{The ZTF neutrino follow-up program}
-%
-%\blindtext
-%
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
-%
-%\blindtext
-%
 %\chapter{The ZTF nuclear sample}
-%
-%\blindtext
-%
 %\chapter{Conclusion and Outlook}
-\appendix % From here onwards, chapters are numbered with letters, as is the appendix convention
+\appendix
 
 \pagelayout{wide} % No margins
 \addpart{Appendix}

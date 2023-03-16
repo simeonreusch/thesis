@@ -1,0 +1,56 @@
+% preamble
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{astro}[2012/06/17 Definitions for astronomy]
+% packages
+\RequirePackage{amstext}
+\newcommand*\rangeto{\textnormal{\hskip.1em\relax--\hskip.1em\relax}}
+\RequirePackage[separate-uncertainty=true,range-units=single,
+  range-phrase=\rangeto]{siunitx}
+% common astronomical symbols
+\let\sun\odot
+\let\bh\bullet
+\newcommand*\solarmass{\si{\solarmass}}
+\newcommand*\solarluminosity{\si{\solarluminosity}}
+% astrophysical units
+\DeclareSIUnit\lightspeed{$c$}
+\DeclareSIUnit\rydberg{Ry}
+\DeclareSIUnit\erg{erg}
+\DeclareSIUnit\magnitude{mag}
+\DeclareSIUnit\jansky{Jy}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\h{$h$}
+\DeclareSIUnit\hseven{$h$_7}
+\DeclareSIUnit\parsec{pc}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\solarluminosity{\ensuremath{L_\sun}}
+\DeclareSIUnit\solarmass{\ensuremath{M_\sun}}
+\DeclareSIUnit\solarmassinenergy{\ensuremath{M_\sun|c^2}}
+\DeclareSIUnit\solarradius{\ensuremath{R_\sun}}
+% redeclared units
+\DeclareSIUnit\arcsecond{as}
+\DeclareSIUnit\astronomicalunit{AU}
+\DeclareSIUnit\clight{\ensuremath c}
+% additional unit notations
+\DeclareRobustCommand\SIfrac{\@ifstar\ast@SIfracplain\ast@SIfracparen}
+\newcommand*\ast@SIfracplain[1]{\begingroup\def\@tempa{#1}\ast@@SIfracplain}
+\newcommand*\ast@SIfracparen[1]{\begingroup\def\@tempa{#1}\ast@@SIfracparen}
+\newcommand*\ast@@SIfracplain[2][]{\frac{\@tempa}{\SI{#1}{#2}}\endgroup}
+\newcommand*\ast@@SIfracparen[2][]{\biggl(\ast@@SIfracplain{#1}{#2}\biggr)}
+\newcommand*\SIex[2]{#1\,\si{#2}}
+% spectroscopic notation
+\DeclareRobustCommand\specatom{\@ifstar\ast@atomforbid\ast@atomallow}
+\DeclareRobustCommand\specline{\@ifstar\ast@lineforbid\ast@lineallow}
+\newcommand*\ast@atomforbid[2]{\textnormal{[\ast@atomallow{#1}{#2}]}}
+\newcommand*\ast@atomallow[2]{%
+  \textnormal{#1\hskip.1em\relax\textsc{\romannumeral#2}}}
+\newcommand*\ast@lineforbid[3]{%
+  \textnormal{\ast@atomforbid{#1}{#2}\hskip.2em\relax#3}}
+\newcommand*\ast@lineallow[3]{%
+  \textnormal{\ast@atomallow{#1}{#2}\hskip.1em\relax#3}}
+% term symbol
+\DeclareRobustCommand\termsym{\@ifstar\ast@termodd\ast@termeven}
+\newcommand*\scripts[5]{\ensuremath{
+  ^{#2\vphantom0}_{#3\vphantom0}\hskip-\scriptspace{#1}
+  ^{#4\vphantom0}_{#5\vphantom0}}}
+\newcommand*\ast@termeven[3]{\scripts{\textup{#2}}{#1}{}{}{#3}}
+\newcommand*\ast@termodd[3]{\scripts{\textup{#2}}{#1}{}{\textup o}{#3}}
