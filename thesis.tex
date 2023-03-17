@@ -163,9 +163,11 @@ One of the two most relevant instruments for this thesis is the \textit{IceCube 
 \end{marginfigure}
 The basic oeprational principle of IceCube (and already of AMANDA) is the detection of Cherenkov light within the antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice, their speed exceeds the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual digital optical modules (DOMs), buried deep in the ice. These are sensitive to the Cherenkov radiation.
 
-\section{Detection principle: Cherenkov radiation}
+\section{Cherenkov radiation} \label{cherenkov_radiation}
 
-Cherenkov radation was first detected in 1934 by Soviet scientist Pavel Cherenkov \sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_m$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. As $c_m$ cannot exceed $c_0$, $n$ is $\geq1$. When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized and emit electromagnetic radiation.
+Cherenkov radation was first detected in 1934 by Soviet scientist Pavel Cherenkov \sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_m$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. Note that the phase velocity of light in a medium can exceed $c_0$, so $n<1$ is possible. 
+
+When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized and emit electromagnetic radiation. 
 
 For slow particles, this radiation destructively interferes with itself, canceling out all signals (see the bottom panel of Fig. \ref{fig:cherenkov}). Now, if the particle is travelling faster than speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a cone-shaped wavefront gets created (see top panel of Fig. \ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation. If the particle has speed $v=\beta c_0$, the angle $\theta$ between the particle trajectory and the direction of the Cherenkov radiation can be calculated as \sidecite{LAnnunziata2020}:
 
@@ -173,14 +175,36 @@ For slow particles, this radiation destructively interferes with itself, canceli
 \cos{\theta} = \frac{\beta}{n}
 \end{equation}
 
-If the medium is ice, to first order the refractive index $n\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g. on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} For example: A secondary muon traveling through the ice at $0.999 c_0$ will emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
+For example: If the medium is ice, to first order the refractive index $n\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g. on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
+\begin{marginfigure}
+    \includegraphics{ic_cherenkov_spectrum.png}
+    \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. From \cite{Fulop1992}.}
+    \labfig{cherenkov_spectrum}
+\end{marginfigure}
+Cherenkov radiation does not have spectral peaks, but is continuous, with a relative intensity proportional to the frequency. Note that the refractive index of a medium is also frequency dependent, dropping below 1 in the X-ray. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and peaks in the ultra violet (UV), before it sharply drops off in the X-ray regime \sidecite{Fulop1992}, see Fig. \ref{fig:cherenkov_spectrum}.
 
+\section{IceCube instrumentation}
+
+IceCube detects neutrinos by observing the optical part of their secondary particle Cherenkov spectrum (see section \ref{cherenkov_radiation} above). To understand how this is done, one first needs to look at the working principe of a photomultiplier tube (PMT).
+
+\subsection*{Photomultiplier tubes}
+A PMT is a device used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s \sidecite{Iams1935}.
+
+\begin{figure}[h!]
+    \includegraphics{ic_pmt.png}
+    \caption[PMT schematic]{A photomultiplier tube. From \cite{Bednarski2014}.}
+    \labfig{pmt}
+\end{figure}
+
+As one can see in Fig. \ref{fig:pmt}, there are three principal components: a \textit{cathode}, a number of \textit{dynodes} and an \textit{anode}. When photons hit the cathode, they can release electrons via the photoelectric effect \sidecite{Einstein1905}. These photoelectrons are then accelerated (towards the right side in Fig. \ref{fig:pmt}) by an electric field within the tube. This field is generated by applying a high voltage between the cathode and the anode.
+
+To amplify the signal, a number of dynodes is placed in between. These are additional electrodes with subsequently higher voltages. When the photoelectron hits the first dynode, a number of secondary electrons are generated, which are subsequently accelerated towards the next dynode by the electric field. This process repeats for every dynode, generating an avalanche of electrons amplifying the original single photoelectron signal by a large factor.
 
 \subsection*{Detector layout}
 Fig. \ref{fig:ic_sideon} shows the detector side-on, while Fig. \ref{fig:ic_top_down} shows a top-down view.
 \begin{marginfigure}
     \includegraphics{ic_side_view.png}
-    \caption[IceCube side-on]{bla. From \cite{Ahlers2018a}.}
+    \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the antarctic glacial ice. In the center on top is the IceCube Laboratory, were data acquisition takes place. From \cite{Ahlers2018a}.}
     \labfig{ic_sideon}
 \end{marginfigure}
 \begin{marginfigure}
