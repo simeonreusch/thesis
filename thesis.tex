@@ -154,7 +154,41 @@
 \setchapterimage[7cm]{ic_icecube.jpg}
 \chapter{The IceCube Detector}
 \labch{IceCube}
-One of the two most relevant instruments for this thesis is the \textit{IceCube Detector} located at the geographic South Pole.
+One of the two most relevant instruments for this thesis is the \textit{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location \sidecite{Andres1999, Andres2000}. 
+\begin{marginfigure}
+    \includegraphics{ic_cherenkov1.png}
+    \includegraphics{ic_cherenkov2.png}
+    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure (A) Cherenkov radiation is emitted, as the radiation emitted at different points in time forms mutual wavefronts. In the figure on the bottom (B), all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). From \cite{LAnnunziata2020}.}
+    \labfig{cherenkov}
+\end{marginfigure}
+The basic oeprational principle of IceCube (and already of AMANDA) is the detection of Cherenkov light within the antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice, their speed exceeds the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual digital optical modules (DOMs), buried deep in the ice. These are sensitive to the Cherenkov radiation.
+
+\section{Detection principle: Cherenkov radiation}
+
+Cherenkov radation was first detected in 1934 by Soviet scientist Pavel Cherenkov \sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_m$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. As $c_m$ cannot exceed $c_0$, $n$ is $\geq1$. When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized and emit electromagnetic radiation.
+
+For slow particles, this radiation destructively interferes with itself, canceling out all signals (see the bottom panel of Fig. \ref{fig:cherenkov}). Now, if the particle is travelling faster than speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a cone-shaped wavefront gets created (see top panel of Fig. \ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation. If the particle has speed $v=\beta c_0$, the angle $\theta$ between the particle trajectory and the direction of the Cherenkov radiation can be calculated as \sidecite{LAnnunziata2020}:
+
+\begin{equation}
+\cos{\theta} = \frac{\beta}{n}
+\end{equation}
+
+If the medium is ice, to first order the refractive index $n\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g. on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} For example: A secondary muon traveling through the ice at $0.999 c_0$ will emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
+
+
+\subsection*{Detector layout}
+Fig. \ref{fig:ic_sideon} shows the detector side-on, while Fig. \ref{fig:ic_top_down} shows a top-down view.
+\begin{marginfigure}
+    \includegraphics{ic_side_view.png}
+    \caption[IceCube side-on]{bla. From \cite{Ahlers2018a}.}
+    \labfig{ic_sideon}
+\end{marginfigure}
+\begin{marginfigure}
+    \includegraphics{ic_top_view.png}
+    \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. From \cite{Ahlers2018a}.}
+    \labfig{ic_top_down}
+\end{marginfigure}
+
 
 \input{chapters/ztf.tex}
 
