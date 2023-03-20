@@ -156,9 +156,9 @@
 \labch{IceCube}
 One of the two most relevant instruments for this thesis is the \textit{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location \sidecite{Andres1999, Andres2000}. 
 \begin{marginfigure}
-    \includegraphics{ic_cherenkov1.png}
-    \includegraphics{ic_cherenkov2.png}
-    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure (A) Cherenkov radiation is emitted, as the radiation emitted at different points in time forms mutual wavefronts. In the figure on the bottom (B), all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). From \cite{LAnnunziata2020}.}
+    \includegraphics{ic_cherenkov1.pdf}
+    \includegraphics{ic_cherenkov2.pdf}
+    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure Cherenkov radiation is emitted, as the radiation emitted at different points in time forms mutual wavefronts. In the figure on the bottom, all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). Adopted from \cite{LAnnunziata2020}.}
     \labfig{cherenkov}
 \end{marginfigure}
 The basic oeprational principle of IceCube (and already of AMANDA) is the detection of Cherenkov light within the antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice, their speed exceeds the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual digital optical modules (DOMs), buried deep in the ice. These are sensitive to the Cherenkov radiation.
@@ -191,8 +191,8 @@ IceCube detects neutrinos by observing the optical part of their secondary parti
 A PMT is a device used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s \sidecite{Iams1935}.
 
 \begin{figure}[h!]
-    \includegraphics{ic_pmt.png}
-    \caption[PMT schematic]{A photomultiplier tube. From \cite{Bednarski2014}.}
+    \includegraphics{ic_pmt_annotated.pdf}
+    \caption[PMT schematic]{A photomultiplier tube. Adopted from \cite{Bednarski2014}.}
     \labfig{pmt}
 \end{figure}
 
@@ -200,21 +200,47 @@ As one can see in Fig. \ref{fig:pmt}, there are three principal components: a \t
 
 To amplify the signal, a number of dynodes is placed in between. These are additional electrodes with subsequently higher voltages. When the photoelectron hits the first dynode, a number of secondary electrons are generated, which are then accelerated towards the next dynode by the electric field. This process repeats for every dynode, generating an avalanche of electrons exponentially amplifying the original single photoelectron signal. The number of secondary electrons hitting the anode is proportional to the number of incident photons, resulting in a linear detector response (as long as the detector stays below its saturation level) \sidecite{Wright2017}.
 
+IceCube uses PMTs made by Hamamatsu Photonics (R7081-02), sensitive to photons between \SI{300}{\nm} and \SI{650}{\nm}. They have a quantum efficiency at \SI{390}{\nm} of $25\%$, are operated with a voltage of \SI{1500}{\V} and have a gain of \num{e7}. The photon-sensitive surface area is typically \SI{530}{\cm\squared} \sidecite{Abbasi2010}.
+
+\subsection*{The Digital Optical Module}
+\begin{marginfigure}
+    \includegraphics{ic_DOM.png}
+    \caption[IceCube digital optical module]{The IceCube DOM seen from the side. The detecting side of the PMT is facing downwards, with the main board an the PMT base board on top. From \cite{Aartsen2017}.}
+    \labfig{ic_dom}
+\end{marginfigure}
+The individual IceCube PMTs for detecting the Cherenkov radiation are enclosed in \textit{digital optical modules} (DOMs). Each DOM consists of a pressure-resistant glass sphere, several controller boards and the PMT, facing downward (see Fig. \ref{fig:ic_dom}). The glass sphere can withstand long-term pressure of \SI{250}{\bar}. The optical transmission of the spheres was measured to be $93\%$ at \SI{400}{\nm}, decreasing to $10\%$ at \SI{315}{\nm}.
+
+The circular main board hosts data acquisition and control, as well as units for communication, calibration and a power converter. Another board interfaces with the PMT, while additional boards delay the PMT signals, generate the high voltage current powering the PMT, as well as control calibration light emitting diodes (LEDs) that generate light flashes which can be received by neighboring DOMs for calibration purposes \sidecite{Aartsen2017}.
+\begin{marginfigure}
+    \includegraphics{ic_DOM_connections.png}
+    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbor above and below. From \cite{Aartsen2017}.} 
+    \labfig{ic_dom_connections}
+\end{marginfigure}
+Because of data storage restrictions, the DOMs only record the full digitized waveform data after a ``hit''. A hit is triggered when also DOMs above and below the DOM in question (to be precise, the neighbors and the next-to-nearest neighbors) report a coincident signal above a certain threshold \cite{Aartsen2017}. To fully record the waveform after a hit, there needs to exist some kind of buffer. This is achieved with the delay board, which routes the analog PMT signal through a \SI{10}{\m} long, serpentine copper trace to delay it by \SI{75}{\nm}.
+
+The DOMs are connected to the IceCube Laboratory (ICL) with twisted-pair copper cables. The power for the DOM is also transmitted with this cable. Two DOMs share one twisted-pair cable, and each DOM is also directly connected to its two neighbors on the same string (to detect hits, i.e. locally coincident signals).
+
+The flasher board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms \cite{Aartsen2017}.
+
 \subsection*{Detector layout}
-Fig. \ref{fig:ic_sideon} shows the detector side-on, while Fig. \ref{fig:ic_top_down} shows a top-down view.
+In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole, with the vast majority ultimately being deployed (5160 in total). The final detector layout consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs.
+
+The instrumented part of the chains starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}.
 \begin{marginfigure}
     \includegraphics{ic_side_view.png}
     \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the antarctic glacial ice. In the center on top is the IceCube Laboratory, were data acquisition takes place. From \cite{Ahlers2018a}.}
     \labfig{ic_sideon}
 \end{marginfigure}
 \begin{marginfigure}
-    \includegraphics{ic_top_view.png}
-    \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. From \cite{Ahlers2018a}.}
+    \includegraphics{ic_top_view.pdf}
+    \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. Adopted from \cite{Ahlers2018a}.}
     \labfig{ic_top_down}
 \end{marginfigure}
+As one can imagine, embedding the DOMs within the ice was a non-trivial task, as it required drilling 86 boreholes with a diameter of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}.
 
+Of the 5160 deployed DOMs, 43 are dead as of March 2023, a loss of less than 1\%.
 
-% \input{chapters/ztf.tex}
+\input{chapters/ztf.tex}
 
 
 
