@@ -202,7 +202,7 @@ To amplify the signal, a number of dynodes is placed in between. These are addit
 
 IceCube uses PMTs made by Hamamatsu Photonics (R7081-02), sensitive to photons between \SI{300}{\nm} and \SI{650}{\nm}. They have a quantum efficiency at \SI{390}{\nm} of $25\%$, are operated with a voltage of \SI{1500}{\V} and have a gain of \num{e7}. The photon-sensitive surface area is typically \SI{530}{\cm\squared} \sidecite{Abbasi2010}.
 
-\subsection*{The Digital Optical Module}
+\subsection*{The Digital Optical Module} \label{DOM}
 \begin{marginfigure}
     \includegraphics{ic_DOM.png}
     \caption[IceCube digital optical module]{The IceCube DOM seen from the side. The detecting side of the PMT is facing downwards, with the main board an the PMT base board on top. From \cite{Aartsen2017}.}
@@ -212,20 +212,20 @@ The individual IceCube PMTs for detecting the Cherenkov radiation are enclosed i
 
 The circular main board hosts data acquisition and control, as well as units for communication, calibration and a power converter. Another board interfaces with the PMT, while additional boards delay the PMT signals, generate the high voltage current powering the PMT, as well as control calibration light emitting diodes (LEDs) that generate light flashes which can be received by neighboring DOMs for calibration purposes \sidecite{Aartsen2017}.
 \begin{marginfigure}
-    \includegraphics{ic_DOM_connections.png}
-    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbor above and below. From \cite{Aartsen2017}.} 
+    \includegraphics{ic_DOM_connections.pdf}
+    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbor above and below. Adopted from \cite{Aartsen2017}.} 
     \labfig{ic_dom_connections}
 \end{marginfigure}
-Because of data storage restrictions, the DOMs only record the full digitized waveform data after a ``hit''. A hit is triggered when also DOMs above and below the DOM in question (to be precise, the neighbors and the next-to-nearest neighbors) report a coincident signal above a certain threshold \cite{Aartsen2017}. To fully record the waveform after a hit, there needs to exist some kind of buffer. This is achieved with the delay board, which routes the analog PMT signal through a \SI{10}{\m} long, serpentine copper trace to delay it by \SI{75}{\nm}.
+Because of data storage restrictions, the DOMs only record the full digitized waveform data after a ``hit''. A hit is triggered when also DOMs above and below the DOM in question (to be precise, the neighbors and the next-to-nearest neighbors) report a coincident signal above a certain threshold \cite{Aartsen2017}. To fully record the waveform after a hit, there needs to be some kind of buffer. This is realized with the delay board, which routes the analog PMT signal through a \SI{10}{\m} long, serpentine copper trace to delay it by \SI{75}{\nm}.
 
 The DOMs are connected to the IceCube Laboratory (ICL) with twisted-pair copper cables. The power for the DOM is also transmitted with this cable. Two DOMs share one twisted-pair cable, and each DOM is also directly connected to its two neighbors on the same string (to detect hits, i.e. locally coincident signals).
 
 The flasher board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms \cite{Aartsen2017}.
 
-\subsection*{Detector layout}
-In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole, with the vast majority ultimately being deployed (5160 in total). The final detector layout consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs.
+\subsection*{Detector layout and deployment}
+In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs.
 
-The instrumented part of the chains starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}.
+The instrumented part of the chains starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}. Of the 5160 deployed DOMs, 43 are dead as of March 2023, a loss of less than $1\%$.
 \begin{marginfigure}
     \includegraphics{ic_side_view.png}
     \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the antarctic glacial ice. In the center on top is the IceCube Laboratory, were data acquisition takes place. From \cite{Ahlers2018a}.}
@@ -236,11 +236,22 @@ The instrumented part of the chains starts at \SI{1450}{\m} below surface, with 
     \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. Adopted from \cite{Ahlers2018a}.}
     \labfig{ic_top_down}
 \end{marginfigure}
-As one can imagine, embedding the DOMs within the ice was a non-trivial task, as it required drilling 86 boreholes with a diameter of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}.
+As one can imagine, embedding the DOMs within the ice was a non-trivial task. It required drilling 86 boreholes with a diameter of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole could be drilled every \SI{48}{\hour} \cite{Aartsen2017}. It took 7 drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig. \ref{fig:ic_drill} shows the tower operations site directly above the bore hole \sidecite{Benson2014}.
 
-Of the 5160 deployed DOMs, 43 are dead as of March 2023, a loss of less than 1\%.
+The water for drilling the holes was heated with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter} \cite{Benson2014}.
 
-\input{chapters/ztf.tex}
+\begin{figure}[]
+    \includegraphics{ic_drill.png}
+    \caption[IceCube drill]{The hole drilling part of the IceCube Enhanded Hot Water Drill, excluding the hot, pressurized water supply. One can see the tower operations site (TOS) above the hole and the hoses providing hot water and returning cooled water from the bore hole to the generators in a closed loop. From \cite{Benson2014}.}
+    \labfig{ic_drill}
+\end{figure}
+
+\subsection*{IceTop}
+One of the major classes of background events are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array. IceTop serves as a partial veto against these. The detector array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two IceCube DOMs (see \nameref{DOM} above).
+
+\subsection*{Data acquisition}
+asdf
+%\input{chapters/ztf.tex}
 
 
 
@@ -258,7 +269,7 @@ Of the 5160 deployed DOMs, 43 are dead as of March 2023, a loss of less than 1\%
 %----------------------------------------------------------------------------------------
 
 \backmatter % Denotes the end of the main document content
-\setchapterstyle{plain} % Output plain chapters from this point onwards
+\setchapterstyle{plain} % Output plain chapters from this point onwards 
 
 %----------------------------------------------------------------------------------------
 %   BIBLIOGRAPHY
