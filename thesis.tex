@@ -177,8 +177,8 @@ For slow particles, this radiation destructively interferes with itself, canceli
 
 For example: If the medium is ice, to first order the refractive index $n\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g. on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
 \begin{marginfigure}
-    \includegraphics{ic_cherenkov_spectrum.png}
-    \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. From \cite{Fulop1992}.}
+    \includegraphics{ic_cherenkov_spectrum.pdf}
+    \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adopted from \cite{Fulop1992}.}
     \labfig{cherenkov_spectrum}
 \end{marginfigure}
 Cherenkov radiation does not have spectral peaks, but is continuous, with a relative intensity proportional to the frequency. Note that the refractive index of a medium is also frequency dependent, dropping below 1 in the X-ray. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and peaks in the ultra violet (UV), before it sharply drops off in the X-ray regime \sidecite{Fulop1992}, see Fig. \ref{fig:cherenkov_spectrum}.
@@ -222,37 +222,61 @@ The DOMs are connected to the IceCube Laboratory (ICL) with twisted-pair copper 
 
 The flasher board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms \cite{Aartsen2017}.
 
-\subsection*{Detector layout and deployment}
+\subsection*{Detector layout}
 In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs.
 
-The instrumented part of the chains starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}. Of the 5160 deployed DOMs, 43 are dead as of March 2023, a loss of less than $1\%$.
-\begin{marginfigure}
-    \includegraphics{ic_side_view.png}
+
+
+\begin{figure}
+    \includegraphics[width=1.\textwidth]{ic_side_view_font.pdf}
     \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the antarctic glacial ice. In the center on top is the IceCube Laboratory, were data acquisition takes place. From \cite{Ahlers2018a}.}
     \labfig{ic_sideon}
-\end{marginfigure}
+\end{figure}
 \begin{marginfigure}
     \includegraphics{ic_top_view.pdf}
     \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. Adopted from \cite{Ahlers2018a}.}
     \labfig{ic_top_down}
 \end{marginfigure}
-As one can imagine, embedding the DOMs within the ice was a non-trivial task. It required drilling 86 boreholes with a diameter of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole could be drilled every \SI{48}{\hour} \cite{Aartsen2017}. It took 7 drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig. \ref{fig:ic_drill} shows the tower operations site directly above the bore hole \sidecite{Benson2014}.
+The instrumented part of the strings starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}. Of the 5160 deployed DOMs, 92 are dead as of March 2023, a loss of $1.7\%$\sidenote{This is better than the predicted failure percentage, which was projected to be $2\%$ by 2023 \cite{Aartsen2017}.}.
 
-The water for drilling the holes was heated with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter} \cite{Benson2014}.
+
+\subsection*{Deployment}
+As one can imagine, embedding the DOMs within the ice was a non-trivial task. It required drilling 86 boreholes with a diameter\sidenote{The hole diameter was larger than the DOM diameter (\SI{35}{\cm}) to account for partial refreezing of the bore hole.} of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole was drilled every \SI{48}{\hour} on average \cite{Aartsen2017} (drill operation happened around the clock). It took 7 drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig. \ref{fig:ic_drill} shows the tower operations site directly above the bore hole \sidecite{Benson2014}.
+
+The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter} \cite{Benson2014}. 
 
 \begin{figure}[]
     \includegraphics{ic_drill.png}
-    \caption[IceCube drill]{The hole drilling part of the IceCube Enhanded Hot Water Drill, excluding the hot, pressurized water supply. One can see the tower operations site (TOS) above the hole and the hoses providing hot water and returning cooled water from the bore hole to the generators in a closed loop. From \cite{Benson2014}.}
+    \caption[IceCube enhanced hot water drill]{The hole drilling part of the IceCube Enhanded Hot Water Drill, excluding the hot, pressurized water supply. One can see the tower operations site (TOS) above the hole and the hoses providing hot water and returning cooled water from the bore hole to the generators in a closed loop. From \cite{Benson2014}.}
     \labfig{ic_drill}
 \end{figure}
 
-\subsection*{IceTop}
-One of the major classes of background events are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array. IceTop serves as a partial veto against these. The detector array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two IceCube DOMs (see \nameref{DOM} above).
+\subsection*{The IceTop surface array}
+One of the major classes of background events are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array. IceTop serves as a partial veto against these.
+
+\begin{marginfigure}
+    \includegraphics{ic_icetop.pdf}
+    \caption[IceTop detector]{IceCube IceTop surface Cherenkov detector tank. From \cite{Abbasi2013}.}
+    \labfig{ic_icetop}
+\end{marginfigure}
+
+The detector array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two IceCube DOMs (see \nameref{DOM} above) \sidecite{Abbasi2013}.\todo{more detail}.
 
 \subsection*{Data acquisition}
-asdf
-%\input{chapters/ztf.tex}
+As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Lab on the surface via the twisted-pair cable datalink, were they are ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causility by temporal and sometimes spatial patterns. All hits for which common causality can be established form an \textit{event}. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second}) \cite{Aartsen2017}.
 
+As satellite bandwidth is limited and costly, further software triggers on-site reduce the data rate to $15\%$ of the initial rate. These events are then transmitted via satellite to the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are transferred twice per year to Madison.
+
+\subsection*{Time synchronization}
+As timing information is crucial for event constitution and reconstruction (more on that later), all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed while data transfer is paused.
+
+This is achieved with Reciprocal Active Pulsing (RAPcal): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
+
+With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \sidecite{Abbasi2009}.
+
+\section{IceCube Reconstruction}
+The goal of IceCube reconstruction is twofold: Reconstruction the deposited neutrino energy, and reconstructing the neutrino arrival direction. The events seen by the detector can be broadly classified into two categories: \textit{Track events} and \textit{cascade events}.
+\input{chapters/ztf.tex}
 
 
 %\chapter{The ZTF neutrino follow-up program}
