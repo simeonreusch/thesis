@@ -276,11 +276,41 @@ This is achieved with Reciprocal Active Pulsing (RAPcal): A bipolar pulse is ini
 With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \sidecite{Abbasi2009}.
 
 \section{IceCube Reconstruction}
-The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are somewhat mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{shower events}.
+The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are somewhat mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
 
-Track events are produced by secondary muons resulting from the charged-current interaction of $\nu_\mu$ with Antarctic glacial ice\todo{ref to theory section}. They leave tracks in the ice with a length on the order of kilometers. This allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon \sidecite{Abbasi2022}. The drawback is a large energy uncertainty, as part of the muon track can lie outside the instrumented volume \sidecite{Aartsen2017a}.
+\subsection*{Event types}
+\begin{marginfigure}
+    \includegraphics{ic_track.png}
+    \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy.}
+    \labfig{ic_track}
+\end{marginfigure}
+\begin{marginfigure}
+    \includegraphics{ic_cascade.png}
+    \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though.}
+    \labfig{ic_cascade}
+\end{marginfigure}
+Track events (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of $\nu_\mu$ with Antarctic glacial ice\todo{ref to theory section}. They leave tracks in the ice with a length on the order of kilometers. This allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon \sidecite{Abbasi2022}. The drawback is a large energy uncertainty, as part of the muon track can lie outside the instrumented volume \sidecite{Aartsen2017a}.
 
-Cascade events on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within a small fraction of the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx 15\%$) \cite{Aartsen2017a}.
+Cascade events (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within a small fraction of the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx 15\%$) \cite{Aartsen2017a}.
+
+\subsection*{Angular reconstruction}
+The basic angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It is based on a maximum-likelihood method \sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters do maximize the probability of measuring $\vec{x}$ with the actually observed values?
+
+This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_i$ of $\vec{x}$ are independent, it can be expressed as
+
+\begin{equation}
+\mathcal{L} = \prod_i p(x_i|\vec{a})
+\end{equation}
+
+Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. Maximizing $\mathcal{L}$ (or, for technical reasons, minimizing $-\log{\mathcal{L}}$) results in the most likely set of unknown parameters $\vec{a}$ and we are done with the reconstruction. To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. The parameters needed to describe this are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($\vec{r_0}$, $\vec{p}$, $t_0$, $E_0$), parameterizing the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$.
+
+Now, a DOM in the detector at position $\vec{r}_i$ with a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon with the Cherenkov angle $\theta_\text{C}$.
+
+\begin{figure}
+    \includegraphics[width=0.7\textwidth]{amanda_reco.pdf}
+    \caption[Angular reconstruction in IceCube]{Bla. Adopted from \cite{Ahrens2004}.}
+    \labfig{ic_reco_cherenkov}
+\end{figure}
 \input{chapters/ztf.tex}
 
 
