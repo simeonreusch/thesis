@@ -158,7 +158,7 @@ One of the two most relevant instruments for this thesis is the \textit{IceCube 
 \begin{marginfigure}
     \includegraphics{ic_cherenkov1.pdf}
     \includegraphics{ic_cherenkov2.pdf}
-    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure Cherenkov radiation is emitted, as the radiation emitted at different points in time forms mutual wavefronts. In the figure on the bottom, all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). Adopted from \cite{LAnnunziata2020}.}
+    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure Cherenkov radiation is emitted at the Cherenkov angle $\theta_\text{C}$, as the radiation emitted at different points in time forms a mutual, cone-shaped wavefront. In the figure on the bottom, all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). Adopted from \cite{LAnnunziata2020}.}
     \labfig{cherenkov}
 \end{marginfigure}
 The basic oeprational principle of IceCube (and already of AMANDA) is the detection of Cherenkov light within the Antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice, their speed exceeds the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual digital optical modules (DOMs), buried deep in the ice. These are sensitive to the Cherenkov radiation.
@@ -275,25 +275,27 @@ This is achieved with Reciprocal Active Pulsing (RAPcal): A bipolar pulse is ini
 
 With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \sidecite{Abbasi2009}.
 
-\section{IceCube Reconstruction}
+\section{IceCube Angular Reconstruction}
 The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are somewhat mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
 
 \subsection*{Event types}
 \begin{marginfigure}
     \includegraphics{ic_track.png}
-    \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy.}
+    \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_track}
 \end{marginfigure}
 \begin{marginfigure}
     \includegraphics{ic_cascade.png}
-    \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though.}
+    \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_cascade}
 \end{marginfigure}
 Track events (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of $\nu_\mu$ with Antarctic glacial ice\todo{ref to theory section}. They leave tracks in the ice with a length on the order of kilometers. This allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon \sidecite{Abbasi2022}. The drawback is a large energy uncertainty, as part of the muon track can lie outside the instrumented volume \sidecite{Aartsen2017a}.
 
 Cascade events (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within a small fraction of the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx 15\%$) \cite{Aartsen2017a}.
 
-\subsection*{Angular reconstruction}
+As this thesis is mainly interested in the sources of high-energy astrophysical neutrinos, the track events are more important, and I will focus on the angular reconstruction of those.
+
+\subsection*{Likelihood approach}
 The basic angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It is based on a maximum-likelihood method \sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters do maximize the probability of measuring $\vec{x}$ with the actually observed values?
 
 This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_i$ of $\vec{x}$ are independent, it can be expressed as
@@ -302,15 +304,44 @@ This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_
 \mathcal{L} = \prod_i p(x_i|\vec{a})
 \end{equation}
 
-Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. Maximizing $\mathcal{L}$ (or, for technical reasons, minimizing $-\log{\mathcal{L}}$) results in the most likely set of unknown parameters $\vec{a}$ and we are done with the reconstruction. To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. The parameters needed to describe this are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($\vec{r_0}$, $\vec{p}$, $t_0$, $E_0$), parameterizing the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$.
+Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. Maximizing $\mathcal{L}$ when varying $\vec{a}$ (or, for technical reasons, minimizing $-\log{\mathcal{L}}$) results in the most likely set of unknown parameters $\vec{a}$, and we are done with the reconstruction.
 
-Now, a DOM in the detector at position $\vec{r}_i$ with a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon with the Cherenkov angle $\theta_\text{C}$.
+\subsection*{Parametrization}
+
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. The parameters needed to describe this are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($\vec{r_0}$, $\vec{p}$, $t_0$, $E_0$), parameterizing the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$.
+
+Now, a DOM in the detector at position $\vec{r}_i$ with a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as follows:
+\begin{equation}
+t_\text{geo} = t_0 + \frac{|\vec{p}\cdot(\vec{r_i}-\vec{r_0})|+d\cdot \tan{\theta_\text{C}}}{c_0}
+\end{equation}
+with $c_0$ the vacuum speed of light. As this does not take scattering into account, it is useful to define a relative time of arrival, the \textit{time residual} $t_\text{res} = t_\text{hit} - t_\text{geo}$. This is the additional time introduced by scattering as opposed to a Cherenkov photon travelling directly from the muon to the DOM.
+
+As $t_\text{res}$ is the most significant observable for each DOM, we can simplify $x_i$ to $t_{\text{res},i}$, and express $\vec{a}$ as a function of the individual DOM parameters: $\vec{a}= (d_i,\eta_i,...)$.
 
 \begin{figure}
     \includegraphics[width=0.7\textwidth]{amanda_reco.pdf}
-    \caption[Angular reconstruction in IceCube]{Bla. Adopted from \cite{Ahrens2004}.}
+    \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction. Adopted from \cite{Ahrens2004}.}
     \labfig{ic_reco_cherenkov}
 \end{figure}
+\subsection*{Single photoelectron fit}
+Matters can be simplified further. While the muon is travelling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to only regard the \textit{first} photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is carried out with this simplification, it is called \textit{single photoelectron} (SPE) fit. The likelihood function for this is:\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
+
+\begin{equation}
+\mathcal{L}_\text{SPE} = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,...)
+\end{equation}
+where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained from simulations modeling the photon propagation through the Antarctic ice.
+
+\subsection*{Multi photoelectron fit}
+A complication is that one would expect the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering this very single photon. This leads to the \textit{multi photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given by
+\begin{equation}
+P(t_{\text{res},i}|\vec{a}) = \int^{\infty}_{t_{\text{res},i}}p(t|\vec{a})\,dt
+\end{equation}
+Using this, the MPE likelihood is given as
+\begin{equation}
+\mathcal{L}_\text{MPE} = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}) \cdot N_i \cdot (1-P(t_{\text{res},i}|\vec{a})^{N_i-1}
+\end{equation}
+where $N_i$ is the total number of photons recorded by $\text{DOM}_i$.
+
 \input{chapters/ztf.tex}
 
 
