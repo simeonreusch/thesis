@@ -183,7 +183,7 @@ For example: If the medium is ice, to first order the refractive index $n\approx
 \end{marginfigure}
 Cherenkov radiation does not have spectral peaks, but is continuous, with a relative intensity proportional to the frequency. Note that the refractive index of a medium is also frequency dependent, dropping below 1 in the X-ray. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and peaks in the ultra violet (UV), before it sharply drops off in the X-ray regime \sidecite{Fulop1992}, see Fig. \ref{fig:cherenkov_spectrum}.
 
-\section{IceCube instrumentation}
+\section{Instrumentation}
 
 IceCube detects neutrinos by observing the optical part of their secondary particle Cherenkov spectrum (see section \ref{cherenkov_radiation} above). To understand how this is done, one first needs to look at the working principe of a photomultiplier tube (PMT).
 
@@ -275,7 +275,7 @@ This is achieved with Reciprocal Active Pulsing (RAPcal): A bipolar pulse is ini
 
 With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \sidecite{Abbasi2009}.
 
-\section{IceCube Angular Reconstruction}
+\section{Angular Reconstruction}
 The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are somewhat mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
 
 \subsection*{Event types}
@@ -344,6 +344,27 @@ Using this, the MPE likelihood is given as
 \end{equation}
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}.
 
+\section{The Realtime Alert Program}
+Since 2016, IceCube is hosting a realtime alert program, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, namely \textit{Gold} and \textit{Bronze}, were created \sidecite{Tung2019}. As all alerts used within this work except one stem from this revised system, I will focus on presenting the newer alert scheme.
+
+\subsection*{Event selection}
+Gold and bronze Alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are 
+\begin{description}
+    \item[High Energy Starting Events] (HESE)
+\begin{marginfigure}
+    \includegraphics{ic_HESE_veto.pdf}
+    \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
+    \labfig{ic_hese_veto}
+\end{marginfigure}
+    \item[Extremely High Energy] (EHE) events
+    \item[Gamma-Ray Follow Up] (GFU) events
+\end{description}
+
+\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of these events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}. 
+
+
+\textbf{EHE} events must contain at least 4000 photoelectrons, aiming at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions.
+\todo{declination based cuts}
 \input{chapters/ztf.tex}
 
 
