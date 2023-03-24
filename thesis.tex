@@ -347,24 +347,50 @@ where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahre
 \section{The Realtime Alert Program}
 Since 2016, IceCube is hosting a realtime alert program, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, namely \textit{Gold} and \textit{Bronze}, were created \sidecite{Tung2019}. As all alerts used within this work except one stem from this revised system, I will focus on presenting the newer alert scheme.
 
+\subsection*{Background}
+Depending on the declination, there are two major sources of background events in the IceCube detector, both stemming from secondary cosmic ray particles from the earth's atmosphere.
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{ic_background.pdf}
+    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the norther hemisphere, the detector is shielded form atmospheric muons, but not atmospheric neutrinos, as these can traverse the earth. Adopted from \cite{Ahlers2018a}.}
+    \labfig{ic_background}
+\end{figure}
+\begin{marginfigure}
+    \includegraphics{ic_muon_free_path.pdf}
+    \caption[Muon free path in ice]{Free path length for \SI{1}{\peta\eV} muons in ice. Note that the mean free path in ice is slightly longer than in rock. From \cite{Chirkin2004}.}
+    \labfig{ic_muon_free_path}
+\end{marginfigure}
+\textbf{Atmospheric muons} are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. the northern hemisphere. Atmospheric muons stemming from cosmic ray events in the northern hemisphere are filtered out by the earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
+
+One complication here stems from the fact that the earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these are highly suppressed the longer their path through the earth is.
+\begin{marginfigure}
+    \includegraphics{ic_absorption_earth.pdf}
+    \caption[Neutrino absorption in the earth]{Neutrino transmission probability through the earth. The longer the distance travelled (higher zenith angles) and the higher neutrino energy, the more likely is absorption. From \cite{Aartsen2017c}.}
+    \labfig{ic_absorption_earth}
+\end{marginfigure}
+
+\textbf{Atmospheric neutrinos} also stem from cosmic ray showers. These are harder to suppress by directional cuts, creating an irreducible background: When atmospheric neutrinos cross the earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
+
 \subsection*{Event selection}
 Gold and bronze Alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are 
 \begin{description}
     \item[High Energy Starting Events] (HESE)
+    \item[Extremely High Energy] (EHE) events
+    \item[Gamma-Ray Follow Up] (GFU) events
+\end{description}
+
+\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of these events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}.
 \begin{marginfigure}
     \includegraphics{ic_HESE_veto.pdf}
     \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
     \labfig{ic_hese_veto}
 \end{marginfigure}
-    \item[Extremely High Energy] (EHE) events
-    \item[Gamma-Ray Follow Up] (GFU) events
-\end{description}
-
-\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of these events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}. 
-
 
 \textbf{EHE} events must contain at least 4000 photoelectrons, aiming at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions.
-\todo{declination based cuts}
+
+%\todo{declination based cuts}
+
+
+
 \input{chapters/ztf.tex}
 
 
