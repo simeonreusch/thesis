@@ -372,12 +372,7 @@ One complication here stems from the fact that the earth starts to become opaque
 \textbf{Atmospheric neutrinos} also stem from cosmic ray showers. These are harder to suppress by directional cuts, creating an irreducible background: When atmospheric neutrinos cross the earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
 
 \subsection{Event selection}
-Gold and bronze alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are 
-\begin{description}
-    \item[High Energy Starting Events] (HESE)
-    \item[Extremely High Energy] (EHE) events
-    \item[Gamma-Ray Follow Up] (GFU) events
-\end{description}
+Gold and bronze alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are \textbf{High Energy Starting Events} (HESE), \textbf{Extremely High Energy} (EHE) events and \textbf{Gamma-Ray Follow Up} (GFU) events.
 
 \textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of these events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}.
 \begin{marginfigure}
@@ -386,7 +381,7 @@ Gold and bronze alerts are drawn from three different selection schemes, origina
     \labfig{ic_hese_veto}
 \end{marginfigure}
 
-\textbf{EHE} events must contain at least 4000 photoelectrons, aiming at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions. Lastly, a cut depending on the zenith angle is also applied on the number of photoelectrons required \cite{Tung2019}..
+\textbf{EHE} events must contain at least 4000 photoelectrons, aiming at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions. Lastly, a cut depending on the zenith angle is also applied on the number of photoelectrons required \cite{Tung2019}.
 
 \textbf{GFU} events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere (up-going) events are selected based on their reconstructed muon energies, while southern hemisphere (down-going) events are selected based on the total photoelectron charge deposited in the detector.
 
@@ -398,13 +393,17 @@ where $\theta_\text{zen}$ is the zenith angle and $E$ is the respective energy p
 
 The cuts on the individual event selections are tuned to ensure that \textit{gold} alerts on average have a signalness $>50\%$, and \textit{bronze} alerts have a signalness $>30\%$.
 \subsection{Alert distribution}
-All events that pass a first stage of filtering a sent to the IceCube data center (see section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
+All events that pass a first stage of filtering are sent to the IceCube data center (see section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
 \begin{marginfigure}
     \includegraphics{ic_he_alert_overview.pdf}
     \caption[IceCube alert overview]{High-energy neutrino alerts issued by IceCube since start of the new alert stream in June 2019.}
     \labfig{ic_he_alert_overview}
 \end{marginfigure}
-As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. As the gold/bronze alert stream started in June 2019, this amounts to $2.2$ non-retracted alerts per month.
+Each notices contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Tung2019}.
+
+Those information are later appended by a computationally more demanding, but more sophisticated reconstruction, which is initiated manually. These are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
+
+As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. As the gold/bronze alert stream started in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is slightly below the 2.5 alerts per month predicted in \cite{Tung2019}.} (0.8 gold alerts, 1.4 bronze alerts).
 
 
 \input{chapters/ztf.tex}
