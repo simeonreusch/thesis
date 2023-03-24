@@ -12,8 +12,8 @@ PTF's successor in spirit, ZTF, contains the first electronic camera. With \SI{4
 The two other telescopes located on Mount Palomar. The \SI{1.5}{\meter} (60 inch) P60 telescope houses the SED Machine (SEDM) \sidecite{Blagorodnova2018}, a fully robotic, low-resolution spectrograph used for automatic classification of transients. The largest facility on the mountain is the 200-inch (\SI{5.1}{\meter}) Hale Telescope, which is used for optical and infrared photometry as well as mid- and high-resolution spectroscopy of fainter sources. Together, these telescopes form a natural hierarchy: ZTF is the discovery engine for optical transients. Promising sources are then classified with SEDM. If sources warrant it, deeper photometry and higher resolved spectroscopy can then be obtained with the big gun, the P200. All three telescopes are shown in Fig. \ref{fig:palomar_overview}.
 
 \begin{figure*}[]
-    \includegraphics{palomar_overview}
-    \caption[View of Mt. Palomar]{View of Mt. Palomar with the three telescopes highlighted in the text. Image credit: Caltech, annotations added by the author.}
+    \includegraphics{palomar_overview.pdf}
+    \caption[View of Mt. Palomar]{View of Mt. Palomar with the three telescopes highlighted in the text. Image credit: Caltech, annotations by the author.}
     \labfig{palomar_overview}
 \end{figure*}
 
@@ -63,7 +63,7 @@ The typical exposure for the ZTF camera is \SI{30}{\second}, while the readout t
 An additional four smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read out these sensors \sidecite{Dekany2020}. To lower the thermal noise of the camera, it is placed on top of a cryostat cooling the CCDs to \SI{160}{\kelvin} \cite{Dekany2016}.
 
 \begin{figure}[t!]
-    \includegraphics[width=1\textwidth]{ztf_camera.png}
+    \includegraphics[width=1\textwidth]{ztf_camera.pdf}
     \caption[ZTF cmera]{The ZTF camera. One can see the CCDs sandwiched between the filter on the front and the cryostat on the back. From \cite{Bellm2019}.}
     \labfig{ztf_camera}
 \end{figure}
@@ -76,7 +76,7 @@ As the CCDs of the camera cannot ``see'' color, different filters need to be put
 The main decision goal for the filter selection was to the maximize signal-to-noise ratio by avoiding major sky emission lines at Mt. Palomar while avoiding excessive costs. ZTF does not exactly match the filters of potential calibrators, e.g. the Sloan Digital Sky Survey (SDSS) \sidecite{York2000}, PanSTARRS (PS1) \sidecite{Kaiser2002} or \textit{Gaia} \sidecite{Prusti2016}. This was justified with the overall different telescope design of ZTF \cite{Bellm2019}.
 
 \begin{marginfigure}
-    \includegraphics{ztf_throughput.png}
+    \includegraphics{ztf_throughput.pdf}
     \caption[ZTF filter transmission]{ZTF filter transmission for the three different bands (\textit{g}-band: blue, \textit{r}-band: orange, \textit{i}-band: red). The green and gray datapoints show the CCD quantum efficiency measurements (single and double-layer reflective coating). From \cite{Bellm2019}.}
     \labfig{ztf_transmission}
 \end{marginfigure}
@@ -89,7 +89,7 @@ To decrease light obstruction, the ZTF shutter was newly developed and is mounte
 One exposure during regular operations -- in contrast to e.g. deep target of opportunity (ToO) images -- lasts \SI{30}{\second}. There is an additional \SI{\sim 15}{\second} overhead for readout and slewing the telescope. Also some additional time is needed to exchange the filters. Therefore, a typical night lasting \SI{8.67}{\hour} \sidecite{Masci2019} results in roughly 700 exposures. In total, these amount to a sky area of over \SI{32500}{\square\deg}, allowing to cover the full visible sky at Mount Palomar \SI{15}{\degree} above the horizon at least once.
 
 \begin{marginfigure}
-    \includegraphics{ztf_g_band_grid}
+    \includegraphics{ztf_g_band_grid3.pdf}
     \caption[ZTF field visits]{Number of ZTF \textit{g}-band field visits during the first week of May 2020. The primary grid fully tiles the sky accessible at Mount Palomar.}
     \labfig{ztf_g_field_visits}
 \end{marginfigure}
