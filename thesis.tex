@@ -173,7 +173,11 @@ Plan IC221223A -trigger
 to submit the observation request via a dedicated API to the telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
 
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
-
+\begin{marginfigure}
+    \includegraphics{fu/planobs_slack_border.pdf}
+    \caption[\texttt{planobs} Slackbot interaction]{Sample interaction with the \texttt{planobs} Slackbot, checking the observability of IC230217A.}
+    \labfig{planobs_slackbot}
+\end{marginfigure} 
 \section{The \texttt{AMPEL} Broker} \label{ampel}
 The next step in the pipeline is the selection of good candidates. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
