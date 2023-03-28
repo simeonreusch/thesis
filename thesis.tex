@@ -192,8 +192,12 @@ The first of several execution layers (\textit{tiers}) is the \textbf{Filtering}
 
 \textbf{Tier 1} can be skipped here, as it serves technical purposes. The next relevant stage is the \textbf{Light curve nalysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or ML-based photometric classification.
 
-The last level, tier 3, executes \textbf{Population analysis}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates in a Slack channel, ranked by how interesting they are for spectroscopic follow up.
+The last level, tier 3, executes \textbf{Population analysis}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates in a Slack channel, ranked by how interesting they are for spectroscopic follow up \cite{Nordin2019}.
 
+To simplify matters and allow reprocessing, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API.
+
+\section{Candidate filtering with \texttt{nuztf}}
+To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts.
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
 %\chapter{Conclusion and Outlook}
