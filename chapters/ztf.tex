@@ -30,7 +30,7 @@ Until the end of the 20th century, around ten Schmidt telescopes have been built
 
 \begin{figure}[]
     \includegraphics[width=1\textwidth]{ztf_fov.png}
-    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST). Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
+    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST) \cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
     \labfig{ztf_fov}
 \end{figure}
 
@@ -101,7 +101,7 @@ The ZTF image processing can be divided into two parts: Creation of the science 
 
 The full calibration and image processing pipeline is shown in Fig. \ref{fig:ztf_calibration_flow}. First come the different calibration steps: overscan and bias correction, flat fielding, as well as astrometric and photometric calibration. This is followed by creating the difference images and finally extracting the sources. I will briefly explain the different steps in the next sections.
 
-\subsection{On-site processing and datalink}
+\subsection{On-site processing and datalink}\label{ztf_data_link}
 
 \begin{marginfigure}
     \includegraphics{ztf_calibration_flow.pdf}
@@ -204,7 +204,7 @@ Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many o
     \labfig{ztf_bogus}
 \end{marginfigure}
 
-The last step in the imaging pipeline is alerting an array of upstream transient alert brokers. The information on new transients or updates on existing ones therefore need to be packaged into a convenient format. All positive detections after image subtraction with a signal-to-noise greater than 5 are subjected to a machine-learning (ML) algorithm designated to discriminate between ``real'' (most likely astrophysical) and ``bogus'' (e.g. subtraction artifacts, see Fig. \ref{fig:ztf_bogus}) events \sidecite{Mahabal2019}. This algorithm creates a \texttt{rbscore}, ranking the probability of the detection of being real.
+The last step in the imaging pipeline is alerting an array of upstream transient alert brokers. The information on new transients or updates on existing ones therefore need to be packaged into a convenient format. All positive detections after image subtraction with a signal-to-noise greater than 5 are subjected to \texttt{RealBogus}. This is a machine learning (ML) algorithm trained to discriminate between ``real'' events (most likely astrophysical) and ``bogus'' events (e.g. subtraction artifacts, see Fig. \ref{fig:ztf_bogus}) \sidecite{Mahabal2019}. This algorithm creates a \texttt{rbscore}, ranking the probability of the detection of being real.
 
 Another ML algorithm has been employed to assign all PS1 sources a \texttt{sgscore}, separating between stars and galaxies based on their morphology and flux in all PS1 bands \sidecite{Tachibana2018}. Both \texttt{rbscore} and \texttt{sgscore}, as well as cutouts of the science, reference and difference images are packed together and shipped as \textit{alert package}. These alerts also include the distances to the three nearest PS1 sources, the closes \textit{Gaia} source, up to 30 days of previous detections if these exist, and some quality metrics like the limiting magnitude. The file format for distribution is Apache Avro\sidenote{\url{https://avro.apache.org}}, and the method of distribution is an Apache Kafka\sidenote{\url{https://kafka.apache.org}} stream \sidecite{Patterson2018}.
 

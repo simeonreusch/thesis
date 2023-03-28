@@ -173,7 +173,7 @@ In general, we only follow up if the reported rectangular \SI{90}{\percent} unce
 \section{Observation planning with \texttt{planobs}}\label{planobs}
 If an alert makes the cut, one needs to check if observations with ZTF are feasible. To reduce the potential for errors, this is done with assistance by the \texttt{planobs} \sidecite{Reusch2023} tool, developed mainly by the author to automate the task as much as possible.
 
-\texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://www.nginx.com}} reverse proxy and serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat.
+\texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://nginx.com}} reverse proxy and serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat.
 
 The tool is constructed to be used with a simple command-line-style interface in the Slack chat. For example, 
 \begin{lstlisting}[language=bash,style=kaolstplain]
@@ -190,7 +190,7 @@ To obtain the positional and error information on the neutrino in question from 
 \end{figure}
 \begin{marginfigure}
     \includegraphics{fu/planobs_grid.pdf}
-    \caption[\texttt{planobs} ZTF grid]{The ZTF grid overlaid on the \SI{90}{\percent} uncertainty rectangle.}
+    \caption[\texttt{planobs} ZTF grid]{The \SI{90}{\percent} uncertainty rectangle of IC221223A overlayed onto the ZTF grid.}
     \labfig{planobs_grid}
 \end{marginfigure}
 An example observability plot is shown in Fig. \ref{fig:planobs}. The blue curve shows the altitude of the sky region in question above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
@@ -206,10 +206,22 @@ to submit the observation request via a dedicated API to the telescope scheduler
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 
 \section{The \texttt{AMPEL} broker}
-The next step in the pipeline is the selection of good candidates. ZTF typically serves $\mathcal{O}(\numrange{e5}{e6})$ alerts per night\todo{JvS!}. As only a fraction of those is relevant for us, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen.
+The next step in the pipeline is the selection of good candidates. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen.
+
+The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory \sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The complete software stack is written in Python.
 
 
+\begin{figure}[h!]
+    \includegraphics{fu/ampel_design.pdf}
+    \caption[\texttt{AMPEL} overview]{Overview of the \texttt{AMPEL} data processing. Alerts from DiRAC are ingested into \texttt{AMPEL}, where they are processed, combined, analyzed and served to science consumers. From \cite{Nordin2019}}
+    \labfig{ampel_design}
+\end{figure}
 
+Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream \texttt{AMPEL} listens to.
+
+The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here different filters can be implemented, reducing the large number of alerts by different criteria (e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties, (non-) existence of detection history). All alerts surviving the filtering stage are then stored in a database (\texttt{MongoDB}\sidenote{\url{https://mongodb.com}}) collection. Additionally, processing states are also stored in another collection.
+
+\textbf{Tier 1} can be skipped here, as it serves technical purposes. The next relevant stage is the \textbf{analysis} stage (Tier 2). In this, 
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
