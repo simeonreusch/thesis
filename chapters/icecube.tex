@@ -233,7 +233,7 @@ Gold and bronze alerts are drawn from three different selection schemes, origina
 \textbf{GFU} events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere (up-going) events are selected based on their reconstructed muon energies, while southern hemisphere (down-going) events are selected based on the total photoelectron charge deposited in the detector.
 
 The cuts from all three event pools are gauged to achieve two different values of \textit{signalness}, which is a proxy for the probability that the event is of astrophysical origin \cite{Tung2019}. It is defined as follows:
-\begin{definition}
+\begin{definition}\label{signalness_def}
 $\text{Signalness}(E,\theta_\text{zen}) = \frac{N_\text{signal}(E,\theta_\text{zen})}{N_\text{signal}(E,\theta_\text{zen})+N_\text{background}(E,\theta_\text{zen})}$
 \end{definition}
 where $\theta_\text{zen}$ is the zenith angle and $E$ is the respective energy proxy of the event selections described above.
