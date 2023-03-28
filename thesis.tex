@@ -6,28 +6,24 @@
     %open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
     %chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
     numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
-    fontmethod=tex, % Can also use "modern" with XeLaTeX or LuaTex; "tex" is the default for PdfLaTex, and "modern" is the default for those two.
+    fontmethod=tex,
 ]{kaobook}
 
-% Choose the language
 \ifxetexorluatex
     \usepackage{polyglossia}
     \setmainlanguage{english}
 \else
-    \usepackage[english]{babel} % Load characters and hyphenation
+    \usepackage[english]{babel}
 \fi
-\usepackage[english=american]{csquotes}  % English quotes
-
-% Load packages for testing
-\usepackage{blindtext}
+\usepackage[english=american]{csquotes}
+\setcounter{tocdepth}{1}
 \usepackage{orcidlink}
 \usepackage{siunitx}
 \usepackage{astro}
-% \usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
-%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
 
-% Load the bibliography package
-\usepackage[backend=biber, style=numeric-comp,backref, sorting=none, firstinits=true]{biblatex} 
+\usepackage[backend=biber, style=numeric-comp,backref, sorting=none, firstinits=true]{biblatex}
+
+% Hack to include Collaboration author field
 \DeclareSourcemap{
  \maps[datatype=bibtex,overwrite=true]{
   \map{
@@ -46,18 +42,14 @@
 }%
 
 \usepackage{kaobiblio}
-% \bibliographystyle{apsrev4-2}
-\addbibresource{thesis.bib} % Bibliography file
+\addbibresource{thesis.bib}
 
-% Load mathematical packages for theorems and related environments
 \usepackage[framed=true]{kaotheorems}
-
-% Load the package for hyperreferences
 \usepackage{kaorefs}
 
-\graphicspath{{figures/}{images/}} % Paths where images are looked for
+\graphicspath{{figures/}{images/}}
 
-\makeindex[columns=3, title=Alphabetical Index, intoc] % Make LaTeX produce the files required to compile the index
+\makeindex[columns=3, title=Alphabetical Index, intoc]
 
 
 \begin{document}
@@ -74,21 +66,12 @@
 
 %----------------------------------------------------------------------------------------
 
-\frontmatter % Denotes the start of the pre-document content, uses roman numerals
-
-%----------------------------------------------------------------------------------------
-%   COPYRIGHT PAGE
-%----------------------------------------------------------------------------------------
+\frontmatter
 
 \makeatletter
-\uppertitleback{\@titlehead} % Header
+\uppertitleback{\@titlehead}
 
 \lowertitleback{
-    % \textbf{Disclaimer} \\
-    % You can edit this page to suit your needs. For instance, here we have a no copyright statement, a colophon and some other information. This page is based on the corresponding page of Ken Arroyo Ohori's thesis, with minimal changes.
-    
-    % \medskip
-    
     \textbf{Copyright} \\
     \cczero\ This book is released into the public domain using the CC0 code. To the extent possible under law, I waive all copyright and related or neighbouring rights to this work. To view a copy of the CC0 code, visit: \\\url{http://creativecommons.org/publicdomain/zero/1.0}
     
@@ -110,18 +93,6 @@
 
 \maketitle
 
-%----------------------------------------------------------------------------------------
-%   PREFACE
-%----------------------------------------------------------------------------------------
-
-% \chapter*{Preface}
-
-% \blindtext
-
-%----------------------------------------------------------------------------------------
-%   TABLE OF CONTENTS & LIST OF FIGURES/TABLES
-%----------------------------------------------------------------------------------------
-
 \begingroup % Local scope for the following commands
 
 % Define the style for the TOC, LOF, and LOT
@@ -133,15 +104,13 @@
 %\etocstandarddisplaystyle % "toc display" as if etoc was not loaded
 %\etocstandardlines % "toc lines as if etoc was not loaded
 
-\tableofcontents % Output the table of contents
+\tableofcontents
+\listoffigures
 
-\listoffigures % Output the list of figures
-
-% Comment both of the following lines to have the LOF and the LOT on different pages
 \let\cleardoublepage\bigskip
 \let\clearpage\bigskip
 
-\listoftables % Output the list of tables
+\listoftables
 
 \endgroup
 
@@ -150,7 +119,7 @@
 
 %\chapter{Theoretical background}
 %\addpart{Title of the Part}
-\pagelayout{margin} % Restore margins
+\pagelayout{margin}
 
 
 
@@ -206,7 +175,7 @@ to submit the observation request via a dedicated API to the telescope scheduler
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 
 \section{The \texttt{AMPEL} broker}
-The next step in the pipeline is the selection of good candidates. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen.
+The next step in the pipeline is the selection of good candidates. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
 The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory \sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The complete software stack is written in Python.
 
@@ -219,9 +188,11 @@ The main design goals of \texttt{AMPEL} comprise scalability, modularity and pro
 
 Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream \texttt{AMPEL} listens to.
 
-The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here different filters can be implemented, reducing the large number of alerts by different criteria (e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties, (non-) existence of detection history). All alerts surviving the filtering stage are then stored in a database (\texttt{MongoDB}\sidenote{\url{https://mongodb.com}}) collection. Additionally, processing states are also stored in another collection.
+The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are also stored in another collection.
 
-\textbf{Tier 1} can be skipped here, as it serves technical purposes. The next relevant stage is the \textbf{analysis} stage (Tier 2). In this, 
+\textbf{Tier 1} can be skipped here, as it serves technical purposes. The next relevant stage is the \textbf{Light curve nalysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or ML-based photometric classification.
+
+The last level, tier 3, executes \textbf{Population analysis}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates in a Slack channel, ranked by how interesting they are for spectroscopic follow up.
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
@@ -246,11 +217,6 @@ The first of several execution layers (\textit{tiers}) is the \textbf{Filtering}
 %\defbibnote{bibnote}{Here are the references in citation order.\par\bigskip} % Prepend this text to the bibliography
 \printbibliography[heading=bibintoc, title=Bibliography] % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
 
-%----------------------------------------------------------------------------------------
-%   INDEX
-%----------------------------------------------------------------------------------------
-
-% The index needs to be compiled on the command line with 'makeindex main' from the template directory
 
 \printindex % Output the index
 
