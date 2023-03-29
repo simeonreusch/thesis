@@ -240,7 +240,7 @@ Neither of those catalog matches serve as veto, but are rather appended to the f
     \caption[\texttt{nuztf} output]{Sample output from \texttt{nuztf} showing the light curve of ZTF21aauwmgr, a transient selected as potential source in the follow up of IC220624A. The cutouts at the top show the science image, the reference image (template), the resulting difference image and a PS1 cutout of the same region. The bottom shows the transient light curve, as well as the position, the \texttt{RealBogus} score (\texttt{drb}) and the \texttt{sgscore}. On the top, crossmatching information is shown. Here, the source is a source discovered by SDSS and flagged as likely QSO in MILLIQUAS.}
     \labfig{nuztf_sample_output}
 \end{figure}
-Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr.
+Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr. All information required for quickly deciding if the candidate warrants further scrutiny are displayed: Image cutouts of the science, reference and difference image are shown to allow identifying potential subtraction artifacts. The different machine learning scores (star-galaxy separation, real bogus) are also displayed, as well as results from the catalog matching and of course the transient light curve.
 
 \section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
@@ -250,8 +250,19 @@ The usual extraction of transient flux, as performed by the ZTF imaging pipeline
 
 If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected earlier than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be elongated. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
 
+The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a supernova Ic that is compatible with neutrino production shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate.\todo{ref to ZTF20abdnpdo and theory section}.
+
 \subsection{\texttt{fpbot}}
-The 
+\begin{marginfigure}
+    \includegraphics{fu/fpbot_slack_border.pdf}
+    \caption[\texttt{fpbot} Slackbot interaction]{Sample interaction with the \texttt{fpbot} Slackbot, obtaining forced photometry for ZTF20abydkrl.}
+    \labfig{fpbot_slackbot}
+\end{marginfigure} 
+\texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interace, or within a dedicated Slack channel to serve the broader community.
+
+For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution can differ from band to band.\todo{source}
+
+Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package \sidecite{Dembinski2023}, running the \texttt{MIGRAD} \sidecite{James1975} algorithm, a type of least-squares fit.
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
