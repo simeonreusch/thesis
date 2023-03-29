@@ -140,15 +140,15 @@ As we only have limited telescope time, we apply quality cuts on the high-energy
 In general, we only follow up if the reported rectangular \SI{90}{\percent} uncertainty region is smaller than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty area of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
 \section{Observation Planning with \texttt{planobs}}\label{planobs}
-If an alert makes these cuts, one needs to check if observations with ZTF are feasible. To reduce the potential for errors, this is done with assistance by the \texttt{planobs} \sidecite{Reusch2023} tool, developed mainly by the author to automate the task as much as possible.
+If an alert makes these cuts, one needs to check if observations with ZTF are feasible. To reduce the potential for errors, this is done with assistance by the \texttt{planobs} \sidecite{Reusch2023} tool, developed and maintained mainly by the author to automate the task as much as possible.
 
-\texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://nginx.com}} reverse proxy and serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat.
+\texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://nginx.com}} reverse proxy exposed to the internet. The \texttt{nginx} endpoint serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat for ease of use. It can also be run locally.
 
-The tool is constructed to be used with a simple command-line-style interface in the Slack chat. For example, 
+The tool is designed to be used with a simple command-line-style interface in the Slack chat. For example, issuing
 \begin{lstlisting}[language=bash,style=kaolstplain]
 Plan IC221223A -multiday
 \end{lstlisting}
-will create an observation plan for IceCube high-energy neutrino IC220501A, spanning multiple days.
+in the \texttt{plan\_observations} Slack channel will create an observation plan for IceCube high-energy neutrino IC220501A, spanning multiple days.
 
 To obtain the positional and error information on the neutrino in question from the respective GCN circular, \texttt{planobs} is searching for the GCN on an experimental server\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As notices are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
 
@@ -162,7 +162,7 @@ To obtain the positional and error information on the neutrino in question from 
     \caption[\texttt{planobs} ZTF grid]{The \SI{90}{\percent} uncertainty rectangle of IC221223A overlayed onto the ZTF grid.}
     \labfig{planobs_grid}
 \end{marginfigure}
-An example observability plot is shown in Fig. \ref{fig:planobs}. The blue curve shows the altitude of the sky region in question above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
+An example observability plot is shown in Fig. \ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
 
 Additionally, for each field within the primary and secondary grid (see section \ref{ztf_grid}) that have overlap with the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see section \ref{ztf_image_subtraction}.}, the coverage is calculated and the field with the highest coverage is selected. Fig. \ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
 
@@ -170,7 +170,7 @@ If the plan looks good, one needs to invoke
 \begin{lstlisting}[language=bash,style=kaolstplain]
 Plan IC221223A -trigger
 \end{lstlisting} 
-to submit the observation request via a dedicated API to the telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
+to submit the observation request via a dedicated API to the ZTF telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
 
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 \begin{marginfigure}
@@ -190,20 +190,20 @@ The main design goals of \texttt{AMPEL} comprise scalability, modularity and pro
     \labfig{ampel_design}
 \end{figure}
 
-Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream \texttt{AMPEL} listens to.
+Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream the ZTF instance of \texttt{AMPEL} listens to.
 
-The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are also stored in another collection.
+The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
 
-\textbf{Tier 1} can be skipped here, as it serves technical purposes. The next relevant stage is the \textbf{Light curve nalysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or ML-based photometric classification.
+A description of \textbf{Tier 1} can be skipped here, as it serves mainly technical purposes (for details, see \cite{Nordin2019}). The next relevant stage is the \textbf{Light curve analysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or photometrically classify transients with machine learning.
 
-The last level, tier 3, executes \textbf{Population analysis}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates to a Slack channel, ranked by how promising they are for spectroscopic follow up \cite{Nordin2019}.
+The last level, tier 3, executes \textbf{Population analyses}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates to a Slack channel, ranked by how promising they are for spectroscopic follow up \cite{Nordin2019}.
 
-To simplify matters and allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API.
+To simplify matters and allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with heavy contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (section \ref{ampel}).
+To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with heavy contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
 
-When run, it executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, and finally creates an overview pdf file with details and a light curve for each candidate.
+When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
 \subsection{\texttt{DecentFilter} parameters}
 The GCN parsing is done akin to \texttt{planobs} (see section \ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, \texttt{DecentFilter} is run with the following parameters:
@@ -213,14 +213,37 @@ The GCN parsing is done akin to \texttt{planobs} (see section \ref{planobs}). Af
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (section \ref{planobs}) takes care of that.
     \item[\texttt{sgscore} veto] Vetoes any object with an \texttt{sgscore}$>0.8$, i.e. if it has a high probability of being a star
-    \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree}, with a \texttt{sgscore} lying between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
+    \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
+The vast majority of alerts do not pass these filters, significantly reducing the human effort needed in candidate vetting. 
 
 \subsection{Catalog crossmatch}
-All surviving candidates are then spatially crossmatched to a set of catalogs.
+All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
+\begin{marginfigure}
+    \includegraphics{fu/nedz.pdf}
+    \caption[NED spectroscopic redshift distribution]{Distribution of the 8.9 million NED objects with spectroscopic redshift (as of November 2021). From \url{https://ned.ipac.caltech.edu/Documents/Holdings/graphics}.}
+    \labfig{nedz}
+\end{marginfigure} 
+\begin{description}
+    \item[MILLIQUAS] The Million Quasar Catalog (MILLIQUAS) \sidecite{Milliquas} contains 1.4 million quasi-stellar object (QSO) candidates. Crossmatching is done to see if the source candidate is most likely associated to an AGN.
+    \item[NED] The NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}} hosts information on 1.7 billion objects, compiled from various surveys and catalogs. Almost 9 million of those have a spectroscopic redshift.
+    \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} aims at being the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a known and possibly classified transient.
+    \item[CRTS] A catalog derived from the Catalina Realtime-Transient Survey (CRTS) \sidecite{Drake2009}, the Catalina Surveys Periodic Variable Star Catalog \sidecite{Drake2014}, is queried to check if the source is a variable star.
+    \item[Gaia] Gaia Data Release 2 (Gaia DR2) \sidecite{Brown2018} is also used to crossmatch with known stars.
+    \item[SDSS] Data Release 10 (DR10) \sidecite{Ahn2014} of SDSS is used to check if the object is flagged as potential star.
+\end{description}
+Neither of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for candidate source, for example an existing classification on TNS as a certain type of supernova. 
 
+\begin{figure}[h!]
+    \includegraphics{fu/nuztf_IC220624A.pdf}
+    \caption[\texttt{nuztf} output]{Sample output from \texttt{nuztf} showing the light curve of ZTF21aauwmgr, a transient selected as potential source in the follow up of IC220624A. The cutouts at the top show the science image, the reference image (template), the resulting difference image and a PS1 cutout of the same region. The bottom shows the transient light curve, as well as the position, the \texttt{RealBogus} score (\texttt{drb}) and the \texttt{sgscore}. On the top, crossmatching information is shown. Here, the source is a source discovered by SDSS and flagged as likely QSO in MILLIQUAS.}
+    \labfig{nuztf_sample_output}
+\end{figure}
+Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr.
+\section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 
+% section forced_photometry_with_texttt (end)
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
 %\chapter{Conclusion and Outlook}
