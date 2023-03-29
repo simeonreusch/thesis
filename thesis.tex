@@ -132,7 +132,7 @@ After introducing the IceCube detector (see chapter \ref{ic}) and the Zwicky Tra
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month (see section \ref{ic_alerts}). Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts. The typically reported IceCube localization regions can be covered with only one pointing of the telescope.
 
-The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection and -- if needed -- trigger \textit{additional follow-up}.
+The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.
 
 \section{Alert Cuts}\label{alert_cuts}
 As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN. As outlined in section \ref{ic_event_selection}, there are two alert streams: \textit{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textit{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
@@ -217,23 +217,23 @@ The GCN parsing is done akin to \texttt{planobs} (see section \ref{planobs}). Af
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
 The vast majority of alerts do not pass these filters, significantly reducing the human effort needed in candidate vetting. 
-
-\subsection{Catalog crossmatch}
-All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
 \begin{marginfigure}
     \includegraphics{fu/nedz.pdf}
     \caption[NED spectroscopic redshift distribution]{Distribution of the 8.9 million NED objects with spectroscopic redshift (as of November 2021). From \url{https://ned.ipac.caltech.edu/Documents/Holdings/graphics}.}
     \labfig{nedz}
 \end{marginfigure} 
+\subsection{Catalog crossmatch}
+All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
 \begin{description}
-    \item[MILLIQUAS] The Million Quasar Catalog (MILLIQUAS) \sidecite{Milliquas} contains 1.4 million quasi-stellar object (QSO) candidates. Crossmatching is done to see if the source candidate is most likely associated to an AGN.
-    \item[NED] The NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}} hosts information on 1.7 billion objects, compiled from various surveys and catalogs. Almost 9 million of those have a spectroscopic redshift.
-    \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} aims at being the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a known and possibly classified transient.
     \item[CRTS] A catalog derived from the Catalina Realtime-Transient Survey (CRTS) \sidecite{Drake2009}, the Catalina Surveys Periodic Variable Star Catalog \sidecite{Drake2014}, is queried to check if the source is a variable star.
     \item[Gaia] Gaia Data Release 2 (Gaia DR2) \sidecite{Brown2018} is also used to crossmatch with known stars.
+    \item[MILLIQUAS] The Million Quasar Catalog (MILLIQUAS) \sidecite{Milliquas} contains 1.4 million quasi-stellar object (QSO) candidates. Crossmatching is done to see if the source candidate is most likely associated to an AGN.
+    \item[NED] The NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}} hosts information on 1.7 billion objects, compiled from various surveys and catalogs. Almost 9 million of those have a spectroscopic redshift.
     \item[SDSS] Data Release 10 (DR10) \sidecite{Ahn2014} of SDSS is used to check if the object is flagged as potential star.
+    \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} aims at being the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a known and possibly classified transient.
+    \item[WISE] Color information from the Wide-Infrared Survey Explorer (\textit{WISE}) Mission \sidecite{Wright2010} can be used to identify likely AGN, as these predominantly occupy in a small section of the WISE color-color diagram (see e.g. \sidecite{Hviding2022} for this).
 \end{description}
-Neither of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for candidate source, for example an existing classification on TNS as a certain type of supernova. 
+Neither of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source -- for example, an existing classification on TNS as a certain type of supernova. 
 
 \begin{figure}[h!]
     \includegraphics{fu/nuztf_IC220624A.pdf}
@@ -241,9 +241,18 @@ Neither of those catalog matches serve as veto, but are rather appended to the f
     \labfig{nuztf_sample_output}
 \end{figure}
 Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr.
-\section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 
-% section forced_photometry_with_texttt (end)
+\section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
+The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
+
+\subsection{Forced photometry explained}
+The usual extraction of transient flux, as performed by the ZTF imaging pipeline (section \ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
+
+If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected earlier than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be elongated. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
+
+\subsection{\texttt{fpbot}}
+The 
+
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
 %\chapter{Conclusion and Outlook}
