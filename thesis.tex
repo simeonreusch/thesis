@@ -157,19 +157,21 @@ To obtain the positional and error information on the neutrino in question from 
     \caption[Observation plan]{Observation plot created by \texttt{planobs} for the follow-up of IceCube neutrino IC221223A. The altitude and airmass of the alert region at Mt. Palomar are shown in blue. The red and green shaded regions are proposed observation windows in the \textit{r}- and \textit{r}-band. The red arrows show the airmass limit of 2.0, and the moon is displayed as yellow dotted curve. The gray shaded region marks night-time at the telescope site. All information automatically extracted from the GCN circular are shown on top.}
     \labfig{planobs}
 \end{figure}
-\begin{marginfigure}
-    \includegraphics{fu/planobs_grid.pdf}
-    \caption[\texttt{planobs} ZTF grid]{The \SI{90}{\percent} uncertainty rectangle of IC221223A overlayed onto the ZTF grid.}
-    \labfig{planobs_grid}
-\end{marginfigure}
+
 An example observability plot is shown in Fig. \ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
 
-Additionally, for each field within the primary and secondary grid (see section \ref{ztf_grid}) that have overlap with the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see section \ref{ztf_image_subtraction}.}, the coverage is calculated and the field with the highest coverage is selected. Fig. \ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
+Additionally, for each field of the primary and secondary grid (see section \ref{ztf_grid}) that (partially) contain the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see section \ref{ztf_image_subtraction}.}, the resulting coverage is calculated and the field with the highest coverage is selected. Fig. \ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
 
-If the plan looks good, one needs to invoke
+If the plan looks good, i.e. if the object is observable above an airmass of 2.0 and the moon is not too close, one needs to invoke
+\begin{marginfigure}
+    \includegraphics{fu/planobs_grid.pdf}
+    \caption[\texttt{planobs} ZTF grid]{The \SI{90}{\percent} uncertainty rectangle of IC221223A overlayed onto the ZTF grid. The coverage is not \SI{100}{\percent} because chip gaps are taken into account.}
+    \labfig{planobs_grid}
+\end{marginfigure}
 \begin{lstlisting}[language=bash,style=kaolstplain]
 Plan IC221223A -trigger
-\end{lstlisting} 
+\end{lstlisting}
+
 to submit the observation request via a dedicated API to the ZTF telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
 
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
@@ -242,6 +244,8 @@ Neither of those catalog matches serve as veto, but are rather appended to the f
 \end{figure}
 Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr. All information required for quickly deciding if the candidate warrants further scrutiny are displayed: Image cutouts of the science, reference and difference image are shown to allow identifying potential subtraction artifacts. The different machine learning scores (star-galaxy separation, real bogus) are also displayed, as well as results from the catalog matching and of course the transient light curve.
 
+Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources.
+
 \section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
 
@@ -263,6 +267,15 @@ The possibility to extract flux prior to the first alert detection makes forced 
 For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution can differ from band to band.\todo{source}
 
 Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package \sidecite{Dembinski2023}, running the \texttt{MIGRAD} \sidecite{James1975} algorithm, a type of least-squares fit.
+
+The fit results are stored as \texttt{csv} files and returned either via Slack channel or email. If the forced photometry is requested of the same object again, only new epochs are fitted to speed up the process.
+
+\section{Spectroscopic Resources}
+To classify promising counterpart candidates, we have successfully submitted proposals for spectroscopic resources during the run of the neutrino follow-up program. Several of these were led by the author.
+
+The instruments on which we had time for ToO observations during the last years comprise SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter}) \sidecite{Djupvik2010}, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter}) \sidecite{Mancini1997}, the Gemini Multi-Object Spectrograph (GMOS-N) \sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}), the Multi-Object Double Spectrograph (MODS) \sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}), and the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS) \sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}).
+
+The image reduction pipelines used were either custom routines provided by the instrument, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS.
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
