@@ -130,12 +130,12 @@
 \labch{fupipeline}
 After introducing the IceCube detector (see chapter \ref{ic}) and the Zwicky Transient Facility (see chapter \ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy neutrino follow-up pipeline.
 
-IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month (see section \ref{ic_alerts}). Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts. The typically reported IceCube localization regions can be covered with only one pointing of the telescope.
+IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month (see Section \ref{ic_alerts}). Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts. The typically reported IceCube localization regions can be covered with only one pointing of the telescope.
 
 The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.
 
 \section{Alert Cuts}\label{alert_cuts}
-As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN. As outlined in section \ref{ic_event_selection}, there are two alert streams: \textit{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textit{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
+As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN. As outlined in Section \ref{ic_event_selection}, there are two alert streams: \textit{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textit{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
 
 In general, we only follow up if the reported rectangular \SI{90}{\percent} uncertainty region is smaller than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty area of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
@@ -160,7 +160,7 @@ To obtain the positional and error information on the neutrino in question from 
 
 An example observability plot is shown in Fig. \ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
 
-Additionally, for each field of the primary and secondary grid (see section \ref{ztf_grid}) that (partially) contain the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see section \ref{ztf_image_subtraction}.}, the resulting coverage is calculated and the field with the highest coverage is selected. Fig. \ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
+Additionally, for each field of the primary and secondary grid (see Section \ref{ztf_grid}) that (partially) contain the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see Section \ref{ztf_image_subtraction}.}, the resulting coverage is calculated and the field with the highest coverage is selected. Fig. \ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
 
 If the plan looks good, i.e. if the object is observable above an airmass of 2.0 and the moon is not too close, one needs to invoke
 \begin{marginfigure}
@@ -177,7 +177,7 @@ to submit the observation request via a dedicated API to the ZTF telescope sched
 As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 \begin{marginfigure}
     \includegraphics{fu/planobs_slack_border.pdf}
-    \caption[\texttt{planobs} Slackbot interaction]{Sample interaction with the \texttt{planobs} Slackbot, checking the observability of IC230217A.}
+    \caption[\texttt{planobs} Slack interaction]{Sample interaction with \texttt{planobs} in Slack, checking the observability of IC230217A.}
     \labfig{planobs_slackbot}
 \end{marginfigure} 
 \section{The \texttt{AMPEL} Broker} \label{ampel}
@@ -192,9 +192,9 @@ The main design goals of \texttt{AMPEL} comprise scalability, modularity and pro
     \labfig{ampel_design}
 \end{figure}
 
-Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream the ZTF instance of \texttt{AMPEL} listens to.
+Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see Section \ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel Kafka streams. This is the live data stream the ZTF instance of \texttt{AMPEL} listens to.
 
-The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
+The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see Section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
 
 A description of \textbf{Tier 1} can be skipped here, as it serves mainly technical purposes (for details, see \cite{Nordin2019}). The next relevant stage is the \textbf{Light curve analysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or photometrically classify transients with machine learning.
 
@@ -203,17 +203,17 @@ The last level, tier 3, executes \textbf{Population analyses}. These are schedul
 To simplify matters and allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with heavy contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
+To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with heavy contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (Section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
 
 When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
 \subsection{\texttt{DecentFilter} parameters}
-The GCN parsing is done akin to \texttt{planobs} (see section \ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, \texttt{DecentFilter} is run with the following parameters:
+The GCN parsing is done akin to \texttt{planobs} (see Section \ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, \texttt{DecentFilter} is run with the following parameters:
 \begin{description}
     \item[Time window] The transient must have shown activity in a \SI{14}{\day} window after neutrino detection
     \item[\texttt{RealBogus}] The transient must have a \texttt{RealBogus} score of $>0.3$.
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
-    \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (section \ref{planobs}) takes care of that.
+    \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (see Section \ref{planobs}) takes care of that.
     \item[\texttt{sgscore} veto] Vetoes any object with an \texttt{sgscore}$>0.8$, i.e. if it has a high probability of being a star
     \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
@@ -250,7 +250,7 @@ Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-fi
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
 
 \subsection{Forced photometry explained}
-The usual extraction of transient flux, as performed by the ZTF imaging pipeline (section \ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
+The usual extraction of transient flux, as performed by the ZTF imaging pipeline (see Section \ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
 
 If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected earlier than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be elongated. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
 
@@ -276,6 +276,17 @@ To classify promising counterpart candidates, we have successfully submitted pro
 The instruments on which we had time for ToO observations during the last years comprise SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter}) \sidecite{Djupvik2010}, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter}) \sidecite{Mancini1997}, the Gemini Multi-Object Spectrograph (GMOS-N) \sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}), the Multi-Object Double Spectrograph (MODS) \sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}), and the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS) \sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}).
 
 The image reduction pipelines used were either custom routines provided by the instrument, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS.
+
+\section{Follow-Up Performance}
+As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were either only accessible at Mt. Palomar during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). Some were located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$)
+
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{fu/follow_up_overview.pdf}
+    \caption[Follow-up performance]{Breakdown of the follow-up performance as of March 2023. Out of 108 neutrino alerts, 34 were followed up. The `Other' category comprises low altitude (below our airmass limit of 2.0 or entirely in the southern sky) and bad weather.}
+    \labfig{follow_up_overview}
+\end{figure}
+
+An overview of all follow-up campaigns is shown in Table \ref{tab:neutrino_alert_overview} in the appendix.
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}

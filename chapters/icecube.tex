@@ -32,7 +32,7 @@ Cherenkov radiation does not have spectral peaks, but is continuous, with a rela
 
 \section{Instrumentation}
 
-IceCube detects neutrinos by observing the optical part of their secondary particle Cherenkov spectrum (see section \ref{cherenkov_radiation} above). To understand how this is done, one first needs to look at the working principe of a photomultiplier tube (PMT).
+IceCube detects neutrinos by observing the optical part of their secondary particle Cherenkov spectrum (see Section \ref{cherenkov_radiation} above). To understand how this is done, one first needs to look at the working principe of a photomultiplier tube (PMT).
 
 \subsection{Photomultiplier tubes}
 A PMT is a device used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s \sidecite{Iams1935}.
@@ -100,7 +100,7 @@ The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water h
 \end{figure}
 
 \subsection{The IceTop surface array}
-One of the major classes of background events are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array (see section \ref{background}). IceTop serves as a partial veto against these, as it is sensitive to the airshowers from which atmospheric muons and neutrinos stem.
+One of the major classes of background events are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array (see Section \ref{background}). IceTop serves as a partial veto against these, as it is sensitive to the airshowers from which atmospheric muons and neutrinos stem.
 
 \begin{marginfigure}
     \includegraphics{ic_icetop.pdf}
@@ -108,7 +108,7 @@ One of the major classes of background events are cosmic ray interactions in the
     \labfig{ic_icetop}
 \end{marginfigure}
 
-The IceTop surface array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two IceCube DOMs (see section \ref{DOM}) \cite{Abbasi2013}.\todo{more detail}
+The IceTop surface array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two IceCube DOMs (see Section \ref{DOM}) \cite{Abbasi2013}.\todo{more detail}
 
 \subsection{Data acquisition}\label{data_acquisition}
 As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Laboratory on the surface via the twisted-pair cable datalink, were all DOM data is ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causility by temporal and sometimes spatial patterns. All hits for which common causality can be established form an \textit{event}. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second}) \cite{Aartsen2017}.
@@ -191,7 +191,7 @@ Using this, the MPE likelihood is given as
 \end{equation}
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}.
 
-\section{The Realtime Alert Program}
+\section{The Realtime Alert Program}\label{ic_alert_program}
 Since 2016, IceCube is hosting a realtime alert program, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, namely \textit{Gold} and \textit{Bronze}, were created \sidecite{Tung2019}. As all alerts used within this work except one stem from this revised system, I will focus on presenting the newer alert scheme.
 
 \subsection{Background}\label{background}
@@ -240,7 +240,7 @@ where $\theta_\text{zen}$ is the zenith angle and $E$ is the respective energy p
 
 The cuts on the individual event selections are tuned to ensure that \textit{gold} alerts on average have a signalness $>\SI{50}{\percent}$, and \textit{bronze} alerts have a signalness $>\SI{30}{\percent}$.
 \subsection{Alert distribution} \label{ic_alerts}
-All events that pass a first stage of filtering are sent to the IceCube data center (see section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
+All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
 \begin{marginfigure}
     \includegraphics{ic_he_alert_overview.pdf}
     \caption[IceCube alert overview]{High-energy neutrino alerts issued by IceCube since start of the new alert stream in June 2019.}
