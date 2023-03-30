@@ -1,0 +1,206 @@
+Neutrino,ztfid,iau_name,in_gcn,classif_code,classif,notes,max_brightness,max_range,catmatch,dist
+IC190503A,ZTF19aatqcwq,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal evolution",20.6 (g),0.2 (g),SDSS J080209.58+070006.2,0.25
+IC190503A,ZTF19aatqlwq,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal evolution",21.2 (r),0,SDSS J080049.29+060042.5,0.19
+IC190619A,ZTF18abolwbb,,0,1,AGN Variability,"QX, No significant temporal evolution",19.4 (r),1.1 (g),LAMOSTJ225850.59+081426.4,0.27
+IC190619A,ZTF18abueqkl,AT2020kqj,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal evolution",19.3 (g),1.2 (r),WISEA J224411.16+081751.2,0.25
+IC190619A,ZTF18acehkni,,0,1,AGN Variability,No significant temporal evolution,19.4 (r),1.3 (r),,
+IC190619A,ZTF18actxchc,,1,1,AGN Variability,"Likely QSO (prob = 94.0%), No contemporaneous flaring activity",18.0 (g),2.3 (g),WISEA J230443.58+121210.3,0.77
+IC190619A,ZTF19aadaszg,SN2019rg,0,,SN Ia,,15.9 (r),5.0 (r),,
+IC190619A,ZTF19aawnawu,,0,1,AGN Variability?,No significant temporal evolution,20.0 (g),1.0 (g),,
+IC190619A,ZTF19aaycone,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), no contemporaneous flaring activity",17.9 (g),2.7 (g),SDSS J224429.63+083423.9,0.83
+IC190619A,ZTF19aaycool,,1,1,AGN Variability,"Likely QSO (prob = 99.0%), no significant temporal evolution",20.3 (g),0.4 (g),WISEA J230053.10+102715.2,0.1
+IC190619A,ZTF19aaycosc,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), no significant temporal evolution",19.3 (r),1.2 (g),WISEA J224657.13+102253.5,0.97
+IC190619A,ZTF19aaycoxd,,0,1,AGN Variability,"Likely QSO (prob = 93.0%), no significant temporal evolution",20.3 (g),0.5 (g),WISEA J230813.32+083310.3,0.03
+IC190619A,ZTF19abahiwr,AT2019izf,0,0,Unclassified,SN? Abs mag peak of -19.4,19.5 (r),1.0 (r),,
+IC190619A,ZTF19abahiya,,0,0,Unclassified,SN?,19.6 (r),0.8 (r),,
+IC190619A,ZTF19abahizn,,0,1,AGN Variability?,No significant temporal evolution,19.7 (g),1.0 (g),,
+IC190619A,ZTF19abahjcp,,0,1,AGN Variability,No significant temporal evolution,20.2 (g),0.6 (g),,
+IC190619A,ZTF19abahlep,,0,0,Unclassified,"Hostless, two detections",20.8 (r),0.0 (r),,
+IC190619A,ZTF19abahlka,,0,1,AGN Variability,"Likely QSO (prob = 96.0%), No contemporaneous flaring activity",19.8 (i),1.3 (g),WISEA J230807.46+091325.0,0.41
+IC190619A,ZTF19abajnby,,0,1,AGN Variability,"QR'-type source, no significant temporal evolution",20.0 (r),0.7 (r),LAMOSTJ225304.02+095743.0,0.65
+IC190730A,ZTF19aanlzzk,,0,,Artifact,"Bad sub, SDSS Morphology: 'Star'-type source",13.8 (g),1.5 (g),,1.21
+IC190922B,ZTF18acekfly,AT2019kkd,0,2,AGN Variability (FP),"AX'-type source, variable, NCFA in forced photometry",18.5 (r),2.0 (r),MCG 0-02-020,0.21
+IC190922B,ZTF19abcejyp,AT2019kkp,0,1,AGN Variability,No significant temporal evolution,19.3 (r),1.0 (g),,
+IC190922B,ZTF19abxtupj,AT 2019pqh,1,,SN II/IIb,"IIb, spectrum by NOT and us (Keck)",20.3 (r),0.8 (r),,
+IC191001A,ZTF18ablvxkp,,0,1,AGN Variability,"Likely QSO (prob = 100.0%), No contemporaneous flaring activity",19.3 (r),1.6 (r),WISEA J210459.52+131416.4,0.4
+IC191001A,ZTF18absoqfm,,0,1,AGN Variability,"Likely QSO (prob = 90.0%), No contemporaneous flaring activity",19.0 (g),1.9 (g),WISEA J212205.01+135754.8,0.2
+IC191001A,ZTF19aapreis,AT2019dsg,1,,TDE,150 days old. Radio-detected. Swift+VLA triggered.,17.8 (g),2.1 (g),,
+IC191001A,ZTF19abassjx,,0,2,AGN Variability (FP),"Likely QSO (prob = 85.0%), NCFA in forced photometry",19.4 (i),1.3 (g),WISEA J205314.58+125218.9,0.28
+IC191001A,ZTF19abcdynm,,0,1,AGN Variability?,"No significant temporal evolution, No contemporanous flaring activity",20.5 (g),0.5 (g),,
+IC191001A,ZTF19abexshr,,0,2,AGN Variability (FP),"No significant temporal evolution, NCFA in forced photometry",20.2 (r),0.9 (r),,
+IC191001A,ZTF19abjfikj,,0,1,AGN Variability?,Found in GW follow-up. Faint. No contemporaneous flaring activity,20.9 (g),0.6 (g),,
+IC191001A,ZTF19abjflnc,,0,1,AGN Variability,"Likely QSO (prob = 97.0%), No significant temporal evolution, No contemporaneous flariring activity",19.2 (i),1.3 (r),SDSS J211737.70+130833.3,0.27
+IC191001A,ZTF19abjflrg,,0,1,AGN Variability?,"No significant temporal evolution, No contemporanous flaring activity",21.3 (g),0.2 (g),,
+IC191001A,ZTF19abjfmem,,0,1,AGN Variability,"Likely QSO (prob = 96.0%), No significant temporal evolution",21.5 (g),0.2 (g),WISEA J211501.94+132137.9,0.1
+IC191001A,ZTF19abwaurq,,0,0,Unclassified,"Looks real, Lasair says Gaia star",19.5 (r),1.0 (g),,
+IC191001A,ZTF19abzkexb,SN2019qhl,1,,SNIa,"Caltech-classified, SDSS Morphology: 'Star'-type source",18.9 (g),0.7 (r),,0.6
+IC191001A,ZTF19acbpqfn,AT2019rsj,1,0,Unclassified,Likely real,20.4 (g),0.6 (g),,
+IC191001A,ZTF19acbpqui,,0,0,Unclassified,,20.5 (g),0.4 (g),,
+IC191001A,ZTF19acbwpqs,,0,1,AGN Variability?,"No significant temporal evolution, No contemporaneous flaring activity",19.9 (g),1.1 (g),,
+IC191001A,ZTF19acbxahc,,0,0,Unclassified,Probably real,21.1 (g),0.1 (g),,
+IC191001A,ZTF19acbxanz,,0,0,Unclassified,"Likely real, SDSS host galaxy, faint",20.6 (r),0.2 (g),,
+IC191001A,ZTF19acbxaqj,,0,0,Unclassified,"Likely real, SDSS host galaxy, faint",20.5 (r),0.0 (g),,
+IC191001A,ZTF19acbxauk,,0,0,Unclassified,Possibly real,20.8 (g),0.1 (g),,
+IC191001A,ZTF19acbxbjq,AT2019rsk,1,0,Unclassified,"Likely real, rising!",20.3 (g),0.4 (g),,
+IC191001A,ZTF19accnqlc,,0,0,Unclassified,,20.2 (r),0.2 (r),,
+IC200109A,ZTF18aaidhnq,,0,2,AGN Variability (FP),"AX'-type source, NCFA in forced photometry",18.1 (r),1.2 (r),CGCG 67-27,0.22
+IC200109A,ZTF18aceykyg,,0,2,AGN Variability (FP),"QX'-type source, NCFA in forced photometry",19.0 (g),1.3 (g),SDSS J105752.69+105037.9,0.29
+IC200109A,ZTF18adgvgdk,,0,2,AGN Variability (FP),"AR'-type source, NCFA in forced photometry",19.3 (g),0.5 (g),NPM 1G+12.0265,0.28
+IC200109A,ZTF19aangwsm,,0,,Artifact,"SDSS galaxy, seems offset, No significant temporal evolution",19.8 (g),0.5 (g),,
+IC200109A,ZTF19aapsgtb,,0,2,AGN Variability (FP),"Q'-type source, NCFA in forced photometry",18.8 (r),1.3 (r),SDSS J104431.98+110105.6,0.75
+IC200109A,ZTF19aarohku,,0,1,AGN Variability,"Classified QSO Broad Line as redshift 0.2, 'QRX'-type source, No significant temporal evolution, No contemporaneous flaring activity",19.8 (r),0.9 (g),SDSS J111018.12+104619.5,0.47
+IC200109A,ZTF19acmwlds,AT 2019yfm,1,0,Unclassified,"Faint galaxy, detected by PS1, significant fading, SLSN?",19.7 (g),2.0 (r),,
+IC200109A,ZTF19adcdxgc,,0,1,AGN Variability,"Classified QSO Broad Line as redshift 0.17, 'Q'-type source, No significant temporal evolution, No contemporaneous flaring activity",19.6 (g),0.8 (g),SDSS J111208.32+104841.1,0.59
+IC200109A,ZTF20aaeunmm,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal evolution, No contemporaneous flaring activity",20.4 (g),0.7 (g),SDSS J110358.97+113632.4,0.39
+IC200109A,ZTF20aaeuufe,AT 2019yii ,1,0,Unclassified,"Hostless, Found by PS1. Probably real. Far from host (photo-z 0.16 +/- 0.04) --> absmag -18.7 -> Likely SN",20.4 (r),0.4 (r),,
+IC200109A,ZTF20aaevfrv,,0,,Star,SDSS Star,20.7 (g),0.2 (g),,0.45
+IC200109A,ZTF20aaevfth,AT 2020ux,0,0,Unclassified,Bogus?,21.2 (g),0,,
+IC200109A,ZTF20aaevfwa,AT 2019zxa,1,0,Unclassified,"Offset from host, probs not real...",20.6 (r),0.6 (r),,
+IC200109A,ZTF20aaevgvt,AT 2020uw,1,,Artifact,"Bogus? not very gaussian..., rb<0.5",20.5 (r),0,,
+IC200109A,ZTF20aagvvve,,0,,Artifact,Hostless. Bogus? rb = 0.3... Very clear in cutout though,19.7 (r),0.1 (r),,
+IC200109A,ZTF20aagvvvh,,0,,Artifact,"Hostless, rising",19.8 (r),0.3 (r),,
+IC200109A,ZTF20aagvvvk,,0,,Artifact,"Hostless, rising",19.9 (r),0.1 (r),,
+IC200109A,ZTF20aagvvvn,,0,,Artifact,"Hostless, rising",20.0 (r),0.2 (r),,
+IC200109A,ZTF20aagwcup,AT2020dtc,0,,Artifact,"No significant temporal evolution, star nearby poorly subtracted",19.9 (r),0.3 (r),,
+IC200109A,ZTF20aagwcuq,,0,0,Unclassified,"Clear in image, hostless, no significant temporal evolution",20.0 (r),0.3 (r),,
+IC200109A,ZTF20aagwcuu,,0,0,Unclassified,"Clear in image, hostless, no significant temporal evolution",20.0 (r),0.2 (r),,
+IC200109A,ZTF20aagwcuv,,0,0,Unclassified,"Clear in image, hostless, no significant temporal evolution",19.9 (r),0.3 (r),,
+IC200109A,ZTF20aagxfta,,0,0,Unclassified,"Clear in image, hostless, no significant temporal evolution",19.9 (g),0.3 (g),,
+IC200117A,ZTF19acxopgh,AT 2019zyu,1,,???,"SDSS Galaxy, good transient, nuclear",19.4 (r),1.6 (g),,
+IC200117A,ZTF19adceqeb,,0,1,AGN Variability,"Q'-type source, No significant temporal evolution, No contemporaneous flaring activity",19.6 (g),1.2 (r),SDSS J074432.96+295654.5,0.11
+IC200117A,ZTF20aacztcp,AT2020ko,0,1,AGN Variability,"QX'-type source, No signficant temporal evolution, No contemporaneous flaring activity",19.0 (r),1.0 (r),1WGA J0745.0+2926,0.57
+IC200117A,ZTF20aaglixd,AT 2020agt,0,0,Unclassified,"SDSS galaxy, young SN?",21.2 (g),,,
+IC200512A,ZTF18aazvbyj,,0,,Star,,17.5 (r),1.7 (g),,
+IC200512A,ZTF18abjnqos,,0,,Star,Gorgeous periodic star,12.9 (r),5.6 (r),,
+IC200512A,ZTF18abmfxbh,,0,,Artifact,star,17.5 (r),1.6 (r),,
+IC200512A,ZTF18abmfzmm,,0,,Artifact,,17.1 (r),1.6 (r),,
+IC200512A,ZTF19acgpzgi,,0,,Artifact,star,15.5 (g),1.0 (g),,
+IC200512A,ZTF20aazqsfe,,0,,Star,No significant temporal evolution,19.6 (g),0.2 (g),,
+IC200530A,ZTF18aaimsgg,AT2018lnq,0,,Artifact,Bad Sub,16.6 (r),2.0 (g),,
+IC200530A,ZTF18aamjqes,AT2020llg,0,2,AGN Variability (FP),"SDSS Galaxy, small flux increase, no significant temporal evolution, history of variability, NCFA in forced photometry",16.9 (r),2.6 (r),,
+IC200530A,ZTF18aaneyxs,,0,,Artifact,"Bad Sub, star (gaia)",14.6 (r),3.2 (g),,1
+IC200530A,ZTF18aavecmo,AT2020llh,0,8,AGN?,"SDSS Galaxy, Likely QSO (prob = 88.0%), crazy lightcurve!",19.6 (i),1.0 (g),WISEA J170539.32+273641.2,0.1
+IC200530A,ZTF18aazkjyd,,0,,Artifact,Bad Sub,14.7 (r),1.2 (g),,
+IC200530A,ZTF18abrwqpr,AT2020lli,0,8,AGN,"Likely QSO (prob = 99.0%), crazy lightcurve!",19.6 (g),1.3 (g),WISEA J165707.06+234643.8,0.4
+IC200530A,ZTF19aaonfhr,AT2020llj,0,1,AGN Variability?,"SDSS Galaxy, no significant temporal variability, No contemporaneous flaring activity",20.4 (r),1.2 (g),,
+IC200530A,ZTF19aascfca,,0,1,AGN Variability,"Likely QSO (prob = 97.0%), No significant temporal variability, No contemporaneous flaring activity",20.7 (g),0.4 (g),SDSS J165249.20+280943.5,0.1
+IC200530A,ZTF19aascffj,,0,1,AGN Variability?,"blended? No significant temporal variability, No contemporaneous flaring activity",20.0 (g),1.2 (g),,
+IC200530A,ZTF19aatubsj,SN2019fdr,1,9,TDE,Probable TDE,17.9 (i),3.3 (g),,
+IC200530A,ZTF19abregmj,AT2020llk,0,1,AGN Variability,"Likely QSO (prob = 100.0%), No significant temporal variability, No contemporaneous flaring activity",19.9 (g),1.0 (g),WISEA J170115.27+282236.8,0.1
+IC200530A,ZTF20aaifyfd,AT2020lll,0,1,AGN Variability?,"No significant temporal variability, No contemporaneous flaring activity",19.9 (g),1.2 (g),,
+IC200530A,ZTF20aaifyrs,SN2020awa,0,,SN Ia,,17.0 (r),4.2 (g),,
+IC200530A,ZTF20aarbktd,SN2020djn,0,,SN II,"Not significantly bright (-17) so no evidence of CSM-interaction, Peaked three months before neutrino",18.0 (i),2.3 (r),,
+IC200530A,ZTF20aavnpug,AT2020idu,0,,Dwarf Nova,Source: 2020ATel13680....1I,15.9 (i),5.1 (g),,
+IC200530A,ZTF20aawyens,AT2020lpp,0,1,AGN Variability,"A'-type source, QSO Broadline, no significant temporal variability, No contemporaneous flaring activity",19.7 (i),1.1 (g),2MASX J16564334+2541369,0.15
+IC200530A,ZTF20aaxcdok,AT2020lpq,0,0,Unclassified,"SDSS Galaxy, Offset from host, probable supernova?",20.1 (r),1.5 (r),,
+IC200530A,ZTF20aaxyglx,AT2020llm,0,1,AGN Variability,"Likely QSO (prob = 93.0%), No significant temporal variability, No contemporaneous flaring activity",20.3 (g),1.0 (r),WISEA J170243.61+262550.1,0.35
+IC200530A,ZTF20abaofgz,AT2020lpr,0,1,AGN Variability?,"SDSS Galaxy, No significant temporal variability, No contemporaneous flaring activity",19.9 (r),1.4 (g),,
+IC200530A,ZTF20abbpkpa,AT 2020lam,1,,SN II,no sign for interaction,18.8 (g),1.9 (g),,
+IC200530A,ZTF20abcnrcb,,0,1,AGN Variability,"Q'-type source, No significant temporal variability, No contemporaneous flaring activity",19.3 (g),1.7 (g),SDSS J170932.21+233213.1,0.1
+IC200530A,ZTF20abdnovz,,0,,Star,SDSS Star,21.3 (r),0.0 (g),,0.5
+IC200530A,ZTF20abdnowa,AT2020lln,0,,Artifact,"hostless, prior detections, rising. Bad sub?",20.7 (g),0.4 (g),,
+IC200530A,ZTF20abdnowp,AT2020llo,0,0,Unclassified,"Faint, SDSS galaxy, ",21.1 (g),0.2 (g),,
+IC200530A,ZTF20abdnowx,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal variability, No contemporaneous flaring activity",21.3 (g),0.1 (g),SDSS J165546.12+274447.8,0.2
+IC200530A,ZTF20abdnoxe,,0,1,AGN Variability,"Likely QSO (prob = 100.0%), No significant temporal variability, No contemporaneous flaring activity",20.3 (g),0.7 (g),WISEA J170809.83+275332.6,0.4
+IC200530A,ZTF20abdnoxm,AT2020llp,0,0,Unclassified,"Starforming Galaxy, several old detections in FP, consistent with SN post-peak with g;ade redshift (-17)",20.8 (g),0.6 (g),,
+IC200530A,ZTF20abdnoyu,AT2020lps,0,0,Unclassified,"Faint, SDSS Galaxy, faint host",21.4 (g),0.0 (g),,
+IC200530A,ZTF20abdnozk,AT2020llq,0,1,AGN Variability?,"SDSS Galaxy, No significant temporal variability, No contemporaneous flaring activity",20.6 (r),0.6 (g),,
+IC200530A,ZTF20abdnpae,AT2020lpt,0,0,Unclassified,"SDSS Galaxy, significant fading (0.3 mag/day)",20.9 (g),0.4 (g),,
+IC200530A,ZTF20abdnpbp,AT2020llr,0,1,AGN Variability,"QSO Starburst Broadline, 'AX'-type source, No significant temporal variability, No contemporaneous flaring activity",20.7 (r),0.1 (r),SDSS J170435.99+235233.8,0.2
+IC200530A,ZTF20abdnpbq,AT 2020lpw,0,1,AGN Variability?,"No signficant temporal variation, No contemporaneous flaring activity",21.0 (r),0.2 (g),,
+IC200530A,ZTF20abdnpbu,AT 2020lpx,0,0,Unclassified,No significant temporal evolution. Offset?,21.0 (g),0.4 (g),,
+IC200530A,ZTF20abdnpdo,AT 2020lls,1,,SN Ic,"no sign for interaction (explosion days before neutrino, possible optical pre-detection in forced photometry",19.0 (r),,,
+IC200530A,ZTF20abdqzjl,,0,,Star,SDSS Star,20.4 (r),0.9 (r),,0.4
+IC200530A,ZTF20abdqzjr,,0,1,AGN Variability,"Likely QSO (prob = 97.0%), No significant temporal evolution, No contemnporaneous flaring activity",21.1 (r),0.1 (r),SDSS J165400.03+284414.2,0.33
+IC200530A,ZTF20abdqzkq,AT 2020lpu,0,,Star,"SDSS Galaxy, Faint host, ",20.7 (g),0.4 (g),,
+IC200530A,ZTF20abdqzkr,,0,1,AGN Variability,"QX'-type source, No significant temporal evolution, No contemporaneous flaring activity",21.1 (g),0.2 (g),SDSS J170606.15+240305.5,0.17
+IC200530A,ZTF20abdrnjw,,0,,Star,SDSS Morphology: 'Star'-type source,21.3 (r),0,,0.2
+IC200530A,ZTF20abdrnlg,AT2020lpv,0,0,Unclassified,"SDSS Galaxy, ",20.9 (r),,,
+IC200530A,ZTF20abdrnmp,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), No significant temporal variability, No contemporaneous flaring activity",21.6 (r),0,SDSS J170443.58+242331.2,0.12
+IC200620A,ZTF18acvhwtf,AT 2020ncs,0,1,AGN Variability,"Milliquas Q, No significant temporal evolution, No contemporaneous flaring activity",19.7 (r),1.0 (r),SDSS J104816.25+120734.7,0.55
+IC200620A,ZTF20abgvabi,AT 2020ncr,1,1,AGN Variability?,"No significant temporal evolution, No contemporaneous flaring activity",20.2 (r),0.9 (r),,
+IC200916A,ZTF18acccxxf,AT2020tnn,0,2,AGN Variability (FP),SAME AS ZTF18adbbnry,19.7 (g),1.0 (g),,
+IC200916A,ZTF18adbbnry,AT2020tnn,0,2,AGN Variability (FP),"history of variability, faint variable detection in PS1, NCFA in forced photometry",19.8 (g),0.9 (g),,
+IC200916A,ZTF20acaapwk,SN2020tno,1,,SN Ia,"GCNed, rising after 1 day, retraction GCNed",18.9 (r),1.0 (r),,
+IC200916A,ZTF20acaapwn,,0,0,Unclassified,fainter on day 2,21.0 (g),0.1 (g),,
+IC200916A,ZTF20acaapwo,AT2020tnp,1,0,Unclassified,"GCNed, constant after 1 day",20.4 (r),0.2 (g),,
+IC200916A,ZTF20acayuno,,0,1,AGN Variability,"Likely QSO (prob = 95.0%), no significant temporal evolution, No contemporaneous flaring activity",21.1 (r),0.1 (g),WISEA J071801.69+135133.5,0.25
+IC200926A,ZTF18achvmdz,,0,1,AGN Variability,"No significant temporal evolution, No contemporaneous flaring activity",18.9 (i),0.9 (g),,
+IC200926A,ZTF18acwfrle,,0,,Star,Bad sub?,15.4 (g),2.2 (g),,
+IC200929A,ZTF20aamoxyt,,1,,AGN,"WISE/Marshal, Interesting Lightcurve",19.8 (g),1.1 (g),,
+IC201021A,ZTF18abmkdiy,AT2019cvb,0,1,AGN Variability,"Likely QSO (prob = 87.0%). No significant temporal variability, No contemporanous flaring activity",18.7 (i),1.4 (g),WISEA J172032.08+135312.7,0.43
+IC201021A,ZTF20abfaado,AT2020nbr,0,,Star,"looks like a variable star, PS1 history, star/galaxy score 0.8",19.3 (i),1.6 (r),,
+IC201021A,ZTF20acinqzo,,0,1,AGN Variability,"Likely QSO (prob = 100.0%). No significant temporal evolution, No contemporaneous flaring activity",19.6 (i),0.8 (g),WISEA J171957.03+143255.0,0.48
+IC201021A,ZTF20acmxnpa,AT2020ybb,1,,???,Likely QSO (prob = 98.0%) (host). predetections 9 days prior to neutrino. We triggered + GCN-ed. --> SN IIn ???,20.6 (g),0.4 (g),WISEA J172150.78+144627.5,0.39
+IC201130A,ZTF17aadmvpm,,0,,Artifact,subtraction artifact,16.1 (g),1.1 (g),,
+IC201130A,ZTF18abxrpgu,AT2021ury,0,,AGN,"AGN, not especially flaring, radio-bright, flaring?",18.8 (r),1.6 (g),,
+IC201130A,ZTF18achpvrl,,0,1,AGN Variability?,"No significant temporal evolution, No contemporaneous flaring activity",19.1 (r),0,,
+IC201130A,ZTF19aaagxcv,,0,1,AGN Variability,"No significant temporal evolution, No contemporaneous flaring activity",18.4 (g),1.4 (g),,0.64
+IC201130A,ZTF20aceidvg,,0,1,AGN Variability?,"No significant temporal evolution, No contemporaneous flaring activity",19.7 (g),1.2 (g),,
+IC201130A,ZTF20acmnnwf,,0,1,AGN Variability?,"Likely QSO (prob = 96.0%), No significant temporal evolution, No contemporaneous flaring activity",19.9 (r),1.0 (g),WISEA J020243.93-112200.5,0.21
+IC201130A,ZTF20acuqdeu,AT2020aehs,0,0,Unclassified,Need to see subs,19.8 (g),0.5 (g),,
+IC201130A,ZTF20acxbkpz,,0,0,Unclassified,Transient? AGN? Should do WISE colours,20.5 (r),0.1 (g),,
+IC201209A,ZTF18abwhosy,,0,2,AGN Variability (FP),"Q, no significant temporal evolution, NCFA in forced photometry",19.3 (r),1.0 (g),SDSS J002553.11-091252.1,0.16
+IC201209A,ZTF20abvxjup,,0,1,AGN Variability,"Q, no significant temporal evolution, No contemporaneous flaring activity",20.0 (g),0.7 (g),SDSS J003049.23-090133.7,0.41
+IC201209A,ZTF20acycunv,SN2020addp,0,,SN IIP,,19.4 (r),0.4 (r),,
+IC210210A,ZTF19aaapmca,,0,2,AGN Variability (FP),"N2X, history of variability, NCFA in forced photometry",18.6 (r),2.2 (g),4C 05.57,0.29
+IC210210A,ZTF19aailrrn,,0,1,AGN Variability,"A, No significant temporal evolution, No contemporaneous flaring activity",20.0 (g),0.9 (g),SDSS J134752.20+044729.3,0.47
+IC210210A,ZTF19aasfvho,,0,1,AGN Variability,"Q, No significant temporal evolution, No contemporaneous flaring activity",19.4 (g),1.5 (g),SDSS J134655.48+041500.5,0.48
+IC210210A,ZTF19aasfvqm,,0,,AGN,"Q, coherent flare",18.2 (r),2.2 (r),SDSS J134034.75+045241.3,0.14
+IC210210A,ZTF20aadynqa,,0,1,AGN Variability,"Likely QSO host, No significant temporal evolution, No contemporaneous flaring activity",20.1 (g),0.7 (r),WISEA J134837.32+042343.4,1.18
+IC210210A,ZTF20aajcpde,,0,1,AGN Variability,"Duplicate of ZTF19aasfvho? Q, No significant temporal evolution, No contemporaneous flaring activity",19.5 (g),0.7 (g),SDSS J134655.48+041500.5,1.45
+IC210210A,ZTF21aafmkun,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",19.4 (r),0.9 (g),SDSS J134430.39+045817.7,0.39
+IC210210A,ZTF21aajxjmv,,0,,Star,SDSS Star,21.3 (r),0.0 (g),,0.27
+IC210210A,ZTF21aajxjmy,,0,,Star,SDSS Star,21.1 (g),0.5 (g),,0.08
+IC210210A,ZTF21aajxjnb,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",22.1 (g),0.3 (g),SDSS J134658.52+045018.3,0.09
+IC210210A,ZTF21aajxjnc,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",21.7 (g),0.2 (g),SDSS J134522.08+050140.6,0.36
+IC210210A,ZTF21aajxjrn,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",20.1 (r),0.8 (g),SDSS J134803.94+051702.4,0.25
+IC210210A,ZTF21aajxjrv,AT2021clu,1,0,Unclassified,"young transient? GCNed. SDSS Galaxy, OSIRIS spectrum taken by Jesper",20.9 (r),0.2 (r),,
+IC210210A,ZTF21aajxjry,AT2021clv,1,0,Unclassified,young transient? GCNed. SDSS Galaxy,21.5 (r),0.2 (g),,
+IC210210A,ZTF21aajxjsa,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",21.7 (r),0.0 (g),SDSS J134852.73+052210.8,0.15
+IC210210A,ZTF21aajxkls,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",21.1 (g),0.1 (r),SDSS J134048.85+050046.6,0.15
+IC210210A,ZTF21aakiqpj,,0,,Star,SDSS Star,22.1 (g),0.0 (r),,0.46
+IC210510A,ZTF19aadzayi,,0,,Star,Gaia 4 sigma parallax,15.0 (r),1.8 (r),,0.85
+IC210510A,ZTF19aawqcum,,0,1,AGN Variability?,"No significant temporal evolution, No contemporaneous flaring activity",19.1 (g),1.3 (g),,
+IC210510A,ZTF20abhfiyd,,0,,Star,SDSS Star morphology,19.6 (g),0.9 (g),,1.4
+IC210510A,ZTF20acinvxv,,0,0,Unclassified,"No significant temporal evolution, might be AGN?",21.0 (r),0,,
+IC210510A,ZTF20acinwlt,,0,1,AGN Variability,Likely QSO (prob = 99.0%),21.0 (r),0.0 (g),WISEA J175441.45+040849.1,0.5
+IC210510A,ZTF21aaiuekm,,0,,Star,SDSS Star Morphology,19.5 (g),0.7 (g),,0.91
+IC210629A,ZTF18abteipt,AT2019gnu,0,2,AGN Variability (FP),Probable AGN (WISE colours). NCFA in forced photometry,17.1 (r),2.6 (r),WISE J224645.73+122935.7,0.08
+IC210629A,ZTF21abecljv,AT2021osi,1,1,AGN Variability?,Likely AGN (our Gemini spectrum). No significant temporal evolution. No contemporaneous flaring activity,19.8 (i),0.9 (g),,
+IC210629A,ZTF21abllruf,,0,,Artifact,Star. Subtraction artifact,17.5 (i),0,,0.13
+IC210811A,ZTF20abjezpo,,0,,Star?,No significant temporal evolution,19.7 (r),1.1 (r),,
+IC210811A,ZTF21absmcwm,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",20.8 (g),0.9 (g),SDSS J180116.94+243524.8,0.33
+IC220405A,ZTF21aahqtka,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",19.9 (r),0.7 (g),SDSS J085240.75-013919.6,0.42
+IC220405B,ZTF17aaaejau,AT2018kgn,0,,Star,CV,16.9 (g),4.1 (g),,
+IC220405B,ZTF19aavnpjv,,0,,Star,"triggered NOT, classified as CV",18.7 (g),1.0 (g),,
+IC220501A,ZTF20abgjniz,,0,1,AGN Variability,Probable WISE-selected quasar:W1-W2=1.2>0.8,19.4 (r),1.3 (r),WISEA J204704.67+180252.7,2.09
+IC220501A,ZTF21abjwacn,,0,1,AGN Variability,RadioS'-type source,19.1 (r),1.8 (r),WISEA J204918.64+182206.8,0.02
+IC220513A,ZTF19aaapmar,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",19.9 (r),0.3 (r),SDSS J145141.31-020627.6,0.74
+IC220513A,ZTF20aawvxao,AT2021cdy,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",19.7 (r),0.8 (r),SDSS J145857.84-013419.3,0.18
+IC220513A,ZTF22aaloeor,,0,1,AGN Variability,"Likely QSO, No significant temporal evolution, No contemporaneous flaring activity",20.4 (g),0.2 (g),SDSS J145153.85-020420.6,1.42
+IC220624A,ZTF18aaseehz,,0,1,AGN Variability,"Milliquas QX-type source, NCFA",19.6 (g),1.6 (g),SDSS J145159.84+400401.6,0.15
+IC220624A,ZTF19aaobxug,,0,1,AGN Variability,"Milliquas AX-type source, NCFA",19.4 (g),1.4 (g),SDSS J145448.92+421101.7,0.52
+IC220624A,ZTF19adgzidh,AT2021bei,1,1,AGN Variability,"WISE G-type source, classified with our NOT spectrum",19.2 (g),1.2 (g),WISEA J150144.26+411658.7,0.01
+IC220624A,ZTF21aauwmgr,,0,1,AGN Variability,"Likely QSO (prob = 99.0%), NCFA",19.8 (i),1.0 (r),SDSS J150229.62+414825.9,0.02
+IC220624A,ZTF22aaparxg,AT2022nit,1,,SN Ia,"WISE G-type source, we took Keck spectrum",20.3 (r),0.6 (g),WISEA J144950.63+412225.6,0.01
+IC220822A,ZTF18aashiai,AT2020onj,0,1,AGN Variability,"Could be star, anyway no flaring",19.7 (g),0.7 (g),,
+IC220822A,ZTF18abmssay,AT2019lku,0,,Star,Variable star?,16.6 (g),3.0 (r),,
+IC220822A,ZTF18admicap,,0,,Artifact,Duplicate of ZTF18abmssay,16.6 (g),2.5 (r),,
+IC220822A,ZTF19aauzqsc,,0,1,AGN Variability,"likely QSO, no significant temporal evolution",19.8 (r),1.0 (r),WISEA J181010.89+221949.4,0.3 arcsec
+IC220822A,ZTF22aaonqcc,SN2022mzb,0,,SN Ia,,18.5 (r),2.8 (g),,
+IC220822A,ZTF22aarmiqk,AT2022saw,1,,SN Ia,"we took a spectrum (prev: hostless, previous detection / SN -> FP lc strongly suggests so)",19.9 (g),0.2 (g),,
+IC220822A,ZTF22aarvynq,,0,,Star,"likely varstar, sgscore=0.73",20.3 (r),0.7 (r),,
+IC220822A,ZTF22aayzdld,,0,1,AGN Variability,"likely QSO, no significant temporal evolution",20.1 (r),0.8 (g),WISEA J180358.21+204251.4,0.05 arcsec
+IC220822A,ZTF22abcmevn,,0,,Star,"likely varstar, sgscore=0.86",20.5 (r),0.3 (r),,
+IC220822A,ZTF22abcmfsn,,0,,Star,high-ish sgscore (0.53),20.7 (r),0.6 (r),WISEA J181150.36+203810.3,0.01 arcsec
+IC220822A,ZTF22abcmgkl,,0,,,one previous detection (~20 days before),21.2 (g),0.6 (g),,
+IC220822A,ZTF22abcmhdw,,0,,,"not a star, no previous detections, W1-W2 = 0.5",21.1 (r),,WISEA J181830.17+220620.7,0.02 arcsec
+IC220822A,ZTF22abcmorl,AT2021acdf,0,,,"not a star, no previous detections",21.3 (r),0.0 (r),,
+IC220822A,ZTF22abcmoro,,0,,Star,"SDSS star-like morphology, PS1 also says so",20.7 (r),,,
+IC220907A,ZTF18aatkvyc,,0,1,AGN Variability,"Milliquas: AX-type source, no significant flare",18.9 (i),1.8 (g),SDSS J145318.67+451329.,0.22 arcsec
+IC220907A,ZTF18abnvqul,,0,1,AGN Variability,"Milliquas: QX-type source, no flaring",19.0 (g),1.8 (g),SDSS J145607.79+453034.,0.46 arcsec
+IC220907A,ZTF22aatwsqt,AT2022oyn,1,,SN Ia,"looks SN-y, classified by us",19.4 (r),1.4 (r),,
+IC221216A,ZTF19aacpnob,,0,,G-type source,"galaxy, no temporal evolution",15.8,2.8,NGC 0137,0.018
+IC221216A,ZTF19abycviw,,0,0,Unclassified,artifact,19.7,0.1,,
+IC221223A,ZTF22abdmfpw,,0,,QSO,no significant flare,,,,
