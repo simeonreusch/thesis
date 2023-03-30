@@ -356,7 +356,7 @@ def mosfit_plot(file, ax=None, fig=None, ylim=[20, 20], reduce_data=False):
         )
 
     ax.invert_yaxis()
-    ax.set_ylabel(r"Apparent Magnitude [AB]", fontsize=BIG_FONTSIZE)
+    ax.set_ylabel(r"Apparent Magnitude (AB)", fontsize=BIG_FONTSIZE)
     ax.tick_params(axis="both", which="major", labelsize=BIG_FONTSIZE)
     ax.set_xlabel("Date (MJD)", fontsize=BIG_FONTSIZE)
     ax.grid(axis="y")
