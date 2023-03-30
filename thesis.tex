@@ -244,7 +244,7 @@ Neither of those catalog matches serve as veto, but are rather appended to the f
 \end{figure}
 Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr. All information required for quickly deciding if the candidate warrants further scrutiny are displayed: Image cutouts of the science, reference and difference image are shown to allow identifying potential subtraction artifacts. The different machine learning scores (star-galaxy separation, real bogus) are also displayed, as well as results from the catalog matching and of course the transient light curve.
 
-Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources.
+Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
 
 \section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
