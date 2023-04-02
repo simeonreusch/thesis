@@ -118,12 +118,12 @@ As satellite bandwidth is limited and costly, further software triggers on-site 
 \subsection{Time synchronization}
 As timing information is crucial for event constitution and reconstruction (more on that later), all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed while data transfer is paused.
 
-This is achieved with Reciprocal Active Pulsing (RAPcal): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
+IceCube ensures temporal synchronizity with an algorithm called Reciprocal Active Pulsing (RAPcal): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
 
 With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \sidecite{Abbasi2009}.
 
 \section{Angular Reconstruction}
-The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are somewhat mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
+The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
 
 \subsection{Event types}
 \begin{marginfigure}
@@ -140,7 +140,7 @@ Track events (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting
 
 Cascade events (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within a small fraction of the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx \SI{15}{\percent}$) \cite{Aartsen2017a}.
 
-As this thesis is mainly interested in the sources of high-energy astrophysical neutrinos, the track events are more important, and I will focus on the angular reconstruction of those.
+As this thesis is mainly interested in the sources of high-energy astrophysical neutrinos, the track events are more important here, and I will focus on the angular reconstruction of those.
 
 \subsection{Likelihood approach}
 The basic angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It is based on a maximum-likelihood method \sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters do maximize the probability of measuring the actually observed values of $\vec{x}$?
@@ -203,7 +203,7 @@ Depending on the declination, there are two major sources of background events i
 \end{figure}
 \begin{marginfigure}
     \includegraphics[width=0.8\textwidth]{ic_muon_free_path.pdf}
-    \caption[Muon free path in ice]{Free path length for \SI{1}{\peta\eV} muons in ice. Note that the mean free path in ice is slightly longer than in rock. From \cite{Chirkin2004}.}
+    \caption[Muon free path in ice]{Free path length for \SI{1}{\peta\eV} muons in ice. The mean free path in ice is slightly longer than in rock. From \cite{Chirkin2004}.}
     \labfig{ic_muon_free_path}
 \end{marginfigure}
 \textbf{Atmospheric muons} are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. the northern hemisphere. Atmospheric muons stemming from cosmic ray events in the northern hemisphere are filtered out by the earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
