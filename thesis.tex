@@ -140,7 +140,7 @@ As we only have limited telescope time, we apply quality cuts on the high-energy
 In general, we only follow up if the reported rectangular \SI{90}{\percent} uncertainty region is smaller than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty area of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
 \section{Observation Planning with \texttt{planobs}}\label{planobs}
-If an alert makes these cuts, one needs to check if observations with ZTF are feasible. To reduce the potential for errors, this is done with assistance by the \texttt{planobs} \sidecite{Reusch2023} tool, developed and maintained mainly by the author to automate the task as much as possible.
+If an alert makes these cuts, one needs to check if observations with ZTF are feasible. To reduce the potential for errors, this is done with assistance by the \texttt{planobs} \sidecite{Reusch2023} tool, developed and maintained by the author to automate the task as much as possible.
 
 \texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://nginx.com}} reverse proxy exposed to the internet. The \texttt{nginx} endpoint serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat for ease of use. It can also be run locally.
 
@@ -150,7 +150,7 @@ Plan IC221223A -multiday
 \end{lstlisting}
 in the \texttt{plan\_observations} Slack channel will create an observation plan for IceCube high-energy neutrino IC220501A, spanning multiple days.
 
-To obtain the positional and error information on the neutrino in question from the respective GCN circular, \texttt{planobs} is searching for the GCN on an experimental server\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As notices are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
+To obtain the positional and error information on the neutrino in question from the respective GCN circular, \texttt{planobs} is searching for the GCN on an experimental server\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As circulars are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
 
 \begin{figure}[h!]
     \includegraphics{fu/planobs_airmass.pdf}
@@ -174,7 +174,7 @@ Plan IC221223A -trigger
 
 to submit the observation request via a dedicated API to the ZTF telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
 
-As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band in the first night. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
+As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 \begin{marginfigure}
     \includegraphics{fu/planobs_slack_border.pdf}
     \caption[\texttt{planobs} Slack interaction]{Sample interaction with \texttt{planobs} in Slack, checking the observability of IC230217A.}
@@ -183,7 +183,7 @@ As we are interested in the evolution of potential source candidates, usually ob
 \section{The \texttt{AMPEL} Broker} \label{ampel}
 The next step in the pipeline is the selection of good candidates. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
-The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory \sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The complete software stack is written in Python.
+The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory \sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The full software stack is written in Python.
 
 
 \begin{figure}[h!]
@@ -214,7 +214,7 @@ The GCN parsing is done akin to \texttt{planobs} (see Section \ref{planobs}). Af
     \item[\texttt{RealBogus}] The transient must have a \texttt{RealBogus} score of $>0.3$.
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (see Section \ref{planobs}) takes care of that.
-    \item[\texttt{sgscore} veto] Vetoes any object with an \texttt{sgscore}$>0.8$, i.e. if it has a high probability of being a star
+    \item[\texttt{sgscore} veto] Vetoes any object with an \texttt{sgscore} $>0.8$, which means a high probability of being a star.
     \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
@@ -252,7 +252,7 @@ The last step in the pipeline is the acquisition of forced photometry. This is a
 \subsection{Forced photometry explained}
 The usual extraction of transient flux, as performed by the ZTF imaging pipeline (see Section \ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
 
-If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected earlier than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be elongated. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
+If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
 
 The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a supernova Ic that is compatible with neutrino production shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate.\todo{ref to ZTF20abdnpdo and theory section}.
 
@@ -278,7 +278,7 @@ The instruments on which we had time for ToO observations during the last years 
 The image reduction pipelines used were either custom routines provided by the instrument, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS.
 
 \section{Follow-Up Performance}
-As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were either only accessible at Mt. Palomar during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). Some were located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$)
+As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold\todo{why}.
 
 \begin{figure}[h!]
     \includegraphics[width=0.8\textwidth]{fu/follow_up_overview.pdf}
@@ -293,8 +293,26 @@ In total, 205 candidate sources were selected by \texttt{nuztf}. Of these, 27 (\
 \section{Notable Sources}
 A full overview over the first 24 follow-up campaigns can be found in \sidecite{Stein2023a}. In the following, I will highlight those sources to which I contributed scientifically.
 
-\subsection{ZTF20abdnpdo}
-This source candidate was found in coincidence to high-energy neutrino IC200530A. 
+\subsection{SN2020lls}
+This source candidate was found in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1,IC200530A2,IC200530A4}. 
+
+We took a spectrum with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
+
+\begin{figure}[h!]
+    \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
+    \caption[SN2020lls spectrum]{Spectrum of SN2020lls taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the Ic type supernova SN1994l is shown on top in red. Figure by the author, see also \cite{Stein2023a}.}
+    \labfig{ZTF20abdnpdo_spectrum}
+\end{figure}
+
+The light curve including an early forced photometry detection in the \textit{i}-band was fit using the Modular Open Source Fitter for Transients (\texttt{MOSFiT}) \sidecite{Guillochon2018}. 
+
+\begin{figure}[h!]
+    \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
+    \caption[SN2020lls light curve fit]{Light curve of SN2020lls. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out SN2020lls as candidate source. Figure by the author, from \cite{Stein2023a}.}
+    \labfig{ZTF20abdnpdo_mosfit}
+\end{figure}
+
+\subsection{SN2020lam}
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}

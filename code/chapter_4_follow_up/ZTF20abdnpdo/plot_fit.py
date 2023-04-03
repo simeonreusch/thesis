@@ -356,9 +356,9 @@ def mosfit_plot(file, ax=None, fig=None, ylim=[20, 20], reduce_data=False):
         )
 
     ax.invert_yaxis()
-    ax.set_ylabel(r"Apparent Magnitude (AB)", fontsize=BIG_FONTSIZE)
+    ax.set_ylabel(r"Apparent Magnitude (AB)", fontsize=BIG_FONTSIZE + 2)
     ax.tick_params(axis="both", which="major", labelsize=BIG_FONTSIZE)
-    ax.set_xlabel("Date (MJD)", fontsize=BIG_FONTSIZE)
+    ax.set_xlabel("Date (MJD)", fontsize=BIG_FONTSIZE + 2)
     ax.grid(axis="y")
     ax.set_ylim([22, 18.5])
     ax.set_xlim(left=MJD_CUT, right=59018)
@@ -366,7 +366,7 @@ def mosfit_plot(file, ax=None, fig=None, ylim=[20, 20], reduce_data=False):
     mag = lambda absmag: absmag + cosmo.distmod(REDSHIFT).value
     ax2 = ax.secondary_yaxis("right", functions=(absmag, mag))
     ax2.tick_params(axis="both", which="major", labelsize=BIG_FONTSIZE)
-    ax2.set_ylabel(rf"Absolute Magnitude (z={REDSHIFT:.3f})", fontsize=BIG_FONTSIZE)
+    ax2.set_ylabel(rf"Absolute Magnitude (z={REDSHIFT:.3f})", fontsize=BIG_FONTSIZE + 2)
 
     ax.axvline(t_neutrino, linestyle=":", label="IC200530A")
 
