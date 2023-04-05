@@ -294,25 +294,34 @@ In total, 205 candidate sources were selected by \texttt{nuztf}. Of these, 27 (\
 A full overview over the first 24 follow-up campaigns can be found in \sidecite{Stein2023a}. In the following, I will highlight those sources to which I contributed scientifically.
 
 \subsection{SN2020lls}
-This source candidate was found in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1,IC200530A2,IC200530A4}. 
+This source candidate was found in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
 
-We took a spectrum with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
+We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020\todo{PI: J. Sollerman?} and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
     \caption[SN2020lls spectrum]{Spectrum of SN2020lls taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the Ic type supernova SN1994l is shown on top in red. Figure by the author, see also \cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_spectrum}
 \end{figure}
-
-The light curve including an early forced photometry detection in the \textit{i}-band was fit using the Modular Open Source Fitter for Transients (\texttt{MOSFiT}) \sidecite{Guillochon2018}. 
+SNe Ic are possible emitters of neutrino, but only shortly after explosion time\todo{ref to theory section}. We therefore used the Modular Open Source Fitter for Transients (\texttt{MOSFiT}) \sidecite{Guillochon2018} to fit the light curve. The latter, including an early forced photometry detection in the \textit{i}-band, can be seen in Fig. \ref{fig:ZTF20abdnpdo_mosfit}.
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
     \caption[SN2020lls light curve fit]{Light curve of SN2020lls. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out SN2020lls as candidate source. Figure by the author, from \cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
 \end{figure}
+As can be seen, the fit estimates the explosion time (black line) at \SI{6}{\day} earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
 
 \subsection{SN2020lam}
+A second source candidate, also coincident with IC200530A, was SN2020lam \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC\todo{PI: J. Sollerman?} on June 6. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
+
+\begin{figure}[h!]
+    \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
+    \caption[SN2020lam spectrum]{Spectrum of SN2020lam taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the IIP type supernova SN2005cs is shown on top in red. Balmer lines are shown with black dotted lines. Figure by the author, see also \cite{Stein2023a}.}
+    \labfig{ZTF20abbpkpa_not_spectrum}
+\end{figure}
+The lightcurve and the best-fit template show that the neutrino was detected close to the peak of the supernova. The viable production mechanism in this case is CSM-interaction\todo{Theory section reference}. As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and thereby ruled out SN2020lam as a source candidate.
+
 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
