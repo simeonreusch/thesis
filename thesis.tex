@@ -124,13 +124,14 @@
 
 
 \input{chapters/icecube.tex}
+
 \input{chapters/ztf.tex}
 \setchapterimage[7cm]{fu/heading3.png}
 \chapter{The ZTF Follow-Up Pipeline} \label{fupipeline}
 \labch{fupipeline}
 After introducing the IceCube detector (see Chapter \ref{ic}) and the Zwicky Transient Facility (see Chapter \ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy neutrino follow-up pipeline.
 
-IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month (see Section \ref{ic_alerts}). Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
+IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month (see Section \ref{ic_alerts}). Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts\todo{section}. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
 The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.
 
@@ -196,25 +197,25 @@ Fig. \ref{fig:ampel_design} shows the design and information flow of \texttt{AMP
 
 The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g. \texttt{RealBogus} and \texttt{sgscore} (see Section \ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
 
-A description of \textbf{Tier 1} can be skipped here, as it serves mainly technical purposes (for details, see \cite{Nordin2019}). The next relevant stage is the \textbf{Light curve analysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or photometrically classify transients with machine learning.
+A description of \textbf{Tier 1} can be skipped here, as it serves mainly technical purposes (for details, see \cite{Nordin2019}). The next relevant stage is the \textbf{Light curve analysis} stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or photometrically classify transients with machine learning \cite{Nordin2019}.
 
 The last level, tier 3, executes \textbf{Population analyses}. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates to a Slack channel, ranked by how promising they are for spectroscopic follow up \cite{Nordin2019}.
 
-To simplify matters and allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
+To simplify matters significantly and to allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with heavy contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (Section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
+To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with a lot of contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (Section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
 
 When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
 \subsection{\texttt{DecentFilter} parameters}
-The GCN parsing is done akin to \texttt{planobs} (see Section \ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, \texttt{DecentFilter} is run with the following parameters:
+The GCN parsing is done akin to \texttt{planobs} (see Section \ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
 \begin{description}
     \item[Time window] The transient must have shown activity in a \SI{14}{\day} window after neutrino detection
     \item[\texttt{RealBogus}] The transient must have a \texttt{RealBogus} score of $>0.3$.
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (see Section \ref{planobs}) takes care of that.
-    \item[\texttt{sgscore} veto] Vetoes any object with an \texttt{sgscore} $>0.8$, which means a high probability of being a star.
+    \item[\texttt{sgscore}] The transient must have an \texttt{sgscore} $<0.8$, which means a low probability of being a star.
     \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
@@ -323,7 +324,7 @@ A second source candidate, also coincident with IC200530A, was SN2020lam \sideci
 The lightcurve and the best-fit template show that the neutrino was detected close to the peak of the supernova. The viable production mechanism in this case is CSM-interaction\todo{Theory section reference}. As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and thereby ruled out SN2020lam as a source candidate.
 
 \subsection{SN2020tno}
-SN2020tno was discovered when following up IC
+SN2020tno was discovered when following up IC200916A \sidecite{IC200916A1}. We obtained a spectrum with NOT/ALFOSC and 
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
 %\chapter{Conclusion and Outlook}
