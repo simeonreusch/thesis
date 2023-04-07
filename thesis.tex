@@ -68,7 +68,7 @@
 
 \frontmatter
 
-\makeatletter
+\makeatletter 
 \uppertitleback{\@titlehead}
 
 \lowertitleback{
@@ -255,7 +255,7 @@ The usual extraction of transient flux, as performed by the ZTF imaging pipeline
 
 If the position of the transient is \textit{known}, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed \textit{forced photometry}, as the known position is `forced' upon the flux extraction.
 
-The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a supernova Ic that is compatible with neutrino production shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate.\todo{ref to ZTF20abdnpdo and theory section}.
+The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a supernova Ic that is compatible with neutrino production shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see e.g. Section \ref{SN2020lls}).
 
 \subsection{\texttt{fpbot}}
 \begin{marginfigure}
@@ -279,7 +279,7 @@ The instruments on which we had time for ToO observations during the last years 
 The image reduction pipelines used were either custom routines provided by the instrument, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS.
 
 \section{Follow-Up Performance}
-As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold\todo{why}.
+As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.
 
 \begin{figure}[h!]
     \includegraphics[width=0.8\textwidth]{fu/follow_up_overview.pdf}
@@ -294,7 +294,7 @@ In total, 205 candidate sources were selected by \texttt{nuztf}. Of these, 27 (\
 \section{Notable Sources}
 A full overview over the first 24 follow-up campaigns can be found in \sidecite{Stein2023a}. In the following, I will highlight those sources to which I contributed scientifically.
 
-\subsection{SN2020lls}
+\subsection{SN2020lls} \label{SN2020lls}
 This source candidate was found in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
 
 We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020\todo{PI: J. Sollerman?} and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 

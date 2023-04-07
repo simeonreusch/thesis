@@ -1,11 +1,11 @@
-\setchapterimage[7cm]{ic_icecube.jpg}
+\setchapterimage[7cm]{ic/ic_icecube.jpg}
 \chapter{The IceCube Detector} \label{ic}
 \labch{IceCube}
 One of the two most relevant instruments for this thesis is the \textit{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location \sidecite{Andres1999, Andres2000}. 
 \begin{marginfigure}
-    \includegraphics{ic_cherenkov1.pdf}
-    \includegraphics{ic_cherenkov2.pdf}
-    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure Cherenkov radiation is emitted at the Cherenkov angle $\theta_\text{C}$, as the radiation emitted at different points in time forms a mutual, cone-shaped wavefront. In the figure on the bottom, all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). Adopted from \cite{LAnnunziata2020}.}
+    \includegraphics{ic/ic_cherenkov1.pdf}
+    \includegraphics{ic/ic_cherenkov2.pdf}
+    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the upper figure Cherenkov radiation is emitted at the Cherenkov angle $\theta_\text{C}$, as the radiation emitted at different points in time forms a mutual, cone-shaped wavefront. In the figure on the bottom, all radiation is cancelled out by destructive interference (all circles are subsets of the first on the left, as the particle is not moving faster than light in the medium). Adapted from \cite{LAnnunziata2020}.}
     \labfig{cherenkov}
 \end{marginfigure}
 The basic oeprational principle of IceCube (and already of AMANDA) is the detection of Cherenkov light within the Antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice, their speed exceeds the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual digital optical modules (DOMs), buried deep in the ice and sensitive to the Cherenkov radiation.
@@ -24,8 +24,8 @@ For slow particles, this radiation destructively interferes with itself, canceli
 
 For example: If the medium is ice, to first order the refractive index $n\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g. on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
 \begin{marginfigure}
-    \includegraphics{ic_cherenkov_spectrum.pdf}
-    \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adopted from \cite{Fulop1992}.}
+    \includegraphics{ic/ic_cherenkov_spectrum.pdf}
+    \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adapted from \cite{Fulop1992}.}
     \labfig{cherenkov_spectrum}
 \end{marginfigure}
 Cherenkov radiation does not have spectral peaks, but is continuous, with a relative intensity proportional to the frequency. Note that the refractive index of a medium also dpends on the frequency, dropping below 1 in the X-ray. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and peaks in the ultra violet (UV), before it sharply drops off in the X-ray regime \sidecite{Fulop1992}, see Fig. \ref{fig:cherenkov_spectrum}.
@@ -38,8 +38,8 @@ IceCube detects neutrinos by observing the optical part of their secondary parti
 A PMT is a device used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s \sidecite{Iams1935}.
 
 \begin{figure}[h!]
-    \includegraphics{ic_pmt_annotated.pdf}
-    \caption[PMT schematic]{A photomultiplier tube. Adopted from \cite{Bednarski2014}.}
+    \includegraphics{ic/ic_pmt_annotated.pdf}
+    \caption[PMT schematic]{A photomultiplier tube. Adapted from \cite{Bednarski2014}.}
     \labfig{pmt}
 \end{figure}
 
@@ -51,7 +51,7 @@ IceCube uses PMTs made by Hamamatsu Photonics (R7081-02), sensitive to photons b
 
 \subsection{The Digital Optical Module} \label{DOM}
 \begin{marginfigure}
-    \includegraphics{ic_DOM.pdf}
+    \includegraphics{ic/ic_DOM.pdf}
     \caption[IceCube digital optical module]{The IceCube DOM seen from the side. The detecting side of the PMT is facing downwards, with the main board an the PMT base board on top. From \cite{Aartsen2017}.}
     \labfig{ic_dom}
 \end{marginfigure}
@@ -59,8 +59,8 @@ The individual IceCube PMTs for detecting the Cherenkov radiation are enclosed i
 
 The circular main board hosts data acquisition and control, as well as units for communication, calibration and a power converter. Another board interfaces with the PMT, while additional boards delay the PMT signals, generate the high voltage current powering the PMT, as well as control calibration light emitting diodes (LEDs) that generate light flashes which can be received by neighboring DOMs for calibration purposes \sidecite{Aartsen2017}.
 \begin{marginfigure}
-    \includegraphics{ic_DOM_connections.pdf}
-    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbor above and below. Adopted from \cite{Aartsen2017}.} 
+    \includegraphics{ic/ic_DOM_connections.pdf}
+    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbor above and below. Adapted from \cite{Aartsen2017}.} 
     \labfig{ic_dom_connections}
 \end{marginfigure}
 Because of data storage restrictions, the DOMs only record the full digitized waveform data after a ``hit''. A hit is triggered when also DOMs above and below the DOM in question (to be precise, the neighbors and the next-to-nearest neighbors) report a coincident signal above a certain threshold \cite{Aartsen2017}. To fully record the waveform after a hit, there needs to be some kind of buffer. This is realized with the delay board, which routes the analog PMT signal through a \SI{10}{\m} long, serpentine copper trace to delay it by \SI{75}{\nm}.
@@ -75,12 +75,12 @@ The flasher board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. Thes
 In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs, with an average horizontal spacing between strings of \SI{125}{\meter} \cite{Aartsen2017}.
 
 \begin{figure}
-    \includegraphics[width=1.\textwidth]{ic_side_view_font.pdf}
+    \includegraphics[width=1.\textwidth]{ic/ic_side_view_font.pdf}
     \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the Antarctic glacial ice. In the center on top is the IceCube Laboratory, were data acquisition takes place. From \cite{Ahlers2018a}.}
     \labfig{ic_sideon}
 \end{figure}
 \begin{marginfigure}
-    \includegraphics{ic_top_view.pdf}
+    \includegraphics{ic/ic_top_view.pdf}
     \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. From \cite{Ahlers2018a}.}
     \labfig{ic_top_down}
 \end{marginfigure}
@@ -96,7 +96,7 @@ As one can imagine, embedding the DOMs within the ice was a non-trivial task. It
 The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter} \cite{Benson2014}. 
 
 \begin{figure}[]
-    \includegraphics{ic_drill.png}
+    \includegraphics{ic/ic_drill.png}
     \caption[IceCube enhanced hot water drill]{The hole drilling part of the IceCube Enhanded Hot Water Drill, excluding the hot, pressurized water supply. One can see the tower operations site (TOS) above the hole and the hoses providing hot water and returning cooled water from the bore hole to the generators in a closed loop. From \cite{Benson2014}.}
     \labfig{ic_drill}
 \end{figure}
@@ -105,7 +105,7 @@ The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water h
 As IceCube is sensitive to particles moving fast through the ice, there is a variety of background events (see Section \ref{background}). One the major contributors are cosmic ray interactions in the atmosphere, as the muons generated in these are indiscernible from neutrino-induced muons within the in-ice array (see Section \ref{background}). IceTop serves as a partial veto against cosmic-ray muons and neutrinos, as it is sensitive to the airshowers from which they stem.
 
 \begin{marginfigure}
-    \includegraphics{ic_icetop.pdf}
+    \includegraphics{ic/ic_icetop.pdf}
     \caption[IceTop detector]{IceTop surface Cherenkov detector tank. From \cite{Abbasi2013}.}
     \labfig{ic_icetop}
 \end{marginfigure}
@@ -128,12 +128,12 @@ With these six pieces of information -- the two transmit timestamps, the two rec
 
 \section{Angular Reconstruction}\label{reconstruction}
 \begin{marginfigure}
-    \includegraphics{ic_track.png}
+    \includegraphics{ic/ic_track.png}
     \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_track}
 \end{marginfigure}
 \begin{marginfigure}
-    \includegraphics{ic_cascade.png}
+    \includegraphics{ic/ic_cascade.png}
     \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_cascade}
 \end{marginfigure}
@@ -160,12 +160,12 @@ Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x
 
 \subsection{Parametrization}
 \begin{figure}[h!]
-    \includegraphics[width=0.7\textwidth]{amanda_reco.pdf}
-    \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction. Adopted from \cite{Ahrens2004}.}
+    \includegraphics[width=0.7\textwidth]{ic/amanda_reco.pdf}
+    \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction. Adapted from \cite{Ahrens2004}.}
     \labfig{ic_reco_cherenkov}
 \end{figure}
 
-To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. Furthermore, we neglect stochastic photon losses. The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$. So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. Furthermore, we neglect stochastic photon losses. The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$. So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the earth, centered on the detector surface and pointing southwards. An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while an azimuth angle of \SI{0}{\degree} travels from the 90th Meridian East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
 
 Now, a DOM in the detector at position $\vec{r}_i$ with a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon traveling along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as follows:
 \begin{equation}
@@ -204,23 +204,23 @@ Since 2016, IceCube is hosting a realtime alert program, providing the astrophys
 \subsection{Background}\label{background}
 Depending on the declination, there are two major sources of background events in the IceCube detector, both stemming from secondary cosmic ray particles from the earth's atmosphere.
 \begin{figure}[htb]
-    \includegraphics[width=0.8\textwidth]{ic_background.pdf}
-    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the norther hemisphere, the detector is shielded form atmospheric muons, but not atmospheric neutrinos, as these can traverse the earth. Adopted from \cite{Ahlers2018a}.}
+    \includegraphics[width=0.8\textwidth]{ic/ic_background.pdf}
+    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the norther hemisphere, the detector is shielded form atmospheric muons, but not atmospheric neutrinos, as these can traverse the earth. Adapted from \cite{Ahlers2018a}.}
     \labfig{ic_background}
 \end{figure}
 
 \begin{marginfigure}
-    \includegraphics[width=0.8\textwidth]{ic_muon_free_path.pdf}
+    \includegraphics[width=0.8\textwidth]{ic/ic_muon_free_path.pdf}
     \caption[Muon free path in ice]{Free path length for \SI{1}{\peta\eV} muons in ice. The mean free path in ice is slightly longer than in rock. From \cite{Chirkin2004}.}
     \labfig{ic_muon_free_path}
 \end{marginfigure}
 
 \textbf{Atmospheric muons} are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. the northern hemisphere. Atmospheric muons stemming from cosmic ray events in the northern hemisphere are filtered out by the earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
 
-One complication here stems from the fact that the earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the earth is. E.g. a \SI{1}{\peta\eV} neutrino with a zenith angle\todo{Define} of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability \sidecite{Aartsen2017c}.
+One complication here stems from the fact that the earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the earth is. E.g. a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability \sidecite{Aartsen2017c}.
 
 \begin{marginfigure}
-    \includegraphics{ic_absorption_earth.pdf}
+    \includegraphics{ic/ic_absorption_earth.pdf}
     \caption[Neutrino absorption in the earth]{Neutrino transmission probability through the earth. The longer the distance travelled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From \cite{Aartsen2017c}.}
     \labfig{ic_absorption_earth}
 \end{marginfigure}
@@ -232,7 +232,7 @@ Gold and bronze alerts are drawn from three different selection schemes, origina
 
 \textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of HESE events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}.
 \begin{marginfigure}
-    \includegraphics{ic_HESE_veto.pdf}
+    \includegraphics{ic/ic_HESE_veto.pdf}
     \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
     \labfig{ic_hese_veto}
 \end{marginfigure}
@@ -251,7 +251,7 @@ The cuts on the individual event selections are tuned to ensure that \textit{gol
 \subsection{Alert distribution} \label{ic_alerts}
 All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
 \begin{marginfigure}
-    \includegraphics{ic_he_alert_overview.pdf}
+    \includegraphics{ic/ic_he_alert_overview.pdf}
     \caption[IceCube alert overview]{High-energy neutrino alerts issued by IceCube since start of the new alert stream in June 2019.}
     \labfig{ic_he_alert_overview}
 \end{marginfigure}
@@ -261,6 +261,4 @@ Those information are later appended by a computationally more demanding, but mo
 
 As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the gold and bronze alert stream in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Tung2019}.} (0.8 gold alerts, 1.4 bronze alerts).
 
-Now, what to do with these high-energy neutrino alerts? One possible answer is: If the event is most likely astrophyiscal and reasonably well pin-pointed, scan the sky localization with a telescope and look for changes. But where to obtain optical information from?
-
-\todo{Überleitung auf ZTF}
+If the event is most likely astrophyiscal and reasonably well pin-pointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical information from? The instrument used for this, the Zwicky Transient Facility, will be described in the next chapter.

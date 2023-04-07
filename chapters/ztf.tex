@@ -1,4 +1,4 @@
-\setchapterimage[7cm]{ztf_telescope.png}
+\setchapterimage[7cm]{ztf/ztf_telescope.png}
 \chapter{The Zwicky Transient Facility} \label{ztf}
 \labch{ZTF}
 The second instrument relevant for this thesis is the Zwicky Transient Facility (ZTF). It is named after the notorious Swiss-American astronomer Fritz Zwicky, who first employed the Virial theorem to infer the existence of dark matter \sidecite{Zwicky1933}. Furthermore, together with Walter Baade, he posited the existence of supernovae and the creation of neutron stars in such events \sidecite{Baade1934}.
@@ -7,12 +7,12 @@ ZTF is a wide-field optical survey telescope. This means that it normally operat
 
 During the next years, the camera was updated several times. The immediate predecessor of ZTF, the Palomar Transient Factory (PTF) \sidecite{Law2009}, began operation in 2009. Equipped with a 96 Megapixel camera, it already had many of the characteristics of ZTF: A fully automated survey, searching for optical transients with a CCD camera.
 
-ZTF follows the concept of PTF with a bigger and more sensitive camera. With \SI{47}{\square\deg}, the camera covers almost the full FoV of the P48. The main design metric for ZTF was \textit{volumetric survey speed}. This is the volume within which an object of given absolute magnitude can be detected in one exposure, divided by the total time for the exposure (observation plus overhead) \sidecite{Bellm2016}. The system saw first light in 2017, and started its scientific use in 2018 (the first survey data was taken on 2018-03-20). As of writing, ZTF is still operational.
+ZTF follows the concept of PTF with a bigger and more sensitive camera. With \SI{47}{\square\deg}, the 600 Megapixel camera covers almost the full FoV of the P48. The main design metric for ZTF was \textit{volumetric survey speed}. This is the volume within which an object of given absolute magnitude can be detected in one exposure, divided by the total time for the exposure (observation plus overhead) \sidecite{Bellm2016}. The system saw first light in 2017, and started scientific operations in 2018 (the first survey data was taken on 2018-03-20). As of writing, ZTF is still operational.
 
 There are two other telescopes located on Mount Palomar. The \SI{1.5}{\meter} (60 inch) P60 telescope houses the SED Machine (SEDM) \sidecite{Blagorodnova2018}, a fully robotic, low-resolution spectrograph used for automatic classification of transients. The largest facility on the mountain is the 200-inch (\SI{5.1}{\meter}) Hale Telescope, which is used for optical and infrared photometry as well as mid- and high-resolution spectroscopy of fainter sources. Together, these telescopes form a natural hierarchy: ZTF is the discovery engine for optical transients. Promising sources are then classified with SEDM. If a source warrants it, deeper photometry and higher resolved spectroscopy can then be obtained with the P200. All three telescopes are shown in Fig. \ref{fig:palomar_overview}.
 
 \begin{figure*}[]
-    \includegraphics{palomar_overview.pdf}
+    \includegraphics{ztf/palomar_overview.pdf}
     \caption[View of Mt. Palomar]{View of Mt. Palomar with the three telescopes highlighted in the text. Image credit: Caltech, annotations by the author.}
     \labfig{palomar_overview}
 \end{figure*}
@@ -21,15 +21,15 @@ There are two other telescopes located on Mount Palomar. The \SI{1.5}{\meter} (6
 A \textit{Schmidt telescope} like ZTF is by design dedicated to taking images, contrary to earlier designs allowing actually looking through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a \textit{Schmidt camera}. The design goal was a wide FoV. This made it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets rid of comatic aberration\todo{zusatz oder das ist nur blabla}.
 
 \begin{figure}[]
-    \includegraphics[width=1\textwidth]{schmidt2.pdf}
-    \caption[Schmidt telescope schematic]{Schmidt telescope schematic. Light enters from the left, passes the Schmidt plate (an aspherical correcting lens), gets reflected by a spherical mirror at the end onto a photographic plate or camera halfway down the tube. Figure adopted from \url{https://commons.wikimedia.org/wiki/File:Schmidt-Teleskop.svg}.}
+    \includegraphics[width=1\textwidth]{ztf/schmidt2.pdf}
+    \caption[Schmidt telescope schematic]{Schmidt telescope schematic. Light enters from the left, passes the Schmidt plate (an aspherical correcting lens), gets reflected by a spherical mirror at the end onto a photographic plate or camera halfway down the tube. Figure adapted from \url{https://commons.wikimedia.org/wiki/File:Schmidt-Teleskop.svg}.}
     \labfig{schmidt_telescope}
 \end{figure}
 
 Until the end of the 20th century, around ten Schmidt telescopes have been built, most of them to conduct sky surveys \sidecite{Cannon1995}. At least two of them were space telescopes: ESA's astrometry mission \textit{HIPPARCOS} \sidecite{ESA1997} (1989--1993) and the NASA explanet mission \textit{Kepler} \sidecite{Koch2010} (2009--2018). In both cases, the mission entailed monitoring of large areas of the sky; prime territory for Schmidt telescopes.
 
 \begin{figure}[]
-    \includegraphics[width=1\textwidth]{ztf_fov.png}
+    \includegraphics[width=1\textwidth]{ztf/ztf_fov.png}
     \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST) \cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
     \labfig{ztf_fov}
 \end{figure}
@@ -40,7 +40,7 @@ Until the end of the 20th century, around ten Schmidt telescopes have been built
 The ZTF camera is a CCD design, consisting of 16 individual CCDs by commercial manufacturer e2v (now Teledyne, \textit{Science CCD231-C6}), each having 6144x6160 pixels, resulting in a total camera resolution of $\sim 600 \,\textrm{Megapixel}$ \sidecite{Dekany2016}. As one can see in Fig. \ref{fig:ztf_camera}, the array of 16 CCDs is slightly bent. This is necessitated by the Schmidt design, where the camera needs to be spherical, matching the spherical mirror. As individual CCDs are flat, each of the 16 sensors is is installed slightly tilted, tracing the overall curvature. To get rid of residual deviations from the global curvature, in front of each sensor a field flattener lens is mounted \sidecite{Bellm2019}.
 
 \begin{marginfigure}
-    \includegraphics{ccd_buckets.png}
+    \includegraphics{ztf/ccd_buckets.png}
     \caption[CCD operational principle]{CCD operational principle, explained with buckets measuring precipitation. From \cite{Janesick1987}.}
     \labfig{ccd_buckets}
 \end{marginfigure}
@@ -53,17 +53,17 @@ In Fig. \ref{fig:ccd_buckets} the principle of a CCD is explained with little bu
 To do this, the buckets in each row are moved one position to the left with horicontal conveyor belts. Each bucket at the left end of the horicontal conveyor belt is then emptied into the bucket on the single vertical conveyor belt. The buckets of this vertical belt are then one by one drained into the meausuring bucket on the bottom left. After all buckets on the vertical belt are emptied, the process starts anew, until all buckets are empty. As one can see, the time this process takes is quadratic to the amount of buckets (or pixels) \sidecite{Janesick1987}. To speed up the process, one can subdivide the sensor area into smaller sections, which are read out in parallel.
 
 \begin{marginfigure}
-    \includegraphics{ztf_camera_detail.png}
+    \includegraphics{ztf/ztf_camera_detail.png}
     \caption[ZTF camera cutaway]{The ZTF camera in detail. From \cite{Dekany2020}.}
     \labfig{ztf_camera_detail}
 \end{marginfigure}
 
-The typical exposure for the ZTF camera is \SI{30}{\second}, while the readout time (emptying and measuring the charges in each capacitor) is \SI{8.2}{\second}. Readout and digitization is done in parallel for four quadrants, each containing 4 CCDs. The four readout devices for the quadrants are \textit{Archon} CCD controllers by Semiconductor Technology Associates (STA). Each of these operates 16 simultaneous readout channels, four for each CCD. In total, the camera is simultaneously read out in 64 independent regions to speed up the process.
+The typical exposure for the ZTF camera is \SI{30}{\second}, while the readout time (transferring and measuring the charge in each capacitor) is \SI{8.2}{\second}. Readout and digitization is done in parallel for four quadrants, each containing 4 CCDs. The four readout devices for the quadrants are \textit{Archon} CCD controllers by Semiconductor Technology Associates (STA), operated at \SI{1}{\mega\Hz}. Each of these operates 16 simultaneous readout channels, four for each CCD. In total, the camera is simultaneously read out in 64 independent regions to speed up the process.
 
-Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out \sidecite{Dekany2020}. To lower the thermal noise of the camera, it is placed on top of a cryostat cooling the CCDs to \SI{160}{\kelvin} \cite{Dekany2016}.\todo{bissi was über den kryostat könntest du dann auch noch schreiben. Der ist jetzt auch wieder zeitaufwändig, also go.}
+Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out \sidecite{Dekany2020}. To reduce the thermal noise of the camera, it was placed on a cold plate, which is cooled by a cryocooler to \SI{160}{\kelvin} \cite{Dekany2016}.
 
 \begin{figure}[t!]
-    \includegraphics[width=1\textwidth]{ztf_camera.pdf}
+    \includegraphics[width=1\textwidth]{ztf/ztf_camera.pdf}
     \caption[ZTF cmera]{The ZTF camera. One can see the CCDs sandwiched between the filter on the front and the cryostat on the back. From \cite{Bellm2019}.}
     \labfig{ztf_camera}
 \end{figure}
@@ -76,7 +76,7 @@ As the CCDs of the camera cannot ``see'' color, different filters need to be put
 The main decision goal for the filter selection was to the maximize signal-to-noise ratio by avoiding major sky emission lines at Mt. Palomar while avoiding excessive costs. ZTF does not exactly match the filters of potential calibrators, e.g. the Sloan Digital Sky Survey (SDSS) \sidecite{York2000}, PanSTARRS (PS1) \sidecite{Kaiser2002} or \textit{Gaia} \sidecite{Prusti2016}. This was justified with the overall different telescope design of ZTF \cite{Bellm2019}.
 
 \begin{marginfigure}
-    \includegraphics{ztf_throughput.pdf}
+    \includegraphics{ztf/ztf_throughput.pdf}
     \caption[ZTF filter transmission]{ZTF filter transmission for the three different bands (\textit{g}-band: blue, \textit{r}-band: orange, \textit{i}-band: red). The green and gray datapoints show the CCD quantum efficiency measurements (single and double-layer reflective coating). From \cite{Bellm2019}.}
     \labfig{ztf_transmission}
 \end{marginfigure}
@@ -89,7 +89,7 @@ To decrease light obstruction, the ZTF shutter was newly developed and is mounte
 One exposure during regular operations -- in contrast to e.g. deep target of opportunity (ToO) images -- lasts \SI{30}{\second}. There is an additional \SI{\sim 15}{\second} overhead for readout and slewing the telescope. Also some additional time is needed to exchange the filters. Therefore, a typical night lasting \SI{8.67}{\hour} \sidecite{Masci2019} results in roughly 700 exposures. In total, these amount to a sky area of over \SI{32500}{\square\deg}, allowing to cover the full visible sky at Mount Palomar \SI{15}{\degree} above the horizon at least once.
 
 \begin{marginfigure}
-    \includegraphics{ztf_g_band_grid3.pdf}
+    \includegraphics{ztf/ztf_g_band_grid3.pdf}
     \caption[ZTF field visits]{Number of ZTF \textit{g}-band field visits during the first week of May 2020. The primary grid fully tiles the sky accessible at Mount Palomar.}
     \labfig{ztf_g_field_visits}
 \end{marginfigure}
@@ -104,8 +104,8 @@ The full calibration and image processing pipeline is shown in Fig. \ref{fig:ztf
 \subsection{On-site processing and datalink}\label{ztf_data_link}
 
 \begin{marginfigure}
-    \includegraphics{ztf_calibration_flow.pdf}
-    \caption[ZTF realtime flowchart]{Flowchart of the ZTF calibration, starting with the raw images on the top and ending with the final science products on the bottom. Adopted from \cite{Laher2018}.}
+    \includegraphics{ztf/ztf_calibration_flow.pdf}
+    \caption[ZTF realtime flowchart]{Flowchart of the ZTF calibration, starting with the raw images on the top and ending with the final science products on the bottom. Adapted from \cite{Laher2018}.}
     \labfig{ztf_calibration_flow}
 \end{marginfigure}
 
@@ -115,18 +115,17 @@ Each image taken on site (calibration and science exposures alike) is stored as 
 As the temperature of the CCDs changes with time, each image is subject to a time-dependent global offset induced by thermal noise. To correct for this, an \textit{overscan} region is used. In the case of the ZTF CCDs, this region does not correspond to physical pixels, but is created during CCD readout. If one reads out more clock cycles then pixels are available, the charge that has gathered during science readout can be accessed. For ZTF, this is done for an additional 24 cycles, corresponding to 24 overscan pixels for each sensor row. After this, the median of these 24 pixels is taken and the full overscan column is fitted with a quadratic function. For each and every image taken by the camera, the bias described by this quadratic function is calculated and subtracted from the image \cite{Masci2019a}.
 
 \subsection{Bias correction}
-The CCD pixels also have different zeropoints\todo{explain.}. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textit{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019a}.
+The CCD pixels also have different noise levels, meaning in the absence of external photoelectrons they still generate a signal, which is different from pixel to pixel -- i.e. their zero point differs. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textit{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019a}.
 
+
+
+\subsection{Flat fielding}
+The pixels in the CCDs do not only differ in zero point, they also have slightly different gain or quantum efficiency. This means, their response to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF, this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with LEDs, each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
 \begin{marginfigure}
-    \includegraphics{ztf_flatfield_illuminator.png}
+    \includegraphics{ztf/ztf_flatfield_illuminator.png}
     \caption[ZTF flat field illuminator]{The ZTF flat field illuminator. From \cite{Dekany2020}.}
     \labfig{ztf_flatfield_illuminator}
 \end{marginfigure}
-
-\subsection{Flat fielding}
-
-The pixels in the CCDs do not only differ in zero point, they also have slightly different gain or quantum efficiency. This means, their response to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF, this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with LEDs, each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
-
 Each afternoon, before science operations begin, at least 20 images per filter are taken of the flat field illuminator. These are then overscan corrected, the bias image is subtracted, and the pixel values are normalized to a truncated global mean of 1 over the image (to allow for later division). After this individual treatment, all flat field images per filter are stacked to a truncated mean per pixel and outlier rejection is applied to isolate additional noisy pixels. All science images taken during the night are divided by this flat field image \cite{Masci2019a}.
 
 \subsection{Astrometric calibration}
@@ -136,15 +135,16 @@ Astrometric calibration is the mapping of image pixel coordinates to an on-sky c
 After astrometric calibration, sources in the image need to be extracted to perform photometric calibration (to compare star brightnesses to reference measurements, one first needs stars...). To do so, point spread function (PSF) photometry is employed. Each telescope has a finite aperture, therefore suffering from diffraction. Additionally, earth's atmosphere is constantly and turbulently changing, with different atmospheric layers having different refractive indices, depending on their temperature. This smears out the light from the original point source, an effect known as \textit{seeing} (see Fig. \ref{fig:seeing}).
 
 \begin{figure}[h!]
-    \includegraphics{seeing.pdf}
-    \caption[Seeing]{\textit{Seeing}: Atmospheric distortions cause time-dependent distortions in the wavefronts, which average out during the exposure and form a Gaussian seeing disk on the sensor (bottom right image). Adopted from \cite{Chromey2016}.}
+    \includegraphics{ztf/seeing.pdf}
+    \caption[Seeing]{\textit{Seeing}: Atmospheric distortions cause time-dependent distortions in the wavefronts, which average out during the exposure and form a Gaussian seeing disk on the sensor (bottom right image). Adapted from \cite{Chromey2016}.}
     \labfig{seeing}
 \end{figure}
 
 The PSF is describing the way an ideal point source is smeared out spatially after being subjected to atmospheric and optical effects in the telescope, and seeing is the FWHM of the PSF. The algorithm used to reconstruct the PSF of a ZTF exposure is \texttt{DAOphot} \sidecite{Stetson1987}. It fits an analytic Gaussian profile to all point sources within an image. After subtracting this profile, it is iteratively updated with the residuals after subtraction. The background estimate needed for this procedure is extracted from the peak brightness value of a histogram of evenly distributed pixels within the image \cite{Stetson1987}.
 
 \subsection{Photometric calibration and magnitudes}
-\marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal} \cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured \textit{Calspec} standard stars. For details, see \cite{Magnier2020}}Not only the source positions in the images need to be calibrated (astrometry), but their brightness as well (photometry). To simplify matters, ZTF is photometrically calibrated against a reference survey, namely PS1. To do this, a catalog of useful calibrator stars from the PS1 survey has been curated. These stars are required to fulfill some basic quality criteria: They should be stable over multiple PS1 survey epochs in all PS1 filters excluding the \textit{y}-band (\textit{g}, \textit{r}, \textit{i}, \textit{z}) and should be fairly bright, but not so bright that they saturate the ZTF sensors. Furthermore, they are required to be fairly isolated to avoid blending with neighboring objects and need to have a high probability of being in fact stars (as opposed to galaxies) \cite{Masci2019a}.
+\marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal} \cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured \textit{Calspec} standard stars. For details, see \cite{Magnier2020}.}
+Not only the source positions in the images need to be calibrated (astrometry), but their brightness as well (photometry). To simplify matters, ZTF is photometrically calibrated against a reference survey, namely PS1. To do this, a catalog of useful calibrator stars from the PS1 survey has been curated. These stars are required to fulfill some basic quality criteria: They should be stable over multiple PS1 survey epochs in all PS1 filters excluding the \textit{y}-band (\textit{g}, \textit{r}, \textit{i}, \textit{z}) and should be fairly bright, but not so bright that they saturate the ZTF sensors. Furthermore, they are required to be fairly isolated to avoid blending with neighboring objects and need to have a high probability of being in fact stars (as opposed to galaxies) \cite{Masci2019a}.
 
 The brightness of both ZTF and PS1 are measured in magnitudes. Magnitudes are somewhat counterintuitive, as a higher value corresponds to a fainter source.\sidenote{This can be traced back over 2000 years to Greek/Roman astronomers Hipparchus and Ptolemy \cite{Krisciunas2001}. These classified the brightest stars to be of ``first order'' or ``first magnitude'', with subsequently dimmer stars assigned lower magnitudes until the dimmest stars visible to the naked eye were of ``sixth magnitude''. The system stuck and was put on firm footing by Norman Pogson in 1856. He defined a star being 5 magnitudes brighter than another one to be 100 times brighter \cite{Jones1968}.} The following definition holds:
 
@@ -187,19 +187,19 @@ where $\text{PS1}_\text{clr}$ is filter dependent ($g_\text{PS1}-r_\text{PS1}$ f
 In the photometric calibration step, $\text{ZP}_f$ and $c_f$ are chosen to globally minimize $\Delta m_f = \text{ZP}_f + c_f \times \text{PS1}_\text{clr}$ for all calibrator stars in the respective image \cite{Masci2019a}.
 
 \subsection{Image subtraction} \label{ztf_image_subtraction}
-Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many of the science goals concern observing sources that are \textit{new} or \textit{changing}. To do so, one needs to detect changes in the nightly observations with regard to \textit{reference images}. From all new images those reference images are subtracted (see Fig. \ref{fig:img_subtraction}). All remaining detections constitute temporal evolution with respect to the epoch of reference image creation. All reference images in ZTF are stacked images of 15--40 individual high-quality images, mostly created while ZTF telescope operations were ramping up\todo{source}. Quality criteria for the individual images comprise good seeing, low errors on the astrometric and photometric calibrations, as well as background levels falling into filter-specific ranges \cite{Masci2019}.
+Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many of the science goals concern observing sources that are \textit{new} or \textit{changing}. To do so, one needs to detect changes in the nightly observations with regard to \textit{reference images}. From all new images those reference images are subtracted (see Fig. \ref{fig:img_subtraction}). All remaining detections constitute temporal evolution with respect to the epoch of reference image creation. All reference images in ZTF are stacked images of 15--40 individual high-quality images, most of them created early after the start of telescope operations. Quality criteria for the individual images comprise good seeing, low errors on the astrometric and photometric calibrations, as well as background levels falling into filter-specific ranges \cite{Masci2019}.
 
 \texttt{SWarp} \sidecite{Bertin2010} is used to interpolate and resample the reference image onto the science image, while subsequent subtraction and PSF photometry (see Section \ref{psfphot}) is performed with the \texttt{ZOGY} algorithm \sidecite{Zackay2016}.
 
 \begin{figure}[h!]
-    \includegraphics{ztf_imsub.png}
+    \includegraphics{ztf/ztf_imsub.png}
     \caption[ZTF image subtraction]{ZTF image subtraction. The new science image is on the left; in the middle is reference image, which is subtracted. This results in a \textit{difference image}, seen on the right. From \cite{Mahabal2019}.}
     \labfig{img_subtraction}
 \end{figure}
 
 \subsection{Alert packages}
 \begin{marginfigure}
-    \includegraphics{ztf_bogus.png}
+    \includegraphics{ztf/ztf_bogus.png}
     \caption[ZTF subtraction artifact]{ZTF subtraction artifact, resulting in a bogus transient. From \cite{Mahabal2019}.}
     \labfig{ztf_bogus}
 \end{marginfigure}
