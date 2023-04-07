@@ -57,13 +57,21 @@ In Fig. \ref{fig:ccd_buckets} the principle of a CCD is explained with little bu
 
 To do this, the buckets in each row are moved one position to the left with horicontal conveyor belts. Each bucket at the left end of the horicontal conveyor belt is then emptied into the bucket on the single vertical conveyor belt. The buckets of this vertical belt are then one by one drained into the meausuring bucket on the bottom left. After all buckets on the vertical belt are emptied, the process starts anew, until all buckets are empty. As one can see, the time this process takes is quadratic to the amount of buckets (or pixels) \sidecite{Janesick1987}. To speed up the process, one can subdivide the sensor area into smaller sections, which are read out in parallel.
 
+Each CCD pixel actually consists of three electrodes, which can be seen in Fig. \ref{fig:ccd_transport}. The transport of charge within the CCD is realized by subsequently applying a higher voltage to different electrodes, moving the charge step-wise. 
+
+\begin{figure}[htb]
+    \includegraphics[width=0.7\textwidth]{ztf/ccd_transport.pdf}
+    \caption[Charge transport in a CCD]{Charge transport in a CCD. High voltage electrodes are shown filled, while low voltage electrodes are empty. By stepping through different combinations of electrodes, the electric potential changes, and the charge moves.}
+    \labfig{ccd_transport}
+\end{figure}
+
 The typical exposure for the ZTF camera is \SI{30}{\second}, while the readout time (transferring and measuring the charge in each capacitor) is \SI{8.2}{\second}. Readout and digitization is done in parallel for four quadrants, each containing 4 CCDs. The four readout devices for the quadrants are \textit{Archon} CCD controllers by Semiconductor Technology Associates (STA), operated at \SI{1}{\mega\Hz}. Each of these operates 16 simultaneous readout channels, four for each CCD. In total, the camera is simultaneously read out in 64 independent regions to speed up the process.
 
 Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out \sidecite{Dekany2020}. To reduce the thermal noise of the camera, it was placed on a cold plate, which is cooled by a cryocooler to \SI{160}{\kelvin} \cite{Dekany2016}.
 
-\begin{figure}[t!]
+\begin{figure}[htb]
     \includegraphics[width=1\textwidth]{ztf/ztf_camera.pdf}
-    \caption[ZTF cmera]{The ZTF camera. One can see the CCDs sandwiched between the filter on the front and the cryostat on the back. From \cite{Bellm2019}.}
+    \caption[ZTF camera]{The ZTF camera. One can see the CCDs sandwiched between the filter on the front and the cryostat on the back. From \cite{Bellm2019}.}
     \labfig{ztf_camera}
 \end{figure}
 
@@ -98,15 +106,15 @@ To enable robotic control, ZTF operates on a fixed primary on-sky grid of so-cal
 \section{Calibration and Image Processing}
 The ZTF image processing can be divided into two parts: The science exposures are taken at Mount Palomar, while calibration, extraction of transients and archival storage happens at the Infrared Processing and Analysis Center (IPAC)\sidenote{\url{https://www.ipac.caltech.edu}} situated on the campus of the California Institute of Technology (Caltech). IPAC ultimately hosts the ZTF images as part of IRSA\sidenote{\url{https://irsa.ipac.caltech.edu}}, the Infrared Science Archive.
 
-The full calibration and image processing pipeline is shown in Fig. \ref{fig:ztf_calibration_flow}. First come the different calibration steps: overscan and bias correction, flat fielding, as well as astrometric and photometric calibration. This is followed by creating the difference images and finally extracting the sources. I will briefly explain the different steps in the next sections.
-
-\subsection{On-site processing and datalink}\label{ztf_data_link}
-
 \begin{marginfigure}
     \includegraphics{ztf/ztf_calibration_flow.pdf}
     \caption[ZTF realtime flowchart]{Flowchart of the ZTF calibration, starting with the raw images on the top and ending with the final science products on the bottom. Adapted from \cite{Laher2018}.}
     \labfig{ztf_calibration_flow}
 \end{marginfigure}
+
+The full calibration and image processing pipeline is shown in Fig. \ref{fig:ztf_calibration_flow}. First come the different calibration steps: overscan and bias correction, flat fielding, as well as astrometric and photometric calibration. This is followed by creating the difference images and finally extracting the sources. I will briefly explain the different steps in the next sections.
+
+\subsection{On-site processing and datalink}\label{ztf_data_link}
 
 Each image taken on site (calibration and science exposures alike) is stored as FITS file and subsequently compressed loslessly. The compressed images on average use \SI{5}{\bit} per pixel, so the full image is roughly \SI{380}{\mega\byte} large. These images are immediately sent to IPAC with the High Performance Wireless Research \& Educational Network (HPWREN)\sidenote{\url{https://hpwren.ucsd.edu/}}, a microwave-based data network, linking Palomar Observatory with the IPAC post-processing site. Each transfer typically takes \SI{20}{\second}, keeping up with the pace of ZTF observations \cite{Dekany2020}.
 
