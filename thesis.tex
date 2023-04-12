@@ -122,10 +122,10 @@
 \pagelayout{margin}
 
 
-
+\input{chapters/theory.tex}
 \input{chapters/icecube.tex}
-
 \input{chapters/ztf.tex}
+
 \setchapterimage[7cm]{fu/heading3.png}
 \chapter{The ZTF Follow-Up Pipeline} \label{fupipeline}
 \labch{fupipeline}
@@ -204,7 +204,7 @@ The last level, tier 3, executes \textbf{Population analyses}. These are schedul
 To simplify matters significantly and to allow reprocessing as well as full replayability, all ZTF alerts received via the Kafka streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed with a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with a lot of contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (Section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the LVT O3 run.
+To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with a lot of contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (Section \ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo (LV) \sidecite{Aasi2015,Acernese2014} gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign \sidecite{Kasliwal2020} during the third LV observational campaign (O3).
 
 When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
@@ -297,7 +297,7 @@ A full overview over the first 24 follow-up campaigns can be found in \sidecite{
 \subsection{SN2020lls} \label{SN2020lls}
 This source candidate was found in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
 
-We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020\todo{PI: J. Sollerman?} and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
+We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
@@ -314,7 +314,7 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time\
 As can be seen, the fit estimates the explosion time (black line) at \SI{6}{\day} earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
 
 \subsection{SN2020lam}
-A second source candidate, also coincident with IC200530A, was SN2020lam (ZTF20abbpkpa) \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC\todo{PI: J. Sollerman?} on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
+A second source candidate, also coincident with IC200530A, was SN2020lam (ZTF20abbpkpa) \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
@@ -352,8 +352,9 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 
 
 \subsection{AT2022oyn}
-When following up IC220907A \sidecite{IC220907A1}, AT2022oyn (ZTF22aatwsqt) emerged as notable source candidate.
+When following up IC220907A \sidecite{IC220907A1}, AT2022oyn (ZTF22aatwsqt) emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
 
+We obtained a spectrum with Keck/LRIS on September 19, 2022. Based on a fit with \texttt{SNID}, we classified the source as type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos \sidecite{IC220907A2}.
 
 % \subsection{Other sources}
 % AT2022saw ZTF22aarmiqk IC220822A
