@@ -274,9 +274,9 @@ The fit results are stored as \texttt{csv} files and returned either via Slack c
 \section{Spectroscopic Resources}
 To classify promising counterpart candidates, we have successfully submitted proposals for spectroscopic resources during the run of the neutrino follow-up program. Several of these were led by the author.
 
-The instruments on which we had time for ToO observations during the last years comprise SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter}) \sidecite{Djupvik2010}, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter}) \sidecite{Mancini1997}, the Gemini Multi-Object Spectrograph (GMOS-N) \sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}), the Multi-Object Double Spectrograph (MODS) \sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}), and the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS) \sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}).
+The instruments on which we had time for ToO observations during the last years comprise SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter}) \sidecite{Djupvik2010}, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter}) \sidecite{Mancini1997}, the Gemini Multi-Object Spectrograph (GMOS-N) \sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}), the Multi-Object Double Spectrograph (MODS) \sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}), the Low-Resolution Imaging Spectrometer (LRIS) \sidecite{Oke1995} on the W. M. Keck Observatory (Keck, \SI{10}{\meter}) and the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS) \sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}).
 
-The image reduction pipelines used were either custom routines provided by the instrument, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS.
+The image reduction pipelines used were either custom routines provided by the instrument, \texttt{pyraf}\sidenote{\url{https://github.com/iraf-community/pyraf}}, a Python wrapper to IRAF \sidecite{Tody1986}, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS, while \texttt{pyraf} was used for Keck/LRIS.
 
 \section{Follow-Up Performance}
 As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube (see Section \ref{ic_alert_program}) since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria (see Section \ref{alert_cuts}). The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.
@@ -326,7 +326,36 @@ The lightcurve and the best-fit template show that the neutrino was detected clo
 \subsection{AT2020ybb}
 AT2020ybb (ZTF20acmxnpa) was discovered when following up IC201021A \sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}).
 
-AT2020ybb was a promising candidate, as the light curve showed supernova-like behavior. We triggered GTC/OSIRIS and reduced the spectrum wit \texttt{pypeit}.
+AT2020ybb was a promising candidate, as the light curve of the source was compatible with a supernova around peak \sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged \todo{rerun nuztf on this source when the archive bug is fixed}
+
+We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig. \ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum was somewhat ambiguous and allowed no classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.\todo{add light curve}
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{fu/ZTF20acmxnpa_spectrum.pdf}
+    \caption[AT2020ybb spectrum]{Spectrum of AT2020ybb taken with GTC/OSIRIS. The telluric absorption areas are shown in gray, potential hydrogen and SII lines are shown in black and red. The resulting redshift is 0.087.}
+    \labfig{ZTF20acmxnpa_spectrum}
+\end{figure}
+
+\subsection{AT2021osi}
+AT2021osi (ZTF21abecljv) was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by ALeRCe \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
+
+The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with NOT/ALFOSC and reduced the spectrum with \texttt{pypeit}.
+
+The spectrum showed features typical for AGN, most importantly broad Balmer lines ($\alpha$, $\beta$ and $\gamma$). These allowed also to infer a redshift of $z=0.194$. As there was no contemporaneous flaring activity in the optical light curve, we ruled out this candidate as `regular' AGN activity.
+
+\subsection{AT2022nit}
+ZTF22aaparxg, IC220624A
+
+\subsection{AT2022oyn}
+% ZTF22aatwsqt IC220907A
+
+
+% \subsection{Other sources}
+% AT2022saw ZTF22aarmiqk IC220822A
+%   (ZTF19aavnpjv) classified as CV. IC220405B JANNIS HAT DAS SPEKTRUM GEMACHT
+
+
+
 %\chapter{Candidate TDE AT2019fdr: a possible source?}
 %\chapter{The ZTF nuclear sample}
 %\chapter{Conclusion and Outlook}
