@@ -314,7 +314,7 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time\
 As can be seen, the fit estimates the explosion time (black line) at \SI{6}{\day} earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
 
 \subsection{SN2020lam}
-A second source candidate, also coincident with IC200530A, was SN2020lam \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC\todo{PI: J. Sollerman?} on June 6. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
+A second source candidate, also coincident with IC200530A, was SN2020lam (ZTF20abbpkpa) \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC\todo{PI: J. Sollerman?} on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
@@ -339,9 +339,15 @@ We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectr
 \subsection{AT2021osi}
 AT2021osi (ZTF21abecljv) was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by ALeRCe \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
 
-The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with NOT/ALFOSC and reduced the spectrum with \texttt{pypeit}.
+The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with Gemini/GMOS-N and reduced the spectrum with \texttt{pypeit}.
 
 The spectrum showed features typical for AGN, most importantly broad Balmer lines ($\alpha$, $\beta$ and $\gamma$). These allowed also to infer a redshift of $z=0.194$. As there was no contemporaneous flaring activity in the optical light curve, we ruled out this candidate as `regular' AGN activity.
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{fu/ZTF21abecljv_spectrum.pdf}
+    \caption[AT2020osi spectrum]{Spectrum of AT2020osi taken with Keck/GMOS-N. The telluric absorption areas are shown in gray, and Balmer lines are shown as black dotted lines. The redshift is 0.194.}
+    \labfig{ZTF21abecljv_spectrum}
+\end{figure}
 
 \subsection{AT2022nit}
 ZTF22aaparxg, IC220624A

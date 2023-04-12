@@ -24,9 +24,9 @@ plot_folder = "plots"
 spectra_folder = os.path.join(data_folder, "spectra")
 lc_folder = os.path.join(data_folder, "lightcurves")
 
-path_not = os.path.join(spectra_folder, "combined.dat")
+path_not = os.path.join(spectra_folder, "spec.txt")
 
-redshift = 1 + 0.0865
+redshift = 1 + 0.194
 
 spectrum_obs = pd.read_table(path_not, names=["wl", "flux"], sep="\s+", comment="#")
 
@@ -62,7 +62,7 @@ spectrum_obs["flux"] = spectrum_obs["flux"] / np.mean(spectrum_obs["flux"])
 
 spectrum_obs["wl"] = spectrum_obs["wl"] / redshift
 
-spectrum_obs.query("8950>wl > 5000", inplace=True)
+spectrum_obs.query("7600 > wl > 4050", inplace=True)
 # now we smooth
 not_smoothed = savgol_filter(spectrum_obs["flux"], 51, 3)
 
@@ -86,8 +86,8 @@ plt.plot(
 bbox = dict(boxstyle="circle", fc="white", ec="k")
 
 plt.ylabel(r"$F_{\lambda}$ (a.u.)", fontsize=big_fontsize)
-ax1.set_xlim([4950, 9000])
-ax1.set_ylim([0.5, 1.7])
+ax1.set_xlim([3950, 7650])
+ax1.set_ylim([0.0, 2.3])
 ax1b = ax1.twiny()
 rslim = ax1.get_xlim()
 ax1b.set_xlim((rslim[0] * redshift, rslim[1] * redshift))
@@ -100,20 +100,16 @@ ax1.legend(fontsize=11)
 for telluric in [[6860, 6890], [7600, 7630]]:
     ax1b.axvspan(telluric[0], telluric[1], color="gray", alpha=0.4, ec=None)
 
-balmer_lines = {"$H_\alpha$": 6563, "hbeta": 4861, "hgamma": 4340}
-sii_line = {"SII": 6715}
+balmer_lines = {r"$H_\alpha$": 6563, r"$H_\beta$": 4861, r"$H_\gamma$": 4340}
 
-ax1.text(6200, 0.6, "Telluric", fontsize=10, rotation=90, color="gray")
-ax1.text(6430, 0.6, r"$H_\alpha$", fontsize=10, rotation=90, color="black")
-ax1.text(6600, 0.6, r"SII", fontsize=10, rotation=90, color="red")
-ax1.text(6880, 0.6, "Telluric", fontsize=10, rotation=90, color="gray")
+ax1b.text(6740, 0.3, "Telluric", fontsize=10, rotation=90, color="gray")
+ax1b.text(7480, 0.3, "Telluric", fontsize=10, rotation=90, color="gray")
 
 for linename, value in balmer_lines.items():
     ax1.axvline(value, color="black", ls="dotted")
-for linename, value in sii_line.items():
-    ax1.axvline(value, color="red", ls="dashdot", lw=0.8)
+    ax1.text(value - 120, 0.3, linename, fontsize=10, rotation=90, color="black")
 
-filename = "ZTF20acmxnpa_spectrum.pdf"
+filename = "ZTF21abecljv_spectrum.pdf"
 
 plt.tight_layout()
 

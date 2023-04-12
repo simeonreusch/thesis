@@ -12,7 +12,6 @@ from astropy.io import fits
 from astropy.table import Table
 from astropy.time import Time
 from matplotlib import rc
-
 from scipy.signal import savgol_filter
 
 rc("font", **{"family": "serif", "serif": ["Palatino"]})
@@ -108,11 +107,11 @@ plt.plot(
     label="SN2020lam (smoothed)",
 )
 
-balmer_lines = {"$H_\alpha$": 6563, "hbeta": 4861, "hgamma": 4340}
+balmer_lines = {r"$H_\alpha$": 6563, r"$H_\beta$": 4861, r"$H_\gamma$": 4340}
 
 for linename, value in balmer_lines.items():
     plt.axvline(value, color="black", ls="dotted")
-
+    ax1.text(value - 180, 0.4, linename, fontsize=10, rotation=90, color="black")
 
 bbox = dict(boxstyle="circle", fc="white", ec="k")
 
