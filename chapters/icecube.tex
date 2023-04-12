@@ -198,8 +198,8 @@ Using this, the MPE likelihood is given as
 \end{equation}
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}.\todo{Überleitung!}
 
-\subsection{Millipede reconstruction}
-High-energy neutrion alerts that make the realtime alert cuts (see Section \ref{ic_alert_program}) are subjected to a computationally intensive algorithm dubbed \texttt{Millipede}, as it promises higher reconstruction fidelity.
+\subsection{Millipede reconstruction} \label{millipede}
+High-energy neutrion alerts that make the realtime alert cuts (see Section \ref{ic_alert_program}) are subjected to a computationally intensive algorithm dubbed \texttt{Millipede}, as it promises higher reconstruction fidelity. Due to its demand of computational resources it is only run for selected events at the IceCube data center in Madison.
 
 This reconstruction consists of a maximum likelihood scan covering the whole sky. To allow scanning, the sky is pixelated into grids of increasing resolution following the Hierarchical Equal Area isoLatitude Pixelation (\texttt{HEALPix}) scheme \sidecite{Gorski2005}. Each pixel of specific resolution covers the same area on the sky. For each scanned pixel, the muon direction is fixed to originate from that sky location.
 
@@ -266,7 +266,7 @@ All events that pass a first stage of filtering are sent to the IceCube data cen
 \end{marginfigure}
 Each notices contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Tung2019}.
 
-Those information are later appended by a computationally more demanding, but more sophisticated reconstruction\todo{jo das müssen wir schon erklären}, which is initiated manually. These are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
+Those information are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction, which is initiated manually (see Section \ref{millipede}. These are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
 
 As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the gold and bronze alert stream in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Tung2019}.} (0.8 gold alerts, 1.4 bronze alerts).
 
