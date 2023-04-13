@@ -1,5 +1,5 @@
                                                                      
-   wavelen         flux     sky_flux     flux_unc  xpixel    ypixel     response   flag 
+   wavelen    flux         sky_flux     flux_unc        xpixel ypixel  response     flag 
    3091.6560  2.60060e-17  3.33551e-16  3.30779e-17     763   116.924  2.81849e+14  0     
    3093.6084 -2.66391e-17  2.96511e-16  2.99552e-17     764   116.922  2.91940e+14  0     
    3095.5615  3.01732e-18  2.77902e-16  2.95069e-17     765   116.921  3.01673e+14  0.111 

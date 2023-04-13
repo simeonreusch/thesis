@@ -247,6 +247,8 @@ Fig. \ref{fig:nuztf_sample_output} shows a part of the final \texttt{pdf} file g
 
 Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
 
+The code can either be run locally, or through the interaction with a Slackbot. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of Icecube alert neutrinos and gravitational wave event names, extracts the information from the GCN or GW map and uploads the overview \texttt{pdf} and the GCN draft to Slack.
+
 \section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
 
@@ -326,18 +328,18 @@ The lightcurve and the best-fit template show that the neutrino was detected clo
 \subsection{AT2020ybb}
 AT2020ybb (ZTF20acmxnpa) was discovered when following up IC201021A \sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}).
 
-AT2020ybb was a promising candidate, as the light curve of the source was compatible with a supernova around peak \sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged \todo{rerun nuztf on this source when the archive bug is fixed}
+AT2020ybb was a promising candidate, as the light curve of the source was compatible with a supernova around peak \sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged \todo{rerun nuztf on this source when the archive bug is fixed. Also run fp when IPAC is working again.}
 
 We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig. \ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum was somewhat ambiguous and allowed no classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.\todo{add light curve}
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20acmxnpa_spectrum.pdf}
-    \caption[AT2020ybb spectrum]{Spectrum of AT2020ybb taken with GTC/OSIRIS. The telluric absorption areas are shown in gray, potential hydrogen and SII lines are shown in black and red. The resulting redshift is 0.087.}
+    \caption[AT2020ybb spectrum]{Spectrum of AT2020ybb taken with GTC/OSIRIS. The telluric absorption regions are shown in gray, potential hydrogen and SII lines are shown in black and red. The resulting redshift is $z=0.087$; the spectrum allowed no source classification.}
     \labfig{ZTF20acmxnpa_spectrum}
 \end{figure}
 
 \subsection{AT2021osi}
-AT2021osi (ZTF21abecljv) was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by ALeRCe \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
+AT2021osi (ZTF21abecljv) was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by \texttt{ALeRCe} \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
 
 The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with Gemini/GMOS-N and reduced the spectrum with \texttt{pypeit}.
 
@@ -345,16 +347,26 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF21abecljv_spectrum.pdf}
-    \caption[AT2020osi spectrum]{Spectrum of AT2020osi taken with Keck/GMOS-N. The telluric absorption areas are shown in gray, and Balmer lines are shown as black dotted lines. The redshift is 0.194.}
+    \caption[AT2020osi spectrum]{Spectrum of AT2020osi, taken with Keck/GMOS-N. The telluric absorption areas are shown in gray, and Balmer lines are shown as black dotted lines. The redshift is $z= 0.194$, and we classified the source as AGN.}
     \labfig{ZTF21abecljv_spectrum}
 \end{figure}
 
 
 
-\subsection{AT2022oyn}
-When following up IC220907A \sidecite{IC220907A1}, AT2022oyn (ZTF22aatwsqt) emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
+\subsection{SN2022oyn}
+When following up IC220907A \sidecite{IC220907A1}, SN2022oyn (ZTF22aatwsqt) emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
 
-We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID}, we classified the source as type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos \sidecite{IC220907A2}.
+We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID} (see Fig. \ref{fig:ZTF22aatwsqt_spectrum}), we classified the source as type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos \sidecite{IC220907A2}.
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{fu/ZTF22aatwsqt_spectrum.pdf}
+    \caption[SN2022oyn spectrum]{Spectrum of SN2022oyn, taken with Keck/LRIS. The best-fit \texttt{SNID}template (SN2005cf), a SN Ia, is shown for comparison in red on top. The redshift inferred from the tempmlate match is $z=0.135$.}
+    \labfig{ZTF22aatwsqt_spectrum}
+\end{figure}
+
+\section{Classification performance}
+asdf
+
 
 % \subsection{Other sources}
 % AT2022saw ZTF22aarmiqk IC220822A

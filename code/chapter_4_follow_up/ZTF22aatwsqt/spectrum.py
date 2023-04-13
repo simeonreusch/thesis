@@ -24,26 +24,22 @@ plot_folder = "plots"
 spectra_folder = os.path.join(data_folder, "spectra")
 lc_folder = os.path.join(data_folder, "lightcurves")
 
-path_not = os.path.join(spectra_folder, "spec.txt")
+path_obs = os.path.join(spectra_folder, "spec_for_snid.txt")
+path_snid = os.path.join(spectra_folder, "snid_comp.txt")
 
-redshift = 1 + 0.194
+redshift = 1 + 0.135
+snid_redshift = 1 + 0.1321  # + 0.002
 
-spectrum_obs = pd.read_table(path_not, names=["wl", "flux"], sep="\s+", comment="#")
+spectrum_obs = pd.read_table(path_obs, names=["wl", "flux"], sep="\s+", comment="#")
+spectrum_snid = pd.read_table(path_snid, sep=r"\s+", comment="#", header=None)
+spectrum_snid.rename(columns={0: "wl", 1: "flux"}, inplace=True)
 
 mask = spectrum_obs["flux"] > 0.0
+
 spectrum_obs["flux"][~mask] = 0.00
+spectrum_snid["flux"][~mask] = 0.00
+spectrum_snid["wl"] = spectrum_snid["wl"]
 
-smooth = 4
-f = np.array(list(spectrum_obs["flux"]))
-sf = np.zeros(len(f) - smooth)
-swl = np.zeros(len(f) - smooth)
-
-for i in range(smooth):
-    sf += np.array(list(f)[i : -smooth + i])
-    swl += np.array(list(spectrum_obs["wl"])[i : -smooth + i])
-
-sf /= float(smooth)
-swl /= float(smooth)
 
 fig_width = 5.8
 golden = 1.62
@@ -55,18 +51,35 @@ ax1 = plt.subplot(111)
 cols = ["C1", "C7", "k", "k"]
 
 
-offset = 1.1
+offset = 1.5
+
+
+spectrum_snid["flux"] = spectrum_snid["flux"] * ((spectrum_snid["wl"]))
+spectrum_snid["flux"] = spectrum_snid["flux"] / (np.mean(spectrum_snid["flux"] * 1.4))
+
 
 spectrum_obs["flux"] = spectrum_obs["flux"] * ((spectrum_obs["wl"]))
 spectrum_obs["flux"] = spectrum_obs["flux"] / np.mean(spectrum_obs["flux"])
 
+spectrum_snid["wl"] = spectrum_snid["wl"] / snid_redshift
 spectrum_obs["wl"] = spectrum_obs["wl"] / redshift
 
-spectrum_obs.query("7600 > wl > 4050", inplace=True)
+spectrum_obs.query("3050 < wl < 8950", inplace=True)
+spectrum_snid.query("3050 < wl < 8950", inplace=True)
+
 # now we smooth
-not_smoothed = savgol_filter(spectrum_obs["flux"], 51, 3)
+obs_smoothed = savgol_filter(spectrum_obs["flux"], 51, 3)
+snid_smoothed = savgol_filter(spectrum_snid["flux"], 51, 11)
 
 
+plt.plot(
+    spectrum_snid["wl"],
+    snid_smoothed + offset,
+    # spectrum _snid["flux"] + offset,
+    color="red",
+    alpha=1,
+    label="SN2005cf @47 days)",
+)
 plt.plot(
     spectrum_obs["wl"],
     spectrum_obs["flux"],
@@ -76,18 +89,25 @@ plt.plot(
 )
 plt.plot(
     spectrum_obs["wl"],
-    not_smoothed,
+    obs_smoothed,
     linewidth=1,
     color="C0",
     alpha=1,
-    label="AT2020ybb\n(smoothed)",
+    label="AT2022oyn (smoothed)",
 )
+
+# balmer_lines = {r"$H_\alpha$": 6563, r"$H_\beta$": 4861, r"$H_\gamma$": 4340}
+
+# for linename, value in balmer_lines.items():
+#     plt.axvline(value, color="black", ls="dotted")
+#     ax1.text(value - 180, 0.4, linename, fontsize=10, rotation=90, color="black")
 
 bbox = dict(boxstyle="circle", fc="white", ec="k")
 
 plt.ylabel(r"$F_{\lambda}$ (a.u.)", fontsize=big_fontsize)
-ax1.set_xlim([3950, 7650])
-ax1.set_ylim([0.0, 2.5])
+ax1.set_xlim([3000, 9000])
+ax1.set_ylim([0, 4.5])
+
 ax1b = ax1.twiny()
 rslim = ax1.get_xlim()
 ax1b.set_xlim((rslim[0] * redshift, rslim[1] * redshift))
@@ -95,21 +115,9 @@ ax1.set_xlabel(r"Rest wavelength ($\rm \AA$)", fontsize=big_fontsize)
 ax1b.set_xlabel(rf"Observed Wavelength (z={redshift-1.:.3f})", fontsize=big_fontsize)
 ax1.tick_params(axis="both", which="major", labelsize=big_fontsize)
 ax1b.tick_params(axis="both", which="major", labelsize=big_fontsize)
-ax1.legend(fontsize=11)
+ax1.legend()
 
-for telluric in [[6860, 6890], [7600, 7630]]:
-    ax1b.axvspan(telluric[0], telluric[1], color="gray", alpha=0.4, ec=None)
-
-balmer_lines = {r"$H_\alpha$": 6563, r"$H_\beta$": 4861, r"$H_\gamma$": 4340}
-
-ax1b.text(6740, 0.3, "Telluric", fontsize=10, rotation=90, color="gray")
-ax1b.text(7480, 0.3, "Telluric", fontsize=10, rotation=90, color="gray")
-
-for linename, value in balmer_lines.items():
-    ax1.axvline(value, color="black", ls="dotted")
-    ax1.text(value - 120, 0.3, linename, fontsize=10, rotation=90, color="black")
-
-filename = "ZTF21abecljv_spectrum.pdf"
+filename = "ZTF22aatwsqt_spectrum.pdf"
 
 plt.tight_layout()
 
