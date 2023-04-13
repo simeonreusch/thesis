@@ -65,6 +65,60 @@ def plot_broad_classes(df: pd.DataFrame) -> None:
 
     indices = list(np.argsort(counts))
     indices.reverse()
+    # indices = [2, 4, 3, 0, 1, 5]
+    # print(indices)
+    # quit()
+    counts = np.asarray(counts)[indices]
+    labels = np.asarray(labels)[indices]
+
+    explode = np.empty(len(counts))
+    explode.fill(0.01)
+    explode[4] = 0.1
+
+    fig, ax = plt.subplots(figsize=(width := 5, width / 1.62))
+
+    patches, texts, pcts = ax.pie(
+        counts,
+        labels=labels,
+        explode=explode,
+        startangle=22,
+        labeldistance=1.13,
+        autopct="%.0f%%",
+        pctdistance=0.7,
+    )
+    for i, patch in enumerate(patches):
+        texts[i].set_color(patch.get_facecolor())
+
+    plt.setp(
+        pcts,
+        color="white",
+        fontsize=10,
+        fontweight="bold",
+    )
+    plt.setp(texts, fontweight="bold")
+    plt.tight_layout()
+
+    outfile_path = "classification_overview.pdf"
+
+    plt.savefig(outfile_path)
+    plt.close()
+
+
+def plot_transients(df):
+    """
+    Plot the subclasses of 'transient' in a pie chart
+    """
+    counts = []
+    labels = []
+    _df = df.query("classif_broad == 'Transient'")
+
+    for c in _df.classif.unique():
+        print(c)
+        counts.append(n := len(df.query("classif == @c")))
+        labels.append(f"{c} ({n})")
+
+    indices = list(np.argsort(counts))
+    indices.reverse()
     counts = np.asarray(counts)[indices]
     labels = np.asarray(labels)[indices]
 
@@ -95,7 +149,7 @@ def plot_broad_classes(df: pd.DataFrame) -> None:
     plt.setp(texts, fontweight="bold")
     plt.tight_layout()
 
-    outfile_path = "classification_overview.pdf"
+    outfile_path = "classification_transient.pdf"
 
     plt.savefig(outfile_path)
     plt.close()
@@ -112,3 +166,4 @@ if __name__ == "__main__":
     df["classif_broad"] = classify(df["classif"].values)
 
     plot_broad_classes(df)
+    plot_transients(df)
