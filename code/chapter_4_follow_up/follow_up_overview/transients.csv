@@ -1,0 +1,17 @@
+,Neutrino,ztfid,iau_name,in_gcn,classif,notes,max_brightness,max_range,catmatch,dist,classif_broad
+6,IC190619A,ZTF19aadaszg,SN2019rg,0,SN Ia,,15.9 (r),5.0 (r),,,Transient
+22,IC190922B,ZTF19abxtupj,AT 2019pqh,1,SN II/IIb,"IIb, spectrum by NOT and us (Keck)",20.3 (r),0.8 (r),,,Transient
+25,IC191001A,ZTF19aapreis,AT2019dsg,1,TDE,150 days old. Radio-detected. Swift+VLA triggered.,17.8 (g),2.1 (g),,,Transient
+34,IC191001A,ZTF19abzkexb,SN2019qhl,1,SNIa,"Caltech-classified, SDSS Morphology: 'Star'-type source",18.9 (g),0.7 (r),,0.6,Transient
+86,IC200530A,ZTF19aatubsj,SN2019fdr,1,TDE,Probable TDE,17.9 (i),3.3 (g),,,Transient
+89,IC200530A,ZTF20aaifyrs,SN2020awa,0,SN Ia,,17.0 (r),4.2 (g),,,Transient
+90,IC200530A,ZTF20aarbktd,SN2020djn,0,SN II,"Not significantly bright (-17) so no evidence of CSM-interaction, Peaked three months before neutrino",18.0 (i),2.3 (r),,,Transient
+91,IC200530A,ZTF20aavnpug,AT2020idu,0,Dwarf Nova,Source: 2020ATel13680....1I,15.9 (i),5.1 (g),,,Transient
+96,IC200530A,ZTF20abbpkpa,AT 2020lam,1,SN II,no sign for interaction,18.8 (g),1.9 (g),,,Transient
+110,IC200530A,ZTF20abdnpdo,AT 2020lls,1,SN Ic,"no sign for interaction (explosion days before neutrino, possible optical pre-detection in forced photometry",19.0 (r),,,,Transient
+122,IC200916A,ZTF20acaapwk,SN2020tno,1,SN Ia,"GCNed, rising after 1 day, retraction GCNed",18.9 (r),1.0 (r),,,Transient
+143,IC201209A,ZTF20acycunv,SN2020addp,0,SN IIP,,19.4 (r),0.4 (r),,,Transient
+184,IC220624A,ZTF22aaparxg,AT2022nit,1,SN Ia,"WISE G-type source, we took Keck spectrum",20.3 (r),0.6 (g),WISEA J144950.63+412225.6,0.01,Transient
+189,IC220822A,ZTF22aaonqcc,SN2022mzb,0,SN Ia,,18.5 (r),2.8 (g),,,Transient
+190,IC220822A,ZTF22aarmiqk,AT2022saw,1,SN Ia,"we took a spectrum (prev: hostless, previous detection / SN -> FP lc strongly suggests so)",19.9 (g),0.2 (g),,,Transient
+201,IC220907A,ZTF22aatwsqt,AT2022oyn,1,SN Ia,"looks SN-y, classified by us",19.4 (r),1.4 (r),,,Transient

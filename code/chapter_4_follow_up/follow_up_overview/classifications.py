@@ -151,6 +151,8 @@ def plot_transients(df):
 
     outfile_path = "classification_transient.pdf"
 
+    _df.to_csv("transients.csv")
+
     plt.savefig(outfile_path)
     plt.close()
 
