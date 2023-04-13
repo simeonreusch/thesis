@@ -216,7 +216,7 @@ The GCN parsing is done akin to \texttt{planobs} (see Section \ref{planobs}). Af
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (see Section \ref{planobs}) takes care of that.
     \item[\texttt{sgscore}] The transient must have an \texttt{sgscore} $<0.8$, which means a low probability of being a star.
-    \item[Maximum distance to PS1] The \texttt{sgscore} star-galaxy classifier is trained on PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
+    \item[Maximum distance to PS1] As noted in Section \ref{ztf_alerts}, the \texttt{sgscore} star-galaxy classifier is trained on data from PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
 The vast majority of alerts do not pass these filters, significantly reducing the human effort needed in candidate vetting. 
@@ -376,7 +376,9 @@ Roughly half of the transients were classified as \textit{AGN Variability}, e.g.
 
 This leaves 5 candidates that were classified as \textit{AGN}, but did show coincident optical flares, as well as 16 bona fide \textit{transients}, totalling 21 classified candidates.
 
-Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness. Among the other transients, only the two TDEs were identified as source candidates. The remaining non-Ia supernovae could be ruled out as potential sources, as theey showed either no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly (see Section \ref{SN2020lls}).
+Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\todo{sidenote with some BTS numbers}. Among the other transients, only the two TDEs were identified as source candidates. The remaining non-Ia supernovae could be ruled out as potential sources, as theey showed either no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly (see Section \ref{SN2020lls}).
+
+
 
 
 % \subsection{Other sources}
