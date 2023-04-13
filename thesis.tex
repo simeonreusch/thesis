@@ -122,7 +122,7 @@
 \pagelayout{margin}
 
 
-\input{chapters/theory.tex}
+% \input{chapters/theory.tex}
 \input{chapters/icecube.tex}
 \input{chapters/ztf.tex}
 
@@ -225,7 +225,7 @@ The vast majority of alerts do not pass these filters, significantly reducing th
     \caption[NED spectroscopic redshift distribution]{Distribution of the 8.9 million NED objects with spectroscopic redshift (as of November 2021). From \url{https://ned.ipac.caltech.edu/Documents/Holdings/graphics}.}
     \labfig{nedz}
 \end{marginfigure} 
-\subsection{Catalog crossmatch}
+\subsection{Catalog crossmatch} \label{catmatch}
 All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
 \begin{description}
     \item[CRTS] A catalog derived from the Catalina Realtime-Transient Survey (CRTS) \sidecite{Drake2009}, the Catalina Surveys Periodic Variable Star Catalog \sidecite{Drake2014}, is queried to check if the source is a variable star.
@@ -365,15 +365,15 @@ We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with
 \end{figure}
 
 \section{Classification performance}
-The classification for the 205 candidates selected by \texttt{nuztf} can be seen in Fig. \ref{fig:classification_overview}. The vast majority of transients have some kind of classification. These classifications either stem from spectroscopic follow-up by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS) \sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than \SI{19}{\mag}.
+The classification for the 205 candidates selected by \texttt{nuztf} can be seen in Fig. \ref{fig:classification_overview}. The vast majority of transients have some kind of classification. These classifications either stem from spectroscopic follow-up by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS) \sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (e.g. Milliquas or Gaia, see Section \ref{catmatch}).
 
-\begin{figure}[h!]
+\begin{figure}
     \includegraphics[width=0.7\textwidth]{fu/classification_overview.pdf}
     \caption[Follow-up classification overview]{Overview of the classification performance of the neutrino follow-up program.}
     \labfig{classification_overview}
 \end{figure}
 
-asdf
+Roughly half of the transients are classified as \textit{AGN Variability}, e.g. stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. 5 transients 
 
 % \subsection{Other sources}
 % AT2022saw ZTF22aarmiqk IC220822A
