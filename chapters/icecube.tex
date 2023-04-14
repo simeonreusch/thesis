@@ -123,10 +123,6 @@ As satellite bandwidth is limited and costly, further software triggers on-site 
 As precise timing information is crucial to reconstruct an event (see Section \ref{reconstruction}), all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed once per second, while data transfer is paused during the process\sidenote{The calibration sequence takes $\lesssim$\SI{1.3}{\milli\second}} \sidecite{Abbasi2009}.
 
 IceCube ensures temporal synchronizity with an algorithm called Reciprocal Active Pulsing (\texttt{RAPcal}): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
-
-With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \cite{Abbasi2009}.
-
-\section{Angular Reconstruction}\label{reconstruction}
 \begin{marginfigure}
     \includegraphics{ic/ic_track.png}
     \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
@@ -137,6 +133,10 @@ With these six pieces of information -- the two transmit timestamps, the two rec
     \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_cascade}
 \end{marginfigure}
+With these six pieces of information -- the two transmit timestamps, the two receive timestamps and both waveforms -- a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns} \cite{Abbasi2009}.
+
+\section{Angular Reconstruction}\label{reconstruction}
+
 The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
 
 \subsection{Event types}
