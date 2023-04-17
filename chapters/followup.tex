@@ -168,7 +168,7 @@ In total, 205 candidate sources were selected by \texttt{nuztf}. Of these, 27 (\
 A full overview over the first 24 follow-up campaigns can be found in \sidecite{Stein2023a}. In the following, I will highlight those sources to which I contributed either by requesting spectroscopic observations, reducing spectra or vetting candidates.
 
 \subsection{SN2020lls} \label{SN2020lls}
-SN2020lls (ZTF20abdnpdo) was identified in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
+SN2020lls was identified in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
 
 We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
 
@@ -186,8 +186,8 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time\
 \end{figure}
 As can be seen, the fit estimates the explosion time (black line) at \SI{6}{\day} earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
 
-\subsection{SN2020lam}
-A second source candidate, also coincident with IC200530A, was SN2020lam (ZTF20abbpkpa) \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
+\subsection{SN2020lam} \label{SN2020lam}
+A second source candidate, also coincident with IC200530A, was SN2020lam \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
@@ -197,7 +197,7 @@ A second source candidate, also coincident with IC200530A, was SN2020lam (ZTF20a
 The lightcurve and the best-fit template show that the neutrino was detected close to the peak of the supernova. The viable production mechanism in this case is CSM-interaction\todo{Theory section reference}. As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and thereby ruled out SN2020lam as a source candidate.
 
 \subsection{AT2020ybb}
-AT2020ybb (ZTF20acmxnpa) was discovered when following up IC201021A \sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}).
+AT2020ybb was discovered when following up IC201021A \sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}).
 
 AT2020ybb was a promising candidate, as the light curve of the source was compatible with a supernova around peak \sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged \todo{rerun nuztf on this source when the archive bug is fixed. Also run fp when IPAC is working again.}
 
@@ -210,7 +210,7 @@ We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectr
 \end{figure}
 
 \subsection{AT2021osi}
-AT2021osi (ZTF21abecljv) was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by \texttt{ALeRCe} \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
+AT2021osi was detected when following up IC210629A \sidecite{IC210629A1}. It was first reported by \texttt{ALeRCe} \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
 
 The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with Gemini/GMOS-N and reduced the spectrum with \texttt{pypeit}.
 
@@ -225,7 +225,7 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 
 
 \subsection{SN2022oyn}
-When following up IC220907A \sidecite{IC220907A1}, SN2022oyn (ZTF22aatwsqt) emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
+When following up IC220907A \sidecite{IC220907A1}, SN2022oyn emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
 
 We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID} (see Fig. \ref{fig:ZTF22aatwsqt_spectrum}), we classified the source as type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos \sidecite{IC220907A2}.
 
@@ -251,7 +251,7 @@ This leaves 5 candidates that were classified as \textit{AGN}, but did show coin
 Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\todo{sidenote with some BTS numbers}. Among the other transients, only both of the TDEs were identified as source candidates. The remaining non--Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly\sidenote{See Section \ref{SN2020lls}}.
 
 \section{TDE AT2019dsg}
-I did not contribute to the analysis of AT2019dsg, but as it is important in the context of the work on AT2019fdr highlighted in the next Section (\todo{ref}), I will present the most important findings.
+I did not contribute to the analysis of AT2019dsg, but as it is important in the context of the work on AT2019fdr highlighted in the next Chapter (\ref{tywin}), I will present the most important findings.
 
 AT2019dsg was identified as a possible counterpart to IC191001A, an alert with a \SI{90}{\percent} bounding rectangle of \SI{25.5}{\square\deg}, an estimated neutrino energy of \SI{217}{\tera\eV} and a signalness\sidenote{See Section \ref{ic_event_selection}} of 0.59 \sidecite{IC191001A1, IC191001A2}.
 
