@@ -157,8 +157,7 @@ After observing the neutrino, we triggered additional follow up by \textit{Swift
 Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the eROSITA telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission.
 
 
-
-All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate.
+All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate \sidecite{Reusch2022}.
 
 \subsection{Gamma-ray limits}
 The details of the \textit{Fermi} LAT analysis were published in \sidecite{Velzen2021}. The one year long time window analyzed for AT2019fdr spanned from the first optical detection of the source on May 3, 2019, until the arrival of the neutrino on May 30, 2020.
@@ -188,6 +187,10 @@ The single detection from March 11, 2021 revealed a very soft thermal spectrum. 
 
 The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
 
+\textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which were carried out on June 7, 2020 with a \SI{2000}{\s} exposure. 
+
+The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the 
+
 \begin{table*}
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
@@ -197,7 +200,7 @@ The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[pa
  AT2019fdr & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
 \end{tabular}
 \end{center}
-\caption[AT2019fdr classification matrix]{AT2019fdr classification matrix. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. Adapted from \cite{Frederick2021}.}
+\caption[AT2019fdr classification matrix]{AT2019fdr classification matrix. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. \textcolor{red}{Explain column names} Adapted from \cite{Frederick2021}.}
 \label{tab:at2019fdr_classification_matrix}
 \end{table*}
 
