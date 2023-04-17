@@ -292,11 +292,12 @@ def plot_lightcurve(df, fluxplot=False):
     )
 
     ax1.text(
-        t_neutrino.mjd - 99,
+        t_neutrino.mjd - 30,
         5e-14,
         "Neutrino",
-        fontsize=BIG_FONTSIZE - 2,
+        fontsize=BIG_FONTSIZE,
         color="tab:red",
+        rotation=90,
     )
 
     sns.despine(top=False, right=False)

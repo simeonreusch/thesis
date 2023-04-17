@@ -127,34 +127,40 @@
 \input{chapters/ztf.tex}
 \input{chapters/followup.tex}
 
-\setchapterimage[7cm]{tywin/AT2019fdr.jpg}
-\chapter{Candidate TDE AT2019fdr: A Possible Source?} \label{tywin}
-\labch{Tywin}
+\setchapterimage[7cm]{at2019fdr/AT2019fdr.jpg}
+\chapter{Candidate TDE AT2019fdr: A Possible Source?} \label{at2019fdr}
+\labch{AT2019fdr}
 AT2019fdr emerged as a candidate when following up the high-energy IceCube neutrino IC200530A. The gold alert\sidenote{See Section \ref{ic_event_selection}} neutrino was detected on May 30, 2020 with a \SI{90}{\percent} rectangular uncertainty area of \SI{25.4}{\square\deg}, a signalness of 0.59 and an estimated neutrino energy of \SI{82.2}{\tera\eV} \cite{IC200530A1}.
 
-Two more sources were inititally published by us as candidate sources (SN2020lls and SN2020lam), but both could be ruled out with follow-up observations. For details on these, see Section \ref{SN2020lls} and \ref{SN2020lam}. This left AT2019fdr as the only remaining neutrino source candidate, a long lived optical transient located at RA $= 257.278575$ and Dec $= +26.855758$.
+Two more sources were inititally published by us as candidate sources (SN2020lls and SN2020lam), but both could be ruled out with follow-up observations. For details on these, see Section \ref{SN2020lls} and \ref{SN2020lam}. This left AT2019fdr as the only remaining neutrino source candidate, a long lived optical transient located at RA $= 257.278575$ and Dec $= +26.855758$, with a distance to the reported neutrino best-fit location of \SI{1.72}{\degree}.
 
-At the moment of neutrino arrival, the transient was already 400 days old. It was originally discovered May 13, 2019 by \textit{AMPEL} \sidecite{at2019fdr_disc}, with the neutrino arriving about 10 months after the optical peak. The peak flux in the ZTF \textit{g}-band was \SI{1.3e-12}{\erg\per\s\per\square\cm}. The redshift of $z=0.2666$ was inferred from the Balmer lines visible in a spectrum taken on July 3, 2019 with the Double Spectrograph (DBSP) on the P200. The peak \textit{g}-band luminosity calculated with this redshift, $L_\text{peak}=\SI{2.9e44}{\erg\per\s}$, showed that AT2019fdr was an extraordinarily luminous event.
+At the moment of neutrino arrival, the transient was already 400 days old. It was originally discovered May 13, 2019 by \textit{AMPEL} \sidecite{at2019fdr_disc}, with the neutrino arriving about 10 months after the optical peak. The peak flux in the ZTF \textit{g}-band was \SI{1.3e-12}{\erg\per\s\per\square\cm}. The redshift of $z=0.2666$ was inferred from the Balmer lines visible in a spectrum taken on July 3, 2019 with the Double Spectrograph (DBSP) on the P200. The peak \textit{g}-band luminosity calculated with this redshift, $L_\text{peak}=\SI{2.9e44}{\erg\per\s}$, showed that AT2019fdr was an extraordinarily luminous event\sidenote{Here and in the following I will use a standard flat cosmology with $\Omega_\Lambda = 0.7$ and $H_0=\SI{70}{\km\per\s\per\mega\parsec}$.}.
 
-The long-duration flare was initially tentatively classified as a superluminous supernova of type IIn (SLSN IIn). A peculiarity of this event is that it occured close to the core of its host galaxy, a Narrow-Line Seyfert 1 (NLSy1) galaxy, a type of AGN. Due to this, it was systematically followed up by ZTF program dedicated to study flares in NLSy1 galaxies. 
+The long-duration flare was initially tentatively classified as a superluminous supernova of type IIn (SLSN IIn). A peculiarity of this event is that it occured close to the core of its host galaxy SDSSCGB 6856.2, a Narrow-Line Seyfert 1 (NLSy1) galaxy, a type of AGN. The mean angular separation to the host position as reported in the \textit{Gaia} DR2 was \SI{0.03 \pm 0.15}{\arcsecond}. Due to this proximity, it was systematically followed up by ZTF program dedicated to study flares in NLSy1 galaxies. 
 
 In a paper describing the sample of such flares detected during ZTF Phase I, a \textit{TDE interpretation} of AT2019fdr was stipulated \sidecite{Frederick2021}. The authors outright rejected a SLSN interpretation, and also argued against an AGN origin of the flare. The reasons for disfavoring the SLN hypothesis were the 
 long-lived U-band and UV emission, emission at the blue end of the Balmer line profiles, the overall longevity of the flare and it nuclear location close to the center of its host galaxy \cite{Frederick2021}.
 
 In the following, I will give an overview over the observations in different wavelengths, the reductions of the near infrared observations triggered by us, modeling of the spectral energy distribution (SED), interpretation of the delayed infrared signal as dust echo, revisit the TDE interpretation and calculate the chance of observing an event comparable to AT2019fdr in temporal and spatial coincidence with a high-energy neutrino.
 
-\section{Multi-wavelength observations}
+\section{Multi-wavelength Observations}
 As AT2019fdr was discovered close to the core of its host galaxy, it was followed up as part of regular ZTF TDE group activities from early on, including ToO observations by \textit{Swift} UVOT and XRT. 
 
 After observing the neutrino, we triggered additional follow up by \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA.
 
 Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the eROSITA telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission.
 
-\begin{figure}[htb]
-    \includegraphics[width=0.8\textwidth]{at2019fdr/at2019fdr_light_curve_flux.pdf}
-    \caption[AT2019fdr light curve]{Light curve of AT2019fdr. From \cite{Reusch2022}.}
+\begin{figure*}
+    \includegraphics{at2019fdr/at2019fdr_light_curve_flux.pdf}
+    \caption[AT2019fdr light curve]{Light curve of AT2019fdr. The arrival time of IC200530A is marked with a red dotted line. From \cite{Reusch2022}.}
     \labfig{at2019fdr_light_curve}
-\end{figure}
+\end{figure*}
+
+All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate.
+
+\subsection{\textit{Fermi} limits}
+
+
 
 In total, 9 spectra were taken with 5 different instruments.
 
