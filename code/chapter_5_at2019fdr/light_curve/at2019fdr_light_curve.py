@@ -302,9 +302,9 @@ def plot_lightcurve(df, fluxplot=False):
     sns.despine(top=False, right=False)
 
     if not fluxplot:
-        outfile_pdf = "lightcurve_mag.pdf"
+        outfile_pdf = "at2019fdr_light_curve_mag.pdf"
     else:
-        outfile_pdf = "lightcurve_flux.pdf"
+        outfile_pdf = "at2019fdr_light_curve_flux.pdf"
 
     outfile_pdf = os.path.join(PLOT_DIR, outfile_pdf)
     plt.savefig(outfile_pdf)
