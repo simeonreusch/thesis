@@ -237,13 +237,15 @@ After the detection of the neutrino, we triggered near-infrared observations to 
 
 All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020}), which performs flat fielding, background subtraction and fits an astrometric solution using \textit{Gaia} DR2. Subsequently, the individual images for each filter and epoch were stacked to increase signal-to-noise. The photometric zero-point calibration of the stacked images was achieved within the pipeline by comparison to the Two Micron All Sky Survey (2MASS) \sidecite{Skrutskie2006}.
 
+\subsection{\texttt{GALFIT} flux extractions}
+
 As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the flux extraction was done manually with \texttt{GALFIT} \sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types. 
 
 To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of stars neither too dim nor too bright were visually selected (see Fig. \ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, the PSF of the image was calculated.
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/P200_third_epoch_H_stargrid.pdf}
-    \caption[P200 \textit{H}-band star selection]{Exemplary star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle. One can also see that during this epoch, observing conditions were not ideal, resulting in horicontally elongated images of the stars.}
+    \caption[P200 \textit{H}-band star selection]{Exemplary star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle (star 0, 6 and 7). One can also see that during this epoch, observing conditions were not ideal, resulting in horicontally elongated images of the stars.}
     \labfig{at2019fdr_nir_starselection}
 \end{figure*}
 
@@ -259,7 +261,22 @@ The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic  profiles 
 
 All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values\sidenote{This can be explained by differing observing conditions at different epochs.}. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
 
+\subsection{Synthetic host model}
+asdf
 
+\begin{table}
+\centering
+\begin{tabular}{c c c  c  c} 
+\textbf{MJD} & \textbf{Date} &\textbf{\textit{J}-band} & \textbf{\textit{H}-band} & \textbf{\textit{Ks}-band} \\
+\hline
+59031 & 2020-07-01 & $19.06 \pm 0.50$ & $ 17.73 \pm 0.12$ & $17.13 \pm 0.26$\\
+59121 & 2020-09-29 & $19.78 \pm 0.98$ & $ 17.76 \pm 0.12$ & $17.45 \pm 0.35$\\
+59249 & 2021-02-04 & --               & $ 18.26 \pm 0.19$ & $17.81 \pm 0.48$\\
+59362 & 2021-05-28 & -- & $ 18.42 \pm 0.22$ & $17.91 \pm 0.53$\\
+\end{tabular}
+\caption{NIR AB magnitudes after subtracting the synthetic host model. Only systematic uncertainties are provided, as the photometric uncertainties should be negligible in comparison, at least in the \textit{J}- and \textit{H}-band). The flux of the third and fourth \textit{J}-band epochs after host-model subtraction was negative, which is counted as non-detection. From \cite{Reusch2022}}
+\label{tab:p200_nir}
+\end{table}
 
 % \begin{table*}
 % \begin{center}
