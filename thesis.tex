@@ -247,11 +247,19 @@ To improve precision, the point spread function\sidenote{See Section \ref{psfpho
     \labfig{at2019fdr_nir_starselection}
 \end{figure*}
 
-The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fitting was performed with \texttt{EPSFBuilder}. The quality of the extracted PSF was verified by inspecting the residuals of 4 nearby reference stars from SDSS. 
+The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fitting was performed with \texttt{EPSFBuilder}. The quality of the extracted PSF was verified by inspecting the residuals of 4 nearby reference stars from SDSS (see Fig \ref{fig:at2019fdr_nir_teststar}). 
 
-The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic galaxy profiles were then defined, centered on the host and neighboring galaxy location. Additionally, a point source with variable position was allowed. These were then fit together, resulting in flux from the host galaxy, the neighboring galaxy and the transient.
+\begin{figure}[htb]
+    \includegraphics[width=0.8\textwidth]{at2019fdr/H_3_teststar2.pdf}
+    \caption[P200 \textit{H}-band reference star]{P200 \textit{H}-band reference star. The \texttt{GALFIT} point source model constructed from the image PSF (center) gets subtracted from the science image (left), the residual is shown on the right.}
+    \labfig{at2019fdr_nir_teststar}
+\end{figure}
+
+The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic  profiles describing the galaxy flux as a function of the distance to the galaxy core were then defined\sidenote{For details, see e.g. \cite{Graham2005}.}, centered on the host and the neighboring galaxy location. Additionally, a point source with variable position was used. These were then fit together, resulting in flux values for the host galaxy, the neighboring galaxy and the transient.
 
 All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values\sidenote{This can be explained by differing observing conditions at different epochs.}. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
+
+
 
 % \begin{table*}
 % \begin{center}
