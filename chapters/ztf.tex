@@ -124,8 +124,6 @@ As the temperature of the CCDs changes with time, each image is subject to a tim
 \subsection{Bias correction}
 The CCD pixels also have different noise levels, meaning in the absence of external photoelectrons they still generate a signal, which is different from pixel to pixel -- i.e. their zero point differs. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textit{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019a}.
 
-
-
 \subsection{Flat fielding}
 The pixels in the CCDs do not only differ in zero point, they also have slightly different gain or quantum efficiency. This means, their response to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF, this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with LEDs, each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
 \begin{marginfigure}
@@ -149,7 +147,7 @@ After astrometric calibration, sources in the image need to be extracted to perf
 
 The PSF is describing the way an ideal point source is smeared out spatially after being subjected to atmospheric and optical effects in the telescope, and seeing is the FWHM of the PSF. The algorithm used to reconstruct the PSF of a ZTF exposure is \texttt{DAOphot} \sidecite{Stetson1987}. It fits an analytic Gaussian profile to all point sources within an image. After subtracting this profile, it is iteratively updated with the residuals after subtraction. The background estimate needed for this procedure is extracted from the peak brightness value of a histogram of evenly distributed pixels within the image \cite{Stetson1987}.
 
-\subsection{Photometric calibration and magnitudes}
+\subsection{Photometric calibration and magnitudes} \label{magnitudes}
 \marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal} \cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured \textit{Calspec} standard stars. For details, see \cite{Magnier2020}.}
 Not only the source positions in the images need to be calibrated (astrometry), but their brightness as well (photometry). To simplify matters, ZTF is photometrically calibrated against a reference survey, namely PS1. To do this, a catalog of useful calibrator stars from the PS1 survey has been curated. These stars are required to fulfill some basic quality criteria: They should be stable over multiple PS1 survey epochs in all PS1 filters excluding the \textit{y}-band (\textit{g}, \textit{r}, \textit{i}, \textit{z}) and should be fairly bright, but not so bright that they saturate the ZTF sensors. Furthermore, they are required to be fairly isolated to avoid blending with neighboring objects and need to have a high probability of being in fact stars (as opposed to galaxies) \cite{Masci2019a}.
 
