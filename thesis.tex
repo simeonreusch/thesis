@@ -2,7 +2,7 @@
 \documentclass[
     a4paper, % Page size
     fontsize=10pt, % Base font size
-    twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+    twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
     %open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
     %chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
     numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
@@ -152,9 +152,9 @@ In the following, I will give an overview over the observations in different wav
 \section{Multi-wavelength Observations}
 As AT2019fdr was discovered close to the core of its host galaxy, it was followed up as part of regular ZTF TDE group activities from early on, including ToO observations by \textit{Swift} UVOT and XRT. 
 
-After observing the neutrino, we triggered additional follow up by \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA.
+After observing the neutrino, we triggered additional follow up by \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA. 
 
-Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the eROSITA telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission.
+Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the eROSITA telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission. 
 
 
 All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate \sidecite{Reusch2022}.
@@ -183,19 +183,23 @@ The sky region of AT2019 was visited four times by SRG with a six-month cadence.
 \label{tab:at2019fdr_erosita}
 \end{table}
 
-The single detection from March 11, 2021 revealed a very soft thermal spectrum. The best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectrum of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
+The single detection from March 11, 2021 revealed a very soft thermal spectrum. The best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
 
 The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
 
-\textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which were carried out on June 7, 2020 with a \SI{2000}{\s} exposure. 
+As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which was carried out on June 7, 2020 with a \SI{2000}{\s} exposure.
 
-The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the 
+The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used.
+
+\subsection{Optical/UV observations}
+The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft/}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package.
+
 
 \begin{table*}
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
- Name & $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray $\Gamma$ & W1-W2 & Re-\\ 
- & $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & & $<0.7$ mag & brighten \\
+ Name & $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray & W1-W2 & Re-\\ 
+ & $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
  \hline
  AT2019fdr & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
 \end{tabular}
@@ -205,19 +209,19 @@ The data was reduced with the publicly available \texttt{Swift XRT data products
 \end{table*}
 
 
-% In total, 9 spectra were taken with 5 different instruments.
+%In total, 9 spectra were taken with 5 different instruments.
+%
+%neutrinos, the cosmic ray puzzle
+%\subsection{Other sources}
+%AT2022saw ZTF22aarmiqk IC220822A
+%  (ZTF19aavnpjv) classified as CV. IC220405B JANNIS HAT DAS SPEKTRUM GEMACHT
+%AT2022nit ZTF22aaparxg, IC220624A
+%Caltech typ hat das Spektrum gemacht
 
-% neutrinos, the cosmic ray puzzle
-% \subsection{Other sources}
-% AT2022saw ZTF22aarmiqk IC220822A
-%   (ZTF19aavnpjv) classified as CV. IC220405B JANNIS HAT DAS SPEKTRUM GEMACHT
-% AT2022nit ZTF22aaparxg, IC220624A
-% Caltech typ hat das Spektrum gemacht
 
-
-%\chapter{Candidate TDE AT2019fdr: a possible source?}
-%\chapter{The ZTF nuclear sample}
-%\chapter{Conclusion and Outlook}
+% \chapter{Candidate TDE AT2019fdr: a possible source?}
+% \chapter{The ZTF nuclear sample}
+% \chapter{Conclusion and Outlook}
 \input{chapters/appendix.tex}
 
 %----------------------------------------------------------------------------------------
