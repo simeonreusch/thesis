@@ -154,18 +154,29 @@ As AT2019fdr was discovered close to the core of its host galaxy, it was followe
 
 After observing the neutrino, we triggered additional follow up by \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA. 
 
-Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the eROSITA telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission. 
-
+Furthermore, we analyzed data by the Large Array Telescope (LAT) \sidecite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), analyzed four epochs of observations by the Extended Roentgen Survey with an Imaging Telescope Array (eROSITA) telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission. 
 
 All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate \sidecite{Reusch2022}.
 
 \subsection{Gamma-ray limits}
+
+\begin{marginfigure}
+    \includegraphics{at2019fdr/fermi.png}
+    \caption[The \textit{Fermi} satellite]{The \textit{Fermi} satellite. Image credit: NASA.}
+    \labfig{fermi_satellite}
+\end{marginfigure}
+
 The details of the \textit{Fermi} LAT analysis were published in \sidecite{Velzen2021}. The one year long time window analyzed for AT2019fdr spanned from the first optical detection of the source on May 3, 2019, until the arrival of the neutrino on May 30, 2020.
 
-No gamma-ray sources were detected significantly (\SI{\geq 5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2) \sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}.
+No gamma-ray sources were detected significantly (\SI{\geq 5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2) \sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of AT2019fdr, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\Gamma}$, with a spectral index $\Gamma=2$ \cite{Velzen2021}.
 
 \subsection{X-ray observations}
 The sky region of AT2019 was visited four times by SRG with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit the source was detected, which can be counted as evidence for temporal evolution in X-ray wavelengths. All measurements and the upper limits and detections derived from these are displayed in Fig. \ref{fig:at2019fdr_light_curve} and listed in Table \ref{tab:at2019fdr_erosita}.
+\begin{marginfigure}
+    \includegraphics{at2019fdr/SRG.jpeg}
+    \caption[The \textit{SRG} satellite]{The \textit{SRG} satellite. The eROSITA instrument aboard \textit{SRG} was put into hibernation following the Russian invasion of Ukraine in February 2022. Image credit: Roskosmos.}
+    \labfig{srg_satellite}
+\end{marginfigure}
 
 \begin{table}
 \begin{center}
@@ -191,6 +202,12 @@ As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior
 
 The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used \cite{Reusch2022}.
 
+\begin{marginfigure}
+    \includegraphics{at2019fdr/swift.png}
+    \caption[The \textit{Swift} satellite]{The \textit{Swift} satellite. Image credit: NASA.}
+    \labfig{swift_satellite}
+\end{marginfigure}
+
 \subsection{Optical/UV observations}
 The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described below \cite{Reusch2022}.
 
@@ -198,6 +215,12 @@ As the extraction of the infrared measurements was more involved due to host-gal
 
 \subsection{Radio observations}
 After the neutrino detection, we applied for Director's Discretionary Time (DDT) on the VLA. Three individual measurements were taken on July 3, September 13 and November 7, 2020. The first epoch was carried out in the \SIrange{2}{4}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz}. In the subsequent epochs, we added the \SIrange{1}{2}{\giga\Hz} and \SIrange{4}{8}{\giga\Hz} bands. Delay, bandpass and flux calibration were performed on the source 3C 286, and the nearby source J1716+2152 was used for the complex gain calibration. For this, the VLA calibration pipeline in the Common Astrometry Software Application (CASA) \sidecite{Bean2022} was used, and imaging was performed with the CASA task \texttt{tclean}. Finally, the target flux density was measured by fitting a point source in the image plane \cite{Reusch2022}.
+
+\begin{marginfigure}
+    \includegraphics{at2019fdr/vla.jpg}
+    \caption[VLA]{VLA in New Mexico. Image credit: NSF.}
+    \labfig{vla}
+\end{marginfigure}
 
 Flux from the source location was measured in all three epochs. At all epochs, the flux density declined with higher frequencies. While epoch 1 and 2 showed no evolution in the \SIrange{4}{8}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz} bands, the final epoch suggested reduced flux and subsequently a spectral steepening in these bands. Intensive testing revealed that the reduced flux was not intrinsic to the source, but rather significant atmospheric phase changes between the calibrator scans. This reduced the measured flux densities during epoch 3 due to decorrelation. As the source flux density was too low for self calibration, the effect could not be corrected for. We concluded that no evidence for temporal evolution in the radio can be found during the 5 months of observation. All measurements are shown in Fig. \ref{fig:at2019fdr_radio} and listed in Table \ref{tab:at2019fdr_radio}.
 
@@ -210,7 +233,9 @@ Flux from the source location was measured in all three epochs. At all epochs, t
 To compare to pre-flare host radio emission, we also obtained an archival upper limit from the Very Large Array Sky Survey (VLASS) \sidecite{Lacy2020}. We exclusively used VLASS, as it is the only survey with sufficient sensitivity and angular resolution to probe AT2019fdr. The quicklook continuum \texttt{fits} file for tile T17t23We was obtained from the archive\sidenote{\url{https://archive-new.nrao.edu/vlass/quicklook}}. The observation was carried out on November 25, 2017 in the \SIrange{2}{4}{\giga\Hz} band. At a significance level of \SI{3}{\sigma}, no emission from the source was detected. The local RMS noise was $\sigma=\SI{0.11}{\milli\jansky}/\text{beam}$, and the beam size was $\SI{2.46}{\arcsecond} \times \SI{2.28}{\arcsecond}$ at a position angle of \SI{-37}{\degree}. This results in an upper limit of \SI{0.32}{\milli\jansky}. A second VLASS observation was taken a few days prior to our second trigger epoch, but the resulting \SI{3}{\sigma} upper limit was less constraining (\SI{0.4}{\milli\jansky}) \cite{Reusch2022}.
 
 \section{Near-infrared observations}
+After the detection of the neutrino, we triggered near-infrared observations to extend the SED to longer wavelengths. We observed during 4 epochs with WIRC on the Palomar P200 in the \textit{J}-, \textit{H} and \textit{Ks}-band. The dates of observations were July 1 and September 27, 2020, as well as February 2 and May 28, 2021. 
 
+All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020}), which performs flat fielding, background subtraction and fits an astrometric solution using \textit{Gaia} DR2. Subsequently, the individual images for each filter and epoch were stacked to increase signal-to-noise. The photometric zero-point calibration of the stacked images was achieved within the pipeline by comparison to the Two Micron All Sky Survey (2MASS) \sidecite{Skrutskie2006}.
 
 
 % \begin{table*}
