@@ -192,27 +192,39 @@ As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior
 The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used \cite{Reusch2022}.
 
 \subsection{Optical/UV observations}
-The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft/}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described below \cite{Reusch2022}.
+The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described below \cite{Reusch2022}.
 
 As the extraction of the infrared measurements was more involved due to host-galaxy blending, this will be detailed in a full Section below.
 
 \subsection{Radio observations}
 After the neutrino detection, we applied for Director's Discretionary Time (DDT) on the VLA. Three individual measurements were taken on July 3, September 13 and November 7, 2020. The first epoch was carried out in the \SIrange{2}{4}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz}. In the subsequent epochs, we added the \SIrange{1}{2}{\giga\Hz} and \SIrange{4}{8}{\giga\Hz} bands. Delay, bandpass and flux calibration were performed on the source 3C 286, and the nearby source J1716+2152 was used for the complex gain calibration. For this, the VLA calibration pipeline in the Common Astrometry Software Application (CASA) \sidecite{Bean2022} was used, and imaging was performed with the CASA task \texttt{tclean}. Finally, the target flux density was measured by fitting a point source in the image plane \cite{Reusch2022}.
 
-Flux from the source location was measured in all three epochs. While epoch 1 and 2 showed no evolution 
+Flux from the source location was measured in all three epochs. At all epochs, the flux density declined with higher frequencies. While epoch 1 and 2 showed no evolution in the \SIrange{4}{8}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz} bands, the final epoch suggested reduced flux and subsequently a spectral steepening in these bands. Intensive testing revealed that the reduced flux was not intrinsic to the source, but rather significant atmospheric phase changes between the calibrator scans. This reduced the measured flux densities during epoch 3 due to decorrelation. As the source flux density was too low for self calibration, the effect could not be corrected for. We concluded that no evidence for temporal evolution in the radio can be found during the 5 months of observation. All measurements are shown in Fig. \ref{fig:at2019fdr_radio} and listed in Table \ref{tab:at2019fdr_radio}.
 
-\begin{table*}
-\begin{center}
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
- Name & $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray & W1-W2 & Re-\\ 
- & $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
- \hline
- AT2019fdr & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
-\end{tabular}
-\end{center}
-\caption[AT2019fdr classification matrix]{AT2019fdr classification matrix. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. \textcolor{red}{Explain column names} Adapted from \cite{Frederick2021}.}
-\label{tab:at2019fdr_classification_matrix}
-\end{table*}
+\begin{figure}[htb]
+    \includegraphics{at2019fdr/at2019fdr_radio.pdf}
+    \caption[AT2019fdr radio observations]{Radio observations of AT2019fdr. An archival upper limit is shown in red. The apparent spectral steepening in the third epoch (dashed lines) are a calibration artifact from decorrelation due to atmospheric phase changes, and not intrinsic to the source. From \cite{Reusch2022}.}
+    \labfig{at2019fdr_radio}
+\end{figure}
+
+To compare to pre-flare host radio emission, we also obtained an archival upper limit from the Very Large Array Sky Survey (VLASS) \sidecite{Lacy2020}. We exclusively used VLASS, as it is the only survey with sufficient sensitivity and angular resolution to probe AT2019fdr. The quicklook continuum \texttt{fits} file for tile T17t23We was obtained from the archive\sidenote{\url{https://archive-new.nrao.edu/vlass/quicklook}}. The observation was carried out on November 25, 2017 in the \SIrange{2}{4}{\giga\Hz} band. At a significance level of \SI{3}{\sigma}, no emission from the source was detected. The local RMS noise was $\sigma=\SI{0.11}{\milli\jansky}/\text{beam}$, and the beam size was $\SI{2.46}{\arcsecond} \times \SI{2.28}{\arcsecond}$ at a position angle of \SI{-37}{\degree}. This results in an upper limit of \SI{0.32}{\milli\jansky}. A second VLASS observation was taken a few days prior to our second trigger epoch, but the resulting \SI{3}{\sigma} upper limit was less constraining (\SI{0.4}{\milli\jansky}) \cite{Reusch2022}.
+
+\section{Near-infrared observations}
+
+
+
+% \begin{table*}
+% \begin{center}
+% \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+%  Name & $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray & W1-W2 & Re-\\ 
+%  & $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
+%  \hline
+%  AT2019fdr & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
+% \end{tabular}
+% \end{center}
+% \caption[AT2019fdr classification matrix]{AT2019fdr classification matrix. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. \textcolor{red}{Explain column names} Adapted from \cite{Frederick2021}.}
+% \label{tab:at2019fdr_classification_matrix}
+% \end{table*}
 
 
 %In total, 9 spectra were taken with 5 different instruments.
