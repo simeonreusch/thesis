@@ -18,17 +18,17 @@ from astropy import units as u
 from astropy.cosmology import Planck15 as cosmo
 from astropy.table import Table
 from astropy.time import Time
+from matplotlib import rc
 from modelSED import utilities
+
+rc("font", **{"family": "serif", "serif": ["Palatino"]})
+matplotlib.rcParams["mathtext.fontset"] = "custom"
+matplotlib.rcParams["mathtext.rm"] = "Palatino"
+matplotlib.rcParams["mathtext.it"] = "Palatino: italic"
+matplotlib.rcParams["mathtext.bf"] = "Palatino:bold"
 
 
 def plot_radio(df):
-    nice_fonts = {
-        "text.usetex": True,
-        "font.family": "serif",
-        "font.serif": "Palatino",
-    }
-    matplotlib.rcParams.update(nice_fonts)
-
     plt.figure(figsize=(FIG_WIDTH, FIG_WIDTH / 1.62), dpi=DPI)
 
     ax1 = plt.subplot(111)

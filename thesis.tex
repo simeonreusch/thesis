@@ -241,6 +241,14 @@ As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the flux
 
 To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of star neither too dim nor too bright were visually selected. Using these stars, the PSF of the image was calculated.
 
+\begin{figure*}[htb]
+    \includegraphics{at2019fdr/P200_third_epoch_H_stargrid.pdf}
+    \caption[P200 \textit{H}-band star selection]{Exemplary star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle.}
+    \labfig{at2019fdr_nir_starselection}
+\end{figure*}
+
+The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fitting was performed with \texttt{EPSFBuilder}. The resulting PSF was then ingested into \texttt{GALFIT}.
+
 % \begin{table*}
 % \begin{center}
 % \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
