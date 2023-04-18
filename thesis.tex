@@ -239,15 +239,19 @@ All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020
 
 As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the flux extraction was done manually with \texttt{GALFIT} \sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types. 
 
-To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of star neither too dim nor too bright were visually selected. Using these stars, the PSF of the image was calculated.
+To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of stars neither too dim nor too bright were visually selected (see Fig. \ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, the PSF of the image was calculated.
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/P200_third_epoch_H_stargrid.pdf}
-    \caption[P200 \textit{H}-band star selection]{Exemplary star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle.}
+    \caption[P200 \textit{H}-band star selection]{Exemplary star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle. One can also see that during this epoch, observing conditions were not ideal, resulting in horicontally elongated images of the stars.}
     \labfig{at2019fdr_nir_starselection}
 \end{figure*}
 
-The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fitting was performed with \texttt{EPSFBuilder}. The resulting PSF was then ingested into \texttt{GALFIT}.
+The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fitting was performed with \texttt{EPSFBuilder}. The quality of the extracted PSF was verified by inspecting the residuals of 4 nearby reference stars from SDSS. 
+
+The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic galaxy profiles were then defined, centered on the host and neighboring galaxy location. Additionally, a point source with variable position was allowed. These were then fit together, resulting in flux from the host galaxy, the neighboring galaxy and the transient.
+
+All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values\sidenote{This can be explained by differing observing conditions at different epochs.}. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
 
 % \begin{table*}
 % \begin{center}
