@@ -237,6 +237,9 @@ After the detection of the neutrino, we triggered near-infrared observations to 
 
 All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020}), which performs flat fielding, background subtraction and fits an astrometric solution using \textit{Gaia} DR2. Subsequently, the individual images for each filter and epoch were stacked to increase signal-to-noise. The photometric zero-point calibration of the stacked images was achieved within the pipeline by comparison to the Two Micron All Sky Survey (2MASS) \sidecite{Skrutskie2006}.
 
+As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the flux extraction was done manually with \texttt{GALFIT} \sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types. 
+
+To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of star neither too dim nor too bright were visually selected. Using these stars, the PSF of the image was calculated.
 
 % \begin{table*}
 % \begin{center}

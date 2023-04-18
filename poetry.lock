@@ -406,6 +406,46 @@ pytz = ">=2020.1"
 test = ["hypothesis (>=5.5.3)", "pytest (>=6.0)", "pytest-xdist (>=1.31)"]
 
 [[package]]
+name = "photutils"
+version = "1.7.0"
+description = "An Astropy package for source detection and photometry"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "photutils-1.7.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:2179fe92dc7192f216f52c947daa16887d60fa7bc6b3ba42d8604910e1fabd8e"},
+    {file = "photutils-1.7.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:3eda4efe1510a76621aac3109757dc4e71ccbbc9c971cf27c8eb07589b6e5f0b"},
+    {file = "photutils-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4900e0c2641b0a03f8f61406de181d8d78803be749b0893b641bbd2587f1b840"},
+    {file = "photutils-1.7.0-cp310-cp310-win32.whl", hash = "sha256:678be058d123f6d049925f284d79fd2c0752e0b9f07feae2be5fb8e8f057ebb9"},
+    {file = "photutils-1.7.0-cp310-cp310-win_amd64.whl", hash = "sha256:2fd2f1e544712855170ae3548eaf299cc586cf7eaa219fbe23ee810d95f1522b"},
+    {file = "photutils-1.7.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:26a05bad38d3fc9ea4b221e583a8d58385b6b12d2a9cf811f5fc9d0e166f9e29"},
+    {file = "photutils-1.7.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:c34da8bd2bbf4d04ad43d8462c33a030cd1d1debd84a9ba0a1c0968f216ae2c9"},
+    {file = "photutils-1.7.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8202dd157cc5c93cffaca0998963d0ecec9f26ed6881fec7b22314e90330a017"},
+    {file = "photutils-1.7.0-cp311-cp311-win32.whl", hash = "sha256:f08e348c5337dd2fdf0554fbad588309076314c622008d5f03980a256e495fd9"},
+    {file = "photutils-1.7.0-cp311-cp311-win_amd64.whl", hash = "sha256:154c22a9eee1e2189895243cf8c485f35672d157a232b0874e4cba2471262906"},
+    {file = "photutils-1.7.0-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:c7ccce951d70e8fd36f21a4dfe49f67bbf540e657a1b0809500ccdde22c61026"},
+    {file = "photutils-1.7.0-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:dd41434fa5c0c881f55e630d25c487acfc0bd3af78482b43d7c7b8a6b4e0cd11"},
+    {file = "photutils-1.7.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f582933ad97acf41581ace5640f267709013dbdc230f7df4a2012eed05559be5"},
+    {file = "photutils-1.7.0-cp38-cp38-win32.whl", hash = "sha256:4287c9fe02e1c38cbbc77b6772d20569dab05219e60521fac03b47c2069c7918"},
+    {file = "photutils-1.7.0-cp38-cp38-win_amd64.whl", hash = "sha256:8a04269110f85fb67a55882b4a5c446579bde3f1a6faaf97c3083246ed7972a8"},
+    {file = "photutils-1.7.0-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:be258a9e1ea12b1bb3f7c9bfdc2d37d411285c893fa426bd4f35bc389495ce9c"},
+    {file = "photutils-1.7.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:926e0f089ce85f2154e5f376bb11c6a437d8e35f45c601ced66af52491818087"},
+    {file = "photutils-1.7.0-cp39-cp39-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:454d20b038d54742c8780d120fd9bad510d108cfb24f45e3e7550875360a0565"},
+    {file = "photutils-1.7.0-cp39-cp39-win32.whl", hash = "sha256:12f63d2eb108d6ada7ffbdad47127fc5bed98fd6ac49c9e5db878472607721ee"},
+    {file = "photutils-1.7.0-cp39-cp39-win_amd64.whl", hash = "sha256:0e04a6b4d08080068f1b50c4881d97a3682b129c223f677014a119c33c2862e0"},
+    {file = "photutils-1.7.0.tar.gz", hash = "sha256:5f02ab667496c6ece3880f226c01715dab3904a35c15444d2bea520188aa04af"},
+]
+
+[package.dependencies]
+astropy = ">=5.0"
+numpy = ">=1.20"
+
+[package.extras]
+all = ["bottleneck", "gwcs (>=0.16)", "matplotlib (>=3.3.0)", "rasterio", "scikit-image (>=0.18.0)", "scikit-learn (>=1.0)", "scipy (>=1.6.0)", "shapely", "tqdm"]
+docs = ["gwcs (>=0.16)", "matplotlib (>=3.3.0)", "rasterio", "scikit-image (>=0.18.0)", "scikit-learn (>=1.0)", "scipy (>=1.6.0)", "shapely", "sphinx", "sphinx-astropy (>=1.6)"]
+test = ["pytest-astropy"]
+
+[[package]]
 name = "pillow"
 version = "9.4.0"
 description = "Python Imaging Library (Fork)"
@@ -707,4 +747,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.12"
-content-hash = "0d155e215f874377dc22bbcd861f1eb2f3e2e7eea0a18fd47dd5cc5617e5941a"
+content-hash = "2dd7b20a1454f91d7f9040bc0bd39f5e6c830f56b61e252669c54f943e9b8770"

@@ -13,6 +13,7 @@ astropy = "^5.2.1"
 pandas = "^1.5.3"
 seaborn = "^0.12.2"
 scipy = "^1.10.1"
+photutils = "^1.7.0"
 
 
 [build-system]
