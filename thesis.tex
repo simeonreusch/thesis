@@ -200,7 +200,7 @@ The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[pa
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/erosita_fit.pdf}
-    \caption[\textit{SRG}/eROSITA temperature fit]{Temperature fit for the \textit{SRG}/eROSITA detection. Figure by M. Gilfanov.}
+    \caption[\textit{SRG}/eROSITA temperature fit]{Temperature fit for the \textit{SRG}/eROSITA detection. Figure by M. Gilfanov, slight modifications by the author.}
     \labfig{erosita_fit}
 \end{figure}
 
@@ -296,11 +296,17 @@ This was done by fitting a galaxy model as described in \sidecite{Velzen2020}, u
 
 To measure the optical flux, we employed the model magnitudes from SDSS. These are computed either from a de Vaucouleurs galaxy profile, or an exponential galaxy profile (the model mag uses the better of the two fits)\sidenote{See \url{https://www.sdss4.org/dr12/algorithms/magnitudes/mag_model} for details.}.
 
-We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS) \sidecite{Lawrence2007}. 
+We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS) \sidecite{Lawrence2007}. Then, the \texttt{prospector} toolkit \sidecite{Johnson2021} was used to sample synthetic galaxy models built by Flexible Stellar Population Synthesis (\texttt{FSPS}) \sidecite{Conroy2010}, written in Fortran and employed via the Python wrapper \texttt{python-fsps} \sidecite{ForemanMackey2014}.
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{at2019fdr/host_model.pdf}
+    \caption[Synthetic host spectrum]{Synthetic host spectrum constructed with \texttt{FSPS}. Fig. from S. van Velzen, annotations by the author.}
+    \labfig{host_model}
+\end{figure}
 
 \begin{table}
 \centering
-\begin{tabular}{c c c  c  c} 
+\begin{tabular}{c c c c  c} 
 \textbf{MJD} & \textbf{Date} &\textbf{\textit{J}-band} & \textbf{\textit{H}-band} & \textbf{\textit{Ks}-band} \\
  & & (\SI{1.2}{\micro\m}) & (\SI{1.6}{\micro\m}) & (\SI{2.1}{\micro\m}) \\
 \hline
