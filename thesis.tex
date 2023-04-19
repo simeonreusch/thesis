@@ -304,6 +304,8 @@ We also included the baseline \textit{WISE} datapoints detailed above, as well a
     \labfig{host_model}
 \end{figure}
 
+The host model was subsequently subtracted evaluated for all non-subtracted measurements with their respective bandpass using \texttt{SNCosmo} \sidecite{Barbary2022}, a Python framework dedicated to supernova analysis.
+
 \begin{table}
 \centering
 \begin{tabular}{c c c c  c} 
@@ -318,6 +320,9 @@ We also included the baseline \textit{WISE} datapoints detailed above, as well a
 \caption{NIR AB magnitudes after subtracting the synthetic host model. Only systematic uncertainties are provided, as the photometric uncertainties should be negligible in comparison, at least in the \textit{J}- and \textit{H}-band). The flux of the third and fourth \textit{J}-band epochs after host-model subtraction was negative, which is counted as non-detection. From \cite{Reusch2022}}
 \label{tab:p200_nir}
 \end{table}
+
+\section{SED blackbody modeling}
+After compiling and reducing the individual light curve measurements, 
 
 % \begin{table*}
 % \begin{center}
