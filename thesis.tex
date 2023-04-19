@@ -198,15 +198,15 @@ The single detection from March 11, 2021 revealed a very soft thermal spectrum. 
 
 The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
 
-As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which was carried out on June 7, 2020 with a \SI{2000}{\s} exposure.
-
-The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used \cite{Reusch2022}.
-
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/erosita_fit.pdf}
     \caption[\textit{SRG}/eROSITA temperature fit]{Temperature fit for the \textit{SRG}/eROSITA detection. Figure by M. Gilfanov.}
     \labfig{erosita_fit}
 \end{figure}
+
+As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which was carried out on June 7, 2020 with a \SI{2000}{\s} exposure.
+
+The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used \cite{Reusch2022}.
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/swift.png}
@@ -279,12 +279,20 @@ As there was no image without transient flux available, we added the point sourc
 
 Additionally to the ground-based NIR observations with P200, images from the mid-infrared (MIR) \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}). \textit{WISE} has cadence of 6 months, and the available images comprised 13 observational epochs prior to the detection of AT2019fdr, as well as 3 epochs during the transient's life.
 
-As the MIR photometry -- like the NIR photometry -- suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE} \sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot} \sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot} \cite{Stetson1987} algorithms.
+As the MIR photometry -- like the NIR photometry -- suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE} \sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot} \sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot} \cite{Stetson1987} algorithms. 
 
+The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\jansky}, which was significantly smaller than the peak difference flux, measured at \SI{0.9}{\milli\jansky}. A robust baseline can therefore be constructed from the pre-flare \textit{WISE} detections. 
 
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_wise.pdf}
+    \caption[\textit{NEOWISE} forced photometry]{\textit{NEOWISE} forced photometry light curve at the location of AT2019fdr. The arrival time of neutrino IC200530A is marked with a dotted black line. From \cite{Velzen2021}}
+    \labfig{at2019fdr_wise}
+\end{figure}
 
 \subsection{Synthetic host model} \label{synthetic_host_model}
 As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a synthetic model of the emission from the host galaxy. 
+
+
 
 \begin{table}
 \centering
