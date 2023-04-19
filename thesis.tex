@@ -194,13 +194,19 @@ The sky region of AT2019 was visited four times by SRG with a six-month cadence.
 \label{tab:at2019fdr_erosita}
 \end{table}
 
-The single detection from March 11, 2021 revealed a very soft thermal spectrum. The best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
+The single detection from March 11, 2021 revealed a very soft thermal spectrum. As can be seen in Fig. \ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
 
 The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
 
 As noted above, \textit{Swift} XRT had already observed AT2019fdr 14 times prior to the neutrino arrival \cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which was carried out on June 7, 2020 with a \SI{2000}{\s} exposure.
 
 The data was reduced with the publicly available \texttt{Swift XRT data products generator} \sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool \sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used \cite{Reusch2022}.
+
+\begin{figure}[htb]
+    \includegraphics[width=0.8\textwidth]{at2019fdr/erosita_fit.pdf}
+    \caption[\textit{SRG}/eROSITA temperature fit]{Temperature fit for the \textit{SRG}/eROSITA detection. Figure by M. Gilfanov.}
+    \labfig{erosita_fit}
+\end{figure}
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/swift.png}
@@ -209,7 +215,7 @@ The data was reduced with the publicly available \texttt{Swift XRT data products
 \end{marginfigure}
 
 \subsection{Optical/UV observations}
-The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described below \cite{Reusch2022}.
+The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described in Section \ref{synthetic_host_model}. \cite{Reusch2022}.
 
 As the extraction of the infrared measurements was more involved due to host-galaxy blending, this will be detailed in a full Section below.
 
@@ -233,7 +239,7 @@ Flux from the source location was measured in all three epochs. At all epochs, t
 To compare to pre-flare host radio emission, we also obtained an archival upper limit from the Very Large Array Sky Survey (VLASS) \sidecite{Lacy2020}. We exclusively used VLASS, as it is the only survey with sufficient sensitivity and angular resolution to probe AT2019fdr. The quicklook continuum \texttt{fits} file for tile T17t23We was obtained from the archive\sidenote{\url{https://archive-new.nrao.edu/vlass/quicklook}}. The observation was carried out on November 25, 2017 in the \SIrange{2}{4}{\giga\Hz} band. At a significance level of \SI{3}{\sigma}, no emission from the source was detected. The local RMS noise was $\sigma=\SI{0.11}{\milli\jansky}/\text{beam}$, and the beam size was $\SI{2.46}{\arcsecond} \times \SI{2.28}{\arcsecond}$ at a position angle of \SI{-37}{\degree}. This results in an upper limit of \SI{0.32}{\milli\jansky}. A second VLASS observation was taken a few days prior to our second trigger epoch, but the resulting \SI{3}{\sigma} upper limit was less constraining (\SI{0.4}{\milli\jansky}) \cite{Reusch2022}.
 
 \section{Near-infrared observations}
-After the detection of the neutrino, we triggered near-infrared observations to extend the SED to longer wavelengths. We observed during 4 epochs with WIRC on the Palomar P200 in the \textit{J}-, \textit{H} and \textit{Ks}-band. The dates of observations were July 1 and September 27, 2020, as well as February 2 and May 28, 2021. 
+After the detection of the neutrino, we triggered near-infrared (NIR) observations to extend the SED to longer wavelengths. We observed during 4 epochs with WIRC on the Palomar P200 in the \textit{J}-, \textit{H} and \textit{Ks}-band, centered on \SI{1.2}{\micro\m}, \SI{1.6}{\micro\m} and \SI{2.1}{\micro\m}. The dates of observations were July 1 and September 27, 2020, as well as February 2 and May 28, 2021. 
 
 All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020}), which performs flat fielding, background subtraction and fits an astrometric solution using \textit{Gaia} DR2. Subsequently, the individual images for each filter and epoch were stacked to increase signal-to-noise. The photometric zero-point calibration of the stacked images was achieved within the pipeline by comparison to the Two Micron All Sky Survey (2MASS) \sidecite{Skrutskie2006}.
 
@@ -261,8 +267,24 @@ The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic  profiles 
 
 All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values\sidenote{This can be explained by differing observing conditions at different epochs.}. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
 
-\subsection{Synthetic host model}
-asdf
+As there was no image without transient flux available, we added the point source and the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section \ref{synthetic_host_model}.}. The model-subtracted AB magnitudes calculated by this procedure are shown in Table \ref{tab:p200_nir}.
+
+\subsection{\textit{WISE} detections}
+
+\begin{marginfigure}
+    \includegraphics{at2019fdr/wise.jpg}
+    \caption[The \textit{WISE} satellite]{The \textit{WISE} satellite. Image credit: NASA.}
+    \labfig{wise}
+\end{marginfigure}
+
+Additionally to the ground-based NIR observations with P200, images from the mid-infrared (MIR) \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}). \textit{WISE} has cadence of 6 months, and the available images comprised 13 observational epochs prior to the detection of AT2019fdr, as well as 3 epochs during the transient's life.
+
+As the MIR photometry -- like the NIR photometry -- suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE} \sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot} \sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot} \cite{Stetson1987} algorithms.
+
+
+
+\subsection{Synthetic host model} \label{synthetic_host_model}
+As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a synthetic model of the emission from the host galaxy. 
 
 \begin{table}
 \centering
