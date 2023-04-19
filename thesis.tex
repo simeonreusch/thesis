@@ -285,19 +285,24 @@ The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\j
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_wise.pdf}
-    \caption[\textit{NEOWISE} forced photometry]{\textit{NEOWISE} forced photometry light curve at the location of AT2019fdr. The arrival time of neutrino IC200530A is marked with a dotted black line. From \cite{Velzen2021}}
+    \caption[\textit{NEOWISE} forced photometry]{\textit{NEOWISE} + ZTF forced photometry light curve at the location of AT2019fdr. The arrival time of neutrino IC200530A is marked with a dotted black line. Note the small scatter of the pre-flare datapoints, allowing the construction of a robust baseline. From \cite{Velzen2021}}
     \labfig{at2019fdr_wise}
 \end{figure}
 
 \subsection{Synthetic host model} \label{synthetic_host_model}
 As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a synthetic model of the emission from the host galaxy. 
 
+This was done by fitting a galaxy model as described in \sidecite{Velzen2020}, using different archival measurements: To measure the UV flux, we used images from the Galaxy Evolution Explorer (\textit{GALEX}) \sidecite{Martin2005}. The \texttt{gPhoton} \sidecite{Million2016} package with an aperture of \SI{4}{\arcsecond} was used for flux extraction.
 
+To measure the optical flux, we employed the model magnitudes from SDSS. These are computed either from a de Vaucouleurs galaxy profile, or an exponential galaxy profile (the model mag uses the better of the two fits)\sidenote{See \url{https://www.sdss4.org/dr12/algorithms/magnitudes/mag_model} for details.}.
+
+We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS) \sidecite{Lawrence2007}. 
 
 \begin{table}
 \centering
 \begin{tabular}{c c c  c  c} 
 \textbf{MJD} & \textbf{Date} &\textbf{\textit{J}-band} & \textbf{\textit{H}-band} & \textbf{\textit{Ks}-band} \\
+ & & (\SI{1.2}{\micro\m}) & (\SI{1.6}{\micro\m}) & (\SI{2.1}{\micro\m}) \\
 \hline
 59031 & 2020-07-01 & $19.06 \pm 0.50$ & $ 17.73 \pm 0.12$ & $17.13 \pm 0.26$\\
 59121 & 2020-09-29 & $19.78 \pm 0.98$ & $ 17.76 \pm 0.12$ & $17.45 \pm 0.35$\\

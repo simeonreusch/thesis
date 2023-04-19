@@ -55,7 +55,7 @@
 \centering
 \begin{tabular}{c c  c  c} 
 \textbf{MJD} & \textbf{Date} &\textbf{Band} & \textbf{Flux density}\\
-& & (GHz) & ($\mu$ Jansky) \\
+& & (\unit{\giga\Hz}) & (\unit{\micro\jansky}) \\
 \hline
 58032 & 2017-11-25 & 3.00 & $\leq 320 $ \\ 
 59033 & 2020-07-03 & 3.00 & $ 226 \pm 13$ \\
@@ -71,4 +71,24 @@
 \end{tabular}
 \caption{VLA measurements of AT2019fdr and the VLASS archival limit (first row). From \cite{Reusch2022}.}
 \label{tab:at2019fdr_radio}
+\end{table*}
+
+\begin{table*}
+\centering
+\begin{tabular}{c c c} 
+\textbf{Band} & \textbf{$\lambda_\text{eff}$} & \textbf{AB magnitude} \\
+\hline
+\textit{GALEX} FUV &  & $22.32^{+0.07}_{-0.10}$ \\
+\textit{GALEX} NUV & $21.52^{+0.06}_{-0.10}$ \\
+SDSS \textit{u} & $20.91^{+0.06}_{-0.07}$ \\
+SDSS \textit{g} & $19.97^{+0.04}_{-0.04}$ \\
+SDSS \textit{r} & $19.00^{+0.02}_{-0.03}$ \\
+SDSS \textit{i} & $18.64^{+0.02}_{-0.03}$  \\
+SDSS \textit{z} & $18.36^{+0.02}_{-0.03}$ \\
+UKIRT \textit{J} & $18.18 $\\
+\textit{WISE W1} & $17.83^{+0.05}_{-0.05}$ \\
+\textit{WISE W2} & $17.78^{+0.03}_{-0.05}$ \\
+\end{tabular}
+\caption{Archival measurements from \textit{GALEX}, SDSS, UKIRT (the isoMag value was given without error) and \textit{WISE}, used to construct the synthetic host model (see \ref{synthetic_host_model}). From \cite{Reusch2022}.}
+\label{tab:host_model_measurements}
 \end{table*}
