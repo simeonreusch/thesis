@@ -360,10 +360,10 @@ $S_2$ & \num{1e20} & [\num{1e18}, \num{1e21}]
 \end{tabular}
 \end{center}
 \caption[Double BB fit priors]{Priors for the double blackbody minimization. $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}
-\label{double_bb_priors}
+\label{tab:double_bb_priors}
 \end{table}
 
-The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{astropy.modeling.models.BackbBody}}. As this model works with a \textit{scale} parameter\sidenote{This \texttt{astropy} terminology is slightly confusing, as the scale has units of spectral radiance (\unit{\erg\per\s\per\square\cm\per\Hz\per\steradian}.)} instead of a blackbody radius, this needs to be converted via 
+The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{astropy.modeling.models.BackbBody}}. As this model works with a \textit{scale} parameter\sidenote{This \texttt{astropy} terminology is slightly confusing, as the scale has units of spectral radiance (\unit{\erg\per\s\per\square\cm\per\Hz\per\steradian}).} instead of a blackbody radius, this needs to be converted via 
 
 \begin{equation}
 \text{Scale} = d_L^2 / (r^2 \pi)
@@ -383,12 +383,36 @@ In each iteration of the minization proceess, the spectrum of both blackbodies c
 
 To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, the P200 and \textit{WISE}.
 
+The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}.
 
+\begin{table}
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c c  r  c  c} 
+ \textbf{Epoch} &  \textbf{Band}  & \textbf{Temp.} & \textbf{Radius} & \textbf{Luminosity} \\
+ & & (\unit{\K}) & (\unit{\cm})& (\unit{\erg\per\s}) \\
+\hline
+\textbf{1} & O+UV & $ 13526^{+569}_{-574}$ & $ 7.8^{+0.4}_{-0.4} \times 10^{15}$ & $ 1.4^{+0.1}_{-0.1} \times 10^{45}$\\
+ & IR  & $1505^{+421}_{-313}$ & $ 2.2^{+1.6}_{-1.4} \times 10^{17}$ & $1.7^{+2.2}_{-1.0} \times 10^{44}$\\
+\hline
+\textbf{2} & O+UV & $ 11731^{+663}_{-683}$ & $ 4.9^{+0.4}_{-0.4} \times 10^{15}$ & $ 3.3^{+0.3}_{-0.4} \times 10^{44}$\\
+ & IR  & $1762^{+121}_{-124}$ & $ 2.5^{+0.2}_{-0.2} \times 10^{17}$ & $4.3^{+0.5}_{-0.7} \times 10^{44}$\\
+\hline
+\textbf{3} & O+UV & $ 10230^{+2373}_{-1645}$ & $ 4.3^{+3.3}_{-1.0} \times 10^{15}$ & $ 1.5^{+1.2}_{-0.4} \times 10^{44}$\\
+ & IR  & $2237^{+402}_{-462}$ & $ 1.0^{+0.6}_{-0.4} \times 10^{17}$ & $1.9^{+1.4}_{-0.5} \times 10^{44}$\\
+\end{tabular}
+\caption[Blackbody best-fit values]{Blackbody best-fit values for three epochs (1--3). `O+UV' denotes the blue blackbody in the optical/UV and `IR' denotes the red infrared blackbody. The luminosity is given dereddened and in the source frame. The uncertainties are at 68\% confidence level. Note that the O+UV temperature and radius (and therefore the luminosity) in the third epoch are not well constrained, as no late-time UV measurements were available. The same holds true for the IR blackbody in the first and the last epoch, as only two data points were available.}
+\label{tab:double_bb}
+\end{table}
 
-    % radius_cm1 = (
-    %     np.sqrt(d_m ** 2 * scale_nu1.value) * (100 * u.cm) / u.m / np.sqrt(np.pi)
-    % )
+\begin{figure*}[htb]
+    \includegraphics{at2019fdr/at2019fdr_lightcurve_and_sed.pdf}
+    \caption[AT2019fdr light and SED]{Light curve and SED of AT2019fdr. From \cite{Reusch2022}.}
+    \labfig{at2019fdr_lightcurve_and_sed}
+\end{figure*}
 
+\subsection{Uncertainty estimate}
+asdf
 % \begin{table*}
 % \begin{center}
 % \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
