@@ -304,7 +304,7 @@ We also included the baseline \textit{WISE} datapoints detailed above, as well a
     \labfig{host_model}
 \end{figure}
 
-The host model was subsequently subtracted evaluated for all non-subtracted measurements with their respective bandpass using \texttt{SNCosmo} \sidecite{Barbary2022}, a Python framework dedicated to supernova analysis.
+The host model was subsequently subtracted from all measurements possibly containing host light within their respective bandpass using \texttt{SNCosmo} \sidecite{Barbary2022}, a Python framework dedicated to supernova analysis.
 
 \begin{table}
 \centering
@@ -317,12 +317,77 @@ The host model was subsequently subtracted evaluated for all non-subtracted meas
 59249 & 2021-02-04 & --               & $ 18.26 \pm 0.19$ & $17.81 \pm 0.48$\\
 59362 & 2021-05-28 & -- & $ 18.42 \pm 0.22$ & $17.91 \pm 0.53$\\
 \end{tabular}
-\caption{NIR AB magnitudes after subtracting the synthetic host model. Only systematic uncertainties are provided, as the photometric uncertainties should be negligible in comparison, at least in the \textit{J}- and \textit{H}-band). The flux of the third and fourth \textit{J}-band epochs after host-model subtraction was negative, which is counted as non-detection. From \cite{Reusch2022}}
+\caption{NIR AB magnitudes after subtracting the synthetic host model. Only systematic uncertainties are provided, as the photometric uncertainties should be negligible in comparison, at least in the \textit{J}- and \textit{H}-band). The flux of the third and fourth \textit{J}-band epochs after host-model subtraction was negative, which was counted as non-detection. From \cite{Reusch2022}}
 \label{tab:p200_nir}
 \end{table}
 
 \section{SED blackbody modeling}
-After compiling and reducing the individual light curve measurements, 
+After compiling and reducing the individual light curve measurements, a physical model motivating the detected light needed to be applied. 
+
+To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e. a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The double blackbody model matched the observations best. In the following, I will detail the derivation of this model and the energy output of the system derived from this, including a discussion of dust extinction.
+
+\subsection{Fit epochs}
+First, we isolated three regions of interest. These comprised 1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch 2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch 3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
+
+As the light curve does not significantly change during those epochs, we used the mean flux values for each observed bands as input for the fitting procedure.
+
+\subsection{Models}
+As stated above, we tried a variety of models:
+
+\begin{description}
+\item[Unbroken power law] A single, unbroken power law with the power law index as free parameter
+\item[Broken power law] We also used a broken power law, with the two spectral indices and the wavelength of the break as free parameters.
+\item[Single blackbody] A single unmodified blackbody was used here, which can be described by two parameters, the blackbody radius and it temperature.
+\item[Double blackbody] Two unmodified blackbodies, resulting in four free parameters (2xtemperature, 2xradius).
+\end{description}
+
+All fits were performed with the \texttt{lmfit} \sidecite{Newville2021} Python package , which implements the Levenberg-Marquardt algorithm for solving non-linear least-squares problems.
+
+To account for host extinction, we used the \texttt{extinction} \sidecite{Barbary2016} Python package, namely the Calzetti attenuation law \sidecite{Calzetti2000} contained therein. We fixed the extinction $R_V$ at $3.1$ and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. We decided on using epoch 1 to determine $A_V$, as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
+
+We imported the measurements, averaged each the flux in each band per epoch, and passed them to the minimizer (the fit priors are shown in Table \ref{tab:double_bb_priors}).
+
+\begin{table}
+\begin{center}
+\begin{tabular}{c|c|c}
+Parameter & Initial value & Bounds \\
+\hline
+$A_V$ & $0.45$ & $[0, 2]$\\
+$T_1$ & \SI{1730}{\K} & [\SI{7000}{\K}, \SI{50000}{\K}]\\
+$T_2$ & \SI{1650}{\K} & [\SI{500}{\K}, \SI{2300}{\K}]\\
+$S_1$ & \num{2.3e23} & [\num{1e20}, \num{1e27}] \\
+$S_2$ & \num{1e20} & [\num{1e18}, \num{1e21}] 
+\end{tabular}
+\end{center}
+\caption[Double BB fit priors]{Priors for the double blackbody minimization. $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}
+\label{double_bb_priors}
+\end{table}
+
+The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{astropy.modeling.models.BackbBody}}. As this model works with a \textit{scale} parameter\sidenote{This \texttt{astropy} terminology is slightly confusing, as the scale has units of spectral radiance (\unit{\erg\per\s\per\square\cm\per\Hz\per\steradian}.)} instead of a blackbody radius, this needs to be converted via 
+
+\begin{equation}
+\text{Scale} = d_L^2 / (r^2 \pi)
+\end{equation}
+
+where $r$ is the blackbody radius and $d_L$ is the \textit{luminosity distance}, calculated with the redshift $z=0.2666$ and assuming a standard cosmology. The luminosity distance is a measure for how far away something `looks'. If the luminosity $L$ is the total amount of energy isotropically radiated by an object per unit time, it is related to the flux $F$ measured at luminosity distance $d_L$ via this relation (describing an expanding sphere of light):
+
+\begin{equation}
+d_L = \sqrt{L/4\pi F}
+\end{equation}
+
+The luminosity distance is equal to the proper distance (as in the amount of space a photon had to traverse to reach us) if and only if the universe is geometrically flat and the universe is static (neither shrinking nor expanding). As the universe in fact \textit{is} expanding, the luminosity distance is similar to the proper distance only for small redshifts (i.e. if there was little time needed for the photon to reach us, and therefore little expansion). In general, the luminosity distance depends on the evolution of the universe. Here, the luminosity distance was calculated with the \texttt{astropy.cosmology} module. 
+
+\subsection{Minimization}
+
+In each iteration of the minization proceess, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the two blackbody spectra were added. 
+
+To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, the P200 and \textit{WISE}.
+
+
+
+    % radius_cm1 = (
+    %     np.sqrt(d_m ** 2 * scale_nu1.value) * (100 * u.cm) / u.m / np.sqrt(np.pi)
+    % )
 
 % \begin{table*}
 % \begin{center}

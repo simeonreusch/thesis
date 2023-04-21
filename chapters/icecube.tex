@@ -198,7 +198,7 @@ Using this, the MPE likelihood is given as
 \end{equation}
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}.\todo{Überleitung!}
 
-\subsection{Millipede reconstruction} \label{millipede}
+\subsection{\texttt{Millipede} reconstruction} \label{millipede}
 High-energy neutrion alerts that make the realtime alert cuts (see Section \ref{ic_alert_program}) are subjected to a computationally intensive algorithm dubbed \texttt{Millipede}, as it promises higher reconstruction fidelity. Due to its demand of computational resources it is only run for selected events at the IceCube data center in Madison.
 
 \begin{marginfigure}
@@ -207,13 +207,13 @@ High-energy neutrion alerts that make the realtime alert cuts (see Section \ref{
     \labfig{ic_millipede}
 \end{marginfigure}
 
-This reconstruction consists of a maximum likelihood scan covering the whole sky. To allow scanning, the sky is pixelated into grids of increasing resolution following the Hierarchical Equal Area isoLatitude Pixelation (\texttt{HEALPix}) scheme \sidecite{Gorski2005}. Each pixel of specific resolution covers the same area on the sky. For each scanned pixel, the muon direction is fixed to originate from that sky location.
+This reconstruction consists of a maximum likelihood scan covering the whole sky. To allow scanning, the sky is pixelated into grids of increasing resolution following the Hierarchical Equal Area isoLatitude Pixelation (\texttt{HEALPix}) scheme \sidecite{Gorski2005}. Each pixel of a specific resolution covers the same area on the sky. For each scanned pixel, the muon direction is fixed to originate from that sky location.
 
 For this fixed direction, the likelihood of the deposited energy resulting from the best fit and the neutrino interaction vertex in the detector are then computed. Pixels near the likelihood maximum are then subdivided with a finer \texttt{HEALPix} resolution. This procedure ultimately results in a likelihood map of the sky, with increasing granularity towards the global maximum \sidecite{Abbasi2023}.
 
-To compute \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo re-simulations from IC160427A are used. For this event, Pan-STARRS found a possible counterpart, PS16cgx\sidenote{Spectroscopic follow up reveiled that this can either be a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
+To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo re-simulations from IC160427A are used. For this event, Pan-STARRS found a possible counterpart, PS16cgx\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
 
-In the re-simulations, the systematic parameters of the antarctic ice used to model photon propagation were varied. Each re-simulated event was fit with \texttt{Millipede}. The distribution of differences between the best-fit likelihood and the ground truth of the simulated event can then be employed to convert the change in log-likelihood over the map to a confidence level.
+In the re-simulations, the systematic parameters of the antarctic ice used to model photon propagation were varied. Each re-simulated event was fit with \texttt{Millipede}. The distribution of differences between the best-fit likelihood and the ground truth of the simulated event can then be employed to convert the change in log-likelihood over the map into a confidence level.
 
 Currently, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area. \todo{Cristina input}
 

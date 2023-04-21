@@ -12,12 +12,13 @@ import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 from astropy import constants as const
 from astropy import units as u
 from astropy.cosmology import Planck15 as cosmo
 from astropy.table import Table
 from astropy.time import Time
+
+import seaborn as sns
 from modelSED import utilities
 
 flabel_sel = "filterlabel_with_wl"

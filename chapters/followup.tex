@@ -47,7 +47,7 @@ Plan IC221223A -trigger
 
 to submit the observation request via a dedicated API to the ZTF telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and candidate vetting can begin.
 
-As we are interested in the evolution of potential source candidates, usually observations within a \SI{10}{\day} window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
+As we are interested in the evolution of potential source candidates, usually observations within a 10 day window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 \begin{marginfigure}
     \includegraphics{fu/planobs_slack_border.pdf}
     \caption[\texttt{planobs} Slack interaction]{Sample interaction with \texttt{planobs} in Slack, checking the observability of IC230217A.}
@@ -83,7 +83,7 @@ When run, \texttt{nuztf} executes the following steps: It obtains the IceCube al
 \subsection{\texttt{DecentFilter} parameters}
 The GCN parsing is done akin to \texttt{planobs}\sidenote{See Section \ref{planobs}}. After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
 \begin{description}
-    \item[Time window] The transient must have shown activity in a \SI{14}{\day} window after neutrino detection
+    \item[Time window] The transient must have shown activity in a 14-day window after neutrino detection
     \item[\texttt{RealBogus}] The transient must have a \texttt{RealBogus} score of $>0.3$.
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute} (note that this needs to be reflected in the observation planning. \texttt{planobs} (see Section \ref{planobs}) takes care of that.
@@ -170,7 +170,7 @@ A full overview over the first 24 follow-up campaigns can be found in \sidecite{
 \subsection{SN2020lls} \label{SN2020lls}
 SN2020lls was identified in coincidence with high-energy neutrino IC200530A \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including SN2020lls \sidecite{IC200530A2, IC200530A4}. 
 
-We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, \SI{14}{\day} post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
+We took a spectrum of SN2020lls with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a type Ic supernova at redshift $z=0.041$, 14 days post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
@@ -184,7 +184,7 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time\
     \caption[SN2020lls light curve fit]{Light curve of SN2020lls. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out SN2020lls as candidate source. Figure by the author, from \cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
 \end{figure}
-As can be seen, the fit estimates the explosion time (black line) at \SI{6}{\day} earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
+As can be seen, the fit estimates the explosion time (black line) at 6 days earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out SN2020lls as source of IC200530A.
 
 \subsection{SN2020lam} \label{SN2020lam}
 A second source candidate, also coincident with IC200530A, was SN2020lam \sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO} \sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig. \ref{fig:ZTF20abbpkpa_not_spectrum}).
@@ -225,7 +225,7 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 
 
 \subsection{SN2022oyn}
-When following up IC220907A \sidecite{IC220907A1}, SN2022oyn emerged as notable source candidate, as its light curve was consistent with a supernova about \SI{40}{\day} post peak \sidecite{IC220907A2}.
+When following up IC220907A \sidecite{IC220907A1}, SN2022oyn emerged as notable source candidate, as its light curve was consistent with a supernova about 40 days post peak \sidecite{IC220907A2}.
 
 We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID} (see Fig. \ref{fig:ZTF22aatwsqt_spectrum}), we classified the source as type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos \sidecite{IC220907A2}.
 
@@ -266,7 +266,7 @@ The blackbody temperature that can be inferred from the optical/UV was measured 
     \labfig{at2019dsg_lc}
 \end{figure*}
 
-Furthermore, AT2019dsg was observed by the X-ray Telescope (XRT) \sidecite{Burrows2005} aboard Swift, starting about \SI{40}{\day} after discovery. Observations reveiled a bright source that quickly faded to non-detection within the next \SI{30}{\day} \cite{Stein2021}. Possible explanations for this are either cooling of the newly formed accretion disk, or some kind of obscuration along the line of sight. The X-ray detection of AT2019dsg is not uncommon: 9 of the 30 TDEs detected during Phase I of ZTF operations have been detected in X-rays \sidecite{Hammerstein2022}.
+Furthermore, AT2019dsg was observed by the X-ray Telescope (XRT) \sidecite{Burrows2005} aboard Swift, starting about 40 days after discovery. Observations reveiled a bright source that quickly faded to non-detection within the next 30 days \cite{Stein2021}. Possible explanations for this are either cooling of the newly formed accretion disk, or some kind of obscuration along the line of sight. The X-ray detection of AT2019dsg is not uncommon: 9 of the 30 TDEs detected during Phase I of ZTF operations have been detected in X-rays \sidecite{Hammerstein2022}.
 
 More peculiar, AT2019dsg has also been detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI) \sidecite{Zwart2008,Hickish2018}, MeerKAT \sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA) \sidecite{Thompson1980} at several different epochs following the neutrino detection showed a radio signal with temporal evolution over the course of the next months.
 
