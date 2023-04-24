@@ -21,7 +21,7 @@ matplotlib.rcParams["mathtext.rm"] = "Palatino"
 matplotlib.rcParams["mathtext.it"] = "Palatino: italic"
 matplotlib.rcParams["mathtext.bf"] = "Palatino:bold"
 
-epoch = "epoch0"
+epoch = "epoch1"
 
 infile = os.path.join("data", f"{epoch}.csv")
 

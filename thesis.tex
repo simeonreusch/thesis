@@ -416,13 +416,15 @@ As the fit routine was not able to generate stable covariance matrices in all ep
 
 For each epoch and fit parameter, this was done by letting all parameters very except for the parameter of interest. This parameter was then varied around the best-fit value, and the resulting $\chi^2$ was evaluated. The $\chi^2$ distribution was then approximated with a polynomial, and the the \SI{68}{\percent} confidence level calculated -- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
-From the fit parameter uncertainties calculated as such, the uncertainties on the radius and the luminosities was obtained via Gaussian error propagation.
-
 \begin{figure}[htb]
-    \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_bb_chisq.pdf}
-    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 0 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
+    \includegraphics[width=0.8\textwidth]{at2019fdr/at2019fdr_bb_chisq.pdf}
+    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 1 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
     \labfig{bb_chisq}
 \end{figure}
+
+From the fit parameter uncertainties calculated as such, the uncertainties on the radius and the luminosities was obtained via Gaussian error propagation.
+
+
 
 % \begin{table*}
 % \begin{center}
