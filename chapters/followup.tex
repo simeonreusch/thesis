@@ -153,7 +153,7 @@ The instruments on which we had time for ToO observations during the last years 
 The image reduction pipelines used were either custom routines provided by the instrument, \texttt{pyraf}\sidenote{\url{https://github.com/iraf-community/pyraf}}, a Python wrapper to IRAF \sidecite{Tody1986}, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS, while \texttt{pyraf} was used for Keck/LRIS.
 
 \section{Follow-Up Performance}
-As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube\sidenote{See Section \ref{ic_alert_program}} since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria\sidenote{See Section \ref{alert_cuts}}. The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.
+As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube\sidenote{See Section \ref{ic_alert_program}} since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria\sidenote{See Section \ref{alert_cuts}}. The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.\todo{Christopher Laemmle plot fu over time}.
 
 \begin{figure}[h!]
     \includegraphics[width=0.8\textwidth]{fu/follow_up_overview.pdf}
@@ -163,6 +163,14 @@ As of March 2023, we have followed up 34 of the 108 non-retracted high-energy ne
 
 An overview of all follow-up campaigns is shown in Table \ref{tab:neutrino_alert_overview} in the appendix. 
 In total, 205 candidate sources were selected by \texttt{nuztf}. Of these, 27 (\SI{13}{\percent}) were distributed via GCN Circulars. The classification of these candidates will be discussed in Section \ref{SN2020lls}.
+
+Additionally, the follow-up performance over time is displayed in Fig. \ref{fig:follow_up_summary}, with the followed-up alerts shown in green. As one can see, the performance has been slightly degraded in the last two years, which can be mostly attributed to telescope downtime due to maintenance or technical faults.
+
+\begin{figure}[h!]
+    \includegraphics[width=1\textwidth]{fu/follow_up_summary.pdf}
+    \caption[Follow-up performance over time]{Follow-up performance over time. The alerts we did follow-up on are shown in green, while poorly localized alerts not meetin our quality cuts are shown in yellow, and all other rejection reasons are shown in gray.}
+    \labfig{follow_up_summary}
+\end{figure}
 
 \section{Notable Sources}
 A full overview over the first 24 follow-up campaigns can be found in \sidecite{Stein2023a}. In the following, I will highlight those sources to which I contributed either by requesting spectroscopic observations, reducing spectra or vetting candidates.
