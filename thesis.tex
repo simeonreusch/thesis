@@ -466,7 +466,7 @@ The infrared light curve produced this way can be approximated as follows accord
 \begin{equation}
 L_\text{IR} = \int d\tau~ \Psi(\tau) ~L(t-\tau)
 \end{equation}
-where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the response function and $\tau$ is the delay. In the case of a spherical shell of dust, $\Psi(\tau))$ can be approximated by a square wave response function, ranging from $\tau=0$ to $\tau = 2 R_0 c$ (where $R_0$ is the radius of the dust shell). We can therefore write
+where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the response function and $\tau$ is the delay. In the case of a spherical dust shell, $\Psi(\tau)$ can be approximated by a square wave response function, ranging from $\tau=0$ to $\tau = 2 R_0 c$ (where $R_0$ is the radius of the dust shell). We can therefore write
 
 \begin{equation}
 L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
@@ -474,11 +474,11 @@ L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
  
 The delay induced by light travel time can thus be approximated by convolving the optical light curve with a box function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
 
-This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ -- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
+This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared and reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ -- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
 
-To calculate $R_0$, we used the ZTF \textit{g}-band light curve as it is the best sample one. This get convolved with the box function, where the width of the box function in days is a free parameter. The initial delay with respect to the optical light curve here is half the size of the box function. The second free parameter is a dimensionless amplitude used to scale the optical light curve to match the \textit{WISE} datapoints.
+To calculate $R_0$, we used the ZTF \textit{g}-band light curve as it is the best sampled one. This light curve was then convolved with the box function, where the width of the box function in days was left as free parameter. The initial delay with respect to the optical light curve was then half the size of the box function. The second free parameter was a dimensionless amplitude used to scale the optical light curve to match the amplitude of the \textit{WISE} datapoints.
 
-From this procedure, we obtained a best-fit light travel time of 193 days, which translates to $R_0=\SI{0.16}{\parsec}$. The best fit parameters can be seen in Fig. \ref{fig:at2019fdr_dust_model_chisq}.
+Following this procedure, we obtained a best-fit light travel time of 193 days, which translated to $R_0=\SI{0.16}{\parsec}$. The best fit parameters can be seen in Fig. \ref{fig:at2019fdr_dust_model_chisq}.
 
 To crosscheck this result, we used the fact that according to \cite{Velzen2016}, the radius of this dust shell can be approximated as 
 \begin{equation}
@@ -492,10 +492,8 @@ This can be
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/dust_model_chisq_simple.pdf}
     \caption[Dust model fit corner plot]{Corner plot of the dust model fit for AT2019fdr. The two free parameters (amplitude and light travel time are plotted together with the marginalized $\chi^2$ values.}
-    \labfig{fig:at2019fdr_dust_model_chisq}
+    \labfig{at2019fdr_dust_model_chisq}
 \end{figure}
-
-To calculate this, we 
 % For this work, all values were taken as their default value, and 
 
 
