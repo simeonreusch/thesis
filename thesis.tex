@@ -338,7 +338,7 @@ As stated above, we tried a variety of models:
 \item[Unbroken power law] A single, unbroken power law with the power law index as free parameter
 \item[Broken power law] We also used a broken power law, with the two spectral indices and the wavelength of the break as free parameters.
 \item[Single blackbody] A single unmodified blackbody was used here, which can be described by two parameters, the blackbody radius and it temperature.
-\item[Double blackbody] Two unmodified blackbodies, resulting in four free parameters (2xtemperature, 2xradius).
+\item[Double blackbody] Two unmodified blackbodies, resulting in four free parameters ($2 \times$ temperature, $2 \times$ radius).
 \end{description}
 
 All fits were performed with the \texttt{lmfit} \sidecite{Newville2021} Python package , which implements the Levenberg-Marquardt algorithm for solving non-linear least-squares problems.
@@ -359,7 +359,7 @@ $S_1$ & \num{2.3e23} & [\num{1e20}, \num{1e27}] \\
 $S_2$ & \num{1e20} & [\num{1e18}, \num{1e21}] 
 \end{tabular}
 \end{center}
-\caption[Double BB fit priors]{Priors for the double blackbody minimization. $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}
+\caption[Double BB fit priors]{Priors for the double blackbody minimization. $A_V$ is the extinction parameter (only fitted in epoch 1 and fixed for epoch 2 and 3), $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}
 \label{tab:double_bb_priors}
 \end{table}
 
@@ -383,7 +383,7 @@ In each iteration of the minization proceess, the spectrum of both blackbodies c
 
 To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, the P200 and \textit{WISE}.
 
-The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}.
+The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}. The best-fit temperatures result in a `blue' blackbody peaking in optical/UV wavelengths, and a `red' blackbody peaking in the infrared.
 
 \begin{table}
 \renewcommand{\arraystretch}{1.3}
@@ -418,11 +418,17 @@ For each epoch and fit parameter, this was done by letting all parameters very e
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/at2019fdr_bb_chisq.pdf}
-    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 1 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
+    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
     \labfig{bb_chisq}
 \end{figure}
 
 From the fit parameter uncertainties calculated as such, the uncertainties on the radius and the luminosities was obtained via Gaussian error propagation.
+
+As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As this was in tension with the dust-echo model discussed below\todo{add ref}, we investigated this behavior.
+
+The most likely reason for this is that the infrared blackbody is less constrained in epoch 3, as there are \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. Figures\todo{figures} illustrate this. In Fig. XX one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}. Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. F
+
+
 
 
 
