@@ -20,6 +20,8 @@
 \usepackage{orcidlink}
 \usepackage{siunitx}
 \usepackage{astro}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage[backend=biber, style=numeric-comp,backref, sorting=none, firstinits=true,maxnames=2]{biblatex}
 
@@ -426,9 +428,28 @@ From the fit parameter uncertainties calculated as such, the uncertainties on th
 
 As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As this was in tension with the dust-echo model discussed below\todo{add ref}, we investigated this behavior.
 
-The most likely reason for this is that the infrared blackbody is less constrained in epoch 3, as there are \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. Figures\todo{figures} illustrate this. In Fig. XX one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}. Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. F
+\begin{figure}[htb]
+\centering
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{at2019fdr/at2019fdr_contour_all.pdf}
+\caption{Infrared blackbody, \SI{90}{\percent} CL contours for all three epochs (optical+UV blackbody fit parameters remain free).}
+\label{fig:at2019fdr_contour_all}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.48\textwidth}
+\centering
+\includegraphics[width=0.95\textwidth]{at2019fdr/at2019fdr_contour_all_no_WISE.pdf}
+\caption{Infrared blackbody, \SI{90}{\percent} CL contours for all three epochs after removing the two WISE datapoints for epoch 2.}
+\label{fig:at2019fdr_contour_all_nowise}
+\end{subfigure}
+\caption[AT2019fdr temperature fit]{\SI{90}{\percent} CL contours for the infrared blackbody temperature fits, once including the \textit{WISE} data in all epochs, once removing them in epoch 2.}
+\label{fig:at2019fdr_contour}
+\end{figure}
 
+The most likely reason for this is that the infrared blackbody is less constrained in epoch 3, as there are \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. Figures\todo{figures} illustrate this. In Fig. \ref{fig:at2019fdr_contour_all} one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}. Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. Fig. \ref{fig:at2019fdr_contour_all_nowise} shows how the \SI{90}{\percent} contour of epoch 2 gets moved to a higher temperature and lower radius when removing the two \textit{WISE} datapoints. This reinforces the case that the higher best-fit temperature in epoch 3 is merely an artifact of having less constraints for the fit and not some unexplained physical process.
 
+\section{Dust echo model}
 
 
 
