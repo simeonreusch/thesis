@@ -472,7 +472,11 @@ where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the resp
 L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
 \end{equation}
  
-The delay induced by light travel time can thus be approximated by convolving the optical light curve with a box function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere. 
+The delay induced by light travel time can thus be approximated by convolving the optical light curve with a box function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
+
+This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ -- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
+
+
 
 According to \cite{Velzen2016}, the radius of this dust shell can be approximated as 
 \begin{equation}
