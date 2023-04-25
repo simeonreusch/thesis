@@ -435,10 +435,10 @@ From the fit parameter uncertainties calculated as such, the uncertainties on th
 \begin{subfigure}{0.48\textwidth}
 \centering
 \includegraphics[width=0.95\textwidth]{at2019fdr/at2019fdr_contour_all_no_WISE.pdf}
-\caption{Infrared blackbody, \SI{90}{\percent} CL contours for all three epochs after removing the two WISE datapoints for epoch 2. The contours of epoch 2 move to a region of higher temperatures comparable to epoch 3, showing that the \textit{WISE} measurements are pushing the temperature down.}
+\caption{Infrared blackbody, \SI{90}{\percent} CL contours for all three epochs after removing the two WISE datapoints for epoch 2.}
 \label{fig:at2019fdr_contour_all_nowise}
 \end{subfigure}
-\caption[AT2019fdr temperature fit]{\SI{90}{\percent} CL contours for the infrared blackbody temperature fits, once including the \textit{WISE} data in all epochs, once removing them in epoch 2.}
+\caption[AT2019fdr temperature fit]{\SI{90}{\percent} CL contours for the infrared blackbody temperature fits, once including the \textit{WISE} data in all epochs, once removing them in epoch 2. The contours of epoch 2 move to a region of higher temperatures comparable to epoch 3 when the \textit{WISE} datapoints are removed. This shows that they are pushing the temperature down.}
 \label{fig:at2019fdr_contour}
 \end{figure}
 
@@ -459,8 +459,36 @@ As one can see in the light curve\sidenote{See Fig. \ref{fig:at2019fdr_light_cur
 
 We interpret this infrared emission as a \textit{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy \sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a `safe distance', at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
 
- When heated to typical temperatures around  
+Outside the sublimation radius, the grain temperature is coupled to the incident radiation, as it cools rapidly ($10^{-4} a_{0.1}^-1T_{1850}^{-5}$ s, which equals to \SI{0.1}{\milli\s} for a grain size of \SI{0.1}{\micro\m} at \SI{1850}{\K}).
 
+The infrared light curve produced this way can be approximated as follows according to \cite{Velzen2016}:
+
+\begin{equation}
+L_\text{IR} = \int d\tau~ \Psi(\tau) ~L(t-\tau)
+\end{equation}
+where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the response function and $\tau$ is the delay. In the case of a spherical shell of dust, $\Psi(\tau))$ can be approximated by a square wave response function, ranging from $\tau=0$ to $\tau = 2 R_0 c$ (where $R_0$ is the radius of the dust shell). We can therefore write
+
+\begin{equation}
+L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
+\end{equation}
+ 
+The delay induced by light travel time can thus be approximated by convolving the optical light curve with a box function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere. 
+
+According to \cite{Velzen2016}, the radius of this dust shell can be approximated as 
+\begin{equation}
+R= \bigg(\frac{L_{45}}{a_{0.1}^2 T_{1850}^{5.8}} \bigg)^{1/2} \text{pc}
+\end{equation}
+where $L_{45}$ is the flare's luminosity integrated over all wavelengths where the dust absorbs, normalized to \SI{1e45}{\erg\per\s}, $a_{0.1}$ is the dust grain size normalized to $\SI{0.1}{\micro\m}$, and $T_{1850}$ is the grain temperature normalized to \SI{1850}{\K}.
+
+
+\begin{figure}[htb]
+    \includegraphics[width=0.8\textwidth]{at2019fdr/dust_model_chisq_simple.pdf}
+    \caption[Dust model fit corner plot]{Corner plot of the dust model fit for AT2019fdr. The two free parameters (amplitude and light travel time are plotted together with the marginalized $\chi^2$ values.}
+    \labfig{at2019fdr_dust_model_chisq}
+\end{figure}
+
+To calculate this, we 
+% For this work, all values were taken as their default value, and 
 
 
 \section{Classification}
@@ -469,7 +497,7 @@ We interpret this infrared emission as a \textit{dust echo}. In this model, the 
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
  $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray & W1-W2 & Re-\\ 
- & $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
+ $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
  \hline
  \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
 \end{tabular}
