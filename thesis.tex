@@ -476,19 +476,23 @@ The delay induced by light travel time can thus be approximated by convolving th
 
 This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ -- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
 
+To calculate $R_0$, we used the ZTF \textit{g}-band light curve as it is the best sample one. This get convolved with the box function, where the width of the box function in days is a free parameter. The initial delay with respect to the optical light curve here is half the size of the box function. The second free parameter is a dimensionless amplitude used to scale the optical light curve to match the \textit{WISE} datapoints.
 
+From this procedure, we obtained a best-fit light travel time of 193 days, which translates to $R_0=\SI{0.16}{\parsec}$. The best fit parameters can be seen in Fig. \ref{fig:at2019fdr_dust_model_chisq}.
 
-According to \cite{Velzen2016}, the radius of this dust shell can be approximated as 
+To crosscheck this result, we used the fact that according to \cite{Velzen2016}, the radius of this dust shell can be approximated as 
 \begin{equation}
 R= \bigg(\frac{L_{45}}{a_{0.1}^2 T_{1850}^{5.8}} \bigg)^{1/2} \text{pc}
 \end{equation}
 where $L_{45}$ is the flare's luminosity integrated over all wavelengths where the dust absorbs, normalized to \SI{1e45}{\erg\per\s}, $a_{0.1}$ is the dust grain size normalized to $\SI{0.1}{\micro\m}$, and $T_{1850}$ is the grain temperature normalized to \SI{1850}{\K}.
 
+This can be 
+
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/dust_model_chisq_simple.pdf}
     \caption[Dust model fit corner plot]{Corner plot of the dust model fit for AT2019fdr. The two free parameters (amplitude and light travel time are plotted together with the marginalized $\chi^2$ values.}
-    \labfig{at2019fdr_dust_model_chisq}
+    \labfig{fig:at2019fdr_dust_model_chisq}
 \end{figure}
 
 To calculate this, we 
