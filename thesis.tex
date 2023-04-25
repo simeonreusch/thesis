@@ -381,11 +381,19 @@ The luminosity distance is equal to the proper distance (as in the amount of spa
 
 \subsection{Minimization}
 
+\begin{figure*}[htb]
+    \includegraphics{at2019fdr/at2019fdr_lightcurve_and_sed.pdf}
+    \caption[AT2019fdr light and SED]{Light curve and SED of AT2019fdr. The three panels on the top show the double blackbody fits for the three epochs marked in gray. On the bottom, the ZTF \textit{g}- and \textit{WISE W1}-band light curve is shown, as well as the modeled dust echo emission. From \cite{Reusch2022}.}
+    \labfig{at2019fdr_lightcurve_and_sed}
+\end{figure*}
+
 In each iteration of the minization proceess, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the two blackbody spectra were added. 
 
-To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, the P200 and \textit{WISE}.
+To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, P200 and \textit{WISE}.
 
 The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}. The best-fit temperatures result in a `blue' blackbody peaking in optical/UV wavelengths, and a `red' blackbody peaking in the infrared.
+
+We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time, we derived a total bolometric luminosity of $E_\text{bol} = \SI{3.4e52}{\erg}$. We did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction). This renders AT2019fdr one of the brightest transients ever detected, \sidecite{Dong2016}.
 
 \begin{table}
 \renewcommand{\arraystretch}{1.3}
@@ -407,26 +415,13 @@ The best fit values from all three epochs, as well as their uncertainties (\SI{6
 \label{tab:double_bb}
 \end{table}
 
-\begin{figure*}[htb]
-    \includegraphics{at2019fdr/at2019fdr_lightcurve_and_sed.pdf}
-    \caption[AT2019fdr light and SED]{Light curve and SED of AT2019fdr. From \cite{Reusch2022}.}
-    \labfig{at2019fdr_lightcurve_and_sed}
-\end{figure*}
 
 \subsection{Uncertainty estimate}
 As the fit routine was not able to generate stable covariance matrices in all epochs, the uncertainties were estimated manually.
 
 For each epoch and fit parameter, this was done by letting all parameters very except for the parameter of interest. This parameter was then varied around the best-fit value, and the resulting $\chi^2$ was evaluated. The $\chi^2$ distribution was then approximated with a polynomial, and the the \SI{68}{\percent} confidence level calculated -- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
-\begin{figure}[htb]
-    \includegraphics[width=0.8\textwidth]{at2019fdr/at2019fdr_bb_chisq.pdf}
-    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
-    \labfig{bb_chisq}
-\end{figure}
-
 From the fit parameter uncertainties calculated as such, the uncertainties on the radius and the luminosities was obtained via Gaussian error propagation.
-
-As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As this was in tension with the dust-echo model discussed below\todo{add ref}, we investigated this behavior.
 
 \begin{figure}[htb]
 \centering
@@ -447,10 +442,22 @@ As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature r
 \label{fig:at2019fdr_contour}
 \end{figure}
 
-The most likely reason for this is that the infrared blackbody is less constrained in epoch 3, as there are \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. Figures\todo{figures} illustrate this. In Fig. \ref{fig:at2019fdr_contour_all} one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}. Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. Fig. \ref{fig:at2019fdr_contour_all_nowise} shows how the \SI{90}{\percent} contour of epoch 2 gets moved to a higher temperature and lower radius when removing the two \textit{WISE} datapoints. This reinforces the case that the higher best-fit temperature in epoch 3 is merely an artifact of having less constraints for the fit and not some unexplained physical process.
+As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As this was in tension with the dust-echo model discussed below\todo{add ref}, we investigated this behavior.
+
+The most likely reason for this is that the infrared blackbody was less constrained in epoch 3, as there are \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. In Fig. \ref{fig:at2019fdr_contour_all}, one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}.
+
+\begin{marginfigure}
+    \includegraphics{at2019fdr/at2019fdr_bb_chisq.pdf}
+    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
+    \labfig{bb_chisq}
+\end{marginfigure}
+
+Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. Fig. \ref{fig:at2019fdr_contour_all_nowise} shows how the \SI{90}{\percent} contour of epoch 2 gets moved to a higher temperature and lower radius when removing the two \textit{WISE} datapoints. This reinforces the case that the higher best-fit temperature in epoch 3 is merely an artifact of having less constraints for the fit and not some unexplained physical process.
 
 \section{Dust echo model}
+As one can see in the light curve\sidenote{See Fig. \ref{fig:at2019fdr_light_curve}} of AT2019fdr, the emission in all infrared bands (\textit{WISE} and P200) is delayed with respect to the optical signal. Furthermore, the infrared emission is well approximated by a blackbody, as was shown in the last section.
 
+We interpret this infrared emission as a \textit{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed 
 
 
 % \begin{table*}
