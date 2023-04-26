@@ -3,7 +3,7 @@
 \labch{fupipeline}
 After introducing the IceCube detector (see Chapter \ref{ic}) and the Zwicky Transient Facility (see Chapter \ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy neutrino follow-up pipeline.
 
-IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section \ref{ic_alerts}}. Due to its large FoV and fully robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
+IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section \ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
 The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.
 
@@ -23,7 +23,7 @@ Plan IC221223A -multiday
 \end{lstlisting}
 in the \texttt{plan\_observations} Slack channel will create an observation plan for IceCube high-energy neutrino IC220501A, spanning multiple days.
 
-To obtain the positional and error information on the neutrino in question from the respective GCN Circular, \texttt{planobs} is searching for the GCN on an experimental server\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As circulars are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
+To obtain the positional and error information on the neutrino in question from the respective GCN Circular, \texttt{planobs} is searching for the GCN on a server hosted by NASA\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As circulars are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
 
 \begin{figure}[h!]
     \includegraphics{fu/planobs_airmass.pdf}
@@ -139,7 +139,7 @@ The possibility to extract flux prior to the first alert detection makes forced 
 \end{marginfigure} 
 \texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interace, or within a dedicated Slack channel to serve the broader community.
 
-For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution can differ from band to band.\todo{source}
+For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution was differing from band to band in some cases when testing the pipeline.
 
 Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package \sidecite{Dembinski2023}, running the \texttt{MIGRAD} \sidecite{James1975} algorithm, a type of least-squares fit.
 
@@ -153,10 +153,10 @@ The instruments on which we had time for ToO observations during the last years 
 The image reduction pipelines used were either custom routines provided by the instrument, \texttt{pyraf}\sidenote{\url{https://github.com/iraf-community/pyraf}}, a Python wrapper to IRAF \sidecite{Tody1986}, or \texttt{pypeit} \sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS, while \texttt{pyraf} was used for Keck/LRIS.
 
 \section{Follow-Up Performance}
-As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube\sidenote{See Section \ref{ic_alert_program}} since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria\sidenote{See Section \ref{alert_cuts}}. The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.\todo{Christopher Laemmle plot fu over time}.
+As of March 2023, we have followed up 34 of the 108 non-retracted high-energy neutrino alerts issued by IceCube\sidenote{See Section \ref{ic_alert_program}} since the start of the program, which amounts to \SI{31}{\percent} of all alerts. An overview is shown in Fig. \ref{fig:follow_up_overview}. The majority of alerts not followed up were only visible during the day (`Proximity to the sun'), or did not meet our alert quality criteria\sidenote{See Section \ref{alert_cuts}}. The rest were either located too close to the galactic plane ($|b|\leq\SI{10}{\degree}$) or the telescope was on hold due to weather or technical problems.
 
 \begin{figure}[h!]
-    \includegraphics[width=0.8\textwidth]{fu/follow_up_overview.pdf}
+    \includegraphics[width=0.7\textwidth]{fu/follow_up_overview.pdf}
     \caption[Follow-up performance]{Breakdown of the follow-up performance as of March 2023. Out of 108 neutrino alerts, 34 were followed up. The `Other' category comprises low altitude (below our airmass limit of 2.0 or entirely in the southern sky) and bad weather.}
     \labfig{follow_up_overview}
 \end{figure}
@@ -209,7 +209,7 @@ AT2020ybb was discovered when following up IC201021A \sidecite{IC201021A1}. Obse
 
 AT2020ybb was a promising candidate, as the light curve of the source was compatible with a supernova around peak \sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
 
-We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig. \ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum was somewhat ambiguous and allowed no classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.\todo{add light curve}
+We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig. \ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum was somewhat ambiguous and allowed no classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.\todo{add light curve?}
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20acmxnpa_spectrum.pdf}
@@ -256,7 +256,7 @@ Roughly half of the transients were classified as \textit{AGN Variability}, e.g.
 
 This leaves 5 candidates that were classified as \textit{AGN}, but did show coincident optical flares, as well as 16 bona fide \textit{transients}, totalling 21 classified candidates.
 
-Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\todo{sidenote with some BTS numbers}. Among the other transients, only both of the TDEs were identified as source candidates. The remaining non--Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly\sidenote{See Section \ref{SN2020lls}}.
+Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only both of the TDEs were identified as source candidates. The remaining non--Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly\sidenote{See Section \ref{SN2020lls}}.
 
 \section{TDE AT2019dsg}
 I did not contribute to the analysis of AT2019dsg, but as it is important in the context of the work on AT2019fdr highlighted in the next Chapter (\ref{at2019fdr}), I will present the most important findings.
@@ -278,7 +278,7 @@ Furthermore, AT2019dsg was observed by the X-ray Telescope (XRT) \sidecite{Burro
 
 More peculiar, AT2019dsg has also been detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI) \sidecite{Zwart2008,Hickish2018}, MeerKAT \sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA) \sidecite{Thompson1980} at several different epochs following the neutrino detection showed a radio signal with temporal evolution over the course of the next months.
 
-In \cite{Stein2021} the evolving radio signal was interpreted as the signature of a relativistic jet launched by the TDE\todo{das nochmal mit der nature version überprüfen, auch walter/cecilia}. The jet interpretation was later disputed: \sidecite{Cendes2021} added later radio observations to the dataset and found the radio data more compatible with a non-relativistic outflow, excluding neutrino production; while \sidecite{Mohan2022} performed very-long-baseline interferometry (VLBI) and also conclude on a non-relativistic outflow as the origin of the radio emission, while emphasizing the compatibility of that scenario with high-energy neutrino production. Nonetheless, the observations confirm long-lived non-thermal emission from the transient.
+In \cite{Stein2021}, the evolving radio signal was interpreted as the signature of a relativistic jet launched by the TDE\todo{das nochmal mit der nature version überprüfen, auch walter/cecilia}. The jet interpretation was later disputed: \sidecite{Cendes2021} added later radio observations to the dataset and found the radio data more compatible with a non-relativistic outflow, excluding neutrino production. \sidecite{Mohan2022} performed very-long-baseline interferometry (VLBI) and also concluded on a non-relativistic outflow as the origin of the radio emission, while emphasizing the compatibility of that scenario with high-energy neutrino production. Nonetheless, the observations confirm long-lived non-thermal emission from the transient.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/at2019dsg_dustecho.pdf}
@@ -286,4 +286,8 @@ In \cite{Stein2021} the evolving radio signal was interpreted as the signature o
     \labfig{at2019dsg_dustecho}
 \end{figure}
 
-Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig. \ref{fig:at2019dsg_dustecho}. They somewhat trail the optical evolution -- this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section\todo{Section with Tywin dustecho}.
+Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig. \ref{fig:at2019dsg_dustecho}. They somewhat trail the optical evolution -- this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section \ref{dust_echo}.
+
+The chance coincidence to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like AT2019dsg was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as AT2019dsg was \SI{0.2}{\percent} \cite{Stein2021}. This provides evidence for the hypothesis that tidal disruption events do in fact contribute to the flux of high-energies measured by IceCube.
+
+ÜBERLEITUNG.

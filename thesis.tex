@@ -120,11 +120,10 @@
 \setchapterstyle{kao}
 
 %\chapter{Theoretical background}
-%\addpart{Title of the Part}
 \pagelayout{margin}
 
 
-% \input{chapters/theory.tex}
+\input{chapters/theory.tex}
 \input{chapters/icecube.tex}
 \input{chapters/ztf.tex}
 \input{chapters/followup.tex}
@@ -393,7 +392,7 @@ To extract the flux as observed in each band, \texttt{SNCosmo} was used to evalu
 
 The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}. The best-fit temperatures result in a `blue' blackbody peaking in optical/UV wavelengths, and a `red' blackbody peaking in the infrared.
 
-We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time, we derived a total bolometric luminosity of $E_\text{bol} = \SI{3.4e52}{\erg}$. We did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction). This pushes AT2019fdr to the class of brightest transients ever detected. Its inferred bolometric energy was almost twice as high as that of ASASSN-15lh, which was one of the brightes transients ever reported \sidecite{Dong2016} and which was suggested to be a TDE \sidecite{Leloudas2016}.
+We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time by scaling it with the shape of the ZTF \textit{g}-band light curve, we obtained a total bolometric luminosity of $E_\text{bol} = \SI{3.4e52}{\erg}$. We did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction). This pushes AT2019fdr to the class of brightest transients ever detected. Its inferred bolometric energy was almost twice as high as that of ASASSN-15lh, which was one of the brightes transients ever reported \sidecite{Dong2016} and which was suggested to be a TDE \sidecite{Leloudas2016}.
 
 \begin{table}
 \renewcommand{\arraystretch}{1.3}
@@ -486,14 +485,18 @@ R= \bigg(\frac{L_{45}}{a_{0.1}^2 T_{1850}^{5.8}} \bigg)^{1/2} \text{pc}
 \end{equation}
 where $L_{45}$ is the flare's luminosity integrated over all wavelengths where the dust absorbs, normalized to \SI{1e45}{\erg\per\s}, $a_{0.1}$ is the dust grain size normalized to $\SI{0.1}{\micro\m}$, and $T_{1850}$ is the grain temperature normalized to \SI{1850}{\K}.
 
-This can be 
-
-
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/dust_model_chisq_simple.pdf}
     \caption[Dust model fit corner plot]{Corner plot of the dust model fit for AT2019fdr. The two free parameters (amplitude and light travel time are plotted together with the marginalized $\chi^2$ values.}
     \labfig{at2019fdr_dust_model_chisq}
 \end{figure}
+
+When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yields a sublimation radius of \SI{0.2}{\parsec}, which is in good agreement with the best-fit value of \SI{0.16}{\parsec}.
+
+To obtain the covering factor, i.e. the fraction of the shell around the transient that actually contained dust, we needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yields a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim 1}{\percent}, see \cite{Velzen2016}).
+
+We used this covering factor and the radius of the dust shell to determine the dust mass. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} results in a mass of $0.017 ~\text{M}_\odot$. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
+
 % For this work, all values were taken as their default value, and 
 
 
