@@ -544,7 +544,18 @@ NLSy1 galaxies in general exhibit softer spectra, the temperature of AT2019fdr w
 The dust echo (see Section \ref{dust_echo}) we found, together with the energy budget and the bolometric evolution suggests that AT2019fdr belongs into an emerging class of strong TDE candidates located in AGN, as e.g. PS1-10adi (discussed above), AT2017gbl \sidecite{Kool2020}, or Arp 299-B AT1 \sidecite{Mattila2018}.
 
 \section{Chance Coincidence}
-To compute the chance coincidence of observing a TDE comparable to AT2019fdr in spatial and temporal coincidence with a high-energy neutrino, we 
+To compute the chance coincidence of observing a TDE comparable to AT2019fdr in spatial and temporal coincidence with a high-energy neutrino, we created a sample of TDEs and candidate TDEs of comparable or higher brightness.
+
+We then calculated the effective source density $\rho_\text{eff}$ as follows:
+
+\begin{equation}
+\rho_\text{eff} = (N_\text{flare} \times \Delta t_\text{flare}) / (A_\text{ZTF}  \times \Delta t_\text{search})
+\end{equation}
+where $N_\text{flare}$ is the total number of comparable sources (including AT2019dsg and AT2019fdr), $\Delta t_\text{flare}$ is the typical duration of such events, $A_\text{ZTF}$ is the sky area accessible to ZTF, and $\Delta t_\text{search}$ is the search window (i.e. the duration of our follow-up program at the time of submission). 
+
+We selected 12 events \todo{see blabla} to belong to the list of comparable sources. With this, the effective source density is calculated as $\rho_\text{eff} = \SI{1.71e-4}{\per\square\deg}$.
+
+Now the expectation value for finding two neutrino coincident with two sources can be calculated. The expectation value for one neutrino is $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time.
 
 %In total, 9 spectra were taken with 5 different instruments.
 %
