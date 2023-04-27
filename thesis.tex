@@ -123,7 +123,7 @@
 \pagelayout{margin}
 
 
-\input{chapters/theory.tex}
+% \input{chapters/theory.tex}
 \input{chapters/icecube.tex}
 \input{chapters/ztf.tex}
 \input{chapters/followup.tex}
@@ -495,27 +495,52 @@ When inserting the infrared blackbody temperature from the second epoch (as it i
 
 To obtain the covering factor, i.e. the fraction of the shell around the transient that actually contained dust, we needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yields a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim 1}{\percent}, see \cite{Velzen2016}).
 
-We used this covering factor and the radius of the dust shell to determine the dust mass. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} results in a mass of $0.017 ~\text{M}_\odot$. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
+We used this covering factor and the radius of the dust shell to determine the dust mass. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} results in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
 % For this work, all values were taken as their default value, and 
 
 
 \section{Classification}
+As stated at the beginning of this chapter, AT2019fdr was initially classified as a SLSN IIn, but a subsequent paper classified AT2019fdr as TDE. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
+
+\subsection{Original TDE classification}
+Frederick et al. \cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that AT2019fdr -- as all the 5 flares located in NLSy1 galaxies they studied -- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table \ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely.
 
 \begin{table*}
 \begin{center}
-\begin{tabular}{c|c|c|c|c|c|c|c|c}
- $\log M_\text{BH}$&  $H_\beta<2000$ & FeII & [OIII]$/H_\beta<3$ & $\Delta g-r$ & UV & X-ray & W1-W2 & Re-\\ 
- $<8 M_\odot$ & \unit{\km\per\s} & & (flux ratio) & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+ Name & $M_\text{BH}<$&  $\text{H}_\beta<2000$ & FeII & [OIII]$/\text{H}_\beta$ & $\Delta g-r$ & UV & X-ray & \textit{W1}-\text{W2} & Re-\\ 
+ & $10^8 M_\odot$ & \unit{\km\per\s} & & $<3$ & $\sim 0$ mag & & \& $\Gamma$ & $<0.7$ mag & brighten \\
  \hline
- \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
+ AT2019fdr & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$ & \cellcolor{green}\checkmark & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\ 
+  PS1-10adi & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
 \end{tabular}
 \end{center}
-\caption[AT2019fdr classification matrix]{AT2019fdr classification matrix. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. \textcolor{red}{Explain column names} Adapted from \cite{Frederick2021}.}
+\caption[AT2019fdr/PS1-10adi classification matrix]{Classification matrix of AT2019fdr and PS1-10adi for comparison. \checkmark means the property is present, while $\times$ marks an absence. \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. Adapted from \cite{Frederick2021}.}
 \label{tab:at2019fdr_classification_matrix}
 \end{table*}
 
+In the case of AT2019fdr, the host galaxy black hole mass lies below the Hills mass ($\lesssim 10^8 M_\odot$), it was persistently detected in UV around the peak, but initally not in X-ray wavelengths, its \textit{WISE} \textit{W1}-\textit{W2} color was below $0.7~\text{mag}$, and it showed no signs of rebrightening at the time of publication. 
+
+On the other hand, its narrow H$_\beta$ emission feature and its [OIII]/H$_\beta$ flux ratio, the strong FeII complex and the transients lack of cooling rather stipulated a flare of the underlying NLSy1 host.
+
+To conclude: A thin majority of features observed in AT2019fdr were `TDE-like'. Also, it resembled PS1-10adi, a bright transient discovered by PS1 on August 1, 2010 \sidecite{Kankare2017}, which has been classified as a TDE embedded in an AGN \sidecite{Jiang2019}. For these reasons, the transient was ultimately classified as TDE. Following the subclassification scheme proposed in \sidecite{Velzen2021a}, it is a H-only TDE, with the FeII complex most likely stemming from the NLSy1 host galaxy.
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_lc_rebrightening.pdf}
+    \caption[AT2019fdr rebrightening]{AT2019fdr late stage rebrightening. Starting around MJD $=59500$, the flux in all ZTF bands increased, until it reached a plateau $\sim 200$ days later.}
+    \labfig{at2019fdr_rebrightening}
+\end{figure}
+
+After the publication of our paper on AT2019fdr, the transient underwent a rebrightening in the optical. About 2.2 years after the optical peak and continuous decline ever since, the flux in all three ZTF bands started to increase again, until it hit a plateau roughly 200 days later. As of April 2023, AT2019fdr is still in this plateau. This is atypical behavior for TDEs and SNe, as was already pointed out in \cite{Frederick2021}. 
+
+Interestingly, also PS1-10adi showed a late-stage rebrightening \cite{Jiang2019}.
+
+\subsection{Additional evidence}
+
+
 \section{Chance Coincidence}
+
 
 %In total, 9 spectra were taken with 5 different instruments.
 %
