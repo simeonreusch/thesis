@@ -563,7 +563,16 @@ We then calculated the effective source density $\rho_\text{eff}$ -- i.e. the de
 \end{equation}
 where $N_\text{flare}$ is the total number of comparable sources (including AT2019dsg and AT2019fdr), $\Delta t_\text{flare}$ is the typical duration of such events, $A_\text{ZTF}$ is the sky area accessible to ZTF, excluding sources with a galactic latitude $|b|<\SI{7}{\degree}$, and $\Delta t_\text{search}$ is the time range of the sources sample, i.e. 2.5 years. With the 12 events of the comparison sample, the effective source density is $\rho_\text{eff} = \SI{1.71e-4}{\deg}^{-2}$.
 
-Now an expectation value for the number of neutrinos coincident with two sources can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$.
+Now an expectation value for the number of neutrinos coincident with two sources can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$. Employing a Poisson distribution, the probability of finding two sources by chance was $p=\num{3.4e-4}$, while finding one source only had a p-value of $p=\num{2.6e-2}$ \cite{Reusch2022}.
+
+To calculate the chance coincidence of finding two coincident neutrinos, we calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1 -- which leaves the probability of observing 2 or more coincidences:
+
+\begin{equation}
+p(2) = 1 - \sum_{k=0}^1 \frac{e^{-\mu}\mu^k}{k!}
+\end{equation}
+where the sum is the cumulative distribution function of the Poisson distribution.
+
+Using a right-tailed normal distribution, this translates to $\SI{3.4}{\sigma}$ (\SI{1.94}{\sigma} for a single association).
 
 %In total, 9 spectra were taken with 5 different instruments.
 %
