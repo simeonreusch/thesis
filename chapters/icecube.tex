@@ -137,7 +137,7 @@ With these six pieces of information -- the two transmit timestamps, the two rec
 
 \section{Angular Reconstruction}\label{reconstruction}
 
-The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are mutually exxclusive, which is reflected by broadly classifying the events seen by the detector in two categories: \textit{Track events} and \textit{cascade events}.
+The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. These two goals are mutually exclusive, which is reflected by broadly sorting the events seen by the detector into two categories: Well localized \textit{track events} with poorly reconstructed energy, and \textit{cascade events} with well-determined energy, but very imprecise origin.
 
 \subsection{Event types}
 
@@ -145,7 +145,7 @@ Track events (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting
 
 Cascade events (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within a small fraction of the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx \SI{15}{\percent}$) \cite{Aartsen2017a}.
 
-As this thesis is mainly interested in the sources of high-energy astrophysical neutrinos, the track events are more important here, and I will focus on the angular reconstruction of those.
+As this thesis is mainly interested in the sources of high-energy astrophysical neutrinos, the track events are more important here, and I will focus on the angular reconstruction of these.
 
 \subsection{Likelihood approach}
 The basic angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It is based on a maximum-likelihood method \sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters do maximize the probability of measuring the actually observed values of $\vec{x}$?
@@ -165,7 +165,7 @@ Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x
     \labfig{ic_reco_cherenkov}
 \end{figure}
 
-To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. Furthermore, we neglect stochastic photon losses. The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$. So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the earth, centered on the detector surface and pointing southwards. An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while an azimuth angle of \SI{0}{\degree} travels from the 90th Meridian East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), travelling along a track of infinite length. Furthermore, we neglect stochastic photon losses. The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon at time $t_0$ with energy $E_0$ at position $\vec{r_0}$, traveling in the direction $\vec{p}$. So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the earth, centered on the detector surface and pointing southwards. An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels from the 90th Meridian East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
 
 Now, a DOM in the detector at position $\vec{r}_i$ with a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon traveling along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as follows:
 \begin{equation}
@@ -176,9 +176,8 @@ with $c_0$ the vacuum speed of light. As this does not take scattering into acco
 As the position of the DOM is known, $t_\text{res}$ is the most significant observable for each DOM,  We therefore simplify $x_i$ to $t_{\text{res},i}$, and express $\vec{a}$ as a function of the individual DOM parameters: $\vec{a}= (d_i,\eta_i,...)$.
 
 
-
 \subsection{First (single) photoelectron fit}
-Matters can be simplified further. While the muon is travelling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to only regard the \textit{first} photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is carried out with this simplification, it is called \textit{single photoelectron} (SPE) fit. The likelihood function for this is:\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
+Matters can be simplified further. While the muon is travelling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to only regard the \textit{first} photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called \textit{single photoelectron} (SPE) fit. The likelihood function for this is:\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
 \mathcal{L}_\text{1st}(\vec{x}|\vec{a}) = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,...)
@@ -186,7 +185,7 @@ Matters can be simplified further. While the muon is travelling and emitting Che
 where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained from simulations modeling the photon propagation through the Antarctic ice (this is necessary because the photon scatter needs to be accounted for). The simulation results are either stored in look-up tables or approximated by analytical functions \cite{Ahrens2004}. 
 
 \subsection{Multi photoelectron fit}
-A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon (more hits equal proximity to the event, and therefore a higher signal. The event is detected better and therefore earlier). 
+A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon. This is because more photon hits mean that the DOM is closer to the event, and therefore receives a higher signal -- which means that the event is detected earlier. 
 
 This leads to the \textit{multi photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given by\todo{explain!!}
 \begin{equation}
@@ -224,7 +223,7 @@ Since 2016, IceCube is hosting a realtime alert program, providing the astrophys
 Depending on the declination, there are two major sources of background events in the IceCube detector, both stemming from secondary cosmic ray particles from the earth's atmosphere.
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{ic/ic_background.pdf}
-    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the norther hemisphere, the detector is shielded form atmospheric muons, but not atmospheric neutrinos, as these can traverse the earth. Adapted from \cite{Ahlers2018a}.}
+    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the northern hemisphere, the detector is shielded from atmospheric muons, but not atmospheric neutrinos, as these can traverse the earth. Adapted from \cite{Ahlers2018a}.}
     \labfig{ic_background}
 \end{figure}
 
@@ -249,7 +248,7 @@ One complication here stems from the fact that the earth starts to become opaque
 \subsection{Event selection} \label{ic_event_selection}
 Gold and bronze alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are \textbf{High Energy Starting Events} (HESE), \textbf{Extremely High Energy} (EHE) events and \textbf{Gamma-Ray Follow Up} (GFU) events.
 
-\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of HESE events are cascades and therefore not well suited for observational follow-up. Because of this, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}.
+\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \sidecite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: The reconstruction must favor a track interpretation of the event, and the reconstructed track length must exceed \SI{200}{\meter} \cite{Tung2019}.
 \begin{marginfigure}
     \includegraphics{ic/ic_HESE_veto.pdf}
     \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
@@ -276,8 +275,11 @@ All events that pass a first stage of filtering are sent to the IceCube data cen
 \end{marginfigure}
 Each notices contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Tung2019}.
 
-Those information are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction, which is initiated manually (see Section \ref{millipede}. These are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
+Those information are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction, which is initiated manually (see Section \ref{millipede}). The results of these reconstructions (i.e. the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
 
 As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the gold and bronze alert stream in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Tung2019}.} (0.8 gold alerts, 1.4 bronze alerts).
 
-If the event is most likely astrophyiscal and reasonably well pin-pointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical information from? The instrument used for this, the Zwicky Transient Facility, will be described in the next chapter.
+If the event is most likely astrophysical and reasonably well pin-pointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical information from? The instrument used for this, the Zwicky Transient Facility, will be described in the next chapter.
+
+
+
