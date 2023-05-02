@@ -21,6 +21,7 @@
 \usepackage{siunitx}
 \usepackage{astro}
 \usepackage{caption}
+\usepackage[super]{nth}
 \usepackage{subcaption}
 
 \usepackage[backend=biber, style=numeric-comp,backref, sorting=none, firstinits=true,maxnames=2]{biblatex}
@@ -124,6 +125,30 @@
 
 
 % \input{chapters/theory.tex}
+
+\setchapterimage[7cm]{theory/AT2019dsg.jpg}
+\chapter{Neutrino Astronomy} \label{theory}
+\labch{Neutrino Astronomy}
+
+For millennia, astronomy was exclusively the domain of optics. Until the \nth{17} century, the unaided eye, sensitive to wavelengths from \num{380} to \SI{800}{\nano\m}, was the sole `instrument' \sidecite{Wall2018} in observing the sky.
+
+Astronomy started with observing and predicting the motions of the sun to forecast seasons in ancient Babylon and Egypt\sidenote{In Egypt, the seasons were not particularly prominent, so their practice of tracking the sun relative to Sirius, the brightest star visible, to predict the Nile flooding had a direct impact on people's livelihood.} \sidecite{Linton2004}. Over the centuries, observing the sky evolved into a mature science, ultimately leading to the Copernican Revolution that placed the sun instead of the earth at the center of the solar system. This pre-instrumental period also already saw the observation of galactic transient events, like the supernovae SN185 by Chinese astronomers or the widely observed SN1054.
+
+Astronomy was greatly accelerated by the invention of the telescope by Hans Lippershey, which allowed for the observation of much fainter objects \sidecite{Beckman2021}. Radio and infrared astronomy expanded the observational means to higher wavelengths in the 1930s and 1950s, while UV, X-ray and Gamma-ray astronomy required satellites to escape the absorption of high-energy photons by the earth's atmosphere or -- in the case of very-high-energy Gamma rays -- required the development of Imaging Atmospheric Cherenkov Telescopes (IACTs).
+
+Two important developments in the \nth{19} century further advanced the field: Spectroscopy, allowing the identification of chemical elements in extraterrestrial objects, and photography, which vastly increased the depth of observations by accumulating much more light with the telescope as is possible by eye alone.
+
+After the invention of the telescope, it took another 360 years for the photon to lose its supremacy as the only messenger available. The advent of neutrino astronomy in the 1960s and lastly, gravitational wave astronomy in the 2010s changed that and initiated the era of \textit{multimessenger astronomy}.
+
+Besides those messengers, the early \nth{20} century saw the identification of another potential messenger: Cosmic rays, which are largely highly energetic protons, electrons and helium nuclei. This messenger though comes with a large drawback: Due to their charge, the particles constituting cosmic rays are deflected by magnetic fields on their way through interstellar and intergalactic space, which makes pin-pointing their origin a virtually impossible task \cite{Beckman2021}. 
+
+Contrary to optical photons, neutrinos are extremely hard to detect, explaining why neutrino astronomy is such a recent development. As this thesis is concerned with the identification of the astrophysical sources of high-energy neutrinos, this chapter will detail what neutrinos are, how high-energy neutrino astronomy advanced, and which types of objects and events have been proposed as sources of high-energy neutrinos. 
+
+\section{Neutrinos}
+Neutrinos were first predicted in the 1930s. When 
+
+
+
 \input{chapters/icecube.tex}
 \input{chapters/ztf.tex}
 \input{chapters/followup.tex}
@@ -563,16 +588,20 @@ We then calculated the effective source density $\rho_\text{eff}$ -- i.e. the de
 \end{equation}
 where $N_\text{flare}$ is the total number of comparable sources (including AT2019dsg and AT2019fdr), $\Delta t_\text{flare}$ is the typical duration of such events, $A_\text{ZTF}$ is the sky area accessible to ZTF, excluding sources with a galactic latitude $|b|<\SI{7}{\degree}$, and $\Delta t_\text{search}$ is the time range of the sources sample, i.e. 2.5 years. With the 12 events of the comparison sample, the effective source density is $\rho_\text{eff} = \SI{1.71e-4}{\deg}^{-2}$.
 
-Now an expectation value for the number of neutrinos coincident with two sources can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$. Employing a Poisson distribution, the probability of finding two sources by chance was $p=\num{3.4e-4}$, while finding one source only had a p-value of $p=\num{2.6e-2}$ \cite{Reusch2022}.
+Now an expectation value for the number of neutrinos coincident with two sources can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$. Employing a Poisson distribution, the probability of finding two sources by chance was $p(2)=\num{3.4e-4}$, while finding one source only had a p-value of $p(1)=\num{2.6e-2}$ \cite{Reusch2022}.
 
 To calculate the chance coincidence of finding two coincident neutrinos, we calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1 -- which leaves the probability of observing 2 or more coincidences:
 
 \begin{equation}
 p(2) = 1 - \sum_{k=0}^1 \frac{e^{-\mu}\mu^k}{k!}
 \end{equation}
-where the sum is the cumulative distribution function of the Poisson distribution.
+where the sum is the cumulative distribution function of the Poisson distribution. Using a right-tailed normal distribution, $p(2)=\num{3.4e-4}$ translates to $\SI{3.4}{\sigma}$ (\SI{1.94}{\sigma} for a single association).
 
-Using a right-tailed normal distribution, this translates to $\SI{3.4}{\sigma}$ (\SI{1.94}{\sigma} for a single association).
+We have so far detailed the data reduction for AT2019fdr, established that it likely was a TDE -- albeit an unusual one -- modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to AT2019fdr is quite improbable.
+
+We now need to evaluate if there are models that render AT2019fdr capable of producing the observed high-energy neutrino, and . This will be done in the next section.
+
+% \section{}
 
 %In total, 9 spectra were taken with 5 different instruments.
 %
@@ -587,7 +616,7 @@ Using a right-tailed normal distribution, this translates to $\SI{3.4}{\sigma}$ 
 % \chapter{Candidate TDE AT2019fdr: a possible source?}
 % \chapter{The ZTF nuclear sample}
 % \chapter{Conclusion and Outlook}
-\input{chapters/appendix.tex}
+% \input{chapters/appendix.tex}
 
 %----------------------------------------------------------------------------------------
 
