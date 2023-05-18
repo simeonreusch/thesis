@@ -221,7 +221,7 @@ Neutrino oscillations are only sensitive to the squared mass differences between
 
 
 \subsection{Current understanding} \label{neutrinos_current}
-Modern understanding knows three flavors of neutrinos, which are superposition of three mass states. Their mass is small, but exists. Neutrinos have neither electromagnetic, nor color charge, but a weak hypercharge. This weak hypercharge makes them partake in weak interactions, which are mediated by exchanging $W$ or $Z$ bosons, see Fig. \ref{fig:neutrino_interactions} for details.
+Modern understanding knows three flavors of neutrinos, which are superposition of three mass states. Their mass is small, but exists. Neutrinos have neither electromagnetic, nor color charge, but a weak hypercharge. This weak hypercharge makes them partake in weak interactions, which are mediated by exchanging $W$ or $Z$ bosons. Fig. \ref{fig:neutrino_interactions} details some possible interaction channels, all constituting deep inelastic scattering with the quarks contained in nucleons, which is the dominant interaction mode for high-energy neutrinos with energies starting from several \unit{\giga\eV} in a medium.
 
 \begin{figure}[htb]
     \includegraphics{theory/neutrino_interactions_feynman.pdf}
@@ -255,21 +255,30 @@ SNe Ia are a class sui generis. Their underlying physical scenario is a white dw
 
 In contrast to SNe Ia, all other types of SNe are so-called \textit{core-collapse} supernovae (CCSNe). These happen when a star exceeding $8~M_\odot$ has reached its final fusion stage, the fusion of silicon to iron. Iron has the highest binding energy of all elements, therefore fusing iron to heavier elements would release no energy, and the fusion chain stops. With the fusion subsided, the radiation pressure that so far prevented the star from collapsing in on itself stops. The infalling material compresses the core of the star. As soon as the core becomes incompressible due to neutron degeneracy pressure described by the Pauli exlusion principle, the infalling material bounces back from the incompressible core and blows into space. The remaining neutron star in the center either survives, or the infalling material eventually causes it to overcome neutrino degeneracy pressure and collapses it into a black hole \cite{Alsabti2017}.
 
+
 \begin{figure}[htb]
     \includegraphics{theory/ccsn.pdf}
-    \caption[Core-collapse supernova]{Schematic of a core-collapse supernova. Fusion stops in the core (b), causing it to collapse until neutron degeneracy prevents further collapse. The released energy is carried away by neutrinos (c). The infalling material bounces back from the degeneracy border and forms a shock front (d). Adopted from \url{https://commons.wikimedia.org/wiki/File:Core_collapse_scenario.png}.}
-    \labfig{at2019fdr_light_curve}
+    \caption[Core-collapse supernova]{Schematic of a core-collapse supernova. Fusion stops in the core (b), causing it to collapse until neutron degeneracy prevents further collapse. A proto neutron star forms in the center (c). The infalling material bounces back from the degeneracy border and forms a shock front (d). The stalling shock is revigorated by the flux of neutrinos from the core (e) and expands outwards (f). Adapted from \url{https://commons.wikimedia.org/wiki/File:Core_collapse_scenario.png} (which seems to be adapted from \cite{Janka2012}).}
+    \labfig{ccsn_schematic}
 \end{figure}
-
-During a CCSN, temperatures of \SI{1e11}{\K} are reached. The environment of the core is dense and optically thick. Because of this, photons are unable to escape, as they immediately produce electron-positron pairs. These in turn are quickly absorbed by the surrounding matter. The large binding energy released in the core of \SI{\sim1e53}{\erg} is carried away by neutrinos. Through the annihilation of electron-positron pairs mediated by the $Z$ boson ($e^- + e^+ \rightarrow Z \rightarrow \nu + \bar{\nu}$ \sidecite{Grupen2005}), neutrinos of all flavors are formed and escape the supernova with an average energy on the order of \SI{10}{\mega\eV} \cite{Giunti2007}.
 
 \begin{marginfigure}
     \includegraphics{theory/sn_shells.pdf}
-    \caption[CCSN shells]{CCSN shells.}
-    \labfig{sn_shells}
+    \caption[CCSN shells]{CCSN shells. The presence or absence of helium and hydrogen shells explains the differences in the respective spectra of CCSNe type Ib, Ic and II.}
+    \labfig{sn_shells} 
 \end{marginfigure}
 
-Certain types of CCSNe are thought not only to produce low-energy, but also high-energy neutrinos. For this, one first has to understand the spectral differences between CCSNe types Ib, Ic and II. These can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic. If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
+The spectral differences between SNe types Ib, Ic and Ii can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
+
+During a CCSN, temperatures of \SI{1e11}{\K} are reached. The environment of the core is dense and optically thick. Because of this, photons are unable to escape, as they immediately produce electron-positron pairs. These in turn are quickly absorbed by the surrounding matter. The large binding energy released in the core of \SI{\sim1e53}{\erg} is carried away by neutrinos (see panels (e) and (f) in Fig. \ref{fig:ccsn_schematic}). Through the annihilation of electron-positron pairs mediated by the $Z$ boson ($e^- + e^+ \rightarrow Z \rightarrow \nu + \bar{\nu}$ \sidecite{Grupen2005}), neutrinos of all flavors are formed and escape the supernova with an average energy on the order of \SI{10}{\mega\eV} \cite{Giunti2007}.
+
+Certain types of CCSNe are thought not only to produce low-energy, but also high-energy neutrinos. Optical observations have stipulated that supernova progenitors often eject material into the circumstellar region \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM)
+
+SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}, with the IIn chosen to highlight the narrow emission lines found in their spectra. 
+
+Such a system might be promising for the production of high-energy neutrinos, as highlighted in \sidecite{Kurahashi2022}. 
+
+
 
 % \input{chapters/icecube.tex}
 % \input{chapters/ztf.tex}
