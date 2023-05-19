@@ -183,11 +183,6 @@ The goal of the Brookhaven experiment was to directly detect the muon neutrino b
 
 
 \subsection{The solar neutrino problem}
-\begin{marginfigure}
-    \includegraphics{theory/solar_neutrinos.pdf}
-    \caption[Predicted solar neutrino flux]{Predicted solar neutrino flux. From \cite{Agostini2018}.}
-    \labfig{solar_neutrino_flux} 
-\end{marginfigure}
 
 The neutrino was successfully detected. This, combined with the prediction that the process of nuclear fission within the sun should release neutrinos, triggered the question of detecting solar neutrinos. The sun creates neutrinos both via the $pp$ chain and the CNO cycle, in both processes converting four protons and two electrons into a $^4\text{He}$ nucleus and two electron neutrinos: $4p + 2e^- \rightarrow  ~^4\text{He} + 2\nu_e + \SI{26.7}{\mega\eV}$. The energy is then released via photons or via neutrinos carrying kinetic energy \cite{Giunti2007}.
 
@@ -235,10 +230,29 @@ The processes that generate large numbers of
 
 The cross section for neutrinos with matter significantly increases with energy.
 
-\section{Astrophysical Neutrinos}
-As mentioned above, neutrinos from the sun have already been detected in the 1960s. But only with the first extragalactic neutrino source the era of neutrino astronomy truly began. This source was SN1987a, a supernova in the Large Magellanic Cloud (LMC) that occured in February 1987. 
+% \section{Production of Astrophysical Neutrinos}
+% Before one can discuss possible sources of astrophysical neutrino, one needs to discuss possible production mechanisms for them. Some of these are intimately linked to the production of Cosmic Rays, so we will shortly discuss them as well.
 
-\subsection{Neutrinos from supernovae}
+\section{Low-Energy Neutrino Astronomy}
+
+\subsection{Stellar neutrinos}
+As mentioned above, neutrinos from the sun have already been detected in the 1960s.
+
+\begin{marginfigure}
+    \includegraphics{theory/solar_neutrinos.pdf}
+    \caption[Predicted solar neutrino flux]{Predicted solar neutrino flux. From \cite{Agostini2018}.}
+    \labfig{solar_neutrino_flux} 
+\end{marginfigure}
+
+Low-energy neutrinos, i.e. those carrying energies up to $\mathcal{O}(\unit{\mega\eV})$, are produced in stellar fusion processes and in supernovae. The primary stellar fusion process we can study is of course the sun.
+
+As already mentioned above, the neutrinos from the sun stem from two processes: The $pp$ chain and the CNO cycle. Within the $pp$ chain, neutrinos get produced by the proton-neutron conversion preceding the fusion of $p+n$ to $^2 \text{H}$. This conversion either happens via the $\beta^+$ decay $p \rightarrow n + e^+ + \nu_e$, resulting in a continuous neutrino spectrum (red curve in Fig. \ref{fig:solar_neutrino_flux}), or via electron capture $e^- + p \rightarrow n + \nu_e$, which results in a line spectrum (leftmost blue line).
+
+Towards \unit{\mega\eV} energies, the solar neutrino flux is dominated by the decay of $^8\text{B}\rightarrow ~^8\text{Be} + e^+ + \nu_e$ (green curve) happening in one of the subsequent evolutions of the $pp$ chain. This particular process does not contribute much to the radiative energy output of the sun, but it was the responsible mechanism for the solar neutrino flux of which $2/3$ were missing, constituting the aforementioned solar neutrino puzzle.
+
+\subsection{Supernovae} \label{sne}
+Only with the first extragalactic neutrino source the era of neutrino astronomy truly began. This source was SN1987a, a supernova in the Large Magellanic Cloud (LMC) that occured in February 1987.
+
 Since Kepler's supernova almost 500 years ago\sidenote{A type Ia supernova (see below) that occured in 1604 in the Milky Way}, SN1987a was the first supernova observable by naked eye alone\sidenote{With a brightness of 3-4 mag!}. This was possible as its host galaxy, the LMC, is very close by (\SI{\sim50}{\kilo\parsec})\sidecite{Spurio2018}. SN1987a was the core-collapse of Sanduleak-69202, a blue supergiant, resulting in a type IIP supernova \sidecite{Utrobin2021}. After the optical detection of the source, and following a hint by John Bahcall, the teams of the neutrino detectors Kamiokande-II, Irvine-Michigan-Brookhaven (IMB) and the Baksan Neutrino Observatory (BNO) found a burst of neutrinos predating the light from the supernova by 3 hours \sidecite{Hirata1987,Bionta1987}.
 
 \begin{marginfigure}
@@ -247,7 +261,7 @@ Since Kepler's supernova almost 500 years ago\sidenote{A type Ia supernova (see 
     \labfig{sn1987a_flux}
 \end{marginfigure}
 
-The measured rates were in agreement with theoretical models for core-collapse supernovae, assuming that \SI{99}{\percent} of the supernova energy is released in the form of neutrinos.
+In total, 25 neutrinos were detected by the three instruments (had IceCube already been operational in 1987, it would have detected \num{\sim13000} neutrinos \sidecite{Halzen2017}). These rates were in agreement with theoretical models for core-collapse supernovae, assuming that \SI{99}{\percent} of the supernova energy is released in the form of neutrinos.
 
 Historically, supernovae were classified according to the presence of lines in their spectra. SNe of type I are lacking hydrogen lines in their spectra, in contrast to type II SNe that show hydrogen lines. SNe are further subdivided into SNe Ia that display silicon lines, SNe Ib that do not display silicon lines, but helium lines, and SNe Ic that have neither.
 
@@ -270,14 +284,22 @@ In contrast to SNe Ia, all other types of SNe are so-called \textit{core-collaps
 
 The spectral differences between SNe types Ib, Ic and Ii can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
 
-During a CCSN, temperatures of \SI{1e11}{\K} are reached. The environment of the core is dense and optically thick. Because of this, photons are unable to escape, as they immediately produce electron-positron pairs. These in turn are quickly absorbed by the surrounding matter. The large binding energy released in the core of \SI{\sim1e53}{\erg} is carried away by neutrinos (see panels (e) and (f) in Fig. \ref{fig:ccsn_schematic}). Through the annihilation of electron-positron pairs mediated by the $Z$ boson ($e^- + e^+ \rightarrow Z \rightarrow \nu + \bar{\nu}$ \sidecite{Grupen2005}), neutrinos of all flavors are formed and escape the supernova with an average energy on the order of \SI{10}{\mega\eV} \cite{Giunti2007}.
+% During a CCSN, temperatures of \SI{1e11}{\K} are reached. The environment of the core is dense and optically thick. Because of this, . The large binding energy released in the core of \SI{\sim1e53}{\erg} is carried away by neutrinos (see panels (e) and (f) in Fig. \ref{fig:ccsn_schematic}). Through the annihilation of electron-positron pairs mediated by the $Z$ boson ($e^- + e^+ \rightarrow Z \rightarrow \nu + \bar{\nu}$ \sidecite{Grupen2005}), neutrinos of all flavors are formed and escape the supernova with an average energy on the order of \SI{10}{\mega\eV} \cite{Giunti2007}.
 
-Certain types of CCSNe are thought not only to produce low-energy, but also high-energy neutrinos. Optical observations have stipulated that supernova progenitors often eject material into the circumstellar region \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM)
+In the centers of these, neutron stars with masses of $1-2~M_\odot$ are created, which need to release large amounts of gravitational binding energy during their creation. Because the environment at the center of the CCSN is dense and optically thick, photons are unable to escape, as they immediately produce electron-positron pairs. These in turn are quickly absorbed by the surrounding matter. Instead, the binding energy is carried away by neutrinos (see panels (e) and (f) in Fig. \ref{fig:ccsn_schematic}). The energy release via neutrinos typically amounts to \SI{\sim1.5e53}{\erg}, distributed equally over all three families, with a typical energy carried per neutrino of $\mathcal{O}(\SI{10}{\mega\eV})$ \sidecite{Lunardini2017}. 
 
-SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}, with the IIn chosen to highlight the narrow emission lines found in their spectra. 
+It has to be noted though that the exact mechanism the neutrinos play in the SN explosion is still insufficiently understood. Eventually, a CCSN within our galaxy might come to the rescue \sidecite{Janka2017}.
 
-Such a system might be promising for the production of high-energy neutrinos, as highlighted in \sidecite{Kurahashi2022}. 
+\section{Cosmic Rays}
+As the production mechanisms for cosmic rays and high-energy neutrinos are intricately linked, some 
 
+\section{High-Energy Neutrino Astronomy}
+\subsection{Interacting supernovae}
+As already detailed in Section \ref{sne}, CCSNe are thought to produce copious amounts of \unit{\mega\eV}-neutrinos. Interestingly, certain types of CCSNe are thought not only to produce such comparably low-energy neutrinos, but also \unit{\tera\eV} neutrinos. Optical observations have stipulated that supernova progenitors often violently eject material into the circumstellar region in the years to centuries prior to their explosion \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM).
+
+SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}: The Balmer emission features of early IIn spectra, most prominently the $H_\alpha$ region, show narrow lines on top of a broad component \sidecite{Taddia2013}. The broad component is caused by the supernova itself, but the narrow lines result from interaction of the SN blast-wave with the CSM. This process photo-ionizes the CSM, which results in narrow hydrogen lines.
+
+Such a system might be promising for the production of high-energy neutrinos, as highlighted in \sidecite{Kurahashi2022}. When the expanding SN ejecta hit the CSM, a shock wave starts to propagate through it. Particle acceleration within the shock is predicted to happen at the moment of \textit{shock breakout}. This is the time when the optical depths of the shock drops below $\approx c/v$, with $v$ being the shock velocity. As soon as the radiation can escape, the shock is no longer radiation-mediated, and protons can be accelerated to high energies \sidecite{Waxman2017}. This emission seizes after the shock decelerates or reaches the outer edge of the CSM. The accelerated protons \unit{\peta\eV} \sidecite{Petropoulou2017,Murase2018}.
 
 
 % \input{chapters/icecube.tex}
@@ -736,7 +758,7 @@ Such a system might be promising for the production of high-energy neutrinos, as
 
 % In total, 9 spectra were taken with 5 different instruments.
 
-% neutrinos, the cosmic ray puzzle
+
 % \subsection{Other sources}
 % AT2022saw ZTF22aarmiqk IC220822A
 %  (ZTF19aavnpjv) classified as CV. IC220405B JANNIS HAT DAS SPEKTRUM GEMACHT
