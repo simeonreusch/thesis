@@ -274,15 +274,18 @@ SNe Ia are a class sui generis. Their underlying physical scenario is a white dw
     \labfig{ccsn_schematic}
 \end{figure}
 
-In contrast to SNe Ia, all other types of SNe are so-called \textit{core-collapse} supernovae (CCSNe). These happen when a star exceeding $8~M_\odot$ has reached its final fusion stage, the fusion of silicon to iron. Iron has the highest binding energy of all elements, therefore fusing iron to heavier elements would release no energy, and the fusion chain stops. With the fusion subsided, the radiation pressure that so far prevented the star from collapsing in on itself stops. The infalling material compresses the core of the star. As soon as the core becomes incompressible due to neutron degeneracy pressure described by the Pauli exlusion principle, the infalling material bounces back from the incompressible core and blows into space. The remaining neutron star in the center either survives, or the infalling material eventually causes it to overcome neutrino degeneracy pressure and collapses it into a black hole \cite{Alsabti2017}.
+In contrast to SNe Ia, all other types of SNe are so-called \textit{core-collapse} supernovae (CCSNe).
+Stars generate energy by first buring hydrogen. When a massive star has exhausted its hydrogen, fusion subsides and the gravitational pull compresses it further, until temperatures suitable for helium buring are reached. This process repeats for most of the iron group elements (Fe, Co, Ni).
+
+A CCSN happens when a star exceeding $8~M_\odot$ has reached its final fusion stage, the fusion of silicon to iron. Iron has the highest binding energy of all elements, therefore fusing iron to heavier elements would release no energy, and the fusion chain stops. With the fusion subsided, the radiation pressure that so far prevented the star from collapsing in on itself stops. The infalling material compresses the core of the star. As soon as the core becomes incompressible due to neutron degeneracy pressure described by the Pauli exlusion principle, the infalling material bounces back from the incompressible core and blows into space. The remaining neutron star in the center either survives, or the infalling material eventually causes it to overcome neutrino degeneracy pressure and collapses it into a black hole \cite{Alsabti2017}.
+
+The spectral differences between SNe types Ib, Ic and Ii can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
 
 \begin{marginfigure}
     \includegraphics{theory/sn_shells.pdf}
     \caption[CCSN shells]{CCSN shells. The presence or absence of helium and hydrogen shells explains the differences in the respective spectra of CCSNe type Ib, Ic and II.}
     \labfig{sn_shells} 
 \end{marginfigure}
-
-The spectral differences between SNe types Ib, Ic and Ii can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
 
 In the centers of these, neutron stars with masses of $1.5-2~M_\odot$ are created. These need to release large amounts of gravitational binding energy during their creation. Because the environment at the center of the CCSN is dense and optically thick, photons are unable to escape: They immediately produce electron-positron pairs, which in turn are quickly absorbed by the surrounding matter.
 
@@ -299,14 +302,46 @@ As the production mechanisms for cosmic rays and high-energy neutrinos are intri
     \caption[Hess in his balloon]{Hess in his balloon after landing in Brandenburg, Germany in 1912, having just discovered cosmic rays. From \cite{Steinmaurer1985}.}
     \labfig{hess_balloon} 
 \end{marginfigure}
-Cosmic rays were discovered in 1912 by Victor Hess. It had already been discovered that electroscopes -- devices measuring electric charge and voltage -- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. When shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown.
+Cosmic rays were discovered in 1912 by Victor Hess. At the time, it had already been discovered that electroscopes -- devices measuring electric charge and voltage -- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. Another hint was that when shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown, though.
 
-Hess measured the flux of ionizing radiation with three electrometers, in a balloon. In total, he carried out 10 balloon ascents in the time period of 1911--1913. The first ascent over \SI{5}{\km} in August 1912 marked the discovery of cosmic rays, when he registered a 16-fold increase in ionization measured by the electrometers at that height. Hess concluded that the ionizing radiation must be of extra-terrestrial origin. \sidecite{Steinmaurer1985}.
+Hess measured the flux of ionizing radiation with three electrometers during several balloon journeys. In total, he carried out 10 balloon ascents in the time period of 1911--1913. The first ascent over \SI{5}{\km} in August 1912 marked the discovery of cosmic rays, when he registered a 16-fold increase in ionization measured by the electrometers at that height. Hess consequently concluded that the ionizing radiation must be of extra-terrestrial origin. \sidecite{Steinmaurer1985}.
 
-\subsection{Composition}
-More than 100 years later, we know that this ionizing radiation consists of subatomic particles. They are mostly protons, but 
+\subsection{Composition and energy spectrum}
+More than 100 years later, we know that this ionizing radiation consists of particles, spanning a broad range of energies. These particles are mostly protons, but all stable charged particles and nuclei with lifetimes of $\mathcal{O}(\SI{e6}{\year})$ can be found; most prominently protons, electrons, helium, but also e.g. carbon, oxygen and iron \sidecite{Workman2022}.
+
+As can be seen in Fig. \ref{fig:cr_spectrum}, the cosmic ray spectrum spans a wide range of energies, from a few \unit{\mega\eV} up to \SI{e21}{\eV}, with the higher end of the energy spectrum constituting \textit{Ultra High-Energy Cosmic Rays} (UHECR).
+
+\begin{marginfigure}
+    \includegraphics{theory/cr_spectrum.pdf}
+    \caption[Cosmic ray spectrum]{Cosmic ray spectrum, as seen by a range of experiments. From \cite{Hillas2006}.}
+    \labfig{cr_spectrum} 
+\end{marginfigure}
+
+The UHECR part of the spectrum is shown in Fig. \ref{fig:uhecr_spectrum}. It can be described by a series of power laws with different spectral indices, i.e. $E^{-\gamma}$, with $\gamma$ being the spectral index. The UHECR spectrum shows several interesting features, dubbed the \textit{knee}, the anatomically challenging \textit{second knee}, and the \textit{ankle}. These are the points where the spectral index changes, and which are possibly associated with a transition to a new source class, e.g. from galactic to extragalactic sources around the ankle (see \sidecite{Taylor2016}). This is still an active field of research \cite{Workman2022}.
+
+\begin{figure}[htb]
+    \includegraphics[width=0.8\textwidth]{theory/cr_uhecr_spectrum.pdf}
+    \caption[UHECR spectrum]{Ultra high-energy cosmic ray spectrum. It shows energy per particle/nucleus vs. the flux (multiplied by $E^{2.6}$ to highlight the changes in spectral index). The data is from various air-shower experiments. From \cite{Workman2022}.}
+    \labfig{uhecr_spectrum} 
+\end{figure}
+\begin{marginfigure}
+    \includegraphics{theory/uhecr_hillas_criterion.pdf}
+    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from \cite{Rieger2022}, original `Hillas plot' in \cite{Hillas1984}.}
+    \labfig{uhecr_hillas_criterion} 
+\end{marginfigure}
+
+Identifying the sources of UHECR remains a challenge. As the cosmic ray particles are charged, they are deflected by magnetic fields encountered on their way to earth, obscuring their origin. What \textit{is} known though is that their extremely high energies necessitate extreme environments in which they can be produced.
+
+In the 1980s, Hillas proposed the requirement that the efficient acceleration of a charged particle needs an accelerator that is able confine the particle during acceleration: This means that the source needs to be larger than the particle's Larmor radius \sidecite{Rieger2022}. This introduces a bound on the possible sources for UHECR cosmic ray sources:
+
+\begin{equation}
+    E \leq 10^{20} Z \bigg(\frac{B}{\SI{10}{\micro\gauss}}\bigg) \bigg(\frac{R}{\SI{10}{\kilo\parsec}} \bigg)~\unit{\eV},
+\end{equation}
+where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field strength of the source, and $R$ is the characteristic source dimension \cite{Rieger2022}. Sources that match this criterion for the production of UHECR protons and iron nuclei with an energy of \SI{e20}{\eV} are shown in Fig. \ref{fig:uhecr_hillas_criterion}. As one can see, a variety of extreme environments are possible sources of UHECR, some of these also hot candidates for the production of high-energy neutrinos. 
 
 \subsection{Diffuse shock acceleration}
+There is a variety of acceleration mechanisms for UHECR. An important process, \textit{diffuse shock acceleration}, is thought to occur in the presence of shocks that occur e.g. in core-collapse supernovae\sidenote{See Section \ref{sne}}.
+
 
 \section{High-Energy Neutrino Astronomy}
 \subsection{Interacting supernovae}
@@ -769,7 +804,7 @@ Such a system might be promising for the production of high-energy neutrinos, as
 
 % We now need to evaluate if there are models that render AT2019fdr capable of producing the observed high-energy neutrino, and . This will be done in the next section.
 
-% \section{}
+% % \section{}
 
 % In total, 9 spectra were taken with 5 different instruments.
 

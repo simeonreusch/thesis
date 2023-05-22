@@ -1,7 +1,7 @@
 \setchapterimage[7cm]{ic/ic_icecube.jpg}
 \chapter{The IceCube Detector} \label{ic}
 \labch{IceCube}
-One of the two most relevant instruments for this thesis is the \textit{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location \sidecite{Andres1999, Andres2000}.\todo{IceCube: Sensitivity (It detects neutrinos with energies ranging from 1010 to 1016 eV)}
+One of the two most relevant instruments for this thesis is the \textit{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location \sidecite{Andres1999, Andres2000}.
 \begin{marginfigure}
     \includegraphics{ic/ic_cherenkov1.pdf}
     \includegraphics{ic/ic_cherenkov2.pdf}
@@ -215,6 +215,9 @@ To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertai
 In the re-simulations, the systematic parameters of the antarctic ice used to model photon propagation were varied. Each re-simulated event was fit with \texttt{Millipede}. The distribution of differences between the best-fit likelihood and the ground truth of the simulated event can then be employed to convert the change in log-likelihood over the map into a confidence level.
 
 Currently, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area. \todo{@Cristina is this correct? Is there something missing?.}
+
+\section{Sensitivity} \label{ic_sensitivity}
+IceCube: Sensitivity (It detects neutrinos with energies ranging from 1010 to 1016 eV)
 
 \section{The Realtime Alert Program}\label{ic_alert_program}
 Since 2016, IceCube is hosting a realtime alert program, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, namely \textit{Gold} and \textit{Bronze}, were created \sidecite{Tung2019}. As all alerts used within this work except one stem from this revised system, I will focus on presenting the newer alert scheme.
