@@ -20,6 +20,7 @@
 \usepackage{orcidlink}
 \usepackage{siunitx}
 \usepackage{astro}
+\usepackage[outline]{contour}
 \usepackage{caption}
 \usepackage[super]{nth}
 \usepackage{subcaption}
@@ -388,7 +389,7 @@ This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq. \ref{
 \begin{equation}
     N(E)~\text{d} E \propto E^{-2}~\text{d} E.
 \end{equation}
-Therefore, the resulting differential energy spectrum has a spectral index of 2.
+Therefore, the resulting differential energy spectrum has a spectral index of 2\todo{why not 2.5 (Longair2011) and highlight experimental value of 2.5 above}.
 % The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ that will increase exponentially over time with 
 % \begin{equation}
 % \label{eqn:e_of_t}
@@ -409,11 +410,23 @@ Therefore, the resulting differential energy spectrum has a spectral index of 2.
 % The result is a power law with index $\frac{\tau_\beta}{\tau_\text{esc}\ln \beta}$, which is indeed what was already stipulated by experimental data.
 
 \subsection{Interaction and neutrino production}
-As discussed above, cosmic rays are most likely produced in astrophysical shocks, as this can explain the power-law structure of the energy distribution. The particles accelerated within shocks might now interact with either hadrons, or photons in their vicinity or on their way to earth.
+As discussed above, cosmic rays are most likely produced in astrophysical shocks, as this can explain the power-law structure of the energy distribution. The particles accelerated within shocks might now interact with either hadrons, or photons in their vicinity or on their way to earth. For simplicity, this section focuses on the interaction of cosmic ray protons, but it applies to heavier nuclei as well.
 
-\begin{description}
-    \item[Hadronic interactions] asdf
-\end{description}
+\textbf{$pp$ interactions} When cosmic ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produces lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
+
+\begin{eqnarray}
+     \pi^\pm + X &\contour{black}{$\rightarrow$}& \mu^\pm + \nu_\mu (\bar{\nu}_\mu)~~~ \contour{black}{$\rightarrow$} ~~~ e^\pm + \nu_e(\bar{\nu}_e) + \bar{\nu}_\mu(\nu_\mu)\\
+     \pi^0 + X &\contour{black}{$\rightarrow$}& 2\gamma
+ \end{eqnarray} 
+As can be seen, $\pi^\pm$ decay into positive (negative) muons and a muon (anti-)neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-)neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to earth washes out this initial difference, with an expected flavor content of $1:1:1$ \cite{Workman2022}.
+
+The energy of the pion decay products is expected to trace the initial proton energy spectrum, so the resulting neutrino spectrum will have \todo{warum?, ergänzen, source}
+
+\textbf{$p\gamma$ interactions}
+Cosmic ray protons can also interact with radiation fields. The simplest form of these interactions is the $\delta^+$ resonance, and takes the form
+\begin{equation}
+    \Delta^+ ~~~ \contour{black}{$\rightarrow$} ~~~ d
+\end{equation}
 
 \section{High-Energy Neutrino Astronomy}
 \subsection{Interacting supernovae}
