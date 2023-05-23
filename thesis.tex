@@ -364,8 +364,32 @@ By rearranging we get
 \begin{equation}
     \frac{N}{N_0} = \bigg(\frac{E}{E_0}\bigg)^{\ln P / \ln \beta}
 \end{equation}
-We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} v_p$ where $v_p$ is the particle's speed, so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.
-% The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ will increase exponentiall over time with 
+To obtain the differential energy spectrum, we differentiate with respect to $E$ and get
+\begin{equation}
+\label{eqn:diff_e_spec}
+    N(E)~\text{d} E = C\times E^{(\ln P/\ln\beta)-1}~\text{d} E
+\end{equation}
+
+The result is a power law with index $\frac{\ln P}{\ln \beta}$, which is indeed what was already stipulated by experimental data.
+
+We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} v_p$ where $v_p$ is the particle's speed, so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.\todo{explain}
+
+What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011}, the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $nv_p=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4}nv_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
+
+With that, we can compute 
+\begin{equation}
+    \ln P = \ln ( 1-\frac{v_s}{c}) \simeq -\frac{v_s}{c},
+\end{equation}
+and 
+\begin{equation}
+   \ln \beta = \ln(1+\frac{4}{3}\frac{v_p}{c}) \simeq \frac{4}{3}\frac{v_p}{c} = \frac{v_s}{c}.
+\end{equation}
+This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq. \ref{eqn:diff_e_spec} yields
+\begin{equation}
+    N(E)~\text{d} E \propto E^{-2}~\text{d} E.
+\end{equation}
+Therefore, the resulting differential energy spectrum has a spectral index of 2.
+% The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ that will increase exponentially over time with 
 % \begin{equation}
 % \label{eqn:e_of_t}
 %     E(t) = E_0 \beta^{t/\tau_\beta} = E_0 e^{t/\tau_\beta \ln \beta}
