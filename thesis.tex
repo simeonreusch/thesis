@@ -350,11 +350,46 @@ To understand DSA, one has to differentiate between an \textit{upstream} region 
     \labfig{dsa} 
 \end{marginfigure}
 
-Now consider some test particles upstream, ahead of the shock front rushing towards it. Within a frame of reference in which the upstream gas is at rest, their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma (and Coulomb scattering can be neglected). When a test particle eventually with initial velocity $v_1$ (blue arrow in Fig. \ref{fig:dsa}) crosses the shock front to the downstream region, it will see a plasma rushing towards it with speed $|u_u-u_d| = (1-0.25)~u_u$, which equals 3/4 of the shock front velocity $v_s$. In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\Delta E/E=v_s/c$.
-
-This energy gain can be motivated as follows:
+Now consider some test particles upstream, ahead of the shock front rushing towards it. Within a frame of reference in which the upstream gas is at rest, their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma (and Coulomb scattering can be neglected). When a test particle eventually with initial velocity $v_1$ (blue arrow in Fig. \ref{fig:dsa}) crosses the shock front to the downstream region, it will see a plasma rushing towards it with speed $|u_u-u_d| = (1-0.25)~u_u$, which equals 3/4 of the shock front velocity $v_s$. In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\Delta E/E = v_s/c$. For a simple derivation of this energy gain, confer \cite{Longair2011}.
 
 This results in a higher velocity $v_2$. After some time, the particle might cross the shock front again, this time into the upstream region. From the now isotropized particle's frame, the upstream region will again rush in with $0.75~v_s$, and the process repeats, resulting in another gain in energy, and a higher $v_3$ \sidecite{Urosevic2019}.
+
+During each crossing, a particle with initial energy $E_0$ will gain an energy fraction $\beta$, resulting in energy $E=\beta E_0$. If $P$ denotes the probability that a particle \textit{stays} within the accelerating region, the number of particles after $k$ crossings can be written as $N=N_0 P^k $, and they will have energies $E=E_0\beta^k$.
+
+If one solves both equations for $k$ and sets them equal, one obtains
+\begin{equation}
+    \frac{\ln (N/N_0)}{\ln (E/E_0)} = \frac{\ln P}{\ln \beta}.
+\end{equation}
+By rearranging we get
+\begin{equation}
+    \frac{N}{N_0} = \bigg(\frac{E}{E_0}\bigg)^{\ln P / \ln \beta}
+\end{equation}
+We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} v_p$ where $v_p$ is the particle's speed, so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.
+% The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ will increase exponentiall over time with 
+% \begin{equation}
+% \label{eqn:e_of_t}
+%     E(t) = E_0 \beta^{t/\tau_\beta} = E_0 e^{t/\tau_\beta \ln \beta}
+% \end{equation}
+% if $\tau_\beta$ is the shock-crossing rate. Assume that each particle has a constant probability of escaping the system, with an average time until it escapes $\tau_\text{esc}$. From this it follows that a particle survives with exponentially decreasing probability 
+% \begin{equation}
+%     P(t) = \frac{1}{\tau_\text{esc}}e^{-t/\tau_\text{esc}}
+% \end{equation}
+% To obtain an energy spectrum, one needs to substitute the time $t$. This can be done by rearranging equation \ref{eqn:e_of_t} and solving for $t$:
+% \begin{equation}
+% t = \tau_\beta \frac{\ln E/E_0}{\ln \beta}.
+% \end{equation}
+% With this, $P(E)$ can be written as
+% \begin{equation}
+%     P(E) = \frac{1}{\tau_\text{esc}}e^{-\tau_\beta \frac{\ln E/E_0}{\ln \beta ~\tau_\text{esc}}} = \frac{1}{\tau_\text{esc}}~\frac{E}{E_0}e^{ \frac{-\tau_\beta}{\tau_\text{esc}~\ln \beta}}
+% \end{equation}
+% The result is a power law with index $\frac{\tau_\beta}{\tau_\text{esc}\ln \beta}$, which is indeed what was already stipulated by experimental data.
+
+\subsection{Interaction and neutrino production}
+As discussed above, cosmic rays are most likely produced in astrophysical shocks, as this can explain the power-law structure of the energy distribution. The particles accelerated within shocks might now interact with either hadrons, or photons in their vicinity or on their way to earth.
+
+\begin{description}
+    \item[Hadronic interactions] asdf
+\end{description}
 
 \section{High-Energy Neutrino Astronomy}
 \subsection{Interacting supernovae}
