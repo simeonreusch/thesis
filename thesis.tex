@@ -220,19 +220,21 @@ Neutrino oscillations are only sensitive to the squared mass differences between
 Modern understanding knows three flavors of neutrinos, which are superposition of three mass states. Their mass is small, but exists. Neutrinos have neither electromagnetic, nor color charge, but a weak hypercharge. This weak hypercharge makes them partake in weak interactions, which are mediated by exchanging $W$ or $Z$ bosons. Fig. \ref{fig:neutrino_interactions} details some possible interaction channels, all constituting deep inelastic scattering with the quarks contained in nucleons, which is the dominant interaction mode for high-energy neutrinos with energies starting from several \unit{\giga\eV} in a medium.
 
 \begin{figure}[htb]
-    \includegraphics{theory/neutrino_interactions_feynman.pdf}
-    \caption[Neutrino interactions]{Different neutrino interaction channels for deep inelastic scattering. \textit{Left}: interaction of neutrinos with quarks by exchange of a $W^+$ boson, \textit{middle}: interaction of antineutrinos, exchanging a $W^-$ boson, \textit{right} interaction of neutrinos of all types by exchange of a $Z$ boson. The rightmost interaction is called \textit{neutral current} (NC) interaction, while the two other are dubbed \textit{charged current} (CC) interactions.} 
+    \includegraphics[width=0.5\textwidth]{theory/neutrino_interactions_feynman_short.pdf}
+    \caption[Neutrino interactions]{Different neutrino interaction channels for deep inelastic scattering. \textit{Left}: interaction of neutrinos (antineutrinos) with quarks by exchange of a $W^{\pm}$ boson, \textit{right} interaction of neutrinos of all types by exchange of a $Z$ boson. The interaction on the right is called \textit{neutral current} (NC) interaction, while the one on the left is dubbed \textit{charged current} (CC) interaction.}
     \labfig{neutrino_interactions}
 \end{figure}
 
 Interactions that involve electromagnetically charged $W^-$ bosons are called \textit{charged current} (CC) interactions, while those involving neutral $Z$ bosons are called \textit{neutral current} (NC) interactions. The beta decay of a neutron into a proton e.g. is a charged current interaction.
 
-The processes that generate large numbers of 
+The cross section for neutrinos with matter significantly increases with energy, as can be seen in Fig. \ref{fig:high_energy_nu_xsec}.
+\begin{figure}[htb]
+    \includegraphics{theory/high_energy_nu_xsec.pdf}
+    \caption[High-energy neutrino cross section]{High-energy neutrino cross section for interactions with matter equally composed of neutrons and protons. The unit on the y-axis are pico-barn (\SI{e-40}{\m\squared}). The figure on the \textit{lef} shows charged-current interactions, while the one on the \textit{right} shows neutral-current interactions, both for neutrinos and antineutrinos. Adapted from \cite{CooperSarkar2011}.}
+    \labfig{high_energy_nu_xsec} 
+\end{figure}
 
-The cross section for neutrinos with matter significantly increases with energy.
-
-% \section{Production of Astrophysical Neutrinos}
-% Before one can discuss possible sources of astrophysical neutrino, one needs to discuss possible production mechanisms for them. Some of these are intimately linked to the production of Cosmic Rays, so we will shortly discuss them as well.
+The processes that generate large numbers of \todo{ergänzen}
 
 \section{Low-Energy Neutrino Astronomy}
 
@@ -264,14 +266,13 @@ In total, 25 neutrinos were detected by the three instruments (had IceCube alrea
     \labfig{sn1987a_flux}
 \end{marginfigure}
 
-
 Historically, supernovae were classified according to the presence of lines in their spectra. SNe of type I are lacking hydrogen lines in their spectra, in contrast to type II SNe that show hydrogen lines. SNe are further subdivided into SNe Ia that display silicon lines, SNe Ib that do not display silicon lines, but helium lines, and SNe Ic that have neither.
 
 SNe Ia are a class sui generis. Their underlying physical scenario is a white dwarf accreting matter from a companion star. The accretion eventually causes the star's mass to exceed the Chandrasekhar limit of $\sim 1.4~M_\odot$ at which gravitational force overcomes the electron degeneracy pressure, and the star begins to burn carbon due to the higher density. At one point, a runaway thermonuclear reaction starts, and the white dwarf blows up violently \sidecite{Maguire2017}. As the Chandrasekhar limit is the same everywhere, the luminosity of that explosion is to first order the same for all SNe Ia, making them excellent instruments to measure cosmological distances. They are not expected to produce large quantities of neutrinos, though \sidecite{Alsabti2017}.
 
 \begin{figure}[htb]
     \includegraphics{theory/ccsn.pdf}
-    \caption[Core-collapse supernova]{Schematic of a core-collapse supernova. Fusion stops in the core (b), causing it to collapse until neutron degeneracy prevents further collapse. A proto neutron star forms in the center (c). The infalling material bounces back from the degeneracy border and forms a shock front (d). The stalling shock is revigorated by the intense flux of neutrinos from the proto neutron star (e) and expands outwards (f). Adapted from \url{https://commons.wikimedia.org/wiki/File:Core_collapse_scenario.png} (which seems to be adapted from \cite{Janka2012}).}
+    \caption[Core-collapse supernova]{Schematic of a core-collapse supernova. Fusion stops in the core (b), causing it to collapse until neutron degeneracy prevents further collapse. A proto neutron star forms in the center (c). The infalling material bounces back from the degeneracy border and forms a shock front (d). The stalling shock is revigorated by the intense flux of neutrinos from the proto neutron star (e) and expands outwards (f). Adapted from \url{https://commons.wikimedia.org/wiki/File:Core_collapse_scenario.png} (which is most likely adapted from \cite{Janka2012}).}
     \labfig{ccsn_schematic}
 \end{figure}
 
@@ -320,6 +321,8 @@ As can be seen in Fig. \ref{fig:cr_spectrum}, the cosmic ray spectrum spans a wi
 
 The UHECR part of the spectrum is shown in Fig. \ref{fig:uhecr_spectrum}. It can be described by a series of power laws with different spectral indices, i.e. $E^{-\gamma}$, with $\gamma$ being the spectral index. The UHECR spectrum shows several interesting features, dubbed the \textit{knee}, the anatomically challenging \textit{second knee}, and the \textit{ankle}. These are the points where the spectral index changes, and which are possibly associated with a transition to a new source class, e.g. from galactic to extragalactic sources around the ankle (see \sidecite{Taylor2016}). This is still an active field of research \cite{Workman2022}.
 
+If high-energy neutrinos are produced in the processes responsible for the creation of cosmic rays (see below), the neutrinos stemming from cosmic rays with energies higher than the ankle should be mainly produced by extragalactic sources \sidecite{Halzen2006}.
+
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{theory/cr_uhecr_spectrum.pdf}
     \caption[UHECR spectrum]{Ultra high-energy cosmic ray spectrum. It shows energy per particle/nucleus vs. the flux (multiplied by $E^{2.6}$ to highlight the changes in spectral index). The data is from various air-shower experiments. From \cite{Workman2022}.}
@@ -343,7 +346,7 @@ where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field st
 \subsection{Diffusive shock acceleration} \label{dsa}
 There is a variety of acceleration mechanisms for UHECR. An important process, \textit{diffusive shock acceleration} (DSA), was introduced in the late 1970s. DSA is thought to occur in the presence of shocks that occur e.g. in core-collapse supernovae\sidenote{See Section \ref{sne}}. DSA requires shocks, and shocks require that matter, for example in the form of a plasma, moves with supersonic speed through a surrounding medium.
 
-To understand DSA, one has to differentiate between an \textit{upstream} region in front of the moving shock front, and a \textit{downstream} region behind the shock front. Consider a shock front moving with a velocity $\vec{v_s}$ through a medium as seen in the observer's rest frame (red line in Fig. \ref{fig:dsa}). If we switch to the rest frame of the shock front, it encounters the upstream medium as flowing towards it with speed $\vec{u_u}=-\vec{v_s}$. Downstream, behind the shock, the velocity of material $u_d$ will be lower: Mass convervation requires that $\rho_u u_u = \rho_d u_d$. In astrophysical shocks, the compression ratio $R=\rho_d/\rho_u$ can be as high as 4 \sidecite{Longair2011}. Because $R=u_d/u_u$, the velocity of material downstream (behind the shock front) $u_d$ will then only be $1/4 u_u$.
+To understand DSA, one has to differentiate between an \textit{upstream} region in front of the moving shock front, and a \textit{downstream} region behind the shock front. Consider a shock front moving with a velocity $\vec{v_s}$ through a medium as seen in the observer's rest frame (red line in Fig. \ref{fig:dsa}). If we switch to the rest frame of the shock front, it encounters the upstream medium as flowing towards it with speed $\vec{u_u}=-\vec{v_s}$. Downstream, behind the shock, the velocity of material $u_d$ will be lower: Mass convervation requires that $\rho_u u_u = \rho_d u_d$. In astrophysical shocks containing a fully ionized plasma, the compression ratio $R=\rho_d/\rho_u$ can be as high as 4 \sidecite{Longair2011}. Because $R=u_d/u_u$, the velocity of material downstream (behind the shock front) $u_d$ will then only be $1/4 u_u$.
 
 \begin{marginfigure}
     \includegraphics{theory/dsa.pdf}
@@ -375,7 +378,7 @@ The result is a power law with index $\frac{\ln P}{\ln \beta}$, which is indeed 
 
 We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} v_p$ where $v_p$ is the particle's speed, so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.\todo{explain}
 
-What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011}, the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $nv_p=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4}nv_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
+What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011} (and originally presented by \sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $nv_p=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4}nv_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
 
 With that, we can compute 
 \begin{equation}
@@ -389,7 +392,7 @@ This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq. \ref{
 \begin{equation}
     N(E)~\text{d} E \propto E^{-2}~\text{d} E.
 \end{equation}
-Therefore, the resulting differential energy spectrum has a spectral index of 2\todo{why not 2.5 (Longair2011) and highlight experimental value of 2.5 above}.
+Therefore, the resulting differential energy spectrum has a spectral index of 2. This somewhat differs from the experimentally found spectral index of 2.7 up to the knee. This can be explained by the fact there are several assumptions at play here: The shock is assumed to be non-relativistic, in an ideal gas and constant escape probability. Inefficiencies in the shock, and the inclusion of shock-amplified magnetic fields can both harden the spectral index \cite{Spurio2018}.
 % The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ that will increase exponentially over time with 
 % \begin{equation}
 % \label{eqn:e_of_t}
@@ -423,13 +426,16 @@ As can be seen, $\pi^\pm$ decay into positive (negative) muons and a muon (anti-
 The energy of the pion decay products is expected to trace the initial proton energy spectrum, so the resulting neutrino spectrum will have \todo{warum?, ergänzen, source}
 
 \textbf{$p\gamma$ interactions}
-Cosmic ray protons can also interact with radiation fields. The simplest form of these interactions is the $\delta^+$ resonance, and takes the form
-\begin{equation}
-    \Delta^+ ~~~ \contour{black}{$\rightarrow$} ~~~ d
-\end{equation}
+Cosmic ray protons can also interact with radiation fields. The cross section for these interactions is large near the $\Delta^+$ resonance. The dominant $\Delta^+$ decay modes again contain pions:
+\begin{eqnarray}
+    \Delta^+ ~~ &\contour{black}{$\rightarrow$}& n + \pi^+ \\
+    \Delta^+ ~~ &\contour{black}{$\rightarrow$}& p + \pi^0
+\end{eqnarray}
+The pions will again decay according to the channels already discussed for $pp$ interactions. The secondary neutrons might decay via beta decay, and produce electron antineutrinos.
+
 
 \section{High-Energy Neutrino Astronomy}
-\subsection{Interacting supernovae}
+\subsection{Interacting supernovae} \label{interacting_sne}
 As already detailed in Section \ref{sne}, CCSNe are thought to produce copious amounts of \unit{\mega\eV}-neutrinos. Interestingly, certain types of CCSNe are thought not only to produce such comparably low-energy neutrinos, but also \unit{\tera\eV} neutrinos. Optical observations have stipulated that supernova progenitors often violently eject material into the circumstellar region in the years to centuries prior to their explosion \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM).
 
 SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}: The Balmer emission features of early IIn spectra, most prominently the $H_\alpha$ region, show narrow lines on top of a broad component \sidecite{Taddia2013}. The broad component is caused by the supernova itself, but the narrow lines result from interaction of the SN blast-wave with the CSM. This process photo-ionizes the CSM, which results in narrow hydrogen lines.
@@ -888,10 +894,6 @@ Such a system might be promising for the production of high-energy neutrinos, as
 % We have so far detailed the data reduction for AT2019fdr, established that it likely was a TDE -- albeit an unusual one -- modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to AT2019fdr is quite improbable.
 
 % We now need to evaluate if there are models that render AT2019fdr capable of producing the observed high-energy neutrino, and . This will be done in the next section.
-
-% % \section{}
-
-% In total, 9 spectra were taken with 5 different instruments.
 
 
 % \subsection{Other sources}
