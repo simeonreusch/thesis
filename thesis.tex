@@ -230,7 +230,7 @@ Interactions that involve electromagnetically charged $W^-$ bosons are called \t
 The cross section for neutrinos with matter significantly increases with energy, as can be seen in Fig. \ref{fig:high_energy_nu_xsec}.
 \begin{figure}[htb]
     \includegraphics{theory/high_energy_nu_xsec.pdf}
-    \caption[High-energy neutrino cross section]{High-energy neutrino cross section for interactions with matter equally composed of neutrons and protons. The unit on the y-axis are pico-barn (\SI{e-40}{\m\squared}). The figure on the \textit{lef} shows charged-current interactions, while the one on the \textit{right} shows neutral-current interactions, both for neutrinos and antineutrinos. Adapted from \cite{CooperSarkar2011}.}
+    \caption[High-energy neutrino cross section]{High-energy neutrino cross section for interactions with matter equally composed of neutrons and protons. The unit on the y-axis are picobarn (\SI{e-40}{\m\squared}). The figure on the \textit{left} shows charged-current interactions, while the one on the \textit{right} displays neutral-current interactions, both for neutrinos and antineutrinos. Adapted from \cite{CooperSarkar2011}.}
     \labfig{high_energy_nu_xsec} 
 \end{figure}
 
@@ -360,6 +360,12 @@ This results in a higher velocity $v_2$. After some time, the particle might cro
 
 During each crossing, a particle with initial energy $E_0$ will gain an energy fraction $\beta$, resulting in energy $E=\beta E_0$. If $P$ denotes the probability that a particle \textit{stays} within the accelerating region, the number of particles after $k$ crossings can be written as $N=N_0 P^k $, and they will have energies $E=E_0\beta^k$.
 
+\begin{marginfigure}
+    \includegraphics{theory/dsa_mc.pdf}
+    \caption[DSA Monte Carlo]{Monte Carlo simulation of a test particle near the shock front. The particle position wildly varies (solid line), but its velocity $v_p$ (dotted line) increases each time it crosses the shock front at $x=0$. Adapted from \cite{Baring1997}}
+    \labfig{dsa_mc} 
+\end{marginfigure}
+
 If one solves both equations for $k$ and sets them equal, one obtains
 \begin{equation}
     \frac{\ln (N/N_0)}{\ln (E/E_0)} = \frac{\ln P}{\ln \beta}.
@@ -393,26 +399,8 @@ This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq. \ref{
     N(E)~\text{d} E \propto E^{-2}~\text{d} E.
 \end{equation}
 Therefore, the resulting differential energy spectrum has a spectral index of 2. This somewhat differs from the experimentally found spectral index of 2.7 up to the knee. This can be explained by the fact there are several assumptions at play here: The shock is assumed to be non-relativistic, in an ideal gas and constant escape probability. Inefficiencies in the shock, and the inclusion of shock-amplified magnetic fields can both harden the spectral index \cite{Spurio2018}.
-% The energy of a particle that has an initial energy $E_0$ and gains a fixed energy gain fraction $\beta$ that will increase exponentially over time with 
-% \begin{equation}
-% \label{eqn:e_of_t}
-%     E(t) = E_0 \beta^{t/\tau_\beta} = E_0 e^{t/\tau_\beta \ln \beta}
-% \end{equation}
-% if $\tau_\beta$ is the shock-crossing rate. Assume that each particle has a constant probability of escaping the system, with an average time until it escapes $\tau_\text{esc}$. From this it follows that a particle survives with exponentially decreasing probability 
-% \begin{equation}
-%     P(t) = \frac{1}{\tau_\text{esc}}e^{-t/\tau_\text{esc}}
-% \end{equation}
-% To obtain an energy spectrum, one needs to substitute the time $t$. This can be done by rearranging equation \ref{eqn:e_of_t} and solving for $t$:
-% \begin{equation}
-% t = \tau_\beta \frac{\ln E/E_0}{\ln \beta}.
-% \end{equation}
-% With this, $P(E)$ can be written as
-% \begin{equation}
-%     P(E) = \frac{1}{\tau_\text{esc}}e^{-\tau_\beta \frac{\ln E/E_0}{\ln \beta ~\tau_\text{esc}}} = \frac{1}{\tau_\text{esc}}~\frac{E}{E_0}e^{ \frac{-\tau_\beta}{\tau_\text{esc}~\ln \beta}}
-% \end{equation}
-% The result is a power law with index $\frac{\tau_\beta}{\tau_\text{esc}\ln \beta}$, which is indeed what was already stipulated by experimental data.
 
-\subsection{Interaction and neutrino production}
+\subsection{Interaction and neutrino production} \label{cr_interactions}
 As discussed above, cosmic rays are most likely produced in astrophysical shocks, as this can explain the power-law structure of the energy distribution. The particles accelerated within shocks might now interact with either hadrons, or photons in their vicinity or on their way to earth. For simplicity, this section focuses on the interaction of cosmic ray protons, but it applies to heavier nuclei as well.
 
 \textbf{$pp$ interactions} When cosmic ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produces lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
@@ -423,7 +411,7 @@ As discussed above, cosmic rays are most likely produced in astrophysical shocks
  \end{eqnarray} 
 As can be seen, $\pi^\pm$ decay into positive (negative) muons and a muon (anti-)neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-)neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to earth washes out this initial difference, with an expected flavor content of $1:1:1$ \cite{Workman2022}.
 
-The energy of the pion decay products is expected to trace the initial proton energy spectrum, so the resulting neutrino spectrum will have \todo{warum?, ergänzen, source}
+The energy of the pion decay products is expected to trace the initial proton energy spectrum. If the proton interaction rate is fairly independent of their energy, then they will lose a fraction of their energy, which will then be converted into the production of pions, and subsequently muons. With this, the resulting neutrino spectrum is expected to have a similar shape as the initial cosmic ray spectrum. \todo{warum?, ergänzen, source}
 
 \textbf{$p\gamma$ interactions}
 Cosmic ray protons can also interact with radiation fields. The cross section for these interactions is large near the $\Delta^+$ resonance. The dominant $\Delta^+$ decay modes again contain pions:
@@ -431,7 +419,7 @@ Cosmic ray protons can also interact with radiation fields. The cross section fo
     \Delta^+ ~~ &\contour{black}{$\rightarrow$}& n + \pi^+ \\
     \Delta^+ ~~ &\contour{black}{$\rightarrow$}& p + \pi^0
 \end{eqnarray}
-The pions will again decay according to the channels already discussed for $pp$ interactions. The secondary neutrons might decay via beta decay, and produce electron antineutrinos.
+The pions will again decay according to the channels already discussed for $pp$ interactions. The secondary neutrons might decay via beta decay, and produce electron antineutrinos. Also here, the neutrino spectrum is expected to trace the cosmic ray spectrum.\todo{source}
 
 
 \section{High-Energy Neutrino Astronomy}
@@ -440,7 +428,13 @@ As already detailed in Section \ref{sne}, CCSNe are thought to produce copious a
 
 SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}: The Balmer emission features of early IIn spectra, most prominently the $H_\alpha$ region, show narrow lines on top of a broad component \sidecite{Taddia2013}. The broad component is caused by the supernova itself, but the narrow lines result from interaction of the SN blast-wave with the CSM. This process photo-ionizes the CSM, which results in narrow hydrogen lines.
 
-Such a system might be promising for the production of high-energy neutrinos, as highlighted in \sidecite{Kurahashi2022}. When the expanding SN ejecta hit the CSM, a shock wave starts to propagate through it. Particle acceleration within the shock is predicted to happen at the moment of \textit{shock breakout}. This is the time when the optical depths of the shock drops below $\approx c/v$, with $v$ being the shock velocity. As soon as the radiation can escape, the shock is no longer radiation-mediated, and protons can be accelerated to high energies \sidecite{Waxman2017}. This emission seizes after the shock decelerates or reaches the outer edge of the CSM. The accelerated protons \unit{\peta\eV} \sidecite{Petropoulou2017,Murase2018}.
+Such a system might be promising for the production of high-energy neutrinos, as highlighted in \sidecite{Kurahashi2022}. When the SN ejecta -- expanding with velocities of \SIrange{3000}{10000}{\km\per\s} -- hit the CSM, a shock wave starts to propagate through it. Particle acceleration within the shock is predicted to happen at the moment of \textit{shock breakout}. This is the time when the optical depths of the shock drops below $\approx c/v$, with $v$ being the shock velocity. As soon as the radiation can escape, the shock is no longer radiation-mediated, and protons can be accelerated to high energies \sidecite{Waxman2017}. This emission seizes after the shock decelerates or reaches the outer edge of the CSM. 
+
+These accelerated protons are expected to generate high-energy neutrinos, either by $pp$ or $p\gamma$ interactions, both detailed in Section \ref{cr_interactions}. The resulting neutrinos are expected to range from \unit{\giga\eV} to hundreds of \unit{\tera\eV}, reaching their maximum flux shortly after shock breakout \sidecite{Petropoulou2017,Murase2018}.\todo{check, more content}
+
+\subsection{Gamma-ray bursts}
+Gamma-ray bursts (GRBs) were discovered by accident by the \textit{Vela} satellites designed to monitor nuclear detonations as part of a partial test ban treaty between the US and the USSR in the 1960s. 16 bursts of high-energy photon events recorded by those satellites were published in 1973. This kicked off a flurry of research, as a terrestrial or solar origin of these gamma-ray bursts could be excluded \sidecite{Klebesadel1973}.
+
 
 
 % \input{chapters/icecube.tex}
