@@ -354,15 +354,42 @@ To understand DSA, one has to differentiate between an \textit{upstream} region 
     \labfig{dsa} 
 \end{marginfigure}
 
-Now consider some test particles upstream, ahead of the shock front rushing towards it. Within a frame of reference in which the upstream gas is at rest, their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma (and Coulomb scattering can be neglected). When a test particle eventually with initial velocity $v_1$ (blue arrow in Fig. \ref{fig:dsa}) crosses the shock front to the downstream region, it will see a plasma rushing towards it with speed $|u_u-u_d| = (1-0.25)~u_u$, which equals 3/4 of the shock front velocity $v_s$. In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\Delta E/E = v_s/c$. For a simple derivation of this energy gain, confer \cite{Longair2011}.
+Now consider some test particles upstream, ahead of the shock front rushing towards it. Within a frame of reference in which the upstream gas is at rest, their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma (and Coulomb scattering can be neglected). When a test particle eventually with initial velocity $v_1$ (blue arrow in Fig. \ref{fig:dsa}) crosses the shock front to the downstream region, it will see a plasma rushing towards it with speed $w=|u_u-u_d| = (1-0.25)~u_u$, which equals 3/4 of the shock front velocity $v_s$. 
 
-This results in a higher velocity $v_2$. After some time, the particle might cross the shock front again, this time into the upstream region. From the now isotropized particle's frame, the upstream region will again rush in with $0.75~v_s$, and the process repeats, resulting in another gain in energy, and a higher $v_3$ \sidecite{Urosevic2019}.
+In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{2}{3}\frac{w}{c}$ (see below). This energy gain results in a higher velocity $v_2$. After some time, the particle might cross the shock front again, this time into the upstream region. From the now isotropized particle's frame, the upstream region will again rush in with $0.75~v_s$, and the process repeats, resulting in another gain in energy, and a higher $v_3$ \sidecite{Urosevic2019}, with an average round-trip energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$
+
+We still need to motivate $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$. This can be explained as follows: First, one needs to switch to the test particle frame, i.e. perform a Lorentz transformation. The energy of the test particle will be:
+
+\begin{equation}
+    E' = \gamma_{w}(E+p_x w),
+\end{equation}
+where x is the coordinate perpendicular to the shock. The shock is non-relativistic ($w<<c$ and $\gamma_w\approx1$), but the test particles are, so $E\approx pc$ and $p_x \approx E/c \cos(\theta)$. From this it follows that 
+\begin{equation}
+    \Delta E = E' - E = E+\frac{E}{c}w\cos{\theta}-E = pw\cos{\theta}
+\end{equation}
+and
+\begin{equation}
+    \frac{\Delta E}{E} = \frac{p}{w}\cos{\theta} = \frac{w}{c}\cos{\theta}
+    \label{delta_e_over_e}
+\end{equation}
+The probability of the test particle angle $\theta$ to lie between $\theta$ and $\theta + \text{d}\theta$ is proportial to $\sin{\theta}\text{d}\theta$, and the test particle approach rate is proportial to $v_x = \frac{p_x}{m} = \frac{E/c\cos{\theta}}{E/c^2} = c \cos{\theta}$. The probability of the test particle crossing the shock front is therefore proportional to $\sin{\theta} \cos{\theta} \text{d}\theta$. The integral from 0 to $\frac{\pi}{2}$ is 0.5, so we need to multiply by 2 to normalize the cumulative probability to 1:
+
+\begin{equation}
+    p(\theta) = 2\sin{\theta}\cos{\theta} \text{d}\theta
+\end{equation}
+
+By integrating $p(\theta)$ and using \ref{delta_e_over_e}, we can calculate the average energy gain of each shock crossing:
+
+\begin{equation}
+    \bigg\langle \frac{\Delta E}{E} \bigg\rangle = \int_0^{\pi/2} \frac{\Delta E}{E} p(\theta) = \frac{w}{c} \int_0^{\pi/2} 2 \sin{\theta} \cos^2{\theta}  \text{d}\theta = \frac{2}{3}\frac{w}{c}
+\end{equation}
+After another crossing, the test particle will gain another average energy increase of $\frac{2}{3}\frac{w}{c}$, resulting in an average energy gain of $\frac{4}{3}\frac{w}{c}$ per round trip \cite{Longair2011}.
 
 During each crossing, a particle with initial energy $E_0$ will gain an energy fraction $\beta$, resulting in energy $E=\beta E_0$. If $P$ denotes the probability that a particle \textit{stays} within the accelerating region, the number of particles after $k$ crossings can be written as $N=N_0 P^k $, and they will have energies $E=E_0\beta^k$.
 
 \begin{marginfigure}
     \includegraphics{theory/dsa_mc.pdf}
-    \caption[DSA Monte Carlo]{Monte Carlo simulation of a test particle near the shock front. The particle position wildly varies (solid line), but its velocity $v_p$ (dotted line) increases each time it crosses the shock front at $x=0$. Adapted from \cite{Baring1997}}
+    \caption[DSA Monte Carlo]{Monte Carlo simulation of a test particle near the shock front. The particle position wildly varies (solid line), but its velocity $v_i$ (dotted line) increases each time it crosses the shock front at $x=0$. Adapted from \cite{Baring1997}}
     \labfig{dsa_mc} 
 \end{marginfigure}
 
@@ -382,9 +409,12 @@ To obtain the differential energy spectrum, we differentiate with respect to $E$
 
 The result is a power law with index $\frac{\ln P}{\ln \beta}$, which is indeed what was already stipulated by experimental data.
 
-We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} v_p$ where $v_p$ is the particle's speed, so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.\todo{explain}
+We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} w$ where $w$ is\todo{bla} the speed of the shock seen from.
 
-What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011} (and originally presented by \sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $nv_p=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4}nv_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
+
+ % so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.\todo{explain}
+
+What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011} (and originally presented by \sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $n w=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4} n v_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
 
 With that, we can compute 
 \begin{equation}
@@ -392,7 +422,7 @@ With that, we can compute
 \end{equation}
 and 
 \begin{equation}
-   \ln \beta = \ln(1+\frac{4}{3}\frac{v_p}{c}) \simeq \frac{4}{3}\frac{v_p}{c} = \frac{v_s}{c}.
+   \ln \beta = \ln(1+\frac{4}{3}\frac{w}{c}) \simeq \frac{4}{3}\frac{w}{c} = \frac{v_s}{c}.
 \end{equation}
 This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq. \ref{eqn:diff_e_spec} yields
 \begin{equation}
