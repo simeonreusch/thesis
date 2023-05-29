@@ -328,19 +328,23 @@ If high-energy neutrinos are produced in the processes responsible for the creat
     \caption[UHECR spectrum]{Ultra high-energy cosmic ray spectrum. It shows energy per particle/nucleus vs. the flux (multiplied by $E^{2.6}$ to highlight the changes in spectral index). The data is from various air-shower experiments. From \cite{Workman2022}.}
     \labfig{uhecr_spectrum} 
 \end{figure}
-\begin{marginfigure}
-    \includegraphics{theory/uhecr_hillas_criterion.pdf}
-    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from \cite{Rieger2022}, original `Hillas plot' in \cite{Hillas1984}.}
-    \labfig{uhecr_hillas_criterion} 
-\end{marginfigure}
 
 Identifying the sources of UHECR remains a challenge. As the cosmic ray particles are charged, they are deflected by magnetic fields encountered on their way to earth, obscuring their origin. What \textit{is} known though is that their extremely high energies necessitate extreme environments in which they can be produced.
+
+
 
 In the 1980s, Hillas proposed the requirement that the efficient acceleration of a charged particle needs an accelerator that is able confine the particle during acceleration: This means that the source needs to be larger than the particle's Larmor radius \sidecite{Rieger2022}. This introduces a bound on the possible sources for UHECR cosmic ray sources:
 
 \begin{equation}
     E \leq 10^{20} Z \bigg(\frac{B}{\SI{10}{\micro\gauss}}\bigg) \bigg(\frac{R}{\SI{10}{\kilo\parsec}} \bigg)~\unit{\eV},
 \end{equation}
+
+\begin{marginfigure}
+    \includegraphics{theory/uhecr_hillas_criterion.pdf}
+    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from \cite{Rieger2022}, original `Hillas plot' in \cite{Hillas1984}.}
+    \labfig{uhecr_hillas_criterion} 
+\end{marginfigure}
+
 where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field strength of the source, and $R$ is the characteristic source dimension \cite{Rieger2022}. Sources that match this criterion for the production of UHECR protons and iron nuclei with an energy of \SI{e20}{\eV} are shown in Fig. \ref{fig:uhecr_hillas_criterion}. As one can see, a variety of extreme environments are possible sources of UHECR, some of these also hot candidates for the production of high-energy neutrinos. 
 
 \subsection{Diffusive shock acceleration} \label{dsa}
@@ -480,7 +484,17 @@ Both short and long GRBs have been proposed as potential sources of high-energy 
 Long GRBs on the other hand are also predicted to produce high-energy neutrinos. One needs to distinguis three different scenarios, as illustrated in Fig. \ref{fig:grb_model}: If the jet launched by the stellar collapse fails to penetrate the stellar and CSM environment (`choked jet', \textit{left} panel), no light would be visible, only `orphan' neutrinos without counterpart. If the choked jet manages to trigger a shock breakout (see Section \ref{interacting_sne}), both initial neutrinos and delayed neutrinos accompanied by a low-luminosity GRB and afterglow emission would be visible (\textit{middle} panel). If the jet successfully launches, a long GRB is detected (\textit{right} panel). In the optical bands, a young supernova would emerge, rising over the next days and trailing the neutrino detection time, as the latter are expected in the `prompt' phase within minutes after the stellar collapse \sidecite{Senno2016}.
 
 \subsection{Active galactic nuclei}
-Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). 
+Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). If the region around the SMBH is active, i.e. bright and/or varying over time, this is considered an AGN.
+
+The history of experimental AGN research started in 1963, when Maarten Schmidt discovered the a point-like object (3C 273) with a redshift of 0.158, using the P200 on Mount Palomar (see Chapter \ref{ztf}). The large redshift ruled out that the source was a regular star. Rather, it was located in the nucleus of a galaxy with the same redshift. The inferred luminosity was about 100 times brighter than comparable galaxies \sidecite{Schmidt1963}.
+
+Today we know that 
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{theory/agn_unification.pdf}
+    \caption[AGN]{AGN. Adapted from .}
+    \labfig{agn_unification} 
+\end{figure}
 
 % \sidecite{Meszaros2015}
 
