@@ -370,7 +370,7 @@ where x is the coordinate perpendicular to the shock. The shock is non-relativis
 and
 \begin{equation}
     \frac{\Delta E}{E} = \frac{p}{w}\cos{\theta} = \frac{w}{c}\cos{\theta}
-    \label{delta_e_over_e}
+    \label{eqn:delta_e_over_e}
 \end{equation}
 The probability of the test particle angle $\theta$ to lie between $\theta$ and $\theta + \text{d}\theta$ is proportial to $\sin{\theta}\text{d}\theta$, and the test particle approach rate is proportial to $v_x = \frac{p_x}{m} = \frac{E/c\cos{\theta}}{E/c^2} = c \cos{\theta}$. The probability of the test particle crossing the shock front is therefore proportional to $\sin{\theta} \cos{\theta} \text{d}\theta$. The integral from 0 to $\frac{\pi}{2}$ is 0.5, so we need to multiply by 2 to normalize the cumulative probability to 1:
 
@@ -378,7 +378,7 @@ The probability of the test particle angle $\theta$ to lie between $\theta$ and 
     p(\theta) = 2\sin{\theta}\cos{\theta} \text{d}\theta
 \end{equation}
 
-By integrating $p(\theta)$ and using \ref{delta_e_over_e}, we can calculate the average energy gain of each shock crossing:
+By integrating $p(\theta)$ and using Eqn. \ref{eqn:delta_e_over_e}, we can calculate the average energy gain of each shock crossing:
 
 \begin{equation}
     \bigg\langle \frac{\Delta E}{E} \bigg\rangle = \int_0^{\pi/2} \frac{\Delta E}{E} p(\theta) = \frac{w}{c} \int_0^{\pi/2} 2 \sin{\theta} \cos^2{\theta}  \text{d}\theta = \frac{2}{3}\frac{w}{c}
@@ -409,12 +409,7 @@ To obtain the differential energy spectrum, we differentiate with respect to $E$
 
 The result is a power law with index $\frac{\ln P}{\ln \beta}$, which is indeed what was already stipulated by experimental data.
 
-We already know that on average $\Delta E/E \simeq v_s/c$. $v_s$ can be translated to $\frac{4}{3} w$ where $w$ is\todo{bla} the speed of the shock seen from.
-
-
- % so -- on average -- $\Delta E/E = \frac{4}{3}\frac{v_p}{c}$. Then, $\beta = E/E_0 = 1 + \frac{4}{3}\frac{v_p}{c}$.\todo{explain}
-
-What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011} (and originally presented by \sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $n w=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4} n v_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
+We already know that $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$. With this, $\beta = \frac{E}{E_0} = 1 + \frac{4}{3}\frac{w}{c}$. What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by \cite{Longair2011} (and originally presented by \sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $n w=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4} n v_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$. 
 
 With that, we can compute 
 \begin{equation}
@@ -474,7 +469,7 @@ The most prevalent interpretation of these two populations is that short GRBs st
 
 Meanwhile, long GRBs are hypothesized to be the signatures of jets launched by CCSNe \sidecite{Galama1998}. The existence of such jets has been proposed already in the 1970s; see e.g. \sidecite{Leblanc1970}. If these jets manage to punch through the stellar envelope and the surrounding CSM, one can detect them as long GRBs.
 
-Both short and long GRBs have been proposed as potential sources of high-energy neutrinos. For 
+Both short and long GRBs have been proposed as potential sources of high-energy neutrinos. For short GRBs, these are only attributable to a source if a GRB afterglow is detected, i.e. longer lasting X-ray, optical and radio emission \sidecite{Waxman1997}. The event signature as accessible by IceCube and ZTF (see next two chapters) would be a prompt high-energy neutrino, accompanied by quickly fading optical emission.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{theory/grb_model.pdf}
@@ -482,7 +477,14 @@ Both short and long GRBs have been proposed as potential sources of high-energy 
     \labfig{grb_model} 
 \end{figure}
 
-\sidecite{Meszaros2015}
+Long GRBs on the other hand are also predicted to produce high-energy neutrinos. One needs to distinguis three different scenarios, as illustrated in Fig. \ref{fig:grb_model}: If the jet launched by the stellar collapse fails to penetrate the stellar and CSM environment (`choked jet', \textit{left} panel), no light would be visible, only `orphan' neutrinos without counterpart. If the choked jet manages to trigger a shock breakout (see Section \ref{interacting_sne}), both initial neutrinos and delayed neutrinos accompanied by a low-luminosity GRB and afterglow emission would be visible (\textit{middle} panel). If the jet successfully launches, a long GRB is detected (\textit{right} panel). In the optical bands, a young supernova would emerge, rising over the next days and trailing the neutrino detection time, as the latter are expected in the `prompt' phase within minutes after the stellar collapse \sidecite{Senno2016}.
+
+\subsection{Active galactic nuclei}
+Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). 
+
+% \sidecite{Meszaros2015}
+
+
 % \input{chapters/icecube.tex}
 % \input{chapters/ztf.tex}
 % \input{chapters/followup.tex}
