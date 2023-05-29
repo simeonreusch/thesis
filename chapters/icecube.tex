@@ -271,14 +271,16 @@ where $\theta_\text{zen}$ is the zenith angle and $E$ is the respective energy p
 The cuts on the individual event selections are tuned to ensure that \textit{gold} alerts on average have a signalness $>\SI{50}{\percent}$, and \textit{bronze} alerts have a signalness $>\SI{30}{\percent}$.
 \subsection{Alert distribution} \label{ic_alerts}
 All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. If they make either the gold or the bronze selection, they are distributed globally with the Gamma-Ray Coordinates Network (GCN) in the form of GCN Notices.
+
+Each notices contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Tung2019}.
+
+Those information are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction, which is initiated manually (see Section \ref{millipede}). The results of these reconstructions (i.e. the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
+
 \begin{marginfigure}
     \includegraphics{ic/ic_he_alert_overview.pdf}
     \caption[IceCube alert overview]{High-energy neutrino alerts issued by IceCube since start of the new alert stream in June 2019.}
     \labfig{ic_he_alert_overview}
 \end{marginfigure}
-Each notices contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Tung2019}.
-
-Those information are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction, which is initiated manually (see Section \ref{millipede}). The results of these reconstructions (i.e. the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular \cite{Tung2019}.
 
 As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the gold and bronze alert stream in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Tung2019}.} (0.8 gold alerts, 1.4 bronze alerts). For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see \cite{Abbasi2023}.
 
