@@ -493,7 +493,7 @@ Both short and long GRBs have been proposed as potential sources of high-energy 
 
 Long GRBs on the other hand are also predicted to produce high-energy neutrinos. One needs to distinguis three different scenarios, as illustrated in Fig. \ref{fig:grb_model}: If the jet launched by the stellar collapse fails to penetrate the stellar and CSM environment (`choked jet', \textit{left} panel), no light would be visible, only `orphan' neutrinos without counterpart. If the choked jet manages to trigger a shock breakout (see Section \ref{interacting_sne}), both initial neutrinos and delayed neutrinos accompanied by a low-luminosity GRB and afterglow emission would be visible (\textit{middle} panel). If the jet successfully launches, a long GRB is detected (\textit{right} panel). In the optical bands, a young supernova would emerge, rising over the next days and trailing the neutrino detection time, as the latter are expected in the `prompt' phase within minutes after the stellar collapse \sidecite{Senno2016}.
 
-\subsection{Active galactic nuclei}
+\subsection{Active galactic nuclei} \label{agn}
 Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). If the region around the SMBH is active, i.e. bright and/or varying over time, this is considered an AGN.
 
 The history of AGN research began in the 1940s, when Grote Reber detected strong radio sources on the sky, among the AGN Cygnus A. Also in the 1940s, Carl Seyfert discovered a type of galaxy with luminous nuclei \sidecite{Seyfert1943}. In 1963 Maarten Schmidt discovered the a point-like object (3C 273) with a redshift of 0.158, using the P200 on Mount Palomar (see Chapter \ref{ztf}). The large redshift ruled out that the source was a regular star. Rather, it was located in the nucleus of a galaxy with the same redshift. The remarkably large luminosity he inferred from that was about 100 times brighter than comparable galaxies \sidecite{Schmidt1963}.
@@ -519,18 +519,46 @@ Moving further down, the BLR close to the core gets hidden behind the dust torus
 
 The most promising site of high-energy neutrino production is the relativistic jet. In some cases these can be visually detected, like the prominent jet visible in M87 (see Fig \ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. About \SI{10}{\percent} of AGN show evidence of such jets. When the electrons and protons contained in the jet plasma are spinning in magnetic fields, they emit synchrotron radiation \sidecite{Combes2021}.
 
+These synchrotron photons now self are a target field for their `parent' electrons and protons. If the formerThe former can interact with them via inverse Compton Scattering (CS), transferring energy to those photons. This process is called Synchrotron Self-Compton (SSC) \cite{Spurio2018}, resulting in the typical double humped structure of blazar spectral energy distributions (SED).
+
+\sidecite{Meszaros2015}
+
 \todo{more details on jets}
-AGN have been proposed as sources of high-energy neutrinos as early as the 1970s \sidecite{Eichler1979}.
+AGN have been proposed as sources of high-energy neutrinos as early as the 1970s \sidecite{Eichler1979}. 
 
 
 \subsection{Tidal Disruption Events}
-Tidal Disruption Events (TDEs) mark the end of very unlucky stars. 
-% \sidecite{Meszaros2015}
+Tidal Disruption Events (TDEs) mark the end of very unlucky stars. When these happen to approach the SMBH at the galaxy center too closely, the resulting gravitation forces might overcome the star's self gravity, tidally disrupting and destroying the star \sidecite{Rees1988}. Roughly half the mass of the star is accreted around the black hole, and the bright electromagnetic flare created by this can shine for months. Nevertheless, the exact mechanisms at play causing this emission are still widely discussed \sidecite{Gezari2021}.
+
+TDEs have already been predicted in the 1970s \sidecite{Hills1975}, and the first few TDEs were discovered in the 1990s and early 2000s in X-ray wavelengths. Optically detected TDEs arrived in the last decade \sidecite{Velzen2011}, with steadily rising numbers in the last decade, mainly driven by optical all-sky survey telescopes like the Zwicky Transient Facility \sidenote{See Chapter \ref{ztf}.} (ZTF) . Fig. \ref{fig:tde_cumulative} shows the number of detected TDEs since 1995. As of December 2022, roughly 100 TDEs have been discovered in total, with more than 30 detected
+during the 2.6 years of ZTF Phase I alone \sidecite{Hammerstein2022}.
+
+\begin{marginfigure}
+    \includegraphics{theory/tde_cumulative.pdf}
+    \caption[TDE detections]{Cumulative number of TDE detections, with the color encoding the discovery wavelength. The relative increase in the detection rate is driven by ZTF. Adopted from \cite{Gezari2021}.}
+    \labfig{tde_cumulative}
+\end{marginfigure}
+
+TDEs normaly emit a continuum. This can be well approximated by a blackbody. Peculiarly, there seems to be a bimodal distribution of blackbody temperatures: One optical/UV population, and a second population peaking in the X-ray, better described by blackbodies of higher temperature \cite{Gezari2021}. 
+
+As the accretion disk hypothesized to form from the infalling material after the disruption will most likely be very hot, it is unclear what the cause of the optical/UV emission is. Furthermore, the blackbody radii inferred from the optical/UV emission exceed the size of the freshly formed accretion disk by $1-2$ orders of magnitude. To date, multiple models have been brought forward to motivate the optical/UV emission, such as semi-relativistic outflows or winds, or diffusive shock acceleration stemming from the tidal stream intersecting itself. 
+
+If the disrupted star's circularizes rapidly, one interesting approach to unify the two populations (X-ray vs. optical/UV) is a viewing angle dependet model, akin to the unified AGN model presented in Section \ref{agn}.
+
+\begin{figure}[htb]
+    \includegraphics[width=0.9\textwidth]{theory/tde_unification.pdf}
+    \caption[TDE Unification]{TDE unification model. The peak wavelength visible is a function of the viewing angle. Seen from above, the X-rays are dominating, while viewed edge-on, the TDE appears in the optical/UV. Adopted from \cite{Hayasaki2021}.}
+    \labfig{tde_unification} 
+\end{figure}
+
+In this model, X-ray bright TDEs are these where one looks into the direction of a shock perpendicular to the accretion disk, or in the direction of an outflow. Optical/UV TDEs are systems viewed edge-on, where X-rays are obscured, and emission stems mainly from X-rays reprocessed in the outer disk or in outflow \sidecite{Hayasaki2021}. Intermediate viewing angles will produce a mixture of both signals.
+
+Also, about \SI{1}{\percent} of TDEs are expected to launch relativistic jets, like e.g. the recently discovered AT2022cmc \sidecite{Andreoni2022}. Such jets (denoted as (1) in Fig. \ref{fig:tde_unification}), as well as the possible winds/outflows (2) or a potentially present disk corona (3) have been proposed as sites where high-energy neutrinos (shown as green lines) could be produced (see e.g. \sidecite{Murase2020} for the non-jet production sites).
 
 \section{Current sources and limits}
 \subsection{AGN}
-In blabla, IceCube\sidenote{See Chapter \ref{ic}.} identified the flaring blazar TX0506+056 as the probable source of high-energy neutrino bla
-
+In blabla, IceCube\sidenote{See Chapter \ref{ic}.} identified the flaring blazar TX0506+056 as the probable source of high-energy neutrino b
+%\sidecite{Murase2020}
 
 % \input{chapters/icecube.tex}
 % \input{chapters/ztf.tex}
