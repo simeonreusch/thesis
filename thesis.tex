@@ -268,7 +268,8 @@ In total, 25 neutrinos were detected by the three instruments (had IceCube alrea
 
 Historically, supernovae were classified according to the presence of lines in their spectra. SNe of type I are lacking hydrogen lines in their spectra, in contrast to type II SNe that show hydrogen lines. SNe are further subdivided into SNe Ia that display silicon lines, SNe Ib that do not display silicon lines, but helium lines, and SNe Ic that have neither.
 
-SNe Ia are a class sui generis. Their underlying physical scenario is a white dwarf accreting matter from a companion star. The accretion eventually causes the star's mass to exceed the Chandrasekhar limit of $\sim 1.4~M_\odot$ at which gravitational force overcomes the electron degeneracy pressure, and the star begins to burn carbon due to the higher density. At one point, a runaway thermonuclear reaction starts, and the white dwarf blows up violently \sidecite{Maguire2017}. As the Chandrasekhar limit is the same everywhere, the luminosity of that explosion is to first order the same for all SNe Ia, making them excellent instruments to measure cosmological distances. They are not expected to produce large quantities of neutrinos, though \sidecite{Alsabti2017}.
+SNe Ia are a class sui generis. Their underlying physical scenario is either a white dwarf accreting matter from a companion star (the so called \textit{single degenerate scenario}'. The accretion eventually causes the star's mass to exceed the Chandrasekhar limit of $\sim 1.4~M_\odot$ at which gravitational force overcomes the electron degeneracy pressure, and the star begins to burn carbon due to the higher density. At one point, a runaway thermonuclear reaction starts, and the white dwarf blows up violently \sidecite{Iben1984}. A second possible scenario that has recently gained traction is the \textit{double degenerate scenario}. Here the SN Ia is the result of two white dwarfs merging \cite{Iben1984}.
+In either scenario (see \sidecite{Maoz2014} for a review), the luminosity of the resulting explosion can be standardized using the Philips relation \sidecite{Phillips1993}. This makes them \textit{standardizable candles}, rendering them excellent instruments to measure cosmological distances. They are not expected to produce large quantities of neutrinos, though \sidecite{Alsabti2017}.
 
 \begin{figure}[htb]
     \includegraphics{theory/ccsn.pdf}
@@ -276,10 +277,9 @@ SNe Ia are a class sui generis. Their underlying physical scenario is a white dw
     \labfig{ccsn_schematic}
 \end{figure}
 
-In contrast to SNe Ia, all other types of SNe are so-called \textit{core-collapse} supernovae (CCSNe).
-Stars generate energy by first buring hydrogen. When a massive star has exhausted its hydrogen, fusion subsides and the gravitational pull compresses it further, until temperatures suitable for helium buring are reached. This process repeats for most of the iron group elements (Fe, Co, Ni).
+In contrast to SNe Ia, all other types of SNe are \textit{Core-Collapse Supernovae} supernovae (CCSNe), resulting from the gravitational collapse of massive stars. Stars generate energy by first buring hydrogen. When a massive star has exhausted its hydrogen, fusion subsides and the gravitational pull compresses it further, until temperatures suitable for helium buring are reached. This process repeats for carbon, neon, oxygen and silicon. The silicon burning produces nickel, which decays to iron.
 
-A CCSN happens when a star exceeding $8~M_\odot$ has reached its final fusion stage, the fusion of silicon to iron. Iron has the highest binding energy of all elements, therefore fusing iron to heavier elements would release no energy, and the fusion chain stops. With the fusion subsided, the radiation pressure that so far prevented the star from collapsing in on itself stops. The infalling material compresses the core of the star. As soon as the core becomes incompressible due to neutron degeneracy pressure described by the Pauli exlusion principle, the infalling material bounces back from the incompressible core and blows into space. The remaining neutron star in the center either survives, or the infalling material eventually causes it to overcome neutrino degeneracy pressure and collapses it into a black hole \cite{Alsabti2017}.
+A CCSN happens when a star with a mass between $8$ and $140 M_\odot$ has reached its final fusion stage which produces iron. Iron has the highest binding energy of all elements, therefore fusing iron to heavier elements would release no energy, and the fusion chain stops. With the fusion subsided, the radiation pressure that so far prevented the star from collapsing in on itself stops. The infalling material compresses the core of the star within a second. As soon as the core becomes incompressible due to neutron degeneracy pressure described by the Pauli exlusion principle, the infalling material bounces back from the incompressible core and blows into space. The remaining neutron star in the center either survives, or the infalling material eventually causes it to overcome neutrino degeneracy pressure and collapses it into a black hole \cite{Alsabti2017}.
 
 The spectral differences between SNe types Ib, Ic and Ii can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a type II supernova.
 
@@ -296,14 +296,17 @@ Instead, \SI{99}{\percent} of the binding energy is carried away by neutrinos (s
 It has to be noted though that the exact mechanism the neutrinos play in the SN explosion is still insufficiently understood, as one has to rely on data from one observation only, as well as numerical models. Eventually, a CCSN within our galaxy might come to the rescue \sidecite{Janka2017}.
 
 \section{Cosmic Rays} \label{cosmic_rays}
-As the production mechanisms for cosmic rays and high-energy neutrinos are intricately linked, a few words need to be said about the former.
 
-\subsection{Discovery}
 \begin{marginfigure}
     \includegraphics{theory/hess_balloon.png}
     \caption[Hess in his balloon]{Hess in his balloon after landing in Brandenburg, Germany in 1912, having just discovered cosmic rays. From \cite{Steinmaurer1985}.}
     \labfig{hess_balloon} 
 \end{marginfigure}
+
+As the production mechanisms for cosmic rays and high-energy neutrinos are intricately linked, a few words need to be said about the former.
+
+\subsection{Discovery}
+
 Cosmic rays were discovered in 1912 by Victor Hess. At the time, it had already been discovered that electroscopes -- devices measuring electric charge and voltage -- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. Another hint was that when shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown, though.
 
 Hess measured the flux of ionizing radiation with three electrometers during several balloon journeys. In total, he carried out 10 balloon ascents in the time period of 1911--1913. The first ascent over \SI{5}{\km} in August 1912 marked the discovery of cosmic rays, when he registered a 16-fold increase in ionization measured by the electrometers at that height. Hess consequently concluded that the ionizing radiation must be of extra-terrestrial origin. \sidecite{Steinmaurer1985}.
@@ -463,7 +466,7 @@ The pions will again decay according to the channels already discussed for $pp$ 
 
 \section{High-Energy Neutrino Astronomy}
 \subsection{Interacting supernovae} \label{interacting_sne}
-As already detailed in Section \ref{sne}, CCSNe are thought to produce copious amounts of \unit{\mega\eV}-neutrinos. Interestingly, certain types of CCSNe are thought not only to produce such comparably low-energy neutrinos, but also \unit{\tera\eV} neutrinos. Optical observations have stipulated that supernova progenitors often violently eject material into the circumstellar region in the years to centuries prior to their explosion \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM).
+As already detailed in Section \ref{sne}, CCSNe are thought to produce copious amounts of \unit{\mega\eV}-neutrinos. Interestingly, certain types of CCSNe are thought not only to produce such comparably low-energy neutrinos, but also \unit{\giga\eV} to \unit{\tera\eV} neutrinos. Optical observations have stipulated that supernova progenitors often violently eject material into the circumstellar region in the years to centuries prior to their explosion \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM).
 
 SNe of type IIn are a subclass first stipulated by Schlegel \sidecite{Schlegel1990}: The Balmer emission features of early IIn spectra, most prominently the $H_\alpha$ region, show narrow lines on top of a broad component \sidecite{Taddia2013}. The broad component is caused by the supernova itself, but the narrow lines result from interaction of the SN blast-wave with the CSM. This process photo-ionizes the CSM, which results in narrow hydrogen lines.
 
@@ -477,7 +480,7 @@ The signature of such an event is expected to be a high-energy neutrino detected
 \subsection{Gamma-ray bursts}
 Gamma-ray bursts (GRBs) were discovered by accident by the \textit{Vela} satellites designed to monitor nuclear detonations as part of a partial test ban treaty between the US and the USSR in the 1960s. 16 bursts of high-energy photon events recorded by those satellites were published in 1973. This kicked off a flurry of research, as a terrestrial or solar origin of these gamma-ray bursts could be excluded \sidecite{Klebesadel1973}.
 
-The light curves of the very bright and brief events last from a few milliseconds to tens, sometimes hundreds of seconds \sidecite{Vedrenne2009}. As more and more GRBs were registered, a bimodal population was recognized: \textit{Short GRBs} (SGRBs), with an average duration of $\SI{\sim 0.3}{\s}$, and \textit{long GRBs} (LGRBs) that typically last \SIrange{10}{20}{\s}.
+The gamma-ray light curves of these very bright and brief events last from a few milliseconds to tens, sometimes hundreds of seconds \sidecite{Vedrenne2009}. As more and more GRBs were registered, a bimodal population was recognized: \textit{Short GRBs} (SGRBs), with an average duration of $\SI{\sim 0.3}{\s}$, and \textit{long GRBs} (LGRBs) that typically last \SIrange{10}{20}{\s}.
 
 The most prevalent interpretation of these two populations is that short GRBs stem from the merger of two compact objects, e.g. neutron stars. This hypothesized for long, and found spectacular confirmation with the association of the short gamma-ray burst GRB170817A detected \SI{1.7}{\s} after a gravitational wave signal was detected from the same region (GW170817), most likely stemming from the merger of two neutron stars \sidecite{Abbott2017}.
 
@@ -491,23 +494,23 @@ Both short and long GRBs have been proposed as potential sources of high-energy 
     \labfig{grb_model} 
 \end{figure}
 
-Long GRBs on the other hand are also predicted to produce high-energy neutrinos. One needs to distinguis three different scenarios, as illustrated in Fig. \ref{fig:grb_model}: If the jet launched by the stellar collapse fails to penetrate the stellar and CSM environment (`choked jet', \textit{left} panel), no light would be visible, only `orphan' neutrinos without counterpart. If the choked jet manages to trigger a shock breakout (see Section \ref{interacting_sne}), both initial neutrinos and delayed neutrinos accompanied by a low-luminosity GRB and afterglow emission would be visible (\textit{middle} panel). If the jet successfully launches, a long GRB is detected (\textit{right} panel). In the optical bands, a young supernova would emerge, rising over the next days and trailing the neutrino detection time, as the latter are expected in the `prompt' phase within minutes after the stellar collapse \sidecite{Senno2016}.
+Long GRBs on the other hand are also predicted to produce high-energy neutrinos. One needs to distinguish three different scenarios, as illustrated in Fig. \ref{fig:grb_model}: If the jet launched by the stellar collapse fails to penetrate the stellar and CSM environment (\textit{choked jet}, \textit{left} panel), no light would be visible, only orphan high-energy neutrinos from the choked jet without an electromagnetic counterpart. If the choked jet manages to trigger a shock breakout (see Section \ref{interacting_sne}), both the neutrinos from the choked jet (\textit{precursor neutrinos}), as well as delayed high-energy neutrinos accompanied by a low-luminosity GRB and afterglow emission from the shock breakout would be visible (\textit{middle} panel). If the jet successfully launches, a long GRB accompanied by high-energy neutrinos is expected within minutes after the stellar collapse (\textit{right} panel). In the optical bands, a young supernova would emerge, rising over the next days \sidecite{Senno2016}.
 
 \subsection{Active galactic nuclei} \label{agn}
 Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). If the region around the SMBH is active, i.e. bright and/or varying over time, this is considered an AGN.
 
 The history of AGN research began in the 1940s, when Grote Reber detected strong radio sources on the sky, among the AGN Cygnus A. Also in the 1940s, Carl Seyfert discovered a type of galaxy with luminous nuclei \sidecite{Seyfert1943}. In 1963 Maarten Schmidt discovered the a point-like object (3C 273) with a redshift of 0.158, using the P200 on Mount Palomar (see Chapter \ref{ztf}). The large redshift ruled out that the source was a regular star. Rather, it was located in the nucleus of a galaxy with the same redshift. The remarkably large luminosity he inferred from that was about 100 times brighter than comparable galaxies \sidecite{Schmidt1963}.
 
-Today we assume that most galaxies contain a SMBH at their core. If the accretion rate, i.e. the rate at which the SMBH accumulates mass, is high, the galaxy appears active. We also assume that the myriad of different types of active galaxies (e.g. blazars, Seyfert I and II galaxies, radio-loud galaxies, etc.) are appearances of intrinsical similar objects: They are merely a function of the viewing angle at which we look at the AGN system.
+Today we assume that most galaxies contain a SMBH at their center. If the accretion rate, i.e. the rate at which the SMBH accumulates mass, is high, the galaxy appears active. We also assume that the myriad of different types of active galaxies (e.g. blazars, Seyfert I and II galaxies, radio-loud galaxies, etc.) are appearances of intrinsically similar objects: They are merely a function of the viewing angle at which we look at the AGN system, plus the presence or absence of a jet launched by the system.
 
-As can be seen in Fig. \ref{fig:agn_unification}, these systems are thought to contain a SMBH in the center. This is fed by a surrounding accretion disk of hot material, which in turn is enshrouded in a dusty torus. Perpendicular to the accretion disk, often energetic jets of relativistic material are launched from the system. When one looks directly into the jet, the system appears as \textit{blazar} (top of \ref{fig:agn_unification}). If one moves away from the jet direction, the AGN will in general appear as Type I AGN, displaying broad emission lines stemmming from the so-called \textit{Broad-Line Region} (BLR), lying at a distance of \SIrange{e-2}{1}{\parsec} to the SMBH. It consists of gas clouds, and the Doppler-induced line-broadening suggest high velocities, resulting from the fact that the material is deep within the graviational well of the SMBH.
+As can be seen in Fig. \ref{fig:agn_unification}, these systems are thought to contain a SMBH in the center. The black hole is fed by a surrounding accretion disk of hot material, which in turn is enshrouded in a dusty torus. Perpendicular to the accretion disk, often energetic jets of relativistic material are launched from the system. When one looks directly into the jet, the system appears as \textit{blazar} (top of \ref{fig:agn_unification}). If one moves away from the jet direction, the AGN will in general appear as Type I AGN, displaying broad emission lines stemmming from the so-called \textit{Broad-Line Region} (BLR), lying at a distance of \SIrange{e-2}{1}{\parsec} to the SMBH. It consists of gas clouds, and the Doppler-induced line-broadening suggest high velocities, resulting from the fact that the material is deep within the graviational well of the SMBH.
 
-Moving further down, the BLR close to the core gets hidden behind the dust torus, and only the  \textit{Narrow-Line Region} (NLR) is still visible, as it is more distant from core (\SIrange{e2}{e4}{\parsec}). Also here gas heated by the core radiates, but the gas density is lower compared to the BLR, and from the line-broadening one can infer much lower velocities of \SI{\sim 500}{\kilo\m\per\s} \sidecite{Beckmann2012}.
+Moving further away from the jet, the BLR close to the core gets hidden behind the dust torus, and only the  \textit{Narrow-Line Region} (NLR) is still visible, as it is more distant from core (\SIrange{e2}{e4}{\parsec}). Also here gas heated by the core radiates, but the gas density is lower compared to the BLR, and from the line-broadening one can infer much lower velocities of \SI{\sim 500}{\kilo\m\per\s} \sidecite{Beckmann2012}.
 
 
 \begin{figure}[htb]
     \includegraphics[width=0.7\textwidth]{theory/agn_unification.pdf}
-    \caption[AGN]{AGN unification scheme. Depending on the viewing angle towards the AGN system, different source classes emerge. Following the argumentation of \cite{Padovani2017}, the upper (lower) segment label `radio loud' (`radio quiet') segment was changed to `jetted' (`non-jetted'). Adapted from \cite{Thorne2022}.}
+    \caption[AGN]{AGN unification scheme. Depending on the viewing angle towards the AGN system, different source classes emerge. Following the argumentation of \cite{Padovani2017}, the upper (lower) segment label \textit{radio loud} (\textit{radio quiet}) was changed to \textit{jetted} (\textit{non-jetted}). Adapted from \cite{Thorne2022}.}
     \labfig{agn_unification} 
 \end{figure}
 
@@ -517,18 +520,22 @@ Moving further down, the BLR close to the core gets hidden behind the dust torus
     \labfig{m87_jet}
 \end{marginfigure}
 
-The most promising site of high-energy neutrino production is the relativistic jet. In some cases these can be visually detected, like the prominent jet visible in M87 (see Fig \ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. About \SI{10}{\percent} of AGN show evidence of such jets. When the electrons and protons contained in the jet plasma are spinning in magnetic fields, they emit synchrotron radiation \sidecite{Combes2021}.
+The most promising site of high-energy neutrino production is the relativistic jet. In some cases such jets can be visually detected, like the prominent jet visible in M87 (see Fig \ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. About \SI{10}{\percent} of AGN show evidence of such jets. 
 
-These synchrotron photons now self are a target field for their `parent' electrons and protons. If the formerThe former can interact with them via inverse Compton Scattering (CS), transferring energy to those photons. This process is called Synchrotron Self-Compton (SSC) \cite{Spurio2018}, resulting in the typical double humped structure of blazar spectral energy distributions (SED).
+When the electrons and protons contained in the jet plasma are spinning in magnetic fields, they emit synchrotron radiation \sidecite{Combes2021}.
+
+These synchrotron photons now self are a target field for their `parent' electrons and protons. The former can interact with them via inverse Compton Scattering (CS), transferring energy to those photons. This process is called Synchrotron Self-Compton (SSC) \cite{Spurio2018}, explaining the typical double humped structure of blazar spectral energy distributions (SED): The low-energy hump is caused by the synchrotron radiation, and the second, higher-energy hump, is caused by the inverse CS. This is dubbed the \textit{leptonic model}, and due to the absence of accelerated hadrons as e.g. protons, it does not predict the presence of high-energy neutrinos.
+
+An alternative model to explain the second hump is the \textit{hadronic} model. Here, 
 
 \sidecite{Meszaros2015}
 
-\todo{more details on jets}
+\todo{explain hadronic model}
 AGN have been proposed as sources of high-energy neutrinos as early as the 1970s \sidecite{Eichler1979}. 
 
 
 \subsection{Tidal Disruption Events}
-Tidal Disruption Events (TDEs) mark the end of very unlucky stars. When these happen to approach the SMBH at the galaxy center too closely, the resulting gravitation forces might overcome the star's self gravity, tidally disrupting and destroying the star \sidecite{Rees1988}. Roughly half the mass of the star is accreted around the black hole, and the bright electromagnetic flare created by this can shine for months. Nevertheless, the exact mechanisms at play causing this emission are still widely discussed \sidecite{Gezari2021}.
+A Tidal Disruption Events (TDE) marks the end of a very unlucky star. When a star happens to approach the SMBH at the galactic center too closely, the resulting gravitation forces might overcome the star's self-gravity, tidally disrupting and destroying the star \sidecite{Rees1988}. Roughly half the mass of the star is accreted around the black hole, and the bright electromagnetic flare created by this can shine for months. Nevertheless, the exact mechanisms at play causing this emission are still widely discussed \sidecite{Gezari2021}.
 
 TDEs have already been predicted in the 1970s \sidecite{Hills1975}, and the first few TDEs were discovered in the 1990s and early 2000s in X-ray wavelengths. Optically detected TDEs arrived in the last decade \sidecite{Velzen2011}, with steadily rising numbers in the last decade, mainly driven by optical all-sky survey telescopes like the Zwicky Transient Facility \sidenote{See Chapter \ref{ztf}.} (ZTF) . Fig. \ref{fig:tde_cumulative} shows the number of detected TDEs since 1995. As of December 2022, roughly 100 TDEs have been discovered in total, with more than 30 detected
 during the 2.6 years of ZTF Phase I alone \sidecite{Hammerstein2022}.
@@ -543,7 +550,7 @@ TDEs normaly emit a continuum. This can be well approximated by a blackbody. Pec
 
 As the accretion disk hypothesized to form from the infalling material after the disruption will most likely be very hot, it is unclear what the cause of the optical/UV emission is. Furthermore, the blackbody radii inferred from the optical/UV emission exceed the size of the freshly formed accretion disk by $1-2$ orders of magnitude. To date, multiple models have been brought forward to motivate the optical/UV emission, such as semi-relativistic outflows or winds, or diffusive shock acceleration stemming from the tidal stream intersecting itself. 
 
-If the disrupted star's circularizes rapidly, one interesting approach to unify the two populations (X-ray vs. optical/UV) is a viewing angle dependet model, akin to the unified AGN model presented in Section \ref{agn}.
+If the material from the disrupted star is circularized rapidly, one interesting approach to unify the two populations (X-ray vs. optical/UV) is a viewing angle dependent model, akin to the unified AGN model presented in Section \ref{agn}.
 
 \begin{figure}[htb]
     \includegraphics[width=0.9\textwidth]{theory/tde_unification.pdf}
@@ -553,11 +560,34 @@ If the disrupted star's circularizes rapidly, one interesting approach to unify 
 
 In this model, X-ray bright TDEs are these where one looks into the direction of a shock perpendicular to the accretion disk, or in the direction of an outflow. Optical/UV TDEs are systems viewed edge-on, where X-rays are obscured, and emission stems mainly from X-rays reprocessed in the outer disk or in outflow \sidecite{Hayasaki2021}. Intermediate viewing angles will produce a mixture of both signals.
 
-Also, about \SI{1}{\percent} of TDEs are expected to launch relativistic jets, like e.g. the recently discovered AT2022cmc \sidecite{Andreoni2022}. Such jets (denoted as (1) in Fig. \ref{fig:tde_unification}), as well as the possible winds/outflows (2) or a potentially present disk corona (3) have been proposed as sites where high-energy neutrinos (shown as green lines) could be produced (see e.g. \sidecite{Murase2020} for the non-jet production sites).
+Also, about \SI{1}{\percent} of TDEs are expected to launch relativistic jets, like e.g. the recently discovered AT2022cmc \sidecite{Andreoni2022}. Such jets (denoted as (1) in Fig. \ref{fig:tde_unification}), as well as the possible winds/outflows (2) or a potentially present disk corona (3), have all been proposed as production sites of high-energy neutrinos, shown as green lines (see e.g. \sidecite{Murase2020} for the non-jet production sites).
 
 \section{Current sources and limits}
+In 2013, IceCube, a cubic-kilometer scale Cherenkov detector located within the Antarctic ice at the South Pole\sidenote{See Chapter \ref{ic} for details} published the first evidence for the existence of high-energy astrophysical neutrinos \sidecite{Aartsen2013}.
+
+Fig. \ref{fig:ic_first_spectrum} shows the first energy spectrum of high-energy neutrinos published by IceCube (\textit{left}), as well as a more recent measurement from 9 years of IceCube data (\textit{right}). At energies of roughly \SI{100}{\tera\eV}, events additional to the atmospheric background begin to accumulate. 
+
+\begin{figure}[htb]
+\centering
+    \begin{subfigure}[b]{0.52\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{theory/ic_first_spectrum.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.47\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{theory/ic_last_spectrum.pdf}
+    \end{subfigure}
+\caption[Astrophysical neutrino spectrum]{\textit{Left}: Energy spectrum of the first astrophysical neutrinos, as detected by IceCube in 2013. The black points are the neutrinos measured, binned in energy deposited in the detector (a lower bound on the neutrino energy). The expected background rate of atmospheric muons (neutrinos) is shown in red (blue), and the grey line shows the best-fit astrophysical spectrum ($E^{-2}$ plus background. \textit{Right}: Latest measurement of track-like muon neutrinos, including 9 years of IceCube data. Also here, the binned measurements are shown in black. Adapted from \cite{Aartsen2013,Abbasi2022b}.}
+\labfig{ic_first_spectrum}
+\end{figure} 
+
+
+Last data: \sidecite{Abbasi2022b}
+
 \subsection{AGN}
-In blabla, IceCube\sidenote{See Chapter \ref{ic}.} identified the flaring blazar TX0506+056 as the probable source of high-energy neutrino b
+In blabla, IceCube identified the flaring blazar TX0506+056 as the probable source of high-energy neutrino b
+
+NGC 1068 \sidecite{Abbasi2022}
 %\sidecite{Murase2020}
 
 % \input{chapters/icecube.tex}
