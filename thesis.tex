@@ -583,25 +583,33 @@ In 2013, IceCube, a cubic-kilometer scale Cherenkov detector located within the 
 
 Fig. \ref{fig:ic_first_spectrum} shows the first energy spectrum of high-energy neutrinos published by IceCube (\textit{left}), as well as a more recent measurement from 9 years of IceCube data (\textit{right}). At energies of roughly \SI{100}{\tera\eV}, the atmospheric background begins to recede, reveiling a flux of astrophysical neutrinos that follows a power-law spectrum with a spectral index $\gamma\approx2.4$ \sidecite{Abbasi2022b}.
 
-The flux is largely isotropic, which stipulates an extra-galactic origin of the majority of high-energy neutrinos. The majority of this flux is still unaccounted for. Nevertheless, there are some prominent source candidates found since 2013. These, as well as upper limits on other hypothesized source populations, will be discussed next.
+The flux is largely distributed isotropically over the sky, which stipulates an extra-galactic origin for the majority of high-energy neutrinos. The majority of this flux is still unaccounted for. Nevertheless, there are some prominent source candidates found since 2013. These, as well as upper limits on other hypothesized source populations, will be discussed next.
 
 
 
 \subsection{AGN}
 
-\begin{marginfigure}
-    \includegraphics{theory/txs_localization.pdf}
-    \caption[Localization of TXS 0506+056]{Localization of the flaring blazar TXS 0506+056, found in coincidence with high-energy neutrino IceCube-170922A. The \SI{50}{\percent} (\SI{90}{\percent}) localization contours of the neutrino location are shown in grey (dashed red). Adopted from \cite{Aartsen2018}.}
-    \labfig{txs_localization}
-\end{marginfigure}
+\begin{figure}[htb]
+\centering
+    \begin{subfigure}[b]{0.47\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{theory/txs_localization.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.52\textwidth}
+    \centering
+    \includegraphics[width=1\textwidth]{theory/txs_modeling.pdf}
+    \end{subfigure}
+    \caption[TXS 0506+056: Localization and SED]{\textit{Left}: Localization of the flaring blazar TXS 0506+056, found in coincidence with high-energy neutrino IceCube-170922A. The \SI{50}{\percent} (\SI{90}{\percent}) localization contours of the neutrino location are shown in grey (dashed red). \textit{Right}: Hybrid lepto-hadronic emission model to explain the SED, including the detected high-energy neutrino. The leptonic component is shown as orange line, while the hadronic component is shown in blue. The resulting combined photon spectrum is displayed in black, and the muon neutrino spectrum in red. Adopted from \cite{Aartsen2018, Gao2018}.}
+\labfig{txs}
+\end{figure}
 
-In 2017, IceCube identified the blazar TXS 0506+056, at the time flaring in gamma rays, as the probable source of high-energy neutrino IceCube-170922A \sidecite{IC17922A,Aartsen2018}. The neutrino had an estimated energy of \SI{290}{\tera\eV}, and a best-fit sky location separated by \SI{0.1}{\degree} from the blazar.
+In 2017, IceCube identified the blazar TXS 0506+056, at the time flaring in gamma rays, as the probable source of high-energy neutrino IceCube-170922A \sidecite{IC17922A,Aartsen2018}. The neutrino had an estimated energy of \SI{290}{\tera\eV}, and a best-fit sky location separated by \SI{0.1}{\degree} from the blazar, see left plot in Fig. \ref{fig:txs}.
 
-The blazar has a redshift of $z=0.337 \pm 0.001$ \sidecite{Paiano2018}, and a search for additional excess neutrinos from its sky location in 9.5 years of IceCube data found another episode of heightened activity. During September 2014 and March 2015, with neutrino flux from the direction of TXS 0506+056 at the $3.5\sigma$ level \sidecite{Aartsen2018a}.
+The blazar has a redshift of $z=0.337 \pm 0.001$ \sidecite{Paiano2018}, and a search for additional excess neutrinos from its sky location in 9.5 years of IceCube data found another episode of heightened activity during September 2014 and March 2015 with neutrino flux from the direction of TXS 0506+056 at the $3.5\sigma$ level \sidecite{Aartsen2018a}.
 
-Several attempts to model the SED resulting in producing a flux of high-energy neutrinos compatible with the IceCube detection were made, an example is shown in Fig. \todo{sed hier}. 
+Several attempts to model the SED resulting in producing a flux of high-energy neutrinos compatible with the IceCube detection were made, an example is shown in the right plot of Fig. \ref{fig:txs}. \todo{Discuss SED}
 
-NGC 1068 is an active galaxy, located relatively nearby (the distance is \SI{\sim 14}{\mega\parsec}) \sidecite{Abbasi2022}. It was classified as Seyfert II galaxy, i.e. without signs of a jet, and viewed relatively edge-on, with dust obscuring the SMBH and the BLR (see Section \ref{agn}) \sidecite{Rosas2022}. It has an exceptionally high rate of star formation, and 
+NGC 1068 is an active galaxy, located relatively nearby (the distance is \SI{\sim 14}{\mega\parsec}) \sidecite{Abbasi2022}. It was classified as Seyfert II galaxy, i.e. without signs of a jet, and viewed relatively edge-on, with dust obscuring the SMBH and the BLR (see Section \ref{agn}) \sidecite{Rosas2022}. It has an exceptionally high rate of star formation \sidecite{Eichmann2016}, and hosts outflows \sidecite{Cecil1990}. Due to these features, it had already been proposed as production site of high-energy neutrinos in the 1970s \sidecite{Silberberg1979}.
 
 In 2022, an archival study comprising IceCube data from 2011--2020 found an excess of $79^{+22}_{-20}$ neutrinos with \unit{\tera\eV} energies from the location of NGC 1068 \sidecite{Abbasi2022}.
 
