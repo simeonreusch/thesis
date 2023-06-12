@@ -477,7 +477,7 @@ These accelerated protons are expected to generate high-energy neutrinos, either
 The signature of such an event is expected to be a high-energy neutrino detected close the optical peak of a supernova that shows signs of CSM interaction, i.e. narrow lines in the optical spectrum.
 \todo{check, more content}
 
-\subsection{Gamma-ray bursts}
+\subsection{Gamma-ray bursts} \label{grb}
 Gamma-ray bursts (GRBs) were discovered by accident by the \textit{Vela} satellites designed to monitor nuclear detonations as part of a partial test ban treaty between the US and the USSR in the 1960s. 16 bursts of high-energy photon events recorded by those satellites were published in 1973. This kicked off a flurry of research, as a terrestrial or solar origin of these gamma-ray bursts could be excluded \sidecite{Klebesadel1973}.
 
 The gamma-ray light curves of these very bright and brief events last from a few milliseconds to tens, sometimes hundreds of seconds \sidecite{Vedrenne2009}. As more and more GRBs were registered, a bimodal population was recognized: \textit{Short GRBs} (SGRBs), with an average duration of $\SI{\sim 0.3}{\s}$, and \textit{long GRBs} (LGRBs) that typically last \SIrange{10}{20}{\s}.
@@ -499,7 +499,7 @@ Long GRBs on the other hand are also predicted to produce high-energy neutrinos 
 In all cases, further evolution will lead to an emerging supernova -- most likely of Type Ic-BL -- which will be detectable at the location of the neutrino in optical bands in the following weeks \sidecite{Senno2016}.
 
 \subsection{Active galactic nuclei} \label{agn}
-Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). If the region around the SMBH is active, i.e. bright and/or varying over time, this is considered an AGN.
+Another extreme environment are active galactic nuclei (AGN). At the center of most galaxies lies a supermassive black hole (SMBH). If the region around the SMBH is active, this is considered an AGN. The key features of AGN also explain what `active' means: AGN are highly luminous, with bolometric luminosities up to \SI{e48}{\erg\per\s}. They vary on rapid timescales, which allows to infer that the emitting regions must be small (to not violate causality). Also, their luminosity function (the number of AGN per luminosity interval) evolves strongly with redshift. Lastly, AGN emit throughout the electromagnetic spectrum \sidecite{Padovani2017a}.
 
 The history of AGN research began in the 1940s, when Grote Reber detected strong radio sources on the sky, among the AGN Cygnus A. Also in the 1940s, Carl Seyfert discovered a type of galaxy with luminous nuclei \sidecite{Seyfert1943}. In 1963 Maarten Schmidt discovered the a point-like object (3C 273) with a redshift of 0.158, using the P200 on Mount Palomar (see Chapter \ref{ztf}). The large redshift ruled out that the source was a regular star. Rather, it was located in the nucleus of a galaxy with the same redshift. The remarkably large luminosity he inferred from that was about 100 times brighter than comparable galaxies \sidecite{Schmidt1963}.
 
@@ -522,7 +522,8 @@ As can be seen in Fig. \ref{fig:agn_unification}, these systems are thought to c
 Moving further away from the jet, the BLR close to the core gets hidden behind the dust torus, and only the  \textit{Narrow-Line Region} (NLR) is still visible, as it is more distant from core (\SIrange{e2}{e4}{\parsec}). Also here gas heated by the core radiates, but the gas density is lower compared to the BLR, and from the line-broadening one can infer much lower velocities of \SI{\sim 500}{\kilo\m\per\s} \sidecite{Beckmann2012}.
 
 AGN have been proposed as sources of high-energy neutrinos as early as the 1970s \sidecite{Eichler1979}. 
-The most promising site of high-energy neutrino production is the relativistic jet. In some cases such jets can be visually detected, like the prominent jet visible in M87 (see Fig \ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. About \SI{10}{\percent} of AGN show evidence of such jets. % \sidecite{Meszaros2015}
+The most promising site of high-energy neutrino production is the relativistic jet. In some cases such jets can be visually detected, like the prominent jet visible in M87 (see Fig \ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. About \SI{10}{\percent} of AGN show evidence of such jets.
+% \sidecite{Meszaros2015}
 
 When the electrons and protons contained in the jet plasma are clumped together in relativistically moving `blogbs' and are spinning in magnetic fields, they emit synchrotron radiation \sidecite{Combes2021}. This is the usual explanation for the first hump in a typical blazar spectral energy distribution (SED).
 
@@ -587,7 +588,7 @@ The flux is largely distributed isotropically over the sky, which stipulates an 
 
 
 
-\subsection{AGN}
+\subsection{AGN counterparts and limits}
 
 \begin{figure}[htb]
 \centering
@@ -614,7 +615,22 @@ NGC 1068 is an active galaxy, located relatively nearby (the distance is \SI{\si
 
 In 2022, an archival study comprising IceCube data from 2011--2020 found an excess of $79^{+22}_{-20}$ neutrinos with \unit{\tera\eV} energies from the location of NGC 1068. This results in a neutrino luminosity between 1.5 and \SI{15}{\tera\eV} of $L_\nu = (2.9 \pm 1.1_\text{stat}) \times \SI{e42}{\erg\per\s}$, exceeding the equivalent gamma-ray luminosity between 0.1 and \SI{100}{\giga\eV} by a factor of 18 \sidecite{Abbasi2022}.
 
-NGC 1068 and TXS 0506+056 each contribute \SI{\sim 1}{\percent} of the overall diffuse flux of astrophysical neutrinos measure by IceCube in their respective energy range. So far, it is not constrained if the diffuse flux is mainly composed of bright and nearby sources akin to NGC 1068, a large population of faint sources with high redshifts ($z \geq 1$), or a combination of both. Given the big differences in distance between NG 1068 and TXS 0506+056 (the latter is about 100 times farther away) and the differences in their respective spectra, it seems plausible to assume at least two distinct AGN source populations \cite{Abbasi2022}.
+NGC 1068 and TXS 0506+056 each contribute \SI{\sim 1}{\percent} of the overall diffuse flux of astrophysical neutrinos measured by IceCube in their respective energy range. So far, it remains unclear if the diffuse flux is mainly composed of bright and nearby sources akin to NGC 1068, a large population of faint sources with high redshifts ($z \geq 1$), or a mixture of both. Given the big difference in distance between NG 1068 and TXS 0506+056 (the latter is about 100 times farther away) and the differences in their respective spectra, it seems plausible to assume at least two distinct AGN source populations \cite{Abbasi2022}.
+
+However, there are several constraints on the contribution from AGN. A stacking analysis from 2019 investigated 1301 gamma-ray blazars from 3FHL \sidecite{Ajello2017}, the third catalog of hard gamma-ray sources issued by the \textit{Fermi} Large Area Telescope (LAT) \sidecite{Atwood2009}. After stacking and searching for spatial correlations between through-going high-energy muon tracks from the Northern hemisphere, no excess of neutrinos was detected \sidecite{Huber2019}. Assuming a spectral source index of $\gamma=2$, an upper limit on the contribution of blazars to the high-energy neutrino flux between \SI{119}{\tera\eV} and \SI{4.9}{\peta\eV} can be calculated: Not more than \SI{17}{\percent} of the diffuse flux can be attributed to these sources \sidecite{Huber2019}.
+
+Another study analyzed the contribution of softer gamma-ray blazars detected in the \unit{\mega\eV} energy range. 137 blazars from the \textit{Fermi} Low Energy Catalog (1FLE) \sidecite{Principe2018}, detected below \SI{100}{\mega\eV}, were stacked. The result was compatible with a non detection. The upper limit derived from this -- assuming a spectral index tracing the diffuse neutrino spectral index $\gamma=2.37$ and evaluated in an energy range between 30 and \SI{100}{\mega\eV} -- was \SI{\sim 1}{\percent} of the IceCube $\nu_\mu+\bar{\nu_\mu}$ flux \sidecite{Abbasi_2022}.
+
+However, a recent study found a $2.6\sigma$ excess when correlating an infrared-selected population of non-jetted AGN with the astrophysical neutrino flux. The accretion disk luminosity of the AGN was estimated with the soft X-ray flux, and the neutrino luminosity was assumed to be proportional to that. The AGN population was selected based on their radio emission and infrared colors, and the $2.6\sigma$ excess (post trial) was obtained from the infrared-selected sample of 32249 AGN. If this excess is interpreted as constituting a physical signal, \SIrange{27}{100}{\percent} of the observed \SI{100}{\tera\eV} neutrinos could stem from particle acceleration in the accretion disks or coronae of non-jetted AGN \sidecite{Abbasi2022c}.
+
+\subsection{GRB limits}
+A search for a correlation between 807 GRBs within \sidecite{Aartsen2016a}. The search was constrained to prompt emisssion (see Section \ref{grb}) from GRBs, excluding precursor events or GRB afterglows. This was achieved by 
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{theory/ul.pdf}
+    \caption[Contribution to HE neutrino flux]{Potential source contributions to the diffuse IceCube high-energy neutrino flux. Adapted from a figure by Foteini Oikonomou from a talk at the \nth{27} European Cosmic Ray Symposium (ECRS), sent to the author in a private conversation. The values shown are mainly taken from \cite{Guepin2022}.}
+    \labfig{flux_ul}
+\end{figure}
 
 %\sidecite{Murase2020}
 
