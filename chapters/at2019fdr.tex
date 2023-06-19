@@ -5,12 +5,11 @@ AT2019fdr emerged as a candidate when following up the high-energy IceCube neutr
 
 Two more sources were inititally published by us as candidate sources (SN2020lls and SN2020lam), but both could be ruled out with follow-up observations. For details on these, see Section \ref{SN2020lls} and \ref{SN2020lam}. This left AT2019fdr as the only remaining neutrino source candidate, a long lived optical transient located at RA $= 257.278575$ and Dec $= +26.855758$, with a distance to the reported neutrino best-fit location of \SI{1.72}{\degree}.
 
-At the moment of neutrino arrival, the transient was already 400 days old. It was originally discovered May 13, 2019 by \textit{AMPEL} \sidecite{at2019fdr_disc}, with a first detection on May 3, 2019. The neutrino arrived about 10 months after the optical peak. The peak flux in the ZTF \textit{g}-band was \SI{1.3e-12}{\erg\per\s\per\square\cm}. The redshift of $z=0.2666$ was inferred from the Balmer lines visible in a spectrum taken on July 3, 2019 with the Double Spectrograph (DBSP) on the P200. The peak \textit{g}-band luminosity calculated with this redshift, $L_\text{peak}=\SI{2.9e44}{\erg\per\s}$, showed that AT2019fdr was an extraordinarily luminous event\sidenote{Here and in the following I will use a standard flat cosmology with $\Omega_\Lambda = 0.7$ and $H_0=\SI{70}{\km\per\s\per\mega\parsec}$.}.
+At the moment of neutrino arrival, the transient was \textbf{already 400 days old}. It was originally discovered May 13, 2019 by \texttt{AMPEL} \sidecite{at2019fdr_disc}, with a first detection on May 3, 2019. The neutrino arrived about \textbf{10 months after the optical peak}. The peak flux in the ZTF \textit{g}-band was \SI{1.3e-12}{\erg\per\s\per\square\cm}. The redshift of $z=0.2666$ was inferred from the Balmer lines visible in a spectrum taken on July 3, 2019 with the Double Spectrograph (DBSP) on the P200. The peak \textit{g}-band luminosity calculated with this redshift, $L_\text{peak}=\SI{2.9e44}{\erg\per\s}$, showed that AT2019fdr was an \textbf{extraordinarily luminous event}\sidenote{Here and in the following standard flat cosmology will be used, with $\Omega_\Lambda = 0.7$ and $H_0=\SI{70}{\km\per\s\per\mega\parsec}$.}.
 
-The long-duration flare was initially tentatively classified as a superluminous supernova of type IIn (SLSN IIn). A peculiarity of this event is that it occured close to the core of its host galaxy SDSSCGB 6856.2, a Narrow-Line Seyfert 1 (NLSy1) galaxy, a type of AGN. The mean angular separation to the host position as reported in the \textit{Gaia} DR2 was \SI{0.03 \pm 0.15}{\arcsecond}. Due to this proximity, it was systematically followed up by ZTF program dedicated to study flares in NLSy1 galaxies. 
+The long-duration flare was initially tentatively classified as a superluminous supernova of type IIn (SLSN IIn). A peculiarity of this event is that it occured close to the core of its host galaxy SDSSCGB 6856.2, a Narrow-Line Seyfert 1 (NLSy1) galaxy, a type of AGN (see Section \ref{agn}). The mean angular separation to the host position as reported in the \textit{Gaia} DR2 was \num{0.03 \pm 0.15} arcsec. Due to this proximity, it was systematically followed up by ZTF program dedicated to study flares in NLSy1 galaxies \sidecite{Frederick2021}. 
 
-In a paper describing the sample of such flares detected during ZTF Phase I, a \textit{TDE interpretation} of AT2019fdr was stipulated \sidecite{Frederick2021}. The authors outright rejected a SLSN interpretation, and also argued against an AGN origin of the flare. The reasons for disfavoring the SLN hypothesis were the 
-long-lived U-band and UV emission, emission at the blue end of the Balmer line profiles, the overall longevity of the flare and it nuclear location close to the center of its host galaxy \cite{Frederick2021}.
+In a paper describing the sample of such flares detected during ZTF Phase I, a \textbf{TDE interpretation} of AT2019fdr was stipulated \cite{Frederick2021}. The authors outright rejected a SLSN interpretation, and also argued against an AGN origin of the flare. The reasons for disfavoring the SLN hypothesis were the \textbf{long-lived U-band and UV emission}, \textbf{emission at the blue end of the Balmer line profiles}, the \textbf{longevity of the flare} and its \textbf{nuclear location} close to the center of its host galaxy \cite{Frederick2021}.
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/at2019fdr_light_curve_flux.pdf}
@@ -18,16 +17,16 @@ long-lived U-band and UV emission, emission at the blue end of the Balmer line p
     \labfig{at2019fdr_light_curve}
 \end{figure*}
 
-In the following, I will give an overview over the observations in different wavelengths, the reductions of the near infrared observations triggered by us, modeling of the spectral energy distribution (SED), interpretation of the delayed infrared signal as dust echo, revisit the TDE interpretation and calculate the chance of observing an event comparable to AT2019fdr in temporal and spatial coincidence with a high-energy neutrino.
+In the following, an overview will be given over the observations in different wavelengths, the reductions of the near infrared observations triggered by our group, the modeling of the spectral energy distribution (SED), the interpretation of the delayed infrared signal as dust echo. This will be followed by a discussion of the TDE interpretation and the calculation of the chance of observing an event comparable to AT2019fdr in temporal and spatial coincidence with a high-energy neutrino.
 
 \section{Multi-wavelength Observations}
 As AT2019fdr was discovered close to the core of its host galaxy, it was followed up as part of regular ZTF TDE group activities from early on, including ToO observations by \textit{Swift} UVOT and XRT. 
 
-After observing the neutrino, we triggered additional follow up by \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA. 
+After observing the neutrino, we triggered additional follow up with \textit{Swift} UVOT, requested multi-epoch near-infrared observations with the Wide Field Infrared Camera (WIRC) \sidecite{Wilson2003} on the P200, and triggered multi-epoch radio observations with VLA. 
 
 Furthermore, we analyzed data by the LAT \cite{Atwood2009} aboard the \textit{Fermi Gamma-Ray Space Telescope} (\textit{Fermi}), and investigated four epochs of observations by the Extended Roentgen Survey with an Imaging Telescope Array (eROSITA) telescope \sidecite{Predehl2021} aboard the \textit{Spectrum Roentgen Gamma} (\textit{SRG}) \sidecite{Sunyaev2021} space mission. 
 
-All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay with a seemingly constant decay rate \sidecite{Reusch2022}.
+All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay, apparently with a constant decay rate \sidecite{Reusch2022}.
 
 \subsection{Gamma-ray limits}
 
@@ -39,10 +38,10 @@ All detections and upper limits except for the radio data are shown in Fig. \ref
 
 The details of the \textit{Fermi} LAT analysis were published in \sidecite{Velzen2021}. The one year long time window analyzed for AT2019fdr spanned from the first optical detection of the source on May 3, 2019, until the arrival of the neutrino on May 30, 2020.
 
-No gamma-ray sources were detected significantly (\SI{\geq 5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2) \sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of AT2019fdr, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\Gamma}$, with a spectral index $\Gamma=2$ \cite{Velzen2021}.
+No gamma-ray sources were detected significantly (\SI{\geq 5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2) \sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of AT2019fdr, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\gamma}$, with a spectral index $\gamma=2$ \cite{Velzen2021}.
 
 \subsection{X-ray observations} \label{x_ray_obs}
-The sky region of AT2019 was visited four times by \textit{SRG} with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit the source was detected, which can be counted as evidence for temporal evolution in X-ray wavelengths. All measurements and the upper limits and detections derived from these are displayed in Fig. \ref{fig:at2019fdr_light_curve} and listed in Table \ref{tab:at2019fdr_erosita}.
+The sky region of AT2019 was visited four times by \textit{SRG} with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit one year later the source was detected, which can be counted as evidence for \textbf{temporal evolution in X-ray wavelengths}. All measurements and the upper limits and detections derived from these are displayed in Fig. \ref{fig:at2019fdr_light_curve} and listed in Table \ref{tab:at2019fdr_erosita}.
 \begin{marginfigure}
     \includegraphics{at2019fdr/SRG.jpeg}
     \caption[The \textit{SRG} satellite]{The \textit{SRG} satellite. The eROSITA instrument aboard \textit{SRG} was put into hibernation following the Russian invasion of Ukraine in February 2022. Image credit: Roskosmos.}
@@ -65,9 +64,9 @@ The sky region of AT2019 was visited four times by \textit{SRG} with a six-month
 \label{tab:at2019fdr_erosita}
 \end{table}
 
-The single detection from March 11, 2021 revealed a very soft thermal spectrum. As can be seen in Fig. \ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
+The single detection from March 11, 2021 revealed a \textbf{very soft thermal spectrum}. As can be seen in Fig. \ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of AT2019fdr one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far \sidecite{Sazonov2021}. 
 
-The equivalent hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
+The equivalent neutral hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. This is a measure of the amount of neutral hydrogen atoms along the line of sight to the source. That value is consistent -- within errors -- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low \cite{Reusch2022}.
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/erosita_fit.pdf}
@@ -86,9 +85,9 @@ The data was reduced with the publicly available \texttt{Swift XRT data products
 \end{marginfigure}
 
 \subsection{Optical/UV observations}
-The ZTF optical observations were processed with \texttt{fpbot}\sidenote{See Section \ref{fpbot}}. The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \SI{3}{\arcsecond}, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described in Section \ref{synthetic_host_model}. \cite{Reusch2022}.
+The ZTF \textbf{optical observations} were processed with \texttt{fpbot} (see Section \ref{fpbot}). The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise ratio with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \num{3} arcsec, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described in Section \ref{synthetic_host_model}. \cite{Reusch2022}.
 
-As the extraction of the infrared measurements was more involved due to host-galaxy blending, this will be detailed in a full Section below.
+As the extraction of the infrared measurements was more involved due to the presence of host galaxy blending, this will be detailed in Section \ref{nir_reductions} below.
 
 \subsection{Radio observations}
 After the neutrino detection, we applied for Director's Discretionary Time (DDT) on the VLA. Three individual measurements were taken on July 3, September 13 and November 7, 2020. The first epoch was carried out in the \SIrange{2}{4}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz}. In the subsequent epochs, we added the \SIrange{1}{2}{\giga\Hz} and \SIrange{4}{8}{\giga\Hz} bands. Delay, bandpass and flux calibration were performed on the source 3C 286, and the nearby source J1716+2152 was used for the complex gain calibration. For this, the VLA calibration pipeline in the Common Astrometry Software Application (CASA) \sidecite{Bean2022} was used, and imaging was performed with the CASA task \texttt{tclean}. Finally, the target flux density was measured by fitting a point source in the image plane \cite{Reusch2022}.
@@ -99,7 +98,7 @@ After the neutrino detection, we applied for Director's Discretionary Time (DDT)
     \labfig{vla}
 \end{marginfigure}
 
-Flux from the source location was measured in all three epochs. At all epochs, the flux density declined with higher frequencies. While epoch 1 and 2 showed no evolution in the \SIrange{4}{8}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz} bands, the final epoch suggested reduced flux and subsequently a spectral steepening in these bands. Intensive testing revealed that the reduced flux was not intrinsic to the source, but rather significant atmospheric phase changes between the calibrator scans. This reduced the measured flux densities during epoch 3 due to decorrelation. As the source flux density was too low for self calibration, the effect could not be corrected for. We concluded that no evidence for temporal evolution in the radio can be found during the 5 months of observation. All measurements are shown in Fig. \ref{fig:at2019fdr_radio} and listed in Table \ref{tab:at2019fdr_radio}.
+\textbf{Flux from the source location was measured in all three epochs}. In all epochs, the flux density declined with higher frequencies. While epoch 1 and 2 showed no evolution in the \SIrange{4}{8}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz} bands, the final epoch suggested reduced flux and subsequently a spectral steepening in these bands. Intensive testing revealed that the reduced flux was not intrinsic to the source, but rather significant atmospheric phase changes between the calibrator scans. This reduced the measured flux densities during epoch 3 due to decorrelation. As the source flux density was too low for self calibration, the effect could not be corrected for. We concluded that \textbf{no evidence for temporal evolution in the radio} can be found during the 5 months of observation. All measurements are shown in Fig. \ref{fig:at2019fdr_radio} and listed in Table \ref{tab:at2019fdr_radio}.
 
 \begin{figure}[htb]
     \includegraphics{at2019fdr/at2019fdr_radio.pdf}
@@ -107,16 +106,16 @@ Flux from the source location was measured in all three epochs. At all epochs, t
     \labfig{at2019fdr_radio}
 \end{figure}
 
-To compare to pre-flare host radio emission, we also obtained an archival upper limit from the Very Large Array Sky Survey (VLASS) \sidecite{Lacy2020}. We exclusively used VLASS, as it is the only survey with sufficient sensitivity and angular resolution to probe AT2019fdr. The quicklook continuum \texttt{fits} file for tile T17t23We was obtained from the archive\sidenote{\url{https://archive-new.nrao.edu/vlass/quicklook}}. The observation was carried out on November 25, 2017 in the \SIrange{2}{4}{\giga\Hz} band. At a significance level of \SI{3}{\sigma}, no emission from the source was detected. The local RMS noise was $\sigma=\SI{0.11}{\milli\jansky}/\text{beam}$, and the beam size was $\SI{2.46}{\arcsecond} \times \SI{2.28}{\arcsecond}$ at a position angle of \SI{-37}{\degree}. This results in an upper limit of \SI{0.32}{\milli\jansky}. A second VLASS observation was taken a few days prior to our second trigger epoch, but the resulting \SI{3}{\sigma} upper limit was less constraining (\SI{0.4}{\milli\jansky}) \cite{Reusch2022}.
+To compare to pre-flare host radio emission, we also obtained an \textbf{archival upper limit} from the Very Large Array Sky Survey (VLASS) \sidecite{Lacy2020}. We exclusively used VLASS, as it is the only survey with sufficient sensitivity and angular resolution to probe AT2019fdr. The quicklook continuum \texttt{fits} file for tile T17t23We was obtained from the archive\sidenote{\url{https://archive-new.nrao.edu/vlass/quicklook}}. The observation was carried out on November 25, 2017 in the \SIrange{2}{4}{\giga\Hz} band. At a significance level of \SI{3}{\sigma}, no emission from the source was detected. The local RMS noise was $\sigma=\SI{0.11}{\milli\jansky}/\text{beam}$, and the beam size was $\SI{2.46}{\arcsecond} \times \SI{2.28}{\arcsecond}$ at a position angle of \SI{-37}{\degree}. This results in an upper limit of \SI{0.32}{\milli\jansky}. A second VLASS observation was taken a few days prior to our second trigger epoch, but the resulting \SI{3}{\sigma} upper limit was less constraining (\SI{0.4}{\milli\jansky}) \cite{Reusch2022}.
 
-\section{Near-infrared Observations}
-After the detection of the neutrino, we triggered near-infrared (NIR) observations to extend the SED to longer wavelengths. We observed during 4 epochs with WIRC on the Palomar P200 in the \textit{J}-, \textit{H} and \textit{Ks}-band, centered on \SI{1.2}{\micro\m}, \SI{1.6}{\micro\m} and \SI{2.1}{\micro\m}. The dates of observations were July 1 and September 27, 2020, as well as February 2 and May 28, 2021. 
+\section{Near-infrared Observations} \label{nir_reductions}
+After the detection of the neutrino, we triggered \textbf{near-infrared (NIR) observations} to extend the SED to longer wavelengths. We observed during 4 epochs with WIRC on the Palomar P200 in the \textit{J}-, \textit{H} and \textit{Ks}-band, centered on \SI{1.2}{\micro\m}, \SI{1.6}{\micro\m} and \SI{2.1}{\micro\m}. The dates of observations were July 1 and September 27, 2020, as well as February 2 and May 28, 2021. 
 
 All WIRC measurements were reduced using a custom pipeline (see \sidecite{De2020}), which performs flat fielding, background subtraction and fits an astrometric solution using \textit{Gaia} DR2. Subsequently, the individual images for each filter and epoch were stacked to increase signal-to-noise. The photometric zero-point calibration of the stacked images was achieved within the pipeline by comparison to the Two Micron All Sky Survey (2MASS) \sidecite{Skrutskie2006}.
 
 \subsection{\texttt{GALFIT} flux extractions}
 
-As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the flux extraction was done manually with \texttt{GALFIT} \sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types. 
+As another galaxy lies close to AT2019fdr's host galaxy\todo{distance}, the \textbf{flux extraction was performed manually} with \texttt{GALFIT} \sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types. 
 
 To improve precision, the point spread function\sidenote{See Section \ref{psfphot}} of individual stacked images was first derived with \texttt{photutils} \sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy} \sidecite{PriceWhelan2022}. All stars within the surrounding of AT2019fdr were selected for this. From this selection, a subset of stars neither too dim nor too bright were visually selected (see Fig. \ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, the PSF of the image was calculated.
 
@@ -134,9 +133,9 @@ The stars were automatically retrieved with \texttt{DAOStarFinder}, while PSF fi
     \labfig{at2019fdr_nir_teststar}
 \end{figure}
 
-The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic  profiles describing the galaxy flux as a function of the distance to the galaxy core were then defined\sidenote{For details, see e.g. \cite{Graham2005}.}, centered on the host and the neighboring galaxy location. Additionally, a point source with variable position was used. These were then fit together, resulting in flux values for the host galaxy, the neighboring galaxy and the transient.
+The resulting PSF was then ingested into \texttt{GALFIT}. Two Sérsic  profiles describing the galaxy flux as a function of the distance to the galaxy core were then defined\sidenote{For details, see e.g. \cite{Graham2005}.}, centered on the host and the neighboring galaxy location. Additionally, a point source with variable position was used. These were then fit together, resulting in \textbf{flux values for the host galaxy, the neighboring galaxy and the transient}.
 
-All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values\sidenote{This can be explained by differing observing conditions at different epochs.}. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
+All parameters except for the point source flux were fixed after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values. This can be explained by differing observing conditions at different epochs. To \textbf{account for this variation}, both epoch 1 and epoch 4 were used as reference epochs. The difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) was taken as systematic uncertainty on the extracted transient flux \cite{Reusch2022}.
 
 As there was no image without transient flux available, we added the point source and the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section \ref{synthetic_host_model}.}. The model-subtracted AB magnitudes calculated by this procedure are shown in Table \ref{tab:p200_nir}.
 
@@ -148,11 +147,11 @@ As there was no image without transient flux available, we added the point sourc
     \labfig{wise}
 \end{marginfigure}
 
-Additionally to the ground-based NIR observations with P200, images from the mid-infrared (MIR) \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}). \textit{WISE} has cadence of 6 months, and the available images comprised 13 observational epochs prior to the detection of AT2019fdr, as well as 3 epochs during the transient's life.
+Additionally to the ground-based NIR observations with P200, images from the \textbf{mid-infrared (MIR)} \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}). \textit{WISE} has cadence of 6 months, and the available images comprised \textbf{13 observational epochs prior} to the detection of AT2019fdr, as well as \textbf{3 epochs during the transient's life}.
 
 As the MIR photometry -- like the NIR photometry -- suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE} \sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot} \sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot} \cite{Stetson1987} algorithms. 
 
-The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\jansky}, which was significantly smaller than the peak difference flux, measured at \SI{0.9}{\milli\jansky}. A robust baseline can therefore be constructed from the pre-flare \textit{WISE} detections. 
+The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\jansky}, which was significantly smaller than the peak difference flux, measured at \SI{0.9}{\milli\jansky}. A robust \textbf{baseline} can therefore be constructed from the pre-flare \textit{WISE} detections. 
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_wise.pdf}
@@ -161,7 +160,7 @@ The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\j
 \end{figure}
 
 \subsection{Synthetic host model} \label{synthetic_host_model}
-As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a synthetic model of the emission from the host galaxy. 
+As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a \textbf{synthetic model} of the emission from the host galaxy. 
 
 This was done by fitting a galaxy model as described in \sidecite{Velzen2020}, using different archival measurements: To measure the UV flux, we used images from the Galaxy Evolution Explorer (\textit{GALEX}) \sidecite{Martin2005}. The \texttt{gPhoton} \sidecite{Million2016} package with an aperture of \SI{4}{\arcsecond} was used for flux extraction.
 
@@ -195,10 +194,10 @@ The host model was subsequently subtracted from all measurements possibly contai
 \section{SED Blackbody Modeling}
 After compiling and reducing the individual light curve measurements, a physical model motivating the detected light needed to be applied. 
 
-To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e. a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The double blackbody model matched the observations best. In the following, I will detail the derivation of this model and the energy output of the system derived from this, including a discussion of dust extinction.
+To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e. a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The \textbf{double blackbody model matched the observations best}. In the following, I will detail the derivation of this model and the energy output of the system derived from this, including a discussion of dust extinction.
 
 \subsection{Fit epochs}
-First, we isolated three regions of interest. These comprised 1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch 2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch 3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
+First, we isolated \textbf{three regions of interest}. These comprised 1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch 2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch 3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
 
 As the light curve does not significantly change during those epochs, we used the mean flux values for each observed bands as input for the fitting procedure.
 
@@ -214,7 +213,7 @@ As stated above, we tried a variety of models:
 
 All fits were performed with the \texttt{lmfit} \sidecite{Newville2021} Python package , which implements the Levenberg-Marquardt algorithm for solving non-linear least-squares problems.
 
-To account for host extinction, we used the \texttt{extinction} \sidecite{Barbary2016} Python package, namely the Calzetti attenuation law \sidecite{Calzetti2000} contained therein. We fixed the extinction $R_V$ at $3.1$ and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. We decided on using epoch 1 to determine $A_V$, as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
+To account for \textbf{host extinction}, we used the \texttt{extinction} \sidecite{Barbary2016} Python package, namely the Calzetti attenuation law \sidecite{Calzetti2000} contained therein. We fixed the extinction $R_V$ at $3.1$ and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. We decided on using epoch 1 to determine $A_V$, as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
 
 We imported the measurements, averaged each the flux in each band per epoch, and passed them to the minimizer (the fit priors are shown in Table \ref{tab:double_bb_priors}).
 
@@ -240,13 +239,13 @@ The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{
 \text{Scale} = d_L^2 / (r^2 \pi)
 \end{equation}
 
-where $r$ is the blackbody radius and $d_L$ is the \textit{luminosity distance}, calculated with the redshift $z=0.2666$ and assuming a standard cosmology. The luminosity distance is a measure for how far away something `looks'. If the luminosity $L$ is the total amount of energy isotropically radiated by an object per unit time, it is related to the flux $F$ measured at luminosity distance $d_L$ via this relation (describing an expanding sphere of light):
+where $r$ is the blackbody radius and $d_L$ is the \textit{luminosity distance}, calculated with the redshift $z=0.2666$ and assuming a standard cosmology. The luminosity distance is a measure for how far away something `looks'. If the luminosity $L$ is the total amount of energy isotropically radiated by an object per unit time, it is related to the flux $F$ measured at luminosity distance $d_L$ via this relation, describing an expanding sphere of light:
 
 \begin{equation}
 d_L = \sqrt{L/4\pi F}
 \end{equation}
 
-The luminosity distance is equal to the proper distance (as in the amount of space a photon had to traverse to reach us) if and only if the universe is geometrically flat and the universe is static (neither shrinking nor expanding). As the universe in fact \textit{is} expanding, the luminosity distance is similar to the proper distance only for small redshifts (i.e. if there was little time needed for the photon to reach us, and therefore little expansion). In general, the luminosity distance depends on the evolution of the universe. Here, the luminosity distance was calculated with the \texttt{astropy.cosmology} module. 
+The luminosity distance is equal to the proper distance (as in the amount of space a photon had to traverse to reach us) if and only if the universe is geometrically flat and the universe is static, so it is neither shrinking nor expanding. As the universe in fact \textit{is} expanding, the luminosity distance is similar to the proper distance only for small redshifts (i.e. if there was little time needed for the photon to reach us, and therefore little expansion). In general, the luminosity distance depends on the evolution of the universe. Here, the luminosity distance was calculated with the \texttt{astropy.cosmology} module. 
 
 \subsection{Minimization}
 
@@ -258,11 +257,11 @@ The luminosity distance is equal to the proper distance (as in the amount of spa
 
 In each iteration of the minization proceess, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the two blackbody spectra were added. 
 
-To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their transmission function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, P200 and \textit{WISE}.
+To extract the flux as observed in each band, \texttt{SNCosmo} was used to evaluate all bands given their \textbf{transmission} function. For this, the integrated bandpass library of \texttt{SNCosmo} was used. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service \sidecite{Rodrigo2020}. This was the case for \textit{Swift}, P200 and \textit{WISE}.
 
-The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}. The best-fit temperatures result in a `blue' blackbody peaking in optical/UV wavelengths, and a `red' blackbody peaking in the infrared.
+The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table \ref{tab:double_bb}. The best-fit temperatures result in a \textbf{blue blackbody} peaking in optical/UV wavelengths, and a \textbf{red blackbody} peaking in the infrared.
 
-We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time by scaling it with the shape of the ZTF \textit{g}-band light curve, we obtained a total bolometric luminosity of $E_\text{bol} = \SI{3.4e52}{\erg}$. We did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction). This pushes AT2019fdr to the class of brightest transients ever detected. Its inferred bolometric energy was almost twice as high as that of ASASSN-15lh, which was one of the brightes transients ever reported \sidecite{Dong2016} and which was suggested to be a TDE \sidecite{Leloudas2016}.
+We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time by scaling it with the shape of the ZTF \textit{g}-band light curve, we obtained a \textbf{total bolometric luminosity} of $E_\text{bol} = \SI{3.4e52}{\erg}$. We did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction). This pushes AT2019fdr to the class of \textbf{brightest transients ever detected}. Its inferred bolometric energy was almost twice as high as that of ASASSN-15lh, which was one of most luminous transients ever reported \sidecite{Dong2016} and which was suggested to be a TDE \sidecite{Leloudas2016}.
 
 \begin{table}
 \renewcommand{\arraystretch}{1.3}
@@ -286,7 +285,7 @@ We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+
 
 
 \subsection{Uncertainty estimate}
-As the fit routine was not able to generate stable covariance matrices in all epochs, the uncertainties were estimated manually.
+As the fit routine was not able to generate stable covariance matrices in all epochs, the \textbf{uncertainties were estimated manually}.
 
 For each epoch and fit parameter, this was done by letting all parameters very except for the parameter of interest. This parameter was then varied around the best-fit value, and the resulting $\chi^2$ was evaluated. The $\chi^2$ distribution was then approximated with a polynomial, and the the \SI{68}{\percent} confidence level calculated -- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
@@ -313,18 +312,19 @@ From the fit parameter uncertainties calculated as such, the uncertainties on th
 
 As can be seen in Table \ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As these values were in tension with the dust-echo model discussed below\sidenote{See Section \ref{dust_echo}.}, we investigated this behavior.
 
-The most likely reason for the higher temperature in epoch 3 is that the infrared blackbody was less constrained in that epoch, as there were no \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. In Fig. \ref{fig:at2019fdr_contour_all}, one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}.
-
 \begin{marginfigure}
     \includegraphics{at2019fdr/at2019fdr_bb_chisq.pdf}
     \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
     \labfig{bb_chisq}
 \end{marginfigure}
 
-Furthermore, all epochs showed the expected linear correlation between increasing blackbody temperature and decreasing radius of the blackbody. Fig. \ref{fig:at2019fdr_contour_all_nowise} shows how the \SI{90}{\percent} contour of epoch 2 gets moved to a higher temperature and lower radius when removing the two \textit{WISE} datapoints. This reinforces the case that the higher best-fit temperature in epoch 3 is merely an artifact of having less constraints for the fit and not some unexplained physical process.
+The most likely reason for the higher temperature in epoch 3 is that the infrared blackbody was \textbf{less constrained in that epoch}, as there were no \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. In Fig. \ref{fig:at2019fdr_contour_all}, one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}.
+
+
+Furthermore, all epochs showed the \textbf{expected linear correlation} between increasing blackbody temperature and decreasing radius of the blackbody. Fig. \ref{fig:at2019fdr_contour_all_nowise} shows how the \SI{90}{\percent} contour of epoch 2 gets moved to a higher temperature and lower radius when removing the two \textit{WISE} datapoints. This reinforces the case that the higher best-fit temperature in epoch 3 is merely an artifact of having less constraints for the fit and not some unexplained physical process.
 
 \section{Dust Echo Model} \label{dust_echo}
-As one can see in the light curve\sidenote{See Fig. \ref{fig:at2019fdr_light_curve}} of AT2019fdr, the emission in all infrared bands (\textit{WISE} and P200) is delayed with respect to the optical signal. Furthermore, the infrared emission is well approximated by a blackbody, as was shown in the last section.
+As one can see in the light curve of AT2019fdr (see Fig. \ref{fig:at2019fdr_light_curve}), the emission in all infrared bands (\textit{WISE} and P200) is \textbf{delayed with respect to the optical signal}. Furthermore, the infrared emission is well approximated by a blackbody, as was shown in the last section.
 
 We interpret this infrared emission as a \textit{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy \sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a `safe distance', at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
 

@@ -94,7 +94,7 @@ In total, approximately 5800 DOM units were built and tested, 300 failing tests 
 
 The instrumented part of the strings starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig. \ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig. \ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The \textbf{total instrumented volume} of glacial ice is thus \SI{1}{\km\cubed} \cite{Aartsen2017}. Of the 5160 deployed DOMs, 92 are dead as of March 2023, a loss of \SI{1.7}{\percent}\sidenote{This is better than the predicted failure percentage, which was projected to be \SI{2}{\percent} by 2023 \cite{Aartsen2017}.}.
 
-One can see in Fig. \ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold of \SI{10}{\GeV}. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs \cite{Aartsen2017}. 
+One can see in Fig. \ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold\todo{What's the normal energy threshold?} of \SI{10}{\GeV}. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs \cite{Aartsen2017}. 
 
 
 \subsection{Deployment} 
@@ -177,7 +177,7 @@ Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x
     \labfig{ic_reco_cherenkov}
 \end{figure}
 
-To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we neglect stochastic photon losses, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we \textbf{neglect stochastic photon losses}, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig. \ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$
 
 So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the Earth, centered on the detector surface and pointing southwards. An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels from the 90th Meridian East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
 
@@ -187,7 +187,7 @@ Now, a DOM in the detector at position $\vec{r}_i$ at a distance $d$ to the trac
 t_\text{geo} = t_0 + \frac{|\vec{p}\cdot(\vec{r_i}-\vec{r_0})|+d\cdot \tan{\theta_\text{C}}}{c_0},
 \end{equation}
 
-with $c_0$ the vacuum speed of light. As this does not take scattering into account, it is useful to define a relative time of arrival, the \textit{time residual} $t_\text{res} = t_\text{hit} - t_\text{geo}$. This is the additional time introduced by scattering as opposed to a Cherenkov photon traveling directly from the muon to the DOM.
+with $c_0$ the vacuum speed of light. As this does not take scattering into account, it is useful to define a \textbf{relative time of arrival}, the time residual $t_\text{res} = t_\text{hit} - t_\text{geo}$. This is the additional time \textbf{introduced by scattering} as opposed to a Cherenkov photon traveling directly from the muon to the DOM.
 
 The scattering does primarily not loose light, but delays the photons. It is dominated by Mie scattering on impurities located within the ice. These impurities are thought to mainly comprise mineral dust, salt, acid droplet and soot by volcanic activity, all deposited by snow fall in the course of the last \num{1e5} years \sidecite{Abbasi2022a}.
 
@@ -195,7 +195,7 @@ As the position of the DOM is known, $t_\text{res}$ is the most significant obse
 
 
 \subsection{First (single) photoelectron fit}
-Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to only regard the \textit{first} photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called \textit{single photoelectron} (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
+Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to \textbf{only regard the first photon} hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called \textbf{Single Photoelectron} (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
 \mathcal{L}_\text{1st}(\vec{x}|\vec{a}) = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,...),
@@ -206,7 +206,7 @@ where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained
 \subsection{Multi photoelectron fit}
 A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon. This is because more photon hits mean that the DOM is closer to the event, and therefore receives a higher signal -- which means that the event is detected earlier. 
 
-This leads to the \textit{multi photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given time-integrating the photon arrival PDF from the $t_\text{res}$ to infinity:
+This leads to the \textbf{Multi Photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given time-integrating the photon arrival PDF from the $t_\text{res}$ to infinity:
 
 \begin{equation}
 P(t_{\text{res},i}|\vec{a}) = \int^{\infty}_{t_{\text{res},i}}p(t|\vec{a})\,dt.
@@ -218,18 +218,18 @@ Using this, the MPE likelihood is given as
 \mathcal{L}_\text{MPE} = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}) \cdot N_i \cdot (1-P(t_{\text{res},i}|\vec{a}))^{N_i-1},
 \end{equation}
 
-where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}. This is almost what is used by the angular reconstruction used for the alerts IceCube distributes\sidenote{See Section \ref{ic_alerts}.}. The difference is the PDF used, which is described in the following Section.
+where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}. This is almost what is used by the angular reconstruction used for the alerts IceCube distributes\sidenote{See Section \ref{ic_alerts}.}. The difference is the PDF used, which is described in the following Section \ref{spline_mpe}.
 
 \subsection{\texttt{SplineMPE} reconstruction} \label{spline_mpe}
-So far, nothing has been said about the photon arrival time PDF $p(t|\vec{a})$. The most straightforward approach is using a Gaussian distribution, which models the muon moving through the ice as plane wave of constant velocity. This can be enriched by assuming a more physically correct minimally ionizing muon track. When doing so, the PDF becomes a Gamma distribution of the form
+So far, nothing has been said about the photon arrival time PDF $p(t|\vec{a})$. The most straightforward approach is using a \textbf{Gaussian distribution}, which models the muon moving through the ice as plane wave of constant velocity. This can be enriched by assuming a more physically correct minimally ionizing muon track. When doing so, the PDF becomes a \textbf{Gamma distribution} of the form
 \begin{equation}
     p(t_\text{res}) = \frac{\beta^\alpha t_\text{res}^{\alpha-1} e^{-\beta t_\text{res}}}{\Gamma(\alpha)},
 \end{equation}
-where $\alpha=\frac{d_\text{eff}}{\lambda}$, $\beta=\frac{1}{\tau} + \frac{c_m}{\lambda_\alpha}$. Here $\lambda$ is the scattering length, $\lambda_\alpha$ the absorption length, $c_m$ is the speed of light in a transparent medium and $\Gamma$ is the Gamma function. $d_\text{eff}$ is a modified version of the distance to the DOM $d$, that takes into account that the PMTs face downwards, and light from a track above a DOM needs to scatter around the DOM first (thus introducing an additional angle). The scattering/absorption length $\lambda$ and $\lambda_a$, as well as the unspecified parameter $\tau$ have been determined by Monte Carlo simulations \sidecite{Abbasi2021a}.
+where $\alpha=\frac{d_\text{eff}}{\lambda}$, $\beta=\frac{1}{\tau} + \frac{c_m}{\lambda_\alpha}$. Here $\lambda$ is the scattering length, $\lambda_\alpha$ the absorption length, $c_m$ is the speed of light in a transparent medium and $\Gamma$ is the Gamma function. $d_\text{eff}$ is a modified version of the distance to the DOM $d$, that takes into account that the PMTs face downwards, and light from a track above a DOM needs to scatter around the DOM first (thus introducing an additional angle). The scattering and absorption lengths $\lambda$ and $\lambda_a$, as well as the unspecified parameter $\tau$ have been determined by Monte Carlo simulations \sidecite{Abbasi2021a}.
 
 \texttt{SplineMPE} uses a more sophisticated PDF, as the Gamma PDF above assumes an optically homogenous medium. This is not the case for Antarctic ice. For this reason, a fitted ice model derived from measurements with the Flasher Board\sidenote{See Section \ref{DOM}.} is used.
 
-The basic idea is to create a large lookup table of simulated minimally ionizing muon tracks of infinite length with many different positions and orientations, i.e. high-dimensional histograms. A comprehensive look-up table of these simulations would be too storage intensive (hundreds of \unit{\giga\byte}), as well as numerically problematic due to empty bins or interpolation artifacts. To mitigate this, the histograms are normalized and interpolated with multi-dimensional basis splines \sidecite{Whitehorn2013}. These splines then represent the photon arrival PDF dependent on the track vertex and orientation in the detector. These splines are defined by knots of fixed positions, so the PDF becomes
+The basic idea is to create a \textbf{large lookup table of simulated minimally ionizing muon tracks} of infinite length with many different positions and orientations, i.e. high-dimensional histograms. A comprehensive look-up table of these simulations would be too storage intensive (hundreds of \unit{\giga\byte}), as well as numerically problematic due to empty bins or interpolation artifacts. To mitigate this, the histograms are normalized and \textbf{interpolated with multi-dimensional basis splines} \sidecite{Whitehorn2013}. These splines then represent the photon arrival PDF dependent on the track vertex and orientation in the detector. They are defined by knots of fixed positions, so the PDF becomes
 \begin{equation}
      p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
  \end{equation} 
@@ -243,28 +243,28 @@ Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline o
     \labfig{ic_millipede}
 \end{marginfigure}
 
-High-energy neutrino events that pass the realtime alert selection criteria (see Section \ref{ic_alert_program}) are subjected to a more sophisticated algorithm, which uses the information from all the detected photons. This algorithm is dubbed \texttt{Millipede}. Due to its demand of computational resources it is only run for selected events at the IceCube data center in Madison.
+High-energy neutrino events that pass the realtime alert selection criteria (see Section \ref{ic_alert_program}) are subjected to a more sophisticated algorithm, which uses the information from all the detected photons. This algorithm is dubbed \texttt{Millipede}. Due to its \textbf{high demand of computational resources} it is only run for selected events at the IceCube data center in Madison.
 
-This reconstruction consists of a maximum likelihood scan covering the whole sky. To allow scanning, the sky is pixelated into grids of increasing resolution following the Hierarchical Equal Area isoLatitude Pixelation (\texttt{HEALPix}) scheme \sidecite{Gorski2005}. Each pixel of a specific resolution covers the same area on the sky. For each scanned pixel, the muon direction is fixed to originate from that sky location.
+This reconstruction consists of a \textbf{maximum likelihood scan} covering the whole sky. To allow scanning, the sky is pixelated into grids of increasing resolution following the Hierarchical Equal Area isoLatitude Pixelation (\texttt{HEALPix}) scheme \sidecite{Gorski2005}. Each pixel of a specific resolution covers the same area on the sky. For each scanned pixel, the muon direction is fixed to originate from that sky location.
 
 For this fixed direction, the likelihood of the deposited energy resulting from the best fit and the neutrino interaction vertex in the detector are then computed. Pixels near the likelihood maximum are then subdivided with a finer \texttt{HEALPix} resolution. This procedure ultimately results in a likelihood map of the sky, with increasing granularity towards the global maximum \sidecite{Abbasi2023}.
 
-To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo resimulations from the high-energy neutrino event IC160427A are used. For this event, Pan-STARRS found a possible counterpart, PS16cgx\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
+To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, \textbf{Monte Carlo resimulations} from the high-energy neutrino event IC160427A are used. For this event, Pan-STARRS found a possible counterpart, PS16cgx\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
 
 In the resimulations, the systematic parameters of the Antarctic ice used to model photon propagation were varied. Additionally, the simulated direction and energies were varied, with cuts to ensure that the light deposition of the resimulations resembled the original event (\SI{\pm 2}{\degree} in direction, \SI{\pm 20}{\percent} in deposited charge).
 
 Each resimulated event was fit with \texttt{Millipede}. The distribution of differences between the best-fit likelihood and the ground truth of the simulated event can then be employed to convert the change in log-likelihood over the map into a confidence level.
 
-Due to the systematic uncertainties, Wilk's theorem does not apply here. To account for this fact, the contours derived for individual events (which make use of the theorem) are scaled up with correction values obtained from the resimulations of IC160427A. Then, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours. Currently, these correction values are 22.2 and 64.2 for the \SI{50}{\percent} and \SI{90}{\percent} uncertainty contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area.
+Due to the systematic uncertainties, Wilk's theorem does not apply here. To account for this fact, the contours derived for individual events (which make use of the theorem) are \textbf{scaled up with correction values} obtained from the resimulations of IC160427A. Then, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours. Currently, these correction values are 22.2 and 64.2 for the \SI{50}{\percent} and \SI{90}{\percent} uncertainty contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area.
 
 However, resimulations of newer high-energy neutrino events have shown that the method of scaling up the errors with correction values obtained from resimulating IC160427A does in some cases not faithfully capture the errors of those newer resimulations: They are sometimes under-, sometimes overestimated, depending on the topography of the event. For details on this, see \cite{Gualda2021}.
 
 \section{The Realtime Alert Program}\label{ic_alert_program}
-Since 2016, IceCube is hosting a realtime alert program, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, namely \textit{Gold} and \textit{Bronze}, were created \sidecite{Blaufuss2019}.
+Since 2016, IceCube hosts a \textbf{realtime alert program}, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, named \textbf{Gold} and \textbf{Bronze}, were created \sidecite{Blaufuss2019}. As these are designed based on cuts reducing the IceCube background, one needs to understand the background events first.
 
 \subsection{Background}\label{background}
 
-When searching for the sources of astrophysical neutrinos, there are two major sources of background events in the IceCube detector. Both stem from secondary cosmic-ray particles from the Earth's atmosphere.
+When searching for the sources of astrophysical neutrinos, there are two major sources of \textbf{background events} in the IceCube detector. Both stem from secondary cosmic-ray particles from the Earth's atmosphere.
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{ic/ic_background.pdf}
@@ -278,35 +278,41 @@ When searching for the sources of astrophysical neutrinos, there are two major s
     \labfig{ic_muon_free_path}
 \end{marginfigure}
 
-\textbf{Atmospheric muons} are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. the northern hemisphere. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
+\begin{description}
+    \item[Atmospheric muons] are created by \textbf{cosmic rays hitting the atmosphere}. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. \textbf{the northern hemisphere}. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
 
-One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability \sidecite{Aartsen2017c}.
+    One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability \sidecite{Aartsen2017c}.
 
-\begin{figure}[htb]
-    \includegraphics[width=0.5\textwidth]{ic/ic_absorption_earth.pdf}
-    \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From \cite{Aartsen2017c}.}
-    \labfig{ic_absorption_earth}
-\end{figure}
+    \begin{figure}[htb]
+        \includegraphics[width=0.5\textwidth]{ic/ic_absorption_earth.pdf}
+        \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From \cite{Aartsen2017c}.}
+        \labfig{ic_absorption_earth}
+    \end{figure}
 
-\textbf{Atmospheric neutrinos} also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an irreducible background: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
+    \item[Atmospheric neutrinos] also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an \textbf{irreducible background}: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
+
+\end{description}
 
 \subsection{Event selection} \label{ic_event_selection}
 
 Gold and Bronze alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are \textbf{High Energy Starting Events} (HESE) \sidecite{Abbasi2021}, \textbf{Extremely High Energy} (EHE) events \sidecite{Aartsen2016} and \textbf{Gamma-Ray Follow Up} (GFU) events \sidecite{gfu2016}.
 
-\textbf{HESE} are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \cite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter} \cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different than those in the original paper cited above.
+\begin{description}
 
-\textbf{EHE} aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions \cite{Abbasi2023}.
+    \item[HESE] are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected \cite{Aartsen2013}. The sizes of those regions can be seen in Fig. \ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter} \cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different than those in the original paper cited above.
 
-\begin{marginfigure}
-    \includegraphics{ic/ic_HESE_veto.pdf}
-    \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
-    \labfig{ic_hese_veto}
-\end{marginfigure}
+    \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions \cite{Abbasi2023}.
 
-\textbf{GFU} events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
+    \begin{marginfigure}
+        \includegraphics{ic/ic_HESE_veto.pdf}
+        \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From \cite{Aartsen2013}.}
+        \labfig{ic_hese_veto}
+    \end{marginfigure}
 
-The cuts from all three event pools are gauged to achieve two different average values of \textit{signalness}, which is a proxy for the probability that the event is of astrophysical origin \cite{Abbasi2023}. It is defined as
+    \item[GFU] events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
+\end{description}
+
+The cuts from all three event pools are gauged to achieve two different average values of \textbf{signalness}, which is a proxy for the probability that the event is of astrophysical origin \cite{Abbasi2023}. It is defined as
 \begin{definition}\label{signalness_def}
 $\text{Signalness}(E,\theta_\text{zen}) = \frac{N_\text{signal}(E,\theta_\text{zen})}{N_\text{signal}(E,\theta_\text{zen})+N_\text{background}(E,\theta_\text{zen})}$
 \end{definition}
@@ -315,7 +321,7 @@ Here E is the reconstructed neutrino energy, and $N_\text{signal}(E,\theta_\text
 The cuts on the individual event selections are tuned to ensure that \textit{Gold} alerts on average have a signalness $\langle \SI{50}{\percent} \rangle$, and \textit{Bronze} alerts have a signalness $\langle \SI{30}{\percent} \rangle$.
 
 \subsection{Alert distribution} \label{ic_alerts}
-All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. After this, they are distributed globally with the General Coordinates Network\sidenote{\url{https://gcn.nasa.gov/}} (GCN) in the form of GCN Notices.
+All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. After this, they are \textbf{globally distributed} with the General Coordinates Network\sidenote{\url{https://gcn.nasa.gov/}} (GCN) in the form of GCN Notices.
 
 Each notice contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino computed by \texttt{SplineMPE}\sidenote{See Section \ref{spline_mpe}.}, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Blaufuss2019}.
 
@@ -327,7 +333,7 @@ Each notice contains the discovery time, a unique event number, the reconstructe
 
 Those informations are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction (see Section \ref{millipede}). The results of these reconstructions (i.e. the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular, and an updated GCN notice \cite{Blaufuss2019}.
 
-As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the Gold and Bronze alert stream in June 2019, this amounts to $2.2$ non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Blaufuss2019}.} (0.8 Gold alerts, 1.4 Bronze alerts). For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see \cite{Abbasi2023}.
+As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the Gold and Bronze alert stream in June 2019, this amounts to \textbf{2.2 non-retracted alerts per month}\sidenote{This is quite close to the 2.5 alerts per month predicted in \cite{Blaufuss2019}.} (0.8 Gold alerts, 1.4 Bronze alerts). For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see \cite{Abbasi2023}.
 
 If the event is most likely astrophysical and reasonably well pin-pointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical images from? The telescope used for this, the Zwicky Transient Facility, will be described in Chapter \ref{ztf}.
 

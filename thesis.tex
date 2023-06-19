@@ -268,14 +268,14 @@
 
 % Historically, supernovae were classified according to the presence of lines in their spectra. SNe of Type I are lacking hydrogen lines in their spectra, in contrast to Type II SNe that show hydrogen lines. SNe are further subdivided into SNe Ia that display silicon lines, SNe Ib that do not display silicon lines, but helium lines, and SNe Ic that have neither.
 
-% \subsubsection{SNe Ia}
+% \subsubsection{SNe Ia} \label{sne_ia}
 % SNe Ia are now known be consitute a class sui generis. Their underlying physical scenario for their explosion is either a white dwarf accreting matter from a companion star (the so called \textit{single degenerate scenario}. The accretion eventually causes the star's mass to exceed the Chandrasekhar limit of $\sim 1.4~M_\odot$ at which gravitational force overcomes the electron degeneracy pressure, and the star begins to burn carbon due to the higher density. At one point, a runaway thermonuclear reaction starts, and the white dwarf blows up violently \sidecite{Iben1984}. 
 
 % A second possible scenario that has recently gained traction is the \textit{double degenerate scenario}. Here the SN Ia is the result of two gravitationally bound white dwarfs (a \textit{binary system}) shedding gravitational energy in the form of gravitational waves and thereby slowly closing the distance between them. Ultimately, they merge and cause the supernova explosion \cite{Iben1984}.
 
 % In either scenario (see \sidecite{Maoz2014} for a review), the luminosity of the resulting explosion can be standardized using the \textit{Philips relation} \sidecite{Phillips1993}. This makes them \textit{standardizable candles}, rendering them excellent instruments to measure cosmological distances. They are not expected to produce large quantities of neutrinos, though \sidecite{Alsabti2017}.
 
-% \subsubsection{Core-Collapse supernovae}
+% \subsubsection{Core-Collapse supernovae} \label{ccsne}
 % In contrast to SNe Ia, all other types of SNe are \textbf{Core-Collapse Supernovae Supernovae} (CCSNe), resulting from the gravitational collapse of massive stars.
 
 % \begin{marginfigure}
@@ -652,6 +652,7 @@
 % The picture changes significantly when looking at \textbf{non-jetted AGN}: A recent study found a $2.6\sigma$ excess when correlating an infrared-selected subpopulation of non-jetted AGN with the astrophysical neutrino flux \sidecite{Abbasi2022c}. The accretion disk luminosity of the AGN was estimated with the soft X-ray flux, and the source neutrino flux was weighted by that. The AGN population was selected based on their radio emission and infrared colors, and the $2.6\sigma$ excess (post trial) was obtained from the infrared-selected sample of 32249 AGN. If this excess is interpreted as constituting a physical signal, it contributes $10^{+5}_{-4} ~\%$ of the diffuse flux at \SI{100}{\tera\eV}, see Fig. \ref{fig:agn_ir_contrib}. Correcting for completeness, \SIrange{27}{100}{\percent} of the observed \SI{100}{\tera\eV} neutrinos could stem from particle acceleration within the accretion disks or coronae of AGN \cite{Abbasi2022c}.
 
 % Plavin
+% https://arxiv.org/pdf/2306.09018.pdf
 
 % \subsection{GRB limits}
 % GRB limits can be drawn from a search for a correlation between 807 GRBs detected during a period of three years with IceCube high-energy neutrinos during that time. The search was constrained to \textbf{prompt emission} (see Section \ref{grb}) from GRBs, excluding precursor events or GRB afterglows. This was achieved by looking for cascade events in the detector (see Section \ref{reconstruction}), which are created by neutrinos of all flavor. These were required to be detected within the photon emission time as reported by the gamma-ray satellite one of 807 GRBs, the so-called \textit{prompt window}. These prompt windows usually ranged from a few tens of seconds to a few minutes. This is highly favorable for coincident searches, as the tightly constrained window strongly suppresses background events. Six events were found to be time-correlated with neutrinos, but also consistent with background. If they are interpreted as genuine signal events, GRBs contribute less than \SI{1}{\percent} to the diffuse neutrino flux \sidecite{Aartsen2016a}.
@@ -678,11 +679,11 @@
 
 %\sidecite{Murase2020}
 
-\input{chapters/icecube.tex}
+% \input{chapters/icecube.tex}
 % \input{chapters/ztf.tex}
 % \input{chapters/followup.tex}
-% \input{chapters/at2019fdr.tex}
-% \input{chapters/appendix.tex}
+\input{chapters/at2019fdr.tex}
+\input{chapters/appendix.tex}
 
 
 % \chapter{The ZTF nuclear sample}
@@ -698,7 +699,7 @@
 
 
 %----------------------------------------------------------------------------------------
-
+ 
 \backmatter % Denotes the end of the main document content
 \setchapterstyle{plain} % Output plain chapters from this point onwards 
 
