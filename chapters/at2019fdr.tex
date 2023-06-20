@@ -326,7 +326,7 @@ Furthermore, all epochs showed the \textbf{expected linear correlation} between 
 \section{Dust Echo Model} \label{dust_echo}
 As one can see in the light curve of AT2019fdr (see Fig. \ref{fig:at2019fdr_light_curve}), the emission in all infrared bands (\textit{WISE} and P200) is \textbf{delayed with respect to the optical signal}. Furthermore, the infrared emission is well approximated by a blackbody, as was shown in the last section.
 
-We interpret this infrared emission as a \textit{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy \sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a `safe distance', at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
+We interpret this infrared emission as a \textbf{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy \sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a safe distance, at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
 
 Outside the sublimation radius, the grain temperature is coupled to the incident radiation, as it cools rapidly ($10^{-4} a_{0.1}^-1T_{1850}^{-5}$ s, which equals to \SI{0.1}{\milli\s} for a grain size of \SI{0.1}{\micro\m} at \SI{1850}{\K}).
 
@@ -341,11 +341,11 @@ where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the resp
 L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
 \end{equation}
  
-The delay induced by light travel time can thus be approximated by convolving the optical light curve with a box function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
+The delay induced by light travel time can thus be approximated by \textbf{convolving the optical light curve with a box function} of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
 
 This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared and reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ -- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
 
-To calculate $R_0$, we used the ZTF \textit{g}-band light curve as it is the best sampled one. This light curve was then convolved with the box function, where the width of the box function in days was left as free parameter. The initial delay with respect to the optical light curve was then half the size of the box function. The second free parameter was a dimensionless amplitude used to scale the optical light curve to match the amplitude of the \textit{WISE} datapoints.
+To calculate $R_0$, we used the ZTF \textit{g}-band light curve, as it is the one with the best sampling. This light curve was then convolved with the box function, where the width of the box function in days was left as free parameter. The initial delay with respect to the optical light curve was then half the size of the box function. The second free parameter was a dimensionless amplitude used to scale the optical light curve to match the amplitude of the \textit{WISE} datapoints.
 
 Following this procedure, we obtained a best-fit light travel time of 193 days, which translated to $R_0=\SI{0.16}{\parsec}$. The best fit parameters can be seen in Fig. \ref{fig:at2019fdr_dust_model_chisq}.
 
@@ -361,17 +361,14 @@ where $L_{45}$ is the flare's luminosity integrated over all wavelengths where t
     \labfig{at2019fdr_dust_model_chisq}
 \end{figure}
 
-When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yields a sublimation radius of \SI{0.2}{\parsec}, which is in good agreement with the best-fit value of \SI{0.16}{\parsec}.
+When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) with a temperature of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yields a sublimation radius of \SI{0.2}{\parsec}, which is in \textbf{good agreement} with the best-fit value of \SI{0.16}{\parsec}.
 
-To obtain the covering factor, i.e. the fraction of the shell around the transient that actually contained dust, we needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yields a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim 1}{\percent}, see \cite{Velzen2016}).
+To obtain the \textbf{covering factor}, i.e. the fraction of the shell around the transient that actually contained dust, we needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim 1}{\percent}, see \cite{Velzen2016}).
 
-We used this covering factor and the radius of the dust shell to determine the dust mass. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} results in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
-
-% For this work, all values were taken as their default value, and 
-
+We used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} results in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
 \section{Classification}
-As stated at the beginning of this chapter, AT2019fdr was initially classified as a SLSN IIn, but a subsequent paper classified AT2019fdr as TDE. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
+As stated at the beginning of this chapter, AT2019fdr was initially classified as a SLSN IIn, but a subsequent paper classified AT2019fdr as TDE \cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
 
 \subsection{Original TDE classification}
 Frederick et al. \cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that AT2019fdr -- as all the 5 flares located in NLSy1 galaxies they studied -- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table \ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely.
@@ -394,7 +391,7 @@ In the case of AT2019fdr, the host galaxy black hole mass lies below the Hills m
 
 On the other hand, its narrow H$_\beta$ emission feature and its [OIII]/H$_\beta$ flux ratio, the strong FeII complex and the transients lack of cooling rather stipulated a flare of the underlying NLSy1 host.
 
-To conclude: A thin majority of features observed in AT2019fdr were `TDE-like'. Also, it resembled PS1-10adi, a bright transient discovered by PS1 on August 1, 2010 \sidecite{Kankare2017}, which has been classified as a TDE embedded in an AGN \sidecite{Jiang2019}. For these reasons, the transient was ultimately classified as TDE. Following the subclassification scheme proposed in \sidecite{Velzen2021a}, it is a H-only TDE, with the FeII complex most likely stemming from the NLSy1 host galaxy.
+To conclude: \textbf{A thin majority of features observed in AT2019fdr were `TDE-like'}. Also, it resembled PS1-10adi, a bright transient discovered by PS1 on August 1, 2010 \sidecite{Kankare2017}, which has been classified as a TDE embedded in an AGN \sidecite{Jiang2019}. For these reasons, the transient was ultimately classified as TDE. Following the subclassification scheme proposed in \sidecite{Velzen2021a}, it is a H-only TDE, with the FeII complex most likely stemming from the NLSy1 host galaxy.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_lc_rebrightening.pdf}
@@ -402,9 +399,11 @@ To conclude: A thin majority of features observed in AT2019fdr were `TDE-like'. 
     \labfig{at2019fdr_rebrightening}
 \end{figure}
 
-After the publication of our paper on AT2019fdr, the transient underwent a rebrightening in the optical. About 2.2 years after the optical peak and continuous decline ever since, the flux in all three ZTF bands started to increase again, until it hit a plateau roughly 200 days later. As of April 2023, AT2019fdr is still in this plateau. This is atypical behavior for TDEs and SNe, as was already pointed out in \cite{Frederick2021}. 
+After the publication of our paper on AT2019fdr, the transient underwent a significant rebrightening in the optical. About 2.2 years after the optical peak and continuous decline ever since, the flux in all three ZTF bands started to increase again, until it hit a plateau roughly 200 days later. As of April 2023, AT2019fdr is still in this plateau. This is atypical behavior for TDEs and SNe, as was already pointed out in \cite{Frederick2021}. 
 
-Interestingly, also PS1-10adi showed late-stage rebrightening \cite{Jiang2019}. \todo{what does it mean?}
+Interestingly, also PS1-10adi showed late-stage rebrightening \cite{Jiang2019}. For this transient, the authors discussed a variety of causes for this. They concluded that late-stage accretion was unlikely, based on the different properties of the dust echoes of the initial flare and the rebrightening. They also discard interaction between the debris and the SMBH torus, based on the fact that the complete conversion of the unbound debris' orbital energy was insufficient to explain the brightness of the rebrightening. Instead, they favor a scenario where a mildly relativistic outflow from the TDE is responsible for the rebrightening \cite{Jiang2019}.
+
+It remains an open question if the long-lasting rebrightening of AT2019fdr can be explained by such an outflow. One could also hypothesize that a perturbation in the accretion disk, triggered by the TDE, is responsible for the increased optical flux (see e.g. \sidecite{Ricci2022}).\todo{ask Walter or Sjoert}
 
 \subsection{Additional evidence}
 As shown in Section \ref{x_ray_obs}, AT2019fdr was detected by \textit{SRG}/eROSITA on the first visit with an unusually soft thermal spectrum of \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}. As AGN spectra are rarely soft \sidecite{Saxton2020}, this can be counted as evidence in favor of the TDE interpration.
