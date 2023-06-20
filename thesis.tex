@@ -2,7 +2,7 @@
 \documentclass[
     a4paper, % Page size
     fontsize=10pt, % Base font size
-    twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+    twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
     %open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
     %chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
     numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
@@ -276,13 +276,14 @@ A second possible scenario that has recently gained traction is the \textit{doub
 In either scenario (see \sidecite{Maoz2014} for a review), the luminosity of the resulting explosion can be standardized using the \textit{Philips relation} \sidecite{Phillips1993}. This makes them \textit{standardizable candles}, rendering them excellent instruments to measure cosmological distances. They are not expected to produce large quantities of neutrinos, though \sidecite{Alsabti2017}.
 
 \subsubsection{Core-Collapse supernovae} \label{ccsne}
-In contrast to SNe Ia, all other types of SNe are \textbf{Core-Collapse Supernovae Supernovae} (CCSNe), resulting from the gravitational collapse of massive stars.
 
 \begin{marginfigure}
     \includegraphics{theory/sn_shells.pdf}
     \caption[CCSN shells]{CCSN shells. The presence or absence of helium and hydrogen shells explains the differences in the respective spectra of CCSNe Type Ib, Ic and II. Because Ib and Ic Type SNe have lost parts of their outer shells, they are also referred to as \textit{stripped-envelope CCSNe}. SNe IIb have \textit{almost} lost their H shell, allowing them to quickly transform to a Type I SN.}
     \labfig{sn_shells} 
 \end{marginfigure}
+
+In contrast to SNe Ia, all other types of SNe are \textbf{Core-Collapse Supernovae Supernovae} (CCSNe), resulting from the gravitational collapse of massive stars.
 
 The spectral differences between SNe of \textit{Type Ib}, \textit{Ic} and \textit{II} can be explained by the presence or absence of the two outermost shells: hydrogen and helium (see Fig. \ref{fig:sn_shells}). If both shells are already far away from the star, the SN is of Type Ic (neither H nor He lines are present in the spectrum). If only the helium shell remains, the type is Ib, and if both shells are still present, the collapse will result in a Type II supernova.
 
@@ -315,13 +316,13 @@ As the production mechanisms for \textit{cosmic rays} and high-energy neutrinos 
 
 \subsection{Discovery}
 
-Cosmic rays were discovered in 1912 by Victor Hess. At the time, it had already been discovered that electroscopes -- devices measuring electric charge and voltage -- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. Another hint was that when shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown, though.
-
 \begin{marginfigure}
     \includegraphics{theory/hess_balloon.png}
     \caption[Hess in his balloon]{Hess in his balloon after landing in Brandenburg, Germany in 1912, having just discovered cosmic rays. From \cite{Steinmaurer1985}.}
     \labfig{hess_balloon} 
 \end{marginfigure}
+
+Cosmic rays were discovered in 1912 by Victor Hess. At the time, it had already been discovered that electroscopes -- devices measuring electric charge and voltage -- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. Another hint was that when shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown, though.
 
 Hess measured the flux of ionizing radiation with three electrometers during several balloon journeys. In total, he carried out 10 balloon ascents in the time period of 1911--1913. The first ascent over \SI{5}{\km} in August 1912 marked the discovery of cosmic rays, when he registered a 16-fold increase in ionization measured by the electrometers at that height. Hess consequently concluded that the ionizing radiation must be of extra-terrestrial origin. \sidecite{Steinmaurer1985}.
 
@@ -348,19 +349,17 @@ If high-energy neutrinos are produced in the processes responsible for the creat
 
 Identifying the sources of UHECR remains a challenge. As the cosmic ray particles are charged, they are deflected by magnetic fields encountered on their way to Earth, obscuring their origin. What \textit{is} known though is that their extremely high energies necessitate extreme environments in which they can be produced.
 
-
+\begin{marginfigure}
+    \includegraphics{theory/uhecr_hillas_criterion.pdf}
+    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from \cite{Rieger2022}, original `Hillas plot' in \cite{Hillas1984}.}
+    \labfig{uhecr_hillas_criterion} 
+\end{marginfigure}
 
 In the 1980s, Hillas proposed the requirement that the efficient acceleration of a charged particle needs an accelerator that is able confine the particle during acceleration: This means that the source needs to be larger than the particle's Larmor radius \sidecite{Rieger2022}. This introduces a bound on the possible sources for UHECR cosmic ray sources:
 
 \begin{equation}
     E \leq 10^{20} Z \bigg(\frac{B}{\SI{10}{\micro\gauss}}\bigg) \bigg(\frac{R}{\SI{10}{\kilo\parsec}} \bigg)~\unit{\eV},
 \end{equation}
-
-\begin{marginfigure}
-    \includegraphics{theory/uhecr_hillas_criterion.pdf}
-    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from \cite{Rieger2022}, original `Hillas plot' in \cite{Hillas1984}.}
-    \labfig{uhecr_hillas_criterion} 
-\end{marginfigure}
 
 where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field strength of the source, and $R$ is the characteristic source dimension \cite{Rieger2022}. Sources that match this criterion for the production of UHECR protons and iron nuclei with an energy of \SI{e20}{\eV} are shown in Fig. \ref{fig:uhecr_hillas_criterion}. As one can see, a variety of extreme environments are possible sources of UHECR, some of these also hot candidates for the production of high-energy neutrinos. 
 
@@ -681,7 +680,7 @@ As has been discussed above and can be seen in Fig. \ref{fig:flux_ul}, the situa
 
 \begin{marginfigure}
     \includegraphics{theory/pie_chart.pdf}
-    \caption[Neutrino flux contribution pie chart]{Pie chart of the contribution of known neutrino source classes as well as \textit{other}, comprising all source classes without association (main circle). The inner circle  Adopted from \cite{Bartos2021} with minor error correction.}
+    \caption[Neutrino flux contribution pie chart]{Pie chart of the contribution of known neutrino source classes as well as \textit{other}, comprising all source classes without association (main circle). The inner charts show the minimal (dark) and maximal (light) contribution within the \SI{90}{\percent} credible regions. Adapted from \cite{Bartos2021} with minor error correction.}
     \labfig{pie_chart}
 \end{marginfigure}
 
