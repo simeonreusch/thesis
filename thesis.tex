@@ -460,28 +460,31 @@ Therefore, the resulting differential energy spectrum has a spectral index of 2.
 \subsection{Interaction and neutrino production} \label{cr_interactions}
 As discussed above, cosmic rays are most likely produced in astrophysical shocks, as this can explain the power-law structure of the energy distribution. The particles accelerated within shocks might now interact with either hadrons, or photons in their vicinity or on their way to Earth. For simplicity, this section focuses on the interaction of cosmic ray protons, but it applies to heavier nuclei as well.
 
-\textbf{$pp$ interactions} When cosmic ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produces lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
+\begin{description}
+    \item[$pp$ interactions] When cosmic ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produces lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
 
-\begin{eqnarray}
-     \pi^\pm + X &\contour{black}{$\rightarrow$}& \mu^\pm + \nu_\mu (\bar{\nu}_\mu)~~~ \contour{black}{$\rightarrow$} ~~~ e^\pm + \nu_e(\bar{\nu}_e) + \bar{\nu}_\mu(\nu_\mu)\\
-     \pi^0 + X &\contour{black}{$\rightarrow$}& 2\gamma
- \end{eqnarray} 
-As can be seen, $\pi^\pm$ decay into positive (negative) muons and a muon (anti-)neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-)neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to Earth washes out this initial difference, with an expected flavor content of $1:1:1$ \cite{Workman2022}.
+    \begin{eqnarray}
+         \pi^\pm + X &\contour{black}{$\rightarrow$}& \mu^\pm + \nu_\mu (\bar{\nu}_\mu)~~~ \contour{black}{$\rightarrow$} ~~~ e^\pm + \nu_e(\bar{\nu}_e) + \bar{\nu}_\mu(\nu_\mu)\\
+         \pi^0 + X &\contour{black}{$\rightarrow$}& 2\gamma
+     \end{eqnarray} 
+    As can be seen, $\pi^\pm$ decay into positive (negative) muons and a muon (anti-)neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-)neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to Earth washes out this initial difference, with an expected flavor content of $1:1:1$ \cite{Workman2022}.
 
-The energy of the pion decay products is expected to trace the initial proton energy spectrum. If the proton interaction rate is fairly independent of their energy, then they will lose a fraction of their energy, which will then be converted into the production of pions, and subsequently muons. With this, the resulting neutrino spectrum is expected to have a similar shape as the initial cosmic ray spectrum. \todo{warum?, ergänzen, source}
+    The energy of the pion decay products is expected to trace the initial proton energy spectrum. If the proton interaction rate is fairly independent of their energy, then they will lose a fraction of their energy, which will then be converted into the production of pions, and subsequently muons. With this, the resulting neutrino spectrum is expected to have a similar shape as the initial cosmic ray spectrum. \todo{warum?, ergänzen, source}
 
-\textbf{$p\gamma$ interactions}
-Cosmic ray protons can also interact with radiation fields. The cross section for these interactions is large near the $\Delta^+$ resonance. The dominant $\Delta^+$ decay modes again contain pions:
-\begin{eqnarray}
-    \Delta^+ ~~ &\contour{black}{$\rightarrow$}& n + \pi^+ \\
-    \Delta^+ ~~ &\contour{black}{$\rightarrow$}& p + \pi^0
-\end{eqnarray}
-The pions will again decay according to the channels already discussed for $pp$ interactions. The secondary neutrons might decay via beta decay, and produce electron antineutrinos. Also here, the neutrino spectrum is expected to trace the cosmic ray spectrum.\todo{source}
+
+    \item[$p\gamma$ interactions]
+    Cosmic ray protons can also interact with radiation fields. The cross section for these interactions is large near the $\Delta^+$ resonance. The dominant $\Delta^+$ decay modes again contain pions:
+    \begin{eqnarray}
+        \Delta^+ ~~ &\contour{black}{$\rightarrow$}& n + \pi^+ \\
+        \Delta^+ ~~ &\contour{black}{$\rightarrow$}& p + \pi^0
+    \end{eqnarray}
+    The pions will again decay according to the channels already discussed for $pp$ interactions. The secondary neutrons might decay via beta decay, and produce electron antineutrinos. Also here, the neutrino spectrum is expected to trace the cosmic ray spectrum.\todo{source}
+\end{description}
 
 
 \section{High-Energy Neutrino Astronomy}
 
-The second class of events that need to be discussed are those that produce \textbf{high-energy neutrinos}, i.e. neutrinos with energies in the \unit{\mega\eV} range and above.
+The second class of events that need to be discussed are those that produce \textbf{high-energy neutrinos}, i.e. neutrinos with energies in the \unit{\mega\eV} range and above. There will be some overlap with the low-energy neutrino events, as some of those are also probable sources of high-energy neutrinos (e.g. supernovae).
 
 \subsection{Interacting supernovae} \label{interacting_sne}
 As already detailed in Section \ref{sne}, CCSNe are thought to produce copious amounts of \unit{\mega\eV}-neutrinos. Interestingly, certain types of CCSNe are thought not only to produce such comparably low-energy neutrinos, but also \unit{\giga\eV} to \unit{\tera\eV} neutrinos. Optical observations have stipulated that supernova progenitors often violently eject material into the circumstellar region in the years to centuries prior to their explosion \sidecite{Ofek2014}. When the supernova happens, ejecta are driven into this circumstellar material (CSM).
@@ -624,6 +627,7 @@ The flux is largely distributed isotropically over the sky, which stipulates an 
 \labfig{txs}
 \end{figure}
 
+\subsubsection{Blazar TXS 0506+056}
 In 2017, IceCube identified the blazar \textbf{TXS 0506+056}, at the time flaring in gamma rays, as the probable source of high-energy neutrino IceCube-170922A \sidecite{IC17922A,Aartsen2018}. The neutrino had an estimated energy of \SI{290}{\tera\eV}, and a best-fit sky location separated by \SI{0.1}{\degree} from the blazar, see left plot in Fig. \ref{fig:txs}.
 
 The blazar had a redshift of $z=0.337$ \sidecite{Paiano2018}, and a search for additional excess neutrinos from its sky location in 9.5 years of IceCube data found another episode of a $3.5\sigma$ excess of \num{\sim13.5} neutrinos between September 2014 and March 2015, stemming from the direction of TXS 0506+056. However, during this period no significant gamma-ray flare was detected from TXS 0506+056 \sidecite{Aartsen2018a}.
@@ -634,16 +638,20 @@ This \textit{leptohadronic} model predicted a \SI{14}{\percent} probability of d
 
 However, producing the 2014--2015 neutrino flare without violating the gamma-ray limits proved a much harder challenge. No leptohadronic model\sidenote{to be consistent to the gamma-ray flaring state} able to produce more than 2--5 neutrino events during the time period could be found \sidecite{Rodrigues2019} without violating the observational constraints. Reconciling the high number of neutrinos detected in the 2014--2015 period, without simultaneous gamma-ray flare, with the single neutrino from 2017, this time accompanied by a gamma-ray flare, remains a challenge.
 
+\subsubsection{Type II AGN NGC 1068}
 The second AGN--neutrino association was \textbf{NGC 1068}. This active galaxy is located relatively nearby, with a distance of \SI{\sim 14}{\mega\parsec} \sidecite{Abbasi2022}. It was classified as Seyfert II galaxy, i.e. an AGN without signs of a jet and viewed relatively edge-on, with dust obscuring the SMBH and the BLR (see Section \ref{agn}) \sidecite{Rosas2022}. It has an exceptionally high rate of star formation \sidecite{Eichmann2016}, and hosts outflows \sidecite{Cecil1990}. Due to these features, it had already been proposed as production site of high-energy neutrinos in the 1970s \sidecite{Silberberg1979}.
 
 In 2022, an archival study comprising IceCube data from 2011--2020 found an excess of $79^{+22}_{-20}$ neutrinos with \unit{\tera\eV} energies from the location of NGC 1068. This results in a neutrino luminosity between 1.5 and \SI{15}{\tera\eV} of $L_\nu = (2.9 \pm 1.1_\text{stat}) \times \SI{e42}{\erg\per\s}$, exceeding the equivalent gamma-ray luminosity between 0.1 and \SI{100}{\giga\eV} by a factor of 18 \sidecite{Abbasi2022}.
 
 NGC 1068 and TXS 0506+056 each contribute \SI{\sim 1}{\percent} of the overall diffuse flux of astrophysical neutrinos measured by IceCube in their respective energy range. So far, it remains unclear if the diffuse flux is mainly composed of bright and nearby sources akin to NGC 1068, a large population of faint sources with high redshifts ($z \geq 1$), or a mixture of both. Given the big difference in distance between NG 1068 and TXS 0506+056 (the latter is about 100 times farther away) and the differences in their respective spectra, it seems plausible to assume at least two distinct AGN source populations \cite{Abbasi2022}.
 
+\subsubsection{Gamma-ray blazar limits}
 However, there are several constraints on the contribution from AGN. A stacking analysis from 2019 investigated 1301 \textbf{gamma-ray blazars} from 3FHL \sidecite{Ajello2017}, the third catalog of hard gamma-ray sources issued by the \textit{Fermi} Large Area Telescope (LAT) \sidecite{Atwood2009}. After stacking and searching for spatial correlations between through-going high-energy muon tracks from the Northern hemisphere, no excess of neutrinos was detected \sidecite{Huber2019}. Assuming a spectral source index of $\gamma=2$, an upper limit on the contribution of blazars to the high-energy neutrino flux between \SI{119}{\tera\eV} and \SI{4.9}{\peta\eV} was found: Not more than \SI{17}{\percent} of the diffuse flux can be attributed to these sources \sidecite{Huber2019}.
 
+\subsubsection{MeV blazar limits}
 The contribution of \textbf{MeV blazars} was also tested. 137 blazars from the \textit{Fermi} Low Energy Catalog (1FLE) \sidecite{Principe2018}, detected below \SI{100}{\mega\eV}, were stacked. The result was compatible with a non detection. The upper limit derived from this -- assuming a spectral index tracing the diffuse neutrino spectral index $\gamma=2.37$ and evaluated in an energy range between 30 and \SI{100}{\mega\eV} -- was \SI{\sim 1}{\percent} of the IceCube $\nu_\mu+\bar{\nu_\mu}$ flux \sidecite{Abbasi_2022}.
 
+\subsubsection{Jetted AGN limits}
 The correlation between high-energy alert neutrinos above \SI{200}{\tera\eV} with \textbf{jetted (radio bright) AGN} was also tested. The 3388 jetted AGN were selected from the Radio Fundamental Catalog\sidenote{\url{https://astrogeo.org/rfc}} by requiring X-band\sidenote{\SIrange{8}{12}{\giga\Hz}} flux densities above 0.15 \unit{\jansky}. These were correlated with 56 published IceCube events with directional uncertainties below \SI{10}{\square\deg}. With these selections, a significant correlation was found, with a p-value of \SI{0.2}{\percent} \sidecite{Plavin2020}.
 
 However, a more recent study correlating this set of jetted AGN with the IceCube diffuse flux data comprising 10 years of muon tracks found no correlation. The unbinned maximum-likelihood-ratio method they employed gave no significant correlation between the neutrinos and the jetted AGN, resulting in an upper limit of an overall contribution to the \unit{\tera\eV}--\unit{\peta\eV} neutrino flux of \SI{30}{\percent}.
@@ -655,8 +663,9 @@ However, a more recent study correlating this set of jetted AGN with the IceCube
     \labfig{agn_ir_contrib}
 \end{marginfigure}
 
+\subsubsection{Non-jetted AGN contribution}
 The picture changes significantly when looking at \textbf{non-jetted AGN}: A recent study found a $2.6\sigma$ excess when correlating an infrared-selected subpopulation of non-jetted AGN with the astrophysical neutrino flux \sidecite{Abbasi2022c}. The accretion disk luminosity of the AGN was estimated with the soft X-ray flux, and the source neutrino flux was weighted by that. The AGN population was selected based on their radio emission and infrared colors, and the $2.6\sigma$ excess (post trial) was obtained from the infrared-selected sample of 32249 AGN. If this excess is interpreted as constituting a physical signal, it contributes $10^{+5}_{-4} ~\%$ of the diffuse flux at \SI{100}{\tera\eV}, see Fig. \ref{fig:agn_ir_contrib}. Correcting for completeness, \SIrange{27}{100}{\percent} of the observed \SI{100}{\tera\eV} neutrinos could stem from particle acceleration within the accretion disks or coronae of AGN \cite{Abbasi2022c}.
-
+\todo{buson paper}
 % https://arxiv.org/pdf/2306.09018.pdf
 
 \subsection{GRB limits}
@@ -672,7 +681,7 @@ The study looked at correlations between individual supernovae, as well as the s
 The first two classes were tested with a range of emission time windows ranging between 100 and 1000 days after the first detection, while the stripped-envelope SNe were tested for choked-jet emission, in which the neutrinos would predate the optical emission (see Section \ref{grb}). In this case, the time window started 20 days prior to, and ending with the first optical detection. Neither SNe IIn and choked jet neutrino emission in stripped-envelope SNe can dominate the diffuse IceCube neutrino flux, while SNe IIP could still be dominant \cite{Necker2023}.
 
 \subsection{TDE limits}
-The last 
+The last item to be discussed here are limits from a stacking of TDEs. 
 
 \subsection{Conclusion}
 \begin{figure}[htb]
@@ -681,13 +690,13 @@ The last
     \labfig{flux_ul}
 \end{figure}
 
-As has been discussed above and can be seen in Fig. \ref{fig:flux_ul}, the situation remains complicated. No dominant source class has yet been firmly established, though there are strong hints that non-jetted AGN contribute significantly to the diffuse neutrino flux. It is very much possible that the diffuse flux is composed of multiple source classes, each subdominant. The most stringent limits existing are those on prompt GRB emission and jetted TDEs, given their low rate density.
-
 \begin{marginfigure}
     \includegraphics{theory/pie_chart.pdf}
     \caption[Neutrino flux contribution pie chart]{Pie chart of the contribution of known neutrino source classes as well as \textit{other}, comprising all source classes without association (main circle). The inner charts show the minimal (dark) and maximal (light) contribution within the \SI{90}{\percent} credible regions. Adapted from \cite{Bartos2021} with minor error correction.}
     \labfig{pie_chart}
 \end{marginfigure}
+
+As has been discussed above and can be seen in Fig. \ref{fig:flux_ul}, the situation remains complicated. No dominant source class has yet been firmly established, though there are strong hints that non-jetted AGN contribute significantly to the diffuse neutrino flux. It is very much possible that the diffuse flux is composed of multiple source classes, each subdominant. The most stringent limits existing are those on prompt GRB emission and jetted TDEs, given their low rate density.
 
 The absence of significant clustering of neutrinos, as well as little point sources in the data disfavours the hypothesis that rare and luminous objects are responsible for the majority of the flux \sidecite{Guepin2022}. It is entirely possible that the bulk flux stems from numerous faint objects, which could render establishing a source class a challenging task.
 
