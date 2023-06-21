@@ -5,7 +5,7 @@ After introducing the IceCube detector (see Chapter \ref{ic}) and the Zwicky Tra
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section \ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
-The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.\todo{motivate the follow-up classes, AGN time-sensitivity (in contrast to the stacking analyses)}
+The follow-up procedure can be outlined as follows: An \textbf{IceCube alert} is received. If the alert meets our \textbf{alert quality criteria}, we do an \textbf{observability check}. If the sky region is accessible to ZTF, we \textbf{observe}. After observations, we \textbf{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textbf{additional follow-up}.\todo{motivate the follow-up classes, AGN time-sensitivity (in contrast to the stacking analyses)}
 
 \section{Source Classes}
 Given the limit observational time at our disposal, we are only sensitive to a subset of possible high-energy neutrino source classes. For a complete overview, see Section \ref{he_neutrino_astronomy}. These are:
@@ -19,7 +19,7 @@ Given the limit observational time at our disposal, we are only sensitive to a s
 
 
 \section{Alert Cuts}\label{alert_cuts}
-As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. As outlined in Section \ref{ic_event_selection}, there are two alert streams: \textit{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textit{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
+As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. As outlined in Section \ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
 
 In general, we only follow up if the reported bounding rectangle comprising the \SI{90}{\percent} uncertainty region\sidenote{See Section \ref{millipede}} covers less than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty areas of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
@@ -189,7 +189,7 @@ A full overview over the first 24 follow-up campaigns can be found in \sidecite{
 \subsection{\emph{SN2020lls}: Type Ic Supernova} \label{SN2020lls}
 SN2020lls was identified in coincidence with high-energy neutrino \emph{IC200530A} \sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including \emph{SN2020lls} \sidecite{IC200530A2, IC200530A4}. 
 
-We took a spectrum of \emph{SN2020lls} with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a \textbf{type Ic supernova} at redshift $z=0.041$, 14 days post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
+We took a spectrum of \emph{SN2020lls} with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code \sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a \textbf{Type Ic supernova} at redshift $z=0.041$, 14 days post peak. The spectrum and the template are shown in Fig. \ref{fig:ZTF20abdnpdo_spectrum}. 
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
@@ -198,7 +198,7 @@ We took a spectrum of \emph{SN2020lls} with NOT/ALFOSC on June 12, 2020 and used
 \end{figure}
 SNe Ic are possible emitters of neutrino, but only shortly after explosion time (see Section \ref{ccsne}). We therefore used the Modular Open Source Fitter for Transients (\texttt{MOSFiT}) \sidecite{Guillochon2018} to fit the light curve. The light curve, including an early forced photometry detection in the \textit{i}-band, can be seen in Fig. \ref{fig:ZTF20abdnpdo_mosfit}.
 
-\begin{figure}[h!]
+\begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
     \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out \emph{SN2020lls} as candidate source. Figure by the author, from \cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
