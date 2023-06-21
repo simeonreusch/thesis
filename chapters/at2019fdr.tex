@@ -28,7 +28,7 @@ Furthermore, we analyzed data by the LAT \cite{Atwood2009} aboard the \textit{Fe
 
 All detections and upper limits except for the radio data are shown in Fig. \ref{fig:at2019fdr_light_curve}. As one can see, the flare was very long lived, with a moderately fast rise (\SI{\sim100}{\day} until optical peak), a short decay phase followed by a plateau, and lastly an exponential decay, apparently with a constant decay rate \sidecite{Reusch2022}.
 
-\subsection{Gamma-ray limits}
+\subsection{Gamma-ray Limits}
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/fermi.png}
@@ -40,7 +40,7 @@ The details of the \textit{Fermi} LAT analysis were published in \sidecite{Velze
 
 No gamma-ray sources were detected significantly (\SI{\geq 5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2) \sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of \emph{AT2019fdr}, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\gamma}$, with a spectral index $\gamma=2$ \cite{Velzen2021}.
 
-\subsection{X-ray observations} \label{x_ray_obs}
+\subsection{X-ray Observations} \label{x_ray_obs}
 The sky region of AT2019 was visited four times by \textit{SRG} with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit one year later the source was detected, which can be counted as evidence for \textbf{temporal evolution in X-ray wavelengths}. All measurements and the upper limits and detections derived from these are displayed in Fig. \ref{fig:at2019fdr_light_curve} and listed in Table \ref{tab:at2019fdr_erosita}.
 \begin{marginfigure}
     \includegraphics{at2019fdr/SRG.jpeg}
@@ -84,12 +84,12 @@ The data was reduced with the publicly available \texttt{Swift XRT data products
     \labfig{swift_satellite}
 \end{marginfigure}
 
-\subsection{Optical/UV observations}
+\subsection{Optical/UV Observations}
 The ZTF \textbf{optical observations} were processed with \texttt{fpbot} (see Section \ref{fpbot}). The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise ratio with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \num{3} arcsec, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of \sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section \ref{magnitudes}}. The extracted and converted magnitudes were then corrected by subtracting the synthetic host model described in Section \ref{synthetic_host_model}. \cite{Reusch2022}.
 
 As the extraction of the infrared measurements was more involved due to the presence of host galaxy blending, this will be detailed in Section \ref{nir_reductions} below.
 
-\subsection{Radio observations}
+\subsection{Radio Observations}
 After the neutrino detection, we applied for Director's Discretionary Time (DDT) on the VLA. Three individual measurements were taken on July 3, September 13 and November 7, 2020. The first epoch was carried out in the \SIrange{2}{4}{\giga\Hz} and \SIrange{8}{12}{\giga\Hz}. In the subsequent epochs, we added the \SIrange{1}{2}{\giga\Hz} and \SIrange{4}{8}{\giga\Hz} bands. Delay, bandpass and flux calibration were performed on the source 3C 286, and the nearby source J1716+2152 was used for the complex gain calibration. For this, the VLA calibration pipeline in the Common Astrometry Software Application (CASA) \sidecite{Bean2022} was used, and imaging was performed with the CASA task \texttt{tclean}. Finally, the target flux density was measured by fitting a point source in the image plane \cite{Reusch2022}.
 
 \begin{marginfigure}
@@ -139,7 +139,7 @@ All parameters except for the point source flux were fixed after fitting one epo
 
 As there was no image without transient flux available, we added the point source and the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section \ref{synthetic_host_model}.}. The model-subtracted AB magnitudes calculated by this procedure are shown in Table \ref{tab:p200_nir}.
 
-\subsection{\textit{WISE} detections}
+\subsection{\textit{WISE} Detections}
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/wise.jpg}
@@ -159,7 +159,7 @@ The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\j
     \labfig{at2019fdr_wise}
 \end{figure}
 
-\subsection{Synthetic host model} \label{synthetic_host_model}
+\subsection{Synthetic Host Model} \label{synthetic_host_model}
 As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g. the case for ZTF), we constructed a \textbf{synthetic model} of the emission from the host galaxy. 
 
 This was done by fitting a galaxy model as described in \sidecite{Velzen2020}, using different archival measurements: To measure the UV flux, we used images from the Galaxy Evolution Explorer (\textit{GALEX}) \sidecite{Martin2005}. The \texttt{gPhoton} \sidecite{Million2016} package with an aperture of \SI{4}{\arcsecond} was used for flux extraction.
@@ -196,12 +196,12 @@ After compiling and reducing the individual light curve measurements, a physical
 
 To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e. a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The \textbf{double blackbody model matched the observations best}. In the following, I will detail the derivation of this model and the energy output of the system derived from this, including a discussion of dust extinction.
 
-\subsection{Fit epochs}
+\subsection{Fit Epochs}
 First, we isolated \textbf{three regions of interest}. These comprised 1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch 2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch 3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
 
 As the light curve does not significantly change during those epochs, we used the mean flux values for each observed bands as input for the fitting procedure.
 
-\subsection{Models}
+\subsection{Fit Models}
 As stated above, we tried a variety of models:
 
 \begin{description}
@@ -284,7 +284,7 @@ We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+
 \end{table}
 
 
-\subsection{Uncertainty estimate}
+\subsection{Uncertainty Estimate}
 As the fit routine was not able to generate stable covariance matrices in all epochs, the \textbf{uncertainties were estimated manually}.
 
 For each epoch and fit parameter, this was done by letting all parameters very except for the parameter of interest. This parameter was then varied around the best-fit value, and the resulting $\chi^2$ was evaluated. The $\chi^2$ distribution was then approximated with a polynomial, and the the \SI{68}{\percent} confidence level calculated -- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
@@ -370,7 +370,7 @@ We used this covering factor and the radius of the dust shell to \textbf{determi
 \section{Classification}
 As stated at the beginning of this chapter, \emph{AT2019fdr} was initially classified as a SLSN IIn, but a subsequent paper classified \emph{AT2019fdr} as TDE \cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
 
-\subsection{Original TDE classification}
+\subsection{Original TDE Classification}
 Frederick et al. \cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that \emph{AT2019fdr} -- as all the 5 flares located in NLSy1 galaxies they studied -- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table \ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely.
 
 \begin{table*}
@@ -405,7 +405,7 @@ Interestingly, also \emph{PS1-10adi} showed late-stage rebrightening \cite{Jiang
 
 It remains an open question if the long-lasting rebrightening of \emph{AT2019fdr} can be explained by such an outflow. One could also hypothesize that a perturbation in the accretion disk, triggered by the TDE, is responsible for the increased optical flux (see e.g. \sidecite{Ricci2022}).\todo{ask Walter or Sjoert}
 
-\subsection{Additional evidence}
+\subsection{Additional Evidence}
 As already discussed in Section \ref{x_ray_obs}, \emph{AT2019fdr} was detected by \textit{SRG}/eROSITA on the first visit with an unusually soft thermal spectrum of \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}. As AGN X-ray spectra are \textbf{rarely soft} \sidecite{Saxton2020}, this can be \textbf{counted as evidence in favor of the TDE interpration}.
 
 NLSy1 galaxies in general exhibit softer spectra, the temperature of \emph{AT2019fdr} was atypically low also in this context: It was lower than all NLSy1 temperatures in \sidecite{Leighly1999} and \sidecite{Vaughan1999}. Additionally, SLSNe rarely emit X-ray radiation. Only the first SLSN ever detected, SCP 06F6 \sidecite{Barbary2008}, possibly showed an X-ray flux exceeding \emph{AT2019fdr}'s luminosity \sidecite{Gaensicke2009}.

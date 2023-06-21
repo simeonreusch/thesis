@@ -91,7 +91,7 @@ To streamline the neutrino follow-up process, \texttt{nuztf} \sidecite{Stein2023
 
 When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter} \cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
-\subsection{\texttt{DecentFilter} parameters}
+\subsection{\texttt{DecentFilter} Parameters}
 The GCN parsing is done akin to \texttt{planobs}\sidenote{See Section \ref{planobs}}. After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
 \begin{description}
     \item[Time window] The transient must have shown activity in a 14-day window after neutrino detection
@@ -108,7 +108,7 @@ The vast majority of alerts do not pass these filters, significantly reducing th
     \caption[NED spectroscopic redshift distribution]{Distribution of the 8.9 million NED objects with spectroscopic redshift (as of November 2021). From \url{https://ned.ipac.caltech.edu/Documents/Holdings/graphics}.}
     \labfig{nedz}
 \end{marginfigure} 
-\subsection{Catalog crossmatch} \label{catmatch}
+\subsection{Catalog Crossmatching} \label{catmatch}
 All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
 \begin{description}
     \item[CRTS] A catalog derived from the Catalina Realtime-Transient Survey (CRTS) \sidecite{Drake2009}, the Catalina Surveys Periodic Variable Star Catalog \sidecite{Drake2014}, is queried to check if the source is a \textbf{variable star}.
@@ -135,14 +135,14 @@ The code can either be run locally, or through the interaction with a Slackbot. 
 \section{Forced Photometry with \texttt{fpbot}} \label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot} \sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
 
-\subsection{Forced photometry explained}
+\subsection{Forced Photometry Explained}
 The usual extraction of transient flux, as performed by the ZTF imaging pipeline\sidenote{See Section \ref{ztf_image_subtraction}}, cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
 
 If the position of the transient is \textit{known}, as it has already generated some alerts, one can \textbf{use this location to reprocess the difference images} and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed \textbf{forced photometry}, as the known position is `forced' upon the flux extraction.
 
 The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a stripped-envelope supernova (that is compatible with high-energy neutrino production, see Section \ref{ccsne}) shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see e.g. Section \ref{SN2020lls}).\todo{bla}
 
-\subsection{\texttt{fpbot}}
+\subsection{The \texttt{fpbot} Pipeline}
 \begin{marginfigure}
     \includegraphics{fu/fpbot_slack_border.pdf}
     \caption[\texttt{fpbot} Slackbot interaction]{Sample interaction with the \texttt{fpbot} Slackbot, obtaining forced photometry for ZTF20abydkrl.}
@@ -229,7 +229,7 @@ We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectr
     \labfig{ZTF20acmxnpa_spectrum}
 \end{figure}
 
-\subsection{\emph{AT2021osi}: Regular AGN activity}
+\subsection{\emph{AT2021osi}: Regular AGN Activity}
 \emph{AT2021osi} was detected when following up \emph{IC210629A} \sidecite{IC210629A1}. It was first reported by \texttt{ALeRCe} \sidecite{SanchezSaez2021}, about two weeks prior to the neutrino's arrival. 
 
 The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin \sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with Gemini/GMOS-N and reduced the spectrum with \texttt{pypeit}.
@@ -255,7 +255,7 @@ We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with
     \labfig{ZTF22aatwsqt_spectrum}
 \end{figure}
 
-\section{Classification performance} \label{classification_performance}
+\section{Classification Performance} \label{classification_performance}
 The classification for the \textbf{205 candidates selected} by \texttt{nuztf} can be seen in Fig. \ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS) \sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (e.g. Milliquas or Gaia, see Section \ref{catmatch}).
 
 \begin{figure*}[t]
@@ -302,4 +302,4 @@ Lastly, a \textbf{strong infrared signal} was detected when evaluating \text{NEO
 
 The \textbf{chance coincidence} to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent} \cite{Stein2021}. This provides evidence for the hypothesis that \textbf{Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube}.
 
-Lightning rarely strikes twice. But in this case it did: Roughly half a year later, we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate. The next Chapter \ref{at2019fdr} is dedicated to that event.
+Lightning rarely strikes twice. But in this case it did: Roughly half a year later, we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate. The next Chapter \ref{at2019fdr} is dedicated to that event.\todo{switch AT2019dsg before Classification Performance}

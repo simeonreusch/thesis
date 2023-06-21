@@ -10,7 +10,7 @@ One of the two most relevant instruments for this thesis is the \textbf{IceCube 
 \end{marginfigure}
 The basic operational principle of IceCube (and already of AMANDA) is the detection of \textbf{Cherenkov light} within the Antarctic ice. When charged secondary particles created by neutrino interactions travel through the ice with an energy high enough, their speed can exceed the phase velocity of light in ice and they emit Cherenkov radiation. The detector consists of 5160 individual Digital Optical Modules (DOMs), buried deep in the ice and sensitive to the Cherenkov radiation.
 
-\section{Cherenkov radiation} \label{cherenkov_radiation}
+\section{Cherenkov Radiation} \label{cherenkov_radiation}
 
 Cherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenkov \sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that very medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_0$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. Note that the phase velocity of light in a medium can exceed $c_0$, so $n<1$ is possible. 
 
@@ -34,7 +34,7 @@ Cherenkov radiation has a smooth spectrum, with a relative intensity roughly pro
 
 IceCube detects neutrinos by observing the optical and UV part of their secondary particle Cherenkov spectrum (see Section \ref{cherenkov_radiation} above). To understand how this is done, one first needs to look at the working principe of a \textbf{Photomultiplier Tube} (PMT), the basic instrument within the DOMs.
 
-\subsection{Photomultiplier tubes}
+\subsection{Photomultiplier Tubes}
 A PMT is a device used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s \sidecite{Iams1935}.
 
 \begin{figure}[h!]
@@ -78,7 +78,7 @@ The DOMs are connected to the IceCube Laboratory (ICL) with twisted-pair copper 
 
 The Flasher Board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms \cite{Aartsen2017}.
 
-\subsection{Detector layout}
+\subsection{Detector Layout}
 In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of \textbf{86 strings}. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs, with an average horizontal spacing between strings of \SI{125}{\meter} \cite{Aartsen2017}.
 
 \begin{figure}
@@ -108,7 +108,7 @@ The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water h
     \labfig{ic_drill}
 \end{figure}
 
-\subsection{The IceTop surface array}
+\subsection{The IceTop Surface Array}
 In addition to the in-ice detector, IceCube has a \textbf{surface air shower detector} for cosmic-ray physics\sidenote{See Section \ref{cosmic_rays}.}, named IceTop. It was designed to study the cosmic-ray mass composition by correlating the energy it measures on the surface with the energy deposited by muons in the ice as measured by the in-ice detector \sidecite{Abbasi2013}. The energy sensitivity range of IceTop is \SI{300}{\tera\eV} to \SI{1}{\exa\eV} \sidecite{Aartsen2013a}.
 
 \begin{marginfigure}
@@ -123,12 +123,12 @@ Results from 3 years of IceTop data show good agreement between models describin
 
 Furthermore, IceTop can be used to increase the purity of a sample of astrophysical neutrinos by using it to veto muon events that mostly stem from \textbf{cosmic-ray induced air showers}, as opposed to muons created by neutrino interactions \sidecite{Amin2021} (more details on background rejection will follow in Section \ref{background}).
 
-\subsection{Data acquisition}\label{data_acquisition}
+\subsection{Data Acquisition}\label{data_acquisition}
 As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Laboratory on the surface via the twisted-pair cable datalink, were all DOM data is ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causility by temporal and sometimes spatial patterns. All hits for which common causality can be established form an \textbf{event}. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second}) \cite{Aartsen2017}.
 
 Satellite bandwidth is limited and costly. Therefore, further \textbf{software triggers} on-site reduce the data rate to \SI{15}{\percent} of the initial rate. These events are then transmitted via satellite to the IceCube data center at the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are transferred twice per year to Madison.
 
-\subsection{Time synchronization}
+\subsection{Time Synchronization}
 Precise \textbf{timing information} is crucial to reconstruct an event (see Section \ref{reconstruction}). For this reason, all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed once per second, while data transfer is paused during the process\sidenote{The calibration sequence takes $\lesssim$\SI{1.3}{\milli\second}} \sidecite{Abbasi2009}.
 
 IceCube ensures temporal synchronizity with an algorithm called Reciprocal Active Pulsing (\texttt{RAPcal}): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
@@ -139,7 +139,7 @@ With these six pieces of information -- the two transmit timestamps, the two rec
 
 The goal of IceCube reconstruction is twofold: Reconstructing the \textbf{deposited neutrino energy}, and reconstructing the \textbf{neutrino arrival direction}. With this in mind, one can sort the events seen by the detector broadly into two categories: Well localized \textbf{track events} with poorly reconstructed energy, and \textbf{cascade events} with well-determined energy, but very imprecise origin.
 
-\subsection{Event types} \label{ic_event_types}
+\subsection{Event Types} \label{ic_event_types}
 
 \begin{marginfigure}
     \includegraphics{ic/ic_track.png}
@@ -152,14 +152,14 @@ The goal of IceCube reconstruction is twofold: Reconstructing the \textbf{deposi
     \labfig{ic_cascade}
 \end{marginfigure}
 \begin{description}
-\item[Track events] (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of muon neutrinos with the Antarctic glacial ice (see section \ref{neutrinos_current}). The secondary muons leave tracks in the ice with a length on the order of kilometers. Muons with energies above \SI{\sim 300}{\giga\eV} create tracks that exceed the detector length. In general, this allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon \sidecite{Abbasi2022}. The drawback is a large energy uncertainty of $0.25 \log{E_\mu}$ for a muon of energy $E_\mu$ \sidecite{Aartsen2014a}, as parts of the high-energy muon tracks lie outside the instrumented volume \sidecite{Aartsen2017a}.
+    \item[Track Events] (Fig. \ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of muon neutrinos with the Antarctic glacial ice (see section \ref{neutrinos_current}). The secondary muons leave tracks in the ice with a length on the order of kilometers. Muons with energies above \SI{\sim 300}{\giga\eV} create tracks that exceed the detector length. In general, this allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon \sidecite{Abbasi2022}. The drawback is a large energy uncertainty of $0.25 \log{E_\mu}$ for a muon of energy $E_\mu$ \sidecite{Aartsen2014a}, as parts of the high-energy muon tracks lie outside the instrumented volume \sidecite{Aartsen2017a}.
 
-\item[Cascade events] (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx \SI{15}{\percent}$) \cite{Aartsen2017a}.
+    \item[Cascade Events] (Fig. \ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx \SI{15}{\percent}$) \cite{Aartsen2017a}.
 \end{description}
 
 As this thesis is concerned with the sources of high-energy astrophysical neutrinos and the angular resolution of track events allows for a better pointing accuracy compared to cascade events, the next section will focus on the angular reconstruction of the former.
 
-\subsection{Likelihood approach}
+\subsection{Likelihood Approach}
 The main angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It employs a \textbf{maximum-likelihood method} \sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters $\vec{a}$ do maximize the probability of measuring the actually observed values $\vec{x}$?
 
 This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_i$ of $\vec{x}$ are independent, it can be expressed as
@@ -194,7 +194,7 @@ The scattering does primarily not loose light, but delays the photons. It is dom
 As the position of the DOM is known, $t_\text{res}$ is the most significant observable for each DOM,  We therefore simplify $x_i$ to $t_{\text{res},i}$, and express $\vec{a}$ as a function of the individual DOM parameters: $\vec{a}= (d_i,\eta_i,...)$, where $\eta_i$ is the angle to the DOM PMT axis (see Fig. \ref{fig:ic_reco_cherenkov}).
 
 
-\subsection{First (single) photoelectron fit}
+\subsection{First (single) Photoelectron Fit}
 Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM. One simplification is to \textbf{only regard the first photon} hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called \textbf{Single Photoelectron} (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
@@ -203,7 +203,7 @@ Matters can be simplified further. While the muon is traveling and emitting Cher
 
 where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained from simulations modeling the photon propagation through the Antarctic ice (this is necessary because the photon scatter needs to be accounted for). The simulation results are either stored in look-up tables or approximated by analytical functions \cite{Ahrens2004}. 
 
-\subsection{Multi photoelectron fit}
+\subsection{Multi Photoelectron Fit}
 A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon. This is because more photon hits mean that the DOM is closer to the event, and therefore receives a higher signal -- which means that the event is detected earlier. 
 
 This leads to the \textbf{Multi Photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given time-integrating the photon arrival PDF from the $t_\text{res}$ to infinity:
@@ -220,7 +220,7 @@ Using this, the MPE likelihood is given as
 
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$ \cite{Ahrens2004}. This is almost what is used by the angular reconstruction used for the alerts IceCube distributes\sidenote{See Section \ref{ic_alerts}.}. The difference is the PDF used, which is described in the following Section \ref{spline_mpe}.
 
-\subsection{\texttt{SplineMPE} reconstruction} \label{spline_mpe}
+\subsection{\texttt{SplineMPE} Reconstruction} \label{spline_mpe}
 So far, nothing has been said about the photon arrival time PDF $p(t|\vec{a})$. The most straightforward approach is using a \textbf{Gaussian distribution}, which models the muon moving through the ice as plane wave of constant velocity. This can be enriched by assuming a more physically correct minimally ionizing muon track. When doing so, the PDF becomes a \textbf{Gamma distribution} of the form
 \begin{equation}
     p(t_\text{res}) = \frac{\beta^\alpha t_\text{res}^{\alpha-1} e^{-\beta t_\text{res}}}{\Gamma(\alpha)},
@@ -235,11 +235,11 @@ The basic idea is to create a \textbf{large lookup table of simulated minimally 
  \end{equation} 
 Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
 
-\subsection{\texttt{Millipede} reconstruction} \label{millipede}
+\subsection{\texttt{Millipede} Reconstruction} \label{millipede}
 
 \begin{marginfigure}
     \includegraphics[width=1\textwidth]{ic/ic_millipede_IC221124A.pdf}
-    \caption[\texttt{Millipede} reconstruction of IC221124A]{\texttt{Millipede} reconstruction of IC221124A.}
+    \caption[\texttt{Millipede} reconstruction of \emph{IC221124A}]{\texttt{Millipede} reconstruction of \emph{IC221124A}.}
     \labfig{ic_millipede}
 \end{marginfigure}
 
@@ -249,15 +249,15 @@ This reconstruction consists of a \textbf{maximum likelihood scan} covering the 
 
 For this fixed direction, the likelihood of the deposited energy resulting from the best fit and the neutrino interaction vertex in the detector are then computed. Pixels near the likelihood maximum are then subdivided with a finer \texttt{HEALPix} resolution. This procedure ultimately results in a likelihood map of the sky, with increasing granularity towards the global maximum \sidecite{Abbasi2023}.
 
-To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, \textbf{Monte Carlo resimulations} from the high-energy neutrino event IC160427A are used. For this event, Pan-STARRS found a possible counterpart, PS16cgx\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
+To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, \textbf{Monte Carlo resimulations} from the high-energy neutrino event \emph{IC160427A} are used. For this event, Pan-STARRS found a possible counterpart, \emph{PS16cgx}\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or -- more likely -- a SN Ia, which would exclude it as a neutrino source.} \sidecite{Kankare2019}.
 
 In the resimulations, the systematic parameters of the Antarctic ice used to model photon propagation were varied. Additionally, the simulated direction and energies were varied, with cuts to ensure that the light deposition of the resimulations resembled the original event (\SI{\pm 2}{\degree} in direction, \SI{\pm 20}{\percent} in deposited charge).
 
 Each resimulated event was fit with \texttt{Millipede}. The distribution of differences between the best-fit likelihood and the ground truth of the simulated event can then be employed to convert the change in log-likelihood over the map into a confidence level.
 
-Due to the systematic uncertainties, Wilk's theorem does not apply here. To account for this fact, the contours derived for individual events (which make use of the theorem) are \textbf{scaled up with correction values} obtained from the resimulations of IC160427A. Then, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours. Currently, these correction values are 22.2 and 64.2 for the \SI{50}{\percent} and \SI{90}{\percent} uncertainty contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area.
+Due to the systematic uncertainties, Wilk's theorem does not apply here. To account for this fact, the contours derived for individual events (which make use of the theorem) are \textbf{scaled up with correction values} obtained from the resimulations of \emph{IC160427A}. Then, all pixels that satisfy $\log \mathcal{L}_\text{min}-\log \mathcal{L}_\text{pixel} = -11.3$ $(-32.1)$ form the \SI{50}{\percent} (\SI{90}{\percent}) error contours. Currently, these correction values are 22.2 and 64.2 for the \SI{50}{\percent} and \SI{90}{\percent} uncertainty contours \sidecite{Gualda2021}. In Fig. \ref{fig:ic_millipede} these contours are displayed for an example event. The black line shows the \SI{50}{\percent} uncertainty region, while the red line shows the \SI{90}{\percent} area.
 
-However, resimulations of newer high-energy neutrino events have shown that the method of scaling up the errors with correction values obtained from resimulating IC160427A does in some cases not faithfully capture the errors of those newer resimulations: They are sometimes under-, sometimes overestimated, depending on the topography of the event. For details on this, see \cite{Gualda2021}.
+However, resimulations of newer high-energy neutrino events have shown that the method of scaling up the errors with correction values obtained from resimulating \emph{IC160427A} does in some cases not faithfully capture the errors of those newer resimulations: They are sometimes under-, sometimes overestimated, depending on the topography of the event. For details on this, see \cite{Gualda2021}.
 
 \section{The Realtime Alert Program}\label{ic_alert_program}
 Since 2016, IceCube hosts a \textbf{realtime alert program}, providing the astrophysical community with low-latency, high-quality astrophysical neutrino alerts \cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, named \textbf{Gold} and \textbf{Bronze}, were created \sidecite{Blaufuss2019}. As these are designed based on cuts reducing the IceCube background, one needs to understand the background events first.
@@ -279,7 +279,7 @@ When searching for the sources of astrophysical neutrinos, there are two major s
 \end{marginfigure}
 
 \begin{description}
-    \item[Atmospheric muons] are created by \textbf{cosmic rays hitting the atmosphere}. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. \textbf{the northern hemisphere}. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
+    \item[Atmospheric Muons] are created by \textbf{cosmic rays hitting the atmosphere}. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e. \textbf{the northern hemisphere}. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig. \ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller \sidecite{Chirkin2004} than the distance they have to cross (see Fig. \ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going \sidecite{Ahlers2018a}.
 
     One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability \sidecite{Aartsen2017c}.
 
@@ -289,11 +289,11 @@ When searching for the sources of astrophysical neutrinos, there are two major s
         \labfig{ic_absorption_earth}
     \end{figure}
 
-    \item[Atmospheric neutrinos] also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an \textbf{irreducible background}: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
+    \item[Atmospheric Neutrinos] also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an \textbf{irreducible background}: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos \cite{Ahlers2018a}.
 
 \end{description}
 
-\subsection{Event selection} \label{ic_event_selection}
+\subsection{Event Selection} \label{ic_event_selection}
 
 Gold and Bronze alerts are drawn from three different selection schemes, originally designed to cater to different science goals. These are \textbf{High Energy Starting Events} (HESE) \sidecite{Abbasi2021}, \textbf{Extremely High Energy} (EHE) events \sidecite{Aartsen2016} and \textbf{Gamma-Ray Follow Up} (GFU) events \sidecite{gfu2016}.
 
@@ -320,7 +320,7 @@ Here E is the reconstructed neutrino energy, and $N_\text{signal}(E,\theta_\text
 
 The cuts on the individual event selections are tuned to ensure that \textit{Gold} alerts on average have a signalness $\langle \SI{50}{\percent} \rangle$, and \textit{Bronze} alerts have a signalness $\langle \SI{30}{\percent} \rangle$.
 
-\subsection{Alert distribution} \label{ic_alerts}
+\subsection{Alert Distribution} \label{ic_alerts}
 All events that pass a first stage of filtering are sent to the IceCube data center (see Section \ref{data_acquisition}) via Iridium satellite to minimize latency. There, their signalness is computed. After this, they are \textbf{globally distributed} with the General Coordinates Network\sidenote{\url{https://gcn.nasa.gov/}} (GCN) in the form of GCN Notices.
 
 Each notice contains the discovery time, a unique event number, the reconstructed direction in right ascension (RA) and declination (Dec) of the candidate neutrino computed by \texttt{SplineMPE}\sidenote{See Section \ref{spline_mpe}.}, a statistical error for the direction, the reconstructed neutrino energy, the signalness and the false alarm rate \cite{Blaufuss2019}.
