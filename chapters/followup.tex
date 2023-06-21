@@ -1,11 +1,22 @@
 \setchapterimage[7cm]{fu/heading3.png}
-\chapter{The ZTF Follow-Up Pipeline} \label{fupipeline}
+\chapter{The ZTF Neutrino Follow-Up Program} \label{fupipeline}
 \labch{fupipeline}
 After introducing the IceCube detector (see Chapter \ref{ic}) and the Zwicky Transient Facility (see Chapter \ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy \textbf{neutrino follow-up pipeline}.
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section \ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
 The follow-up procedure can be outlined as follows: An \textit{IceCube alert} is received. If the alert meets our \textit{alert quality criteria}, we do an \textit{observability check}. If the sky region is accessible to ZTF, we \textit{observe}. After observations, we \textit{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL} \sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and -- if needed -- trigger \textit{additional follow-up}.\todo{motivate the follow-up classes, AGN time-sensitivity (in contrast to the stacking analyses)}
+
+\section{Source Classes}
+Given the limit observational time at our disposal, we are only sensitive to a subset of possible high-energy neutrino source classes. For a complete overview, see Section \ref{he_neutrino_astronomy}. These are:
+
+\begin{description}
+    \item[Optical AGN flares] As we are decidedly an optical and time-domain program, we restrict ourselves to AGN (including blazar) undergoing significant optical flaring activity around the time of neutrino detection.
+    \item[CCSNe] We are sensitive to the subtypes of CCSNe that have been proposed as potential high-energy neutrino sources. The contamination by SNe Ia and the need to determine the exact type of CCSN demand spectroscopic follow up.
+    \item[Short and long GRBs] We are both sensitive to jets launched by CCSNe (long GRBs) and binary mergers (sGRB), given they are optically detectable. Both the emerging CCSN, as well as the rapidly fading red optical emission by sGRBs are good signatures to test, though the sGRB afterglow might evolve too quickly for us to catch it.
+    \item[TDEs] Lastly, we are also sensitive to TDEs. Due to the significant model uncertainties, we do not restrict ourselves in terms of how old the TDE must be at the time of neutrino detection, given it is still active.
+\end{description}
+
 
 \section{Alert Cuts}\label{alert_cuts}
 As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. As outlined in Section \ref{ic_event_selection}, there are two alert streams: \textit{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textit{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
