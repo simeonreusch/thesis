@@ -22,21 +22,13 @@ There are two other telescopes located on Mount Palomar: The \SI{1.5}{\meter} (6
 \section{Telescope Design} \label{telescope_design}
 A \textit{Schmidt telescope} like ZTF is by design dedicated to taking images, contrary to earlier designs allowing to observe through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a \textit{Schmidt camera}. The design goal was a wide FoV. This made it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets rid of comatic aberration\todo{zusatz oder das ist nur blabla}.
 
-\begin{figure}[]
-    \includegraphics[width=1\textwidth]{ztf/schmidt2.pdf}
+\begin{figure}[htb]
+    \includegraphics[width=0.9\textwidth]{ztf/schmidt2.pdf}
     \caption[Schmidt telescope schematic]{Schmidt telescope schematic. Light enters from the left, passes the Schmidt plate (an aspherical correcting lens), gets reflected by a spherical mirror at the end onto a photographic plate or camera halfway down the tube. Figure adapted from \url{https://commons.wikimedia.org/wiki/File:Schmidt-Teleskop.svg}.}
     \labfig{schmidt_telescope}
 \end{figure}
 
 Until the end of the 20th century, around ten Schmidt telescopes have been built, most of them to conduct sky surveys \sidecite{Cannon1995}. At least two of them were space telescopes: ESA's astrometry mission \textit{HIPPARCOS} \sidecite{ESA1997} (1989--1993) and the NASA explanet mission \textit{Kepler} \sidecite{Koch2010} (2009--2018). In both cases, the mission entailed monitoring of large areas of the sky; prime territory for Schmidt telescopes.
-
-\begin{figure}[]
-    \includegraphics[width=1\textwidth]{ztf/ztf_fov.pdf}
-    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST) \cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
-    \labfig{ztf_fov}
-\end{figure}
-
-
 
 \section{Camera}
 \begin{marginfigure}
@@ -45,6 +37,12 @@ Until the end of the 20th century, around ten Schmidt telescopes have been built
     \labfig{ztf_camera_detail}
 \end{marginfigure}
 The ZTF camera is a CCD design, consisting of 16 individual CCDs by commercial manufacturer e2v (now Teledyne, \textit{Science CCD231-C6}), each having 6144x6160 pixels, resulting in a total camera resolution of $\sim 600 \,\textrm{Megapixel}$ \sidecite{Dekany2016}. As one can see in Fig. \ref{fig:ztf_camera}, the array of 16 CCDs is slightly bent. This is necessitated by the Schmidt design, where the camera needs to be spherical, matching the spherical mirror. As individual CCDs are flat, each of the 16 sensors is is installed slightly tilted, tracing the overall curvature. To get rid of residual deviations from the global curvature, in front of each sensor a field flattener lens is mounted \sidecite{Bellm2019}.
+
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{ztf/ztf_fov.pdf}
+    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST) \cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From \cite{Laher2018}, highlighting by the author.}
+    \labfig{ztf_fov}
+\end{figure}
 
 \begin{marginfigure}
     \includegraphics{ztf/ccd_buckets.pdf}
@@ -69,13 +67,13 @@ Each CCD pixel actually consists of three electrodes, which can be seen in Fig. 
 
 The typical \textbf{single exposure time} for the ZTF camera is \SI{30}{\second}, while the readout time (transferring and measuring the charge in each capacitor) is \SI{8.2}{\second}. Readout and digitization is done in parallel for four quadrants, each containing 4 CCDs. The four readout devices for the quadrants are \textit{Archon} CCD controllers by Semiconductor Technology Associates (STA), operated at \SI{1}{\mega\Hz}. Each of these operates 16 simultaneous readout channels, four for each CCD. In total, the camera is simultaneously read out in 64 independent regions to speed up the process.
 
-Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out \sidecite{Dekany2020}. To reduce the thermal noise of the camera, it was placed on a cold plate, which is cooled by a cryocooler to \SI{160}{\kelvin} \cite{Dekany2016}.
-
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{ztf/ztf_camera.pdf}
     \caption[ZTF camera]{The ZTF camera. One can see the CCDs sandwiched between the filter on the front and the cryostat on the back. From \cite{Bellm2019}.}
     \labfig{ztf_camera}
 \end{figure}
+
+Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out \sidecite{Dekany2020}. To reduce the thermal noise of the camera, it was placed on a cold plate, which is cooled by a cryocooler to \SI{160}{\kelvin} \cite{Dekany2016}.
 
 \section{Optical System}
 
