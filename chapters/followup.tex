@@ -138,9 +138,9 @@ The last step in the pipeline is the acquisition of forced photometry. This is a
 \subsection{Forced Photometry Explained}
 The usual extraction of transient flux, as performed by the ZTF imaging pipeline\sidenote{See Section \ref{ztf_image_subtraction}}, cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. If the flux detected at a position in the image exceeds that threshold, an alert is generated.
 
-If the position of the transient is \textit{known}, as it has already generated some alerts, one can \textbf{use this location to reprocess the difference images} and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed \textbf{forced photometry}, as the known position is `forced' upon the flux extraction.
+If the position of the transient is known, as it has already generated some alerts, one can \textbf{use this location to reprocess the difference images} and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed \textbf{forced photometry}, as the known position is `forced' upon the flux extraction.
 
-The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a stripped-envelope supernova (that is compatible with high-energy neutrino production, see Section \ref{ccsne}) shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see e.g. Section \ref{SN2020lls}).\todo{bla}
+The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g. a stripped-envelope supernova (that is compatible with high-energy neutrino production, see Section \ref{ccsne}) shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see e.g. Section \ref{SN2020lls}).
 
 \subsection{The \texttt{fpbot} Pipeline}
 \begin{marginfigure}
@@ -243,7 +243,6 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 \end{figure}
 
 
-
 \subsection{SN2022oyn: Type Ia Supernova}
 When following up \emph{IC220907A} \sidecite{IC220907A1}, \emph{SN2022oyn} emerged as notable source candidate, as its light curve was consistent with a supernova about 40 days post peak \sidecite{IC220907A2}.
 
@@ -255,22 +254,7 @@ We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with
     \labfig{ZTF22aatwsqt_spectrum}
 \end{figure}
 
-\section{Classification Performance} \label{classification_performance}
-The classification for the \textbf{205 candidates selected} by \texttt{nuztf} can be seen in Fig. \ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS) \sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (e.g. Milliquas or Gaia, see Section \ref{catmatch}).
-
-\begin{figure*}[t]
-    \includegraphics{fu/classification.pdf}
-    \caption[Follow-up classification overview]{Overview of the classification performance of the neutrino follow-up program as of March 2023. The figure on the left shows all transients, while the figure on the right only show the subclasses of the \textit{Transient} category.}
-    \labfig{classification_overview}
-\end{figure*}
-
-Roughly half of the transients were classified as \textbf{AGN Variability}, i.e. stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. \SI{12}{\percent} (24) of the candidates were classified as \textbf{stars}, and hence ruled out as potential neutrino emitters. We classified \SI{9}{\percent} (18) of alerts as \textbf{subtraction artifacts}, as their difference images showed clear signs of erroneous subtractions\sidenote{See Section \ref{ztf_image_subtraction}}. For \SI{20}{\percent} (41) of the candidates we were not able to obtain classifications. 
-
-This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide \textbf{transients}, totalling 21 classified candidates.
-
-Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only \textbf{the two TDEs were identified as source candidates}; these will be detailed subsequently. The remaining non--Ia supernovae could be \textbf{ruled out as potential sources}, as they either showed no sign of CSM interaction, or -- in the case of the SN Ic -- the explosion predated the neutrino detection significantly\sidenote{See Section \ref{SN2020lls}}.
-
-\section{TDE \emph{AT2019dsg}}
+\subsection{TDE \emph{AT2019dsg}}
 The author did not contribute to the analysis of the TDE \emph{AT2019dsg}, but as it is important in the context of the work on \emph{AT2019fdr} highlighted in the next Chapter (\ref{at2019fdr}), the most important findings will be presented in this section.
 
 \emph{AT2019dsg} was identified as a possible counterpart to \emph{IC191001A}, an alert with a \SI{90}{\percent} bounding rectangle of \SI{25.5}{\square\deg}, an estimated neutrino energy of \SI{217}{\tera\eV} and a signalness\sidenote{See Section \ref{ic_event_selection}} of 0.59 \sidecite{IC191001A1, IC191001A2}.
@@ -298,8 +282,27 @@ In \cite{Stein2021}, the evolving radio signal was interpreted as the signature 
     \labfig{at2019dsg_dustecho}
 \end{figure}
 
-Lastly, a \textbf{strong infrared signal} was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig. \ref{fig:at2019dsg_dustecho}. They somewhat trail the optical evolution -- this can interpreted as a \textbf{dust echo}, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section \ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
+Lastly, a \textbf{strong infrared signal} was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. They somewhat trail the optical evolution --- this can interpreted as a \textbf{dust echo}, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
 
-The \textbf{chance coincidence} to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent} \cite{Stein2021}. This provides evidence for the hypothesis that \textbf{Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube}.
+The \textbf{chance coincidence} to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This provides evidence for the hypothesis that \textbf{Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube}.
 
-Lightning rarely strikes twice. But in this case it did: Roughly half a year later, we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate. The next Chapter \ref{at2019fdr} is dedicated to that event.\todo{switch AT2019dsg before Classification Performance}
+Lightning rarely strikes twice. But in this case it did: Roughly half a year later, we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate. The next Chapter \ref{at2019fdr} is dedicated to that event.
+
+\section{Classification Performance}\label{classification_performance}
+
+\begin{figure*}[htb]
+    \includegraphics{fu/classification.pdf}
+    \caption[Follow-up classification overview]{Overview of the classification performance of the neutrino follow-up program as of March 2023. The figure on the left shows all transients, while the figure on the right only show the subclasses of the \textit{Transient} category.}
+    \labfig{classification_overview}
+\end{figure*}
+
+The classification for the \textbf{205 candidates selected} by \texttt{nuztf} can be seen in Fig. \ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS) \sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (e.g. Milliquas or Gaia, see Section \ref{catmatch}).
+
+
+
+Roughly half of the transients were classified as \textbf{AGN Variability}, i.e. stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. \SI{12}{\percent} (24) of the candidates were classified as \textbf{stars}, and hence ruled out as potential neutrino emitters. We classified \SI{9}{\percent} (18) of alerts as \textbf{subtraction artifacts}, as their difference images showed clear signs of erroneous subtractions\sidenote{See Section~\ref{ztf_image_subtraction}}. For \SI{20}{\percent} (41) of the candidates we were not able to obtain classifications. 
+
+This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide \textbf{transients}, totalling 21 classified candidates.
+
+Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only \textbf{the two TDEs were identified as source candidates}; these will be detailed subsequently. The remaining non--Ia supernovae could be \textbf{ruled out as potential sources}, as they either showed no sign of CSM interaction, or --- in the case of the SN Ic --- the explosion predated the neutrino detection significantly\sidenote{See Section~\ref{SN2020lls}}.
+

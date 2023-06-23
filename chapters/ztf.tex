@@ -20,7 +20,7 @@ There are two other telescopes located on Mount Palomar: The \SI{1.5}{\meter} (6
 \end{figure*}
 
 \section{Telescope Design} \label{telescope_design}
-A \textbf{Schmidt telescope} like ZTF is by design dedicated to taking images, contrary to earlier designs allowing to observe through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a Schmidt camera. The design goal was a wide FoV. This made it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets rid of comatic aberration\todo{zusatz oder das ist nur blabla}.
+A \textbf{Schmidt telescope} like ZTF is by design dedicated to taking images, contrary to earlier designs allowing to observe through an eyepiece \sidecite{Schmidt1938}. For this reason, it is also referred to as a Schmidt camera. The design goal was a wide FoV. This made it the ideal instrument for sky surveys, where a large FoV maximizes the on-sky area that can be monitored. A Schmidt telescope combines a spherical mirror at the end of the telescope tube with an aspherical correcting lens (Schmidt plate) at the tube's entrance. The use of a spherical mirror combined with the correcting lens gets rid of comatic aberration and astigmatism, which increases the image quality.
 
 \begin{figure}[htb]
     \includegraphics[width=0.9\textwidth]{ztf/schmidt2.pdf}
@@ -125,12 +125,15 @@ As the temperature of the CCDs changes with time, each image is subject to a tim
 The CCD pixels also have different \textbf{intrinsic noise levels}, meaning in the absence of external photoelectrons they still generate a signal, which is different from pixel to pixel -- i.e. their zero point differs. Luckily, this variation has a higher degree of time-stability \sidecite{Howell2006}. To correct it, at the beginning of each night at least 10 so-called \textbf{bias} images are taken and overscan corrected. These images are zero-second exposures which are then stacked. After this, the truncated mean of each pixel is calculated, constituting the final bias image for the night (and filter). This bias image is subtracted from each science exposure using the respective filter taken during the night \cite{Masci2019a}.
 
 \subsection{Flat Fielding}
-The pixels in the CCDs do not only differ in zero point, they also have slightly different \textbf{gain or quantum efficiency}. This means, their response to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF, this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with LEDs, each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
+
 \begin{marginfigure}
     \includegraphics{ztf/ztf_flatfield_illuminator.png}
     \caption[ZTF flat field illuminator]{The ZTF flat field illuminator. From \cite{Dekany2020}.}
     \labfig{ztf_flatfield_illuminator}
 \end{marginfigure}
+
+The pixels in the CCDs do not only differ in zero point, they also have slightly different \textbf{gain or quantum efficiency}. This means, their response to light is not uniform. To account for this, the calibration needs a structureless, uniformly bright light source against which the individual pixel response can be measured \cite{Howell2006}. In the case of ZTF, this is achieved by using a flat field illuminator consisting of a round screen illuminated by eight identical boards with LEDs, each board housing $4\times15=60$ LEDs of 15 different colors, covering the full wavelength region of ZTF \cite{Dekany2020}.
+
 Each afternoon, before science operations begin, at least 20 images per filter are taken of the flat field illuminator. These are then overscan corrected, the bias image is subtracted, and the pixel values are normalized to a truncated global mean of 1 over the image (to allow for later division). After this individual treatment, all flat field images per filter are stacked to a truncated mean per pixel and outlier rejection is applied to isolate additional noisy pixels. All science images taken during the night are divided by this flat field image \cite{Masci2019a}.
 
 \subsection{Astrometric Calibration}
