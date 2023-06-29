@@ -19,12 +19,23 @@ Given the limit observational time at our disposal, we are only sensitive to a s
 
 
 \section{Alert Cuts}\label{alert_cuts}
-As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. Additionaly, we do not follow up alerts with uncertainty areas too large, as the significance of potential counterparts would drop drastically. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
+Two factors motivate imposing additional cuts on the alert stream received via GCN notices: We only have limited telescope time, and too large uncertainty areas would result in the significance of potential counterparts dropping too much. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
 
 In general, we only follow up if the reported bounding rectangle comprising the \SI{90}{\percent} uncertainty region\sidenote{See Section~\ref{millipede}} covers less than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty areas of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
 \section{Observation Planning with \texttt{planobs}}\label{planobs}
-If an alert makes these cuts, one needs to \textbf{check if observations with ZTF are feasible}. To reduce the potential for errors, this is done with assistance by the \texttt{planobs}~\sidecite{Reusch2023} tool, developed and maintained by the author to automate the task as much as possible.
+
+\begin{marginfigure}
+    \includegraphics{fu/planobs_slack_border.pdf}
+    \caption[\texttt{planobs} Slack interaction]{Sample interaction with \texttt{planobs} in Slack, checking the observability of IC230217A.}
+    \labfig{planobs_slackbot}
+\end{marginfigure}
+
+If an alert makes these cuts, one needs to \textbf{check if observations with ZTF are feasible}, and create an observation plan. As we are interested in the \textbf{time evolution} of potential source candidates, usually observations within a 10 day window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
+
+
+
+To reduce the potential for errors, the feasibility checks and creation of an observation schedule are done with the \texttt{planobs}~\sidecite{Reusch2023} tool, developed and maintained by the author to automate triggering follow-up observations as much as possible.
 
 \texttt{planobs} is written in Python, and is deployed on a virtual private server. The backend runs on \texttt{Flask}\sidenote{\url{https://flask.palletsprojects.com}} behind a \texttt{nginx}\sidenote{\url{https://nginx.com}} reverse proxy exposed to the internet. The \texttt{nginx} endpoint serves a Slack\sidenote{\url{https://slack.com/}} bot integrated into the DESY multimessenger group chat for ease of use. It can also be run locally.
 
@@ -44,31 +55,27 @@ To obtain the positional and error information on the neutrino in question from 
 
 An example observability plot is shown in Fig.~\ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
 
-Additionally, for each field of the primary and secondary grid (see Section~\ref{ztf_grid}) that (partially) contain the uncertainty region\sidenote{There is an additional check to ensure the fields have reference images available, see Section~\ref{ztf_image_subtraction}.}, the resulting coverage is calculated and the field with the \textbf{highest coverage is selected}. Fig.~\ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
-
-If the plan looks good, i.e.\ if the object is observable above an airmass of 2.0 and the moon is not too close, one needs to invoke
 \begin{marginfigure}
     \includegraphics{fu/planobs_grid.pdf}
     \caption[\texttt{planobs} ZTF grid]{The bounding rectangle of the \SI{90}{\percent} uncertainty area of IC221223A overlayed onto the ZTF grid. The coverage does not equal \SI{100}{\percent} because chip gaps are taken into account.}
     \labfig{planobs_grid}
 \end{marginfigure}
+
+Additionally, for each field of the primary and secondary grid (see Section~\ref{ztf_grid}) that overlaps with the uncertainty region, \texttt{planobs} checks if reference images are available (see Section~\ref{ztf_image_subtraction}), calculates the resulting coverage and selects the field with the \textbf{highest coverage}. Fig.~\ref{fig:planobs_grid} shows such an overlay plot for IC221223A and ZTF field 693.
+
+If the plan looks good, i.e.\ if the object is observable above an airmass of 2.0 and the moon is not too close, one needs to invoke
+
 \begin{lstlisting}[language=bash,style=kaolstplain]
 Plan IC221223A -trigger
 \end{lstlisting}
 
 to submit the observation request via a dedicated API to the ZTF telescope scheduler. There is additional functionality to ensure that the trigger has been added to the telescope queue. If all goes well and weather permits, the observations are carried out, and one can proceed to do candidate vetting.
 
-As we are interested in the \textbf{time evolution} of potential source candidates, usually observations within a 10 day window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
-\begin{marginfigure}
-    \includegraphics{fu/planobs_slack_border.pdf}
-    \caption[\texttt{planobs} Slack interaction]{Sample interaction with \texttt{planobs} in Slack, checking the observability of IC230217A.}
-    \labfig{planobs_slackbot}
-\end{marginfigure} 
 \section{The \texttt{AMPEL} Broker}\label{ampel}
+
 The next step in the pipeline is the \textbf{selection of good candidates}. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what \texttt{AMPEL}~sidecite{Nordin2019} is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
 The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory~\sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The full software stack is written in Python.
-
 
 \begin{figure}[h!]
     \includegraphics{fu/ampel_design.pdf}
@@ -89,7 +96,7 @@ To simplify matters significantly and to allow reprocessing as well as full repl
 \section{Candidate Filtering with \texttt{nuztf}}
 To streamline the neutrino follow-up process, \texttt{nuztf}~\sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with significant contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (see Section~\ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo-Kagra (LVK) gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign during the third observational campaign (O3) of Ligo and Virgo~\cite{Kasliwal2020}.
 
-When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter}~\cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
+When run, \texttt{nuztf} executes the following steps: (1) It obtains the IceCube alert information from the GCN, (2) it constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, (3) it queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, (4) it applies the \texttt{AMPEL} \texttt{DecentFilter}~\cite{Nordin2019} with custom parameters (see below), (5) it crossmatches the surviving counterpart candidates to a list of catalogs, (6) it pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and (7) it creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
 \subsection{\texttt{DecentFilter} Parameters}
 The GCN parsing is done akin to \texttt{planobs} (see Section~\ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
@@ -99,7 +106,7 @@ The GCN parsing is done akin to \texttt{planobs} (see Section~\ref{planobs}). Af
     \item[Positive subtraction] Sometimes, subtraction from reference images result in negative flux. This criterion ensures that there is excess flux.
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute}. Note that this needs to be reflected in the observation planning.\ \texttt{planobs} (see Section~\ref{planobs}) takes care of that.
     \item[\texttt{sgscore}] The transient must have an \texttt{sgscore} $<0.8$, which means a low probability of being a star.
-    \item[Maximum distance to PS1] As noted in Section~\ref{ztf_alerts}, the \texttt{sgscore} star-galaxy classifier is trained on data from PS1. This criterion enforces a maximum distance to the PS1 source of $<\SI{1}{\degree}$. If that is exceeded, the association between alert and PS1 source is not secure and the \texttt{sgscore} veto is ignored. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
+    \item[Maximum distance to PS1] As noted in Section~\ref{ztf_alerts}, the \texttt{sgscore} star-galaxy classifier is trained on data from PS1. To ensure correct association of the \texttt{sgscore} value which is based on the closest PS1 source, we require the source to be closer than \SI{1}{\degree}. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
     \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
 \end{description}
 The vast majority of alerts do not pass these filters, significantly reducing the human effort needed in candidate vetting.
@@ -116,8 +123,8 @@ All surviving candidates are then spatially crossmatched to a set of catalogs. T
     \item[MILLIQUAS] The Million Quasar Catalog (MILLIQUAS)~\sidecite{Milliquas} contains 1.4 million quasi-stellar object (QSO) candidates. Crossmatching is done to see if the source candidate is most likely associated to an \textbf{AGN}.
     \item[NED] The NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}} hosts information on 1.7 billion objects, compiled from various surveys and catalogs. Almost 9 million of those have a \textbf{spectroscopic redshift}.
     \item[SDSS] Data Release 10 (DR10)~\sidecite{Ahn2014} of SDSS is used to check if the object is flagged as potential star.
-    \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} aims at being the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a \textbf{known and possibly classified transient}.
-    \item[WISE] Color information from the Wide-Infrared Survey Explorer (\textit{WISE}) Mission~\sidecite{Wright2010} can be used to identify likely AGN, as these predominantly occupy in a small section of the WISE color-color diagram (see e.g.~\sidecite{Hviding2022} for this).
+    \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} is the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a \textbf{known and possibly classified transient}.
+    \item[WISE] Color information from the Wide-Infrared Survey Explorer (\textit{WISE}) Mission~\sidecite{Wright2010} can be used to identify likely AGN, as these predominantly occupy a small section of the WISE color-color diagram (see e.g.~\sidecite{Hviding2022} for this).
 \end{description}
 None of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source --- for example, an existing classification on TNS as a certain type of supernova. 
 
@@ -128,7 +135,7 @@ None of those catalog matches serve as veto, but are rather appended to the fina
 \end{figure}
 Fig.~\ref{fig:nuztf_sample_output} shows a page from the final \texttt{pdf} file generated for neutrino IC220624A, displaying candidate source ZTF21aauwmgr. All information required for quickly deciding if the candidate warrants further scrutiny is displayed: \textbf{Image cutouts} of the science, reference and difference image are shown to allow identifying potential subtraction artifacts. The different \textbf{ML scores} (star-galaxy separation, real bogus) are also displayed, as well as results from the \textbf{catalog matching} and of course the transient \textbf{light curve}.
 
-Additionally to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
+In addition the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
 
 The code can either be run locally, or through the interaction with a Slackbot. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of Icecube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview \texttt{pdf} and the GCN draft to Slack.
 
