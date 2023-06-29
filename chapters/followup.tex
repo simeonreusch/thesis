@@ -5,7 +5,7 @@ After introducing the IceCube detector (see Chapter~\ref{ic}) and the Zwicky Tra
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section~\ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
-The follow-up procedure can be outlined as follows: An \textbf{IceCube alert} is received. If the alert meets our \textbf{alert quality criteria}, we do an \textbf{observability check}. If the sky region is accessible to ZTF, we \textbf{observe}. After observations, we \textbf{filter} candidates with \texttt{nuztf} based on \texttt{AMPEL}~\sidecite{Nordin2019}, followed by visual inspection. Lastly, we acquire forced photometry and --- if needed --- trigger \textbf{additional follow-up}.\todo{motivate the follow-up classes, AGN time-sensitivity (in contrast to the stacking analyses)}
+The follow-up procedure can be outlined as follows: An \textbf{IceCube alert} is received. If the alert meets our \textbf{alert quality criteria}, we do an \textbf{observability check}. If the sky region is accessible to ZTF, we \textbf{observe}. After observations, we \textbf{filter} candidates, followed by visual inspection. Lastly, we acquire forced photometry and --- if needed --- trigger \textbf{additional follow-up}.\todo{motivate the follow-up classes, AGN time-sensitivity (in contrast to the stacking analyses)}
 
 \section{Source Classes}
 Given the limit observational time at our disposal, we are only sensitive to a subset of possible high-energy neutrino source classes. For a complete overview, see Section~\ref{he_neutrino_astronomy}. These are:
@@ -19,7 +19,7 @@ Given the limit observational time at our disposal, we are only sensitive to a s
 
 
 \section{Alert Cuts}\label{alert_cuts}
-As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
+As we only have limited telescope time, we apply quality cuts on the high-energy neutrino alerts received via GCN Notices. Additionaly, we do not follow up alerts with uncertainty areas too large, as the significance of potential counterparts would drop drastically. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
 
 In general, we only follow up if the reported bounding rectangle comprising the \SI{90}{\percent} uncertainty region\sidenote{See Section~\ref{millipede}} covers less than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow up. There is a more stringent cut on the uncertainty areas of bronze alerts, requiring these are $<\SI{10}{\square\deg}$. To avoid contamination by foreground stars, we implement a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
@@ -32,7 +32,7 @@ The tool is designed to be used with a simple command-line-style interface in th
 \begin{lstlisting}[language=bash,style=kaolstplain]
 Plan IC221223A -multiday
 \end{lstlisting}
-in the \texttt{plan\_observations} Slack channel will create an observation plan for IceCube high-energy neutrino IC220501A, spanning multiple days.
+in the \texttt{plan\_observations} Slack channel will create an observation plan for IceCube high-energy neutrino IC220501A.
 
 To obtain the positional and error information on the neutrino in question from the respective GCN Circular, \texttt{planobs} is searching for the GCN on a server hosted by NASA\sidenote{\url{https://heasarc.gsfc.nasa.gov/wsgi-scripts/tach/gcn_v2/tach.wsgi}}. As circulars are written by humans, it fuzzily parses them to extract the relevant information. After this, observability at Mt. Palomar is calculated, defaulting to the current time (optionally, a desired observation time can be requested). 
 
@@ -65,7 +65,7 @@ As we are interested in the \textbf{time evolution} of potential source candidat
     \labfig{planobs_slackbot}
 \end{marginfigure} 
 \section{The \texttt{AMPEL} Broker}\label{ampel}
-The next step in the pipeline is the \textbf{selection of good candidates}. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what AMPEL is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
+The next step in the pipeline is the \textbf{selection of good candidates}. ZTF typically serves 200000 alerts per night. As only a fraction of those is relevant for the neutrino follow up, we need software to cut down the number of alerts. This is exactly what \texttt{AMPEL}~sidecite{Nordin2019} is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
 The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of future Rubin observatory~\sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The full software stack is written in Python.
 
@@ -76,7 +76,7 @@ The main design goals of \texttt{AMPEL} comprise scalability, modularity and pro
     \labfig{ampel_design}
 \end{figure}
 
-Fig.~\ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC\sidenote{See Section~\ref{ztf_data_link}}, where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel \texttt{Kafka} streams. This is the live data stream the ZTF instance of \texttt{AMPEL} listens to.
+Fig.~\ref{fig:ampel_design} shows the design and information flow of \texttt{AMPEL}. On the top, data from Mt. Palomar is transmitted to IPAC (see Section~\ref{ztf_data_link}), where detections are extracted from the difference images. These are then sent to the Institute for Data Intensive Research in Astrophysics \& Cosmology (DiRAC) at the University of Washington, where they are distributed via parallel \texttt{Kafka} streams. This is the live data stream the ZTF instance of \texttt{AMPEL} listens to.
 
 The first of several execution layers (\textit{tiers}) is the \textbf{Filtering} stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g.\ \texttt{RealBogus} and \texttt{sgscore}\sidenote{See Section~\ref{ztf_image_subtraction}}, color evolution, host galaxy properties and the (non-) existence of a detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
 
@@ -87,12 +87,12 @@ The last level, tier 3, executes \textbf{Population analyses}. These are schedul
 To simplify matters significantly and to allow reprocessing as well as full replayability, all ZTF alerts received via the \texttt{Kafka} streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is based on \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed via a web frontend and an API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf}~\sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with significant contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL}\sidenote{See Section~\ref{ampel}}. The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo-Kagra (LVK) gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign during the third observational campaign (O3) of Ligo and Virgo~\cite{Kasliwal2020}.
+To streamline the neutrino follow-up process, \texttt{nuztf}~\sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with significant contribution by the author. It is written in Python, and relies heavily on \texttt{AMPEL} (see Section~\ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo-Kagra (LVK) gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign during the third observational campaign (O3) of Ligo and Virgo~\cite{Kasliwal2020}.
 
 When run, \texttt{nuztf} executes the following steps: It obtains the IceCube alert information from the GCN, constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, queries the \texttt{AMPEL} archive for all alerts within the \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, applies the \texttt{AMPEL} \texttt{DecentFilter}~\cite{Nordin2019} with custom parameters (see below), crossmatches the surviving counterpart candidates to a list of catalogs, pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
 \subsection{\texttt{DecentFilter} Parameters}
-The GCN parsing is done akin to \texttt{planobs}\sidenote{See Section~\ref{planobs}}. After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
+The GCN parsing is done akin to \texttt{planobs} (see Section~\ref{planobs}). After extraction of the alert information and querying the Archive database with a \texttt{HEALPix} map, a first filter, \texttt{DecentFilter}, is run with the following parameters:
 \begin{description}
     \item[Time window] The transient must have shown activity in a 14-day window after neutrino detection
     \item[\texttt{RealBogus}] The transient must have a \texttt{RealBogus} score of $>0.3$.
@@ -148,11 +148,11 @@ The possibility to extract flux prior to the first alert detection makes forced 
     \caption[\texttt{fpbot} Slackbot interaction]{Sample interaction with the \texttt{fpbot} Slackbot, obtaining forced photometry for ZTF20abydkrl.}
     \labfig{fpbot_slackbot}
 \end{marginfigure} 
-\texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interace, or within a dedicated Slack channel to serve the broader community.
+\texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interface, or within a dedicated Slack channel to serve the broader community.
 
-For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution was showed deviation from band to band when testing the pipeline.
+For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution deviated from band to band when testing the pipeline.
 
-Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package~\sidecite{Dembinski2023}, running the \texttt{MIGRAD}~\sidecite{James1975} algorithm, a type of least-squares fit.
+Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package~\sidecite{Dembinski2023}, running the least-square fit algorithm \texttt{MIGRAD}~\sidecite{James1975}.
 
 The fit results are stored as \texttt{csv} files and returned either via Slack channel or email. If the forced photometry is requested of the same object again, only new epochs are fitted to speed up the process. The service is used also by the cosmology and supernova ZTF working groups.
 
@@ -221,7 +221,7 @@ The lightcurve and the best-fit template show that the neutrino was detected clo
 
 \emph{AT2020ybb} was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
 
-We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig.~\ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum was somewhat ambiguous and allowed no classification of the source, \textbf{neither confirming nor rejecting the neutrino source hypothesis}. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.
+We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig.~\ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum did not allow a robust classification of the source, \textbf{neither confirming nor rejecting the neutrino source hypothesis}. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20acmxnpa_spectrum.pdf}
@@ -282,11 +282,11 @@ In~\cite{Stein2021}, the evolving radio signal was interpreted as the signature 
     \labfig{at2019dsg_dustecho}
 \end{figure}
 
-Lastly, a \textbf{strong infrared signal} was detected when evaluating \text{NEOWISE}~\sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. They somewhat trail the optical evolution --- this can interpreted as a \textbf{dust echo}, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
+Lastly, a \textbf{strong infrared signal} was detected when evaluating \text{NEOWISE}~\sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution --- this can interpreted as a \textbf{dust echo}, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
 
-The \textbf{chance coincidence} to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This provides evidence for the hypothesis that \textbf{Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube}.
+The \textbf{chance coincidence} to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This suggests that \textbf{Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube}.
 
-Lightning rarely strikes twice. But in this case it did: Roughly half a year later, we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate. The next Chapter~\ref{at2019fdr} is dedicated to that event.
+Lightning rarely strikes twice. So the case that we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate half a year later further strenghtened the case for a TDE-neutrino connection. The next Chapter~\ref{at2019fdr} is dedicated to that event.
 
 \section{Classification Performance}\label{classification_performance}
 
