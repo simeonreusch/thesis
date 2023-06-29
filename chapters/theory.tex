@@ -219,17 +219,17 @@ If high-energy neutrinos are produced in the processes responsible for the creat
 
 Identifying the sources of UHECR remains a challenge. As the cosmic ray particles are charged, they are deflected by magnetic fields encountered on their way to Earth, obscuring their origin. What is known though is that their extremely high energies necessitate extreme environments in which they can be produced.
 
-\begin{marginfigure}
-    \includegraphics{theory/uhecr_hillas_criterion.pdf}
-    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from~\cite{Rieger2022}, original `Hillas plot' in~\cite{Hillas1984}.}
-    \labfig{uhecr_hillas_criterion} 
-\end{marginfigure}
-
 In the 1980s, Hillas proposed the requirement that the efficient acceleration of a charged particle needs an accelerator that is able confine the particle during acceleration: This means that the source needs to be larger than the particle's Larmor radius \sidecite{Rieger2022}. This introduces a bound on the possible sources for UHECR cosmic ray sources:
 
 \begin{equation}
     E \leq 10^{20} Z \bigg(\frac{B}{\SI{10}{\micro\gauss}}\bigg) \bigg(\frac{R}{\SI{10}{\kilo\parsec}} \bigg)~\unit{\eV},
 \end{equation}
+
+\begin{marginfigure}
+    \includegraphics{theory/uhecr_hillas_criterion.pdf}
+    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from~\cite{Rieger2022}, original `Hillas plot' in~\cite{Hillas1984}.}
+    \labfig{uhecr_hillas_criterion} 
+\end{marginfigure}
 
 where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field strength of the source, and $R$ is the characteristic source dimension~\cite{Rieger2022}. Sources that match this criterion for the production of UHECR protons and iron nuclei with an energy of \SI{e20}{\eV} are shown in Fig.~\ref{fig:uhecr_hillas_criterion}. As one can see, a variety of extreme environments are possible sources of UHECR, some of these also hot candidates for the production of high-energy neutrinos. 
 
@@ -556,9 +556,10 @@ The first two classes were tested with a range of emission time windows ranging 
 \subsection{TDE Limits}
 The last item to be discussed here are limits from a \textbf{stacking of TDEs}. A search comprising 13 non-jetted and 3 jetted TDEs, correlating with 9.5 years of IceCube muon neutrino data, \textbf{found no significant excess}. Under the assumption of constant TDE neutrino luminosity, upper limits for their contribution to the diffuse were derived. These constrain \textbf{jetted TDEs} to less than \SI{\sim1}{\percent}, and \textbf{non-jetted TDEs} to less than \SI{26}{\percent} of the diffuse flux \sidecite{Stein2019}.
 
-\subsection{Conclusion}
+\section{Conclusion}
+The neutrino has been proposed, discovered and studied intensively. The detection of solar neutrinos, supernova neutrinos and finally the detection of a flux of high-energy neutrinos has firmly established neutrino astronomy.
 
-As has been discussed above and can be seen in Fig.~\ref{fig:flux_ul}, the situation remains complicated. No dominant source class has yet been firmly established, though there are strong hints that non-jetted AGN contribute significantly to the diffuse neutrino flux. It is very much possible that the diffuse flux is composed of multiple source classes, each subdominant. The most stringent limits existing are those on prompt GRB emission and jetted TDEs, given their low rate density.
+Nevertheless, the origin of the majority of the csmic high-energy neutrino flux remains unclear. As can be seen in Fig.~\ref{fig:flux_ul}, no dominant source class has yet been firmly established, though there are strong hints that non-jetted AGN contribute significantly to the diffuse neutrino flux. It is very much possible that the diffuse flux is composed of multiple source classes, each subdominant. The most stringent limits existing are those on prompt GRB emission and jetted TDEs, given their low rate density.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{theory/ul.pdf}
@@ -568,15 +569,15 @@ As has been discussed above and can be seen in Fig.~\ref{fig:flux_ul}, the situa
 
 The absence of significant clustering of neutrinos, as well as little point sources in the data disfavours the hypothesis that rare and luminous objects are responsible for the majority of the flux \sidecite{Guepin2022}. It is entirely possible that the bulk flux stems from numerous faint objects, which could render establishing a source class a challenging task.
 
+The flux could be fairly equally shared by AGN, TDEs and other sources, including blazars, as \sidecite{Bartos2021} stipulate. The authors of the study estimated the contributions from source classes that have a known association (blazars: \emph{TXS 0506+056}, AGN:\@ \emph{NGC 1068} and TDEs: \emph{AT2019dsg}\sidenote{The second neutrino associated TDE, \emph{AT2019fdr}, was not yet established.}) versus all other classes. They included statistic detection uncertainties, varying neutrino luminosity within source classes, as well as the redshift evolution of number density and properties of the individual source classes. The individual contributions are shown in Fig.~\ref{fig:pie_chart}.
 
 \begin{marginfigure}
     \includegraphics{theory/pie_chart.pdf}
     \caption[Neutrino flux contribution pie chart]{Pie chart of the contribution of known neutrino source classes as well as `other', comprising all source classes without association (main circle). The inner charts show the minimal (dark) and maximal (light) contribution within the \SI{90}{\percent} credible regions. Adapted from~\cite{Bartos2021} with minor error correction.}
     \labfig{pie_chart}
 \end{marginfigure}
-The flux could be fairly equally shared by AGN, TDEs and other sources, including blazars, as \sidecite{Bartos2021} stipulate. The authors of the study estimated the contributions from source classes that have a known association (blazars: \emph{TXS 0506+056}, AGN:\@ \emph{NGC 1068} and TDEs: \emph{AT2019dsg}\sidenote{The second neutrino associated TDE, \emph{AT2019fdr}, was not yet established.}) versus all other classes. They included statistic detection uncertainties, varying neutrino luminosity within source classes, as well as the redshift evolution of number density and properties of the individual source classes. The individual contributions are shown in Fig.~\ref{fig:pie_chart}. 
 
-Programs trying to establish a connection between individual high-energy neutrinos and sources within their localization are one good instrument in the available toolbox to solve this open question at least partially. Such programs have the advantage of being time sensitive and allowing for follow-up observations neccessary to classify ambiguous transients, contrary to archival studies. Chapter~\ref{fupipeline} will present one such program, a dedicated optical follow up to high-energy IceCube neutrinos.
+Programs trying to establish a connection between individual high-energy neutrinos and sources within their localization are \textbf{one good instrument in the available toolbox to solve the origin question at least partially}. Such programs have the advantage of being time sensitive and allowing for follow-up observations neccessary to classify ambiguous transients, contrary to archival studies. Chapter~\ref{fupipeline} will present one such program, a dedicated optical follow up to high-energy IceCube neutrinos.
 
 % Vielleicht Fig. 3 aus `he neutrinos limits'?
 
