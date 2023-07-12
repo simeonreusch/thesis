@@ -12,9 +12,15 @@ The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), us
 The filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF according to the following criteria:
 \begin{description}
     \item[\texttt{sgscore}] As detailed in Section~\ref{ztf_image_subtraction}, \texttt{sgscore} is a machine-learning based star-galaxy score for PS1 objects (low values: galaxy, high values: stars). The transient must at least once have an \texttt{sgsscore} < 0.3 to pass the filter.
-    \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results \sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}.
     \item[Number of detections] At least 3 detections across all bands are required.
     \item[Galactic cut] The object must be separated by at least \SI{5}{\degree} from the galactic plane.
     \item[PS1 photometry] To avoid crowded areas, transients where more than 100 objects in the vicinity have a counterpart in PS1 are removed.
     \item[Brightness] At least one alert datapoint of the transient must be brighter than 20 mag.
+    \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results \sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as we also require the transient to have a PS1 counterpart.
 \end{description}
+
+\begin{figure}[htpb]
+    \includegraphics[width=0.9\textwidth]{nuclear/rb_v_drb.pdf}
+    \caption[PMT schematic]{Bla.}
+    \labfig{rbvsdrb}
+\end{figure}
