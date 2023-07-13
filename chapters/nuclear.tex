@@ -22,7 +22,7 @@ The filter is used primarily by the ZTF TDE working group to scan for transient 
     \item[PS1 photometry] To avoid crowded areas, transients where more than 100 objects in the vicinity have a counterpart in PS1 are removed.
     \item[Brightness] At least one alert datapoint of the transient must be brighter than 20 mag.
     \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results \sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as we also require the transient to have a PS1 counterpart. Figure~\ref{fig:rbvsdrb} shows a comparison of the False Negative Rate (FNR) of \texttt{rbscore} vs. \texttt{drbscore}. At the chosen threshold of $0.3$, the FNR for both algorithms is a the percent level.
-    \item[Core distance] For all objects that make it this far, their distance to the core is computed. To make this more robust, three different distance metrics are computed. The \emph{mean distance} to the PS1 source in the reference images, the \emph{median distance} to that, and lastly, a \emph{weighted distance}.
+    \item[Core distance] For all objects that make it this far, their distance to the core is computed. To make this more robust, three different distance metrics are computed. The \textbf{mean distance} to the PS1 source in the reference images, the \textbf{median distance} to that, and lastly, a \textbf{weighted distance}. The latter is computed according to~\sidecite{Velzen2019} and accounts for the fact that the RMS of the angular core distance scales linearly with magnitude. $\sigma_\text{dist}$ = $0.24 + 0.04(m-20)$, where $m$ is the difference photometry magnitude. This stage rejects all transients for which none of the three distances lies below 0.5 arcseconds.
 \end{description}
 
 \begin{figure}[htpb]
@@ -32,3 +32,5 @@ The filter is used primarily by the ZTF TDE working group to scan for transient 
 \end{figure}
 
 This filter was then applied to all ZTF alerts issued between 1 July, 2018 and 1 January, 2022, comprising 3.5 years of data in total.
+
+\subsection{Rejection Statistics}
