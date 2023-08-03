@@ -34,3 +34,22 @@ The filter is used primarily by the ZTF TDE working group to scan for transient 
 This filter was then applied to all ZTF alerts issued between 1 July, 2018 and 1 January, 2022, comprising 3.5 years of data in total.
 
 \subsection{Rejection Statistics}
+From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimately \textcolor{red}{11687} nuclear transients are selected.
+
+\begin{tikzpicture}[node distance=2cm]
+    \node (start) [keep] {XXX initial ZTF alerts};
+    \node (dec1) [decision, align=center, below of=start] {SQL\\Filter};
+    \node (expl1) [explain, align=left, left of=dec1, xshift=-1.5cm] {$<20$ mag\\\texttt{rbscore} $>0.3$\\PS1 dist $<0.5$ arcsec\\$\geq 3$ detections};
+    \node (disc1) [discard, right of=dec1, xshift=1.5cm] {Discard X alerts};
+    \node (keep1) [keep, below of=dec1] {Keep 94,714,866 alerts};
+    \node (dec2) [decision, align=center, below of=keep1] {\texttt{sgscore}};
+    \node (expl2) [explain, align=left, left of=dec2, xshift=-1.5cm] {\texttt{sgscore} $\leq0.3$};
+    \node (disc2) [discard, right of=dec2, xshift=2cm] {Discard 94,485,886 alerts};
+    \node (keep2) [keep, below of=dec2] {Keep xx alerts};
+    \draw [arrow] (start) -- (dec1);
+    \draw [arrow] (keep1) -- (dec2);
+    \draw [arrow] (dec1) -- node[midway,above] {no} (disc1);
+    \draw [arrow] (dec1) -- node[midway,left] {yes} (keep1);
+    \draw [arrow] (dec2) -- node[midway,above] {no} (disc2);
+    \draw [arrow] (dec2) -- node[midway,left] {yes} (keep2);
+\end{tikzpicture}
