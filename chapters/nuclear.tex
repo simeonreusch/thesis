@@ -11,14 +11,16 @@ This chapter is dedicate to the nuclear sample, and is structured as follows: A 
 The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), using its capability to rerun analyses on archival data. To perform such a rerun, a modified version of the \texttt{AMPEL} nuclear filter was used.
 
 \subsection{\texttt{AMPEL} Nuclear Filter}
+
+The filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF.
+
+The logic behind the filtering process can be explained as follows: It selects events with a minimum of photometric quality, ensured by minimum requirements on the number of detections and the brightness. The event at least once needs to pass as `real' (opposed to bogus), and the host needs a high probability of passing as galaxy, not star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e. happen close to the core of their host galaxy.
+
 \begin{marginfigure}
     \includegraphics{nuclear/sgscore.pdf}
     \caption[\texttt{sgscore} performance]{\texttt{sgscore} performance evaluated with known \textit{Gaia} stars. At the chosen threshold of 0.3 (red line), the misidentification of stars as galaxies is negligible. Adapted from~\cite{Tachibana2018}}
     \labfig{sgscore}
 \end{marginfigure}
-The filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF.
-
-The logic behind the filtering process can be explained as follows: It selects events with a minimum of photometric quality, ensured by minimum requirements on the number of detections and the brightness. The event at least once needs to pass as `real' (opposed to bogus), and the host needs a high probability of passing as galaxy, not star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e. happen close to the core of their host galaxy.
 
 The criteria used were:
 \begin{description}
@@ -40,9 +42,9 @@ The criteria used were:
 This filter was then applied to all ZTF alerts issued between 1 July, 2018 and 1 January, 2022, comprising 3.5 years of data in total.
 
 \subsection{Rejection Statistics}
-From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimately \textcolor{red}{11687} nuclear transients are selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}.
+From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimately \textcolor{red}{11687} nuclear transients are selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom.
 
-\begin{figure}[htpb]
+\begin{figure}[htb]
     \begin{tikzpicture}[node distance=1.2cm]
         \node (start) [keep] {XXX initial ZTF alerts};
         \node (dec1) [decision,  font=\small, align=center, below of=start] {SQL\\Filter};
@@ -100,7 +102,7 @@ To be sensitive to early and late-time light curve evolution, forced photometry 
 \subsection{Infrared Data}
 Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. This was achieved by using the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band.
 
-Most sources have infrared counterparts, sampled with a half-year cadence in both bands.
+Most sources had infrared counterparts, sampled with a half-year cadence in both bands.
 
 \subsection{Catalog Matching}
 To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. These comprised:
@@ -108,17 +110,18 @@ To enrich the sample by information available on the transients, these were cros
 \begin{description}
     \item[Spectroscopic Redshifts] To obtain \textbf{spectroscopic redshifts}, the \texttt{AMPEL} module \texttt{T2DigestRedshifts} was employed. This queries the following services: A local database of the spectroscopic redshifts contained in the NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}}, spectroscopic redshifts from SDSS, and finally redshifts from the Galaxy List for the Advanced Detector Era (GLADE)~\sidecite{Dalya2018} v2.3.
     \item[Photometric Redshifts] Additionally, \texttt{T2DigestRedshifts} also provides \textbf{photometric redshifts} from the Legacy Survey~\sidecite{Zhou2020}, the 2MASS Photometric Redshift Catalog~\sidecite{Bilicki2013}, and photometric redshifts from the PS1 Source Types and Redshifts with Machine learning (PS1-STRM) catalog~\sidecite{Beck2020}.
-    \item[Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal. Both were queried for transient classifications.
+    \item[Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. It provided a web interface to upload spectroscopy, discuss photometry and add classifications and redshift. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal, but greater modularity and API support. Both services were queried for transient classifications and redshifts.
     \item[TNS] The Transient Name Server (see Section~\ref{catmatch}) was also used to obtain classifications and redshifts of known transients.
-    \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two more bands (\textit{W3} and \textit{W4}), which allowed for the calculation of more colors. This was used in AGN rejection, see \textcolor{red}{Section}.
-    \item[CRTS DR1] The Catalina Real-time Transient Survey Catalog contains cataclysmic variables which are crossmatched against to reduce contamination by foreground stars.
-    \item[SDSS] The Sloan Digital Sky Survey is also used to crossmatch against foreground stars.
+    \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors. This was used in AGN rejection, see \textcolor{red}{Section}.
+    \item[CRTS DR1] The Catalina Real-time Transient Survey Catalog contains cataclysmic variables which were crossmatched against to reduce contamination by foreground stars.
+    \item[SDSS] The Sloan Digital Sky Survey was also used to crossmatch against foreground stars.
 \end{description}
 
 \section{Light Curve Fits}
-To classify the transients, the following strategy was employed: Fit all transients with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
+To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
 
 \subsection{TDE Model Fit}
+To model a TDE-like source evolution,
 
 \subsection{SNIa Fit}
 As \textbf{SNe Ia are a prominent contaminant} for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
@@ -130,3 +133,5 @@ SALT2 assumes the light curve is indeed a supernova Ia and applies empirical cor
     \caption[SALT2 Fit]{Examplary SALT2 fit output. The three panels show three ZTF bands. Time 0 is the fitted peak of the assumed SN Ia; and as one can see the transient in question is fairly well approximated by SN Ia light curve, with a reduced  $\chi^2=2.67$. The transient is in a fact a spectroscopically classified supernova Ia.}
     \labfig{salt2}
 \end{figure}
+
+The fits were performed with \texttt{SNCosmo}, which itself fits the light curve using \texttt{iminuit/MIGRAD}.
