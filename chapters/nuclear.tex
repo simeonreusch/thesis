@@ -117,6 +117,8 @@ To enrich the sample by information available on the transients, these were cros
     \item[SDSS] The Sloan Digital Sky Survey was also used to crossmatch against foreground stars.
 \end{description}
 
+The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval.
+
 \section{Light Curve Fits}
 To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
 
