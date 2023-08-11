@@ -14,7 +14,7 @@ The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), us
 
 The filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF.
 
-The logic behind the filtering process can be explained as follows: It selects events with a minimum of photometric quality, ensured by minimum requirements on the number of detections and the brightness. The event at least once needs to pass as `real' (opposed to bogus), and the host needs a high probability of passing as galaxy, not star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e. happen close to the core of their host galaxy.
+The logic behind the filtering process can be explained as follows: It selects events with a minimum of photometric quality, ensured by minimum requirements on the number of detections and the brightness. The event at least once needs to pass as `real' (opposed to bogus), and the host needs a high probability of passing as galaxy, not star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e.~happen close to the core of their host galaxy.
 
 \begin{marginfigure}
     \includegraphics{nuclear/sgscore.pdf}
@@ -108,8 +108,8 @@ Most sources had infrared counterparts, sampled with a half-year cadence in both
 To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. These comprised:
 
 \begin{description}
-    \item[Spectroscopic Redshifts] To obtain \textbf{spectroscopic redshifts}, the \texttt{AMPEL} module \texttt{T2DigestRedshifts} was employed. This queries the following services: A local database of the spectroscopic redshifts contained in the NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}}, spectroscopic redshifts from SDSS, and finally redshifts from the Galaxy List for the Advanced Detector Era (GLADE)~\sidecite{Dalya2018} v2.3.
-    \item[Photometric Redshifts] Additionally, \texttt{T2DigestRedshifts} also provides \textbf{photometric redshifts} from the Legacy Survey~\sidecite{Zhou2020}, the 2MASS Photometric Redshift Catalog~\sidecite{Bilicki2013}, and photometric redshifts from the PS1 Source Types and Redshifts with Machine learning (PS1-STRM) catalog~\sidecite{Beck2020}.
+    \item[Spectroscopic Redshifts] To obtain \textbf{spectroscopic redshifts}, the \texttt{AMPEL} module \texttt{T2DigestRedshifts} was employed. This queries the following services: A local database of the spectroscopic redshifts contained in the NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}}, spectroscopic redshifts from SDSS, and finally spectroscopic redshifts from the Galaxy List for the Advanced Detector Era (GLADE)~\sidecite{Dalya2018} v2.3.
+    \item[Photometric Redshifts] Additionally, \texttt{T2DigestRedshifts} also provides \textbf{photometric redshifts} from the Legacy Survey~\sidecite{Zhou2020}, the 2MASS Photometric Redshift Catalog~\sidecite{Bilicki2013}, and photometric redshifts from the PS1 Source Types and Redshifts with Machine learning (PS1-STRM) catalog~\sidecite{Beck2020} as well as GLADE.
     \item[Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. It provided a web interface to upload spectroscopy, discuss photometry and add classifications and redshift. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal, but greater modularity and API support. Both services were queried for transient classifications and redshifts.
     \item[TNS] The Transient Name Server (see Section~\ref{catmatch}) was also used to obtain classifications and redshifts of known transients.
     \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors. This was used in AGN rejection, see \textcolor{red}{Section}.
@@ -121,7 +121,67 @@ To enrich the sample by information available on the transients, these were cros
 To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
 
 \subsection{TDE Model Fit}
-To model a TDE-like source evolution,
+To model a TDE-like source evolution, a variation of the parametrization presented in~\cite{Velzen2021a} was used.
+
+\subsubsection{TDE Parametrization}
+The basic  idea is to fit the light curve evolution with a Gaussian rise and exponential decay of a blackbody, which can also linearly change in temperature over a certain amount of time. The luminosity evolution is then given by
+
+\begin{equation}
+    L(t,\lambda) = \frac{T_\text{peak}^4}{T(t)^4} B_\lambda F(t),
+\end{equation}
+where $\lambda$ is the evaluated wavelength, $T_\text{peak}$ is the blackbody temperature at peak, $T(t)$ is its temperature at time $t$ and $B(t)_\lambda$ is the spectral radiance of the blackbody
+\begin{equation}
+    B(t)_\lambda = \frac{2 c h}{\lambda^5} \frac{1}{\exp(\frac{hc}{\lambda k_B T(t)})-1},
+\end{equation}
+and $F(t)$ is the Gaussian rise pre-peak and exponential decay post peak:
+\begin{equation}
+    F(t) = \begin{cases}
+        \exp[-(t-t_\text{peak})^2/2\sigma^2] & \text{if } t\leq t_\text{peak} \\
+        \exp[-(t-t_\text{peak})/\tau]        & \text{otherwise.}
+    \end{cases}
+\end{equation}
+Here, $\sigma$ is the rise time of the transient, and $\tau$ is the decay time, both in days.
+
+Lastly, $T(t)$ was allowed to change linearly during an interval after $t_\text{peak}$ until $t_\text{cutoff}$, marking the end of the linear temperature evolution:
+\begin{equation}
+    T(t) = \begin{cases}
+        T_\text{peak}                    & \text{if $t<t_\text{peak}$}                              \\
+        T_\text{peak} + t \cdot \Delta T & \text{if $~t_\text{peak} \leq t \leq t_\text{cutoff} $ } \\
+        T_\text{cutoff}                  & \text{otherwise},
+    \end{cases}
+\end{equation}
+with $\Delta T$ being the coefficient of temperature change. Also, there was a check that required at least 10 datapoints within the interval 30 days prior to peak time and one year after that. If that check did not succeed, the fit was set to fail due to poor source sampling.
+
+As a source luminosity can only be calculated when the redshift is known, and this was not true for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see Fig.~\ref{fig:bb_lumi_spread}), and only the shape of the light curve is relevant for the goodness of fit.\cite{Hammerstein2022}
+
+\begin{marginfigure}
+    \includegraphics{nuclear/tde_bb_lumi_spread.pdf}
+    \caption[TDE Blackbody luminosity spread]{TDE blackbody luminosity spread. Relevant is the y-axis here, showing the large spread in observed TDE luminosities; the TDEs shown are from the ZTF Phase I. From~\cite{Hammerstein2022}}
+    \labfig{bb_lumi_spread}
+\end{marginfigure}
+
+This model has been realized as an instantiation of an \texttt{SNCosmo} source model, as this package has the advantage of built in filter profiles, that allowed the correct evaluation of the blackbody flux as seen through the ZTF filters. To save computing time, the fit algorithm used was not a Markov-Chain Monte Carlo as in~\cite{Velzen2021a}, but \texttt{iminuit/MIGRAD}.
+
+To account for Milky Way dust extinction along the line of sight, the infrared dust maps by Schlegel, Finkbeiner y \& Davis were used~\sidecite{Schlegel1998}, as provided by the \texttt{sfdmap}\sidenote{\url{https://github.com/kbarbary/sfdmap}} Python package.
+
+\subsubsection{TDE Fit Priors}
+To constrain the fits and mitigate runaway, fit priors were used, partly taken from~\cite{Velzen2021a}. These are shown in Table~\ref{tab:tde_fit_priors}
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{c|c|c|c}
+            Parameter            & Description        & Prior    & Bounds                              \\
+            \hline
+            $t_\text{peak}$      & Peak time          & $t_0$    & $t­_0 \pm 30$ days                  \\
+            $\log T_\text{peak}$ & Peak temperature   & 4 K      & [3.5, 5]~\unit{\K}                  \\
+            $\log \sigma$        & Gaussian rise time & 1.6 days & [0,5] days                          \\
+            $\log \tau$          & Exp. decay time    & 2.3 days & [0,5] days                          \\
+            $\Delta T$           & Temp. change / day & 0        & $T_\text{peak} \pm 15000$ K (total) \\
+            $t_\text{cutoff} T$  & End of temp. evol. & 300      & [100, 1200] days $+t_0$
+        \end{tabular}
+    \end{center}
+    \caption[TDE Fit priors]{Priors for the TDE fit.}\label{tab:tde_fit_priors}
+\end{table}
 
 \subsection{SNIa Fit}
 As \textbf{SNe Ia are a prominent contaminant} for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
@@ -134,4 +194,4 @@ SALT2 assumes the light curve is indeed a supernova Ia and applies empirical cor
     \labfig{salt2}
 \end{figure}
 
-The fits were performed with \texttt{SNCosmo}, which itself fits the light curve using \texttt{iminuit/MIGRAD}.
+The fits were performed with \texttt{SNCosmo}, which itself fit the light curve using \texttt{iminuit/MIGRAD}.
