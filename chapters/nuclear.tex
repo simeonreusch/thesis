@@ -120,7 +120,7 @@ To enrich the sample by information available on the transients, these were cros
 The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval.
 
 \section{Light Curve Fits}
-To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
+To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then later be employed in feature-extraction based machine learning algorithms.
 
 \subsection{Fitting a TDE Model}
 To model a TDE-like source evolution, a variation of the parametrization presented in~\cite{Velzen2021a} was used.
@@ -169,7 +169,7 @@ To account for Milky Way dust extinction along the line of sight, the infrared d
 \subsubsection{TDE Fit Priors}
 To constrain the fits and mitigate runaway, fit priors were used, partly taken from~\cite{Velzen2021a}. These are shown in Table~\ref{tab:tde_fit_priors}.
 
-The prior on the time of peak, here dubbed $t_0$ was inferred from a peak finding algorithm that identified the highest flux point in each band (given it had a signal-to-noise ratio of $>3$) after smoothing the light curve with a rolling window, calculating the median flux within a widow width of 10 days.
+The prior on the time of peak, here dubbed $t_0$, was inferred from a peak finding algorithm that identified the highest flux point in each band (given it had a signal-to-noise ratio of $>3$) after smoothing the light curve with a rolling window, calculating the median flux within a widow width of 10 days.
 
 \begin{table}[h]
     \begin{center}
@@ -187,11 +187,9 @@ The prior on the time of peak, here dubbed $t_0$ was inferred from a peak findin
     \caption[TDE Fit priors]{Priors for the TDE fit.}\label{tab:tde_fit_priors}
 \end{table}
 
-To increase fit stability, the daily temperature change $\Delta T$ was limited to an integrated maximum change of $T_\text{peak} \pm \SI{1.5e4}{\K}$.
+As the blackbody fits were not constrained by UV data, in some cases \textbf{temperature runaway} occured when allowing all fit parameters to vary freely within their bounds. This can be explained as follows: A decrease in brightness over time can be either be achieved by exponential decay or by an increase in temperature. The latter gradually moves the blackbody spectrum outside the ZTF bands, which then translates to decreasing brightness. As such excessive temperature changes are most likely unphysical, the daily temperature change $\Delta T$ was limited to an integrated maximum change of $T_\text{peak} \pm \SI{1.5e4}{\K}$.
 
-As the blackbody fits are not constrained by UV data, in some cases \textbf{temperature runaway} occured when allowing all fit parameters to vary freely within their bounds. This can be explained as follows: A decrease in brightness over time can be either be achieved by exponential decay or by an increase in temperature. The latter gradually moves the blackbody spectrum outside the ZTF bands, which then translates to decreasing brightness.
-
-To adress this issue, the fits were performed as a \textbf{two-stage process}: First, the temperature evolution was disallowed, i.e. $\Delta aT$ was set to $0$ and $t_\text{cutoff}$ was removed as parameter. The best-fit values for $t_\text{peak}$, $\log T­­_\text{peak}$, $\log \sigma$ and $\log \tau$ obtained in this first stage were then used as fit priors for stage 2. This procedure solved the temperature runaway in almost all cases.
+Another measure to mitigate the issue was to perform the fits as a \textbf{two-stage process}: First, the temperature evolution was disabled, i.e. $\Delta aT$ was set to $0$ and $t_\text{cutoff}$ was removed as parameter, with the blackbody only having one temperature for the duration of the light curve, $T_\text{peak}$. The best-fit values for $t_\text{peak}$, $\log T­­_\text{peak}$, $\log \sigma$ and $\log \tau$ obtained in this first stage were then used as fit priors for stage 2. This procedure solved the temperature runaway in almost all cases.
 
 \begin{figure}[htb]
     \centering
@@ -211,17 +209,38 @@ Fig.~\ref{fig:tde_fit_comparison} shows \textbf{two exemplary TDE fits}; one for
 
 The successful fit for \textit{AT2019dsg} meanwhile results in the following values: A reduced $\chi^2$of $4.1$, a peak temperature of \SI{8700}{\K} which decays by \SI{78}{\K} per day for the following 138 days, an initial risetime of 21 days, and a characteristic light curve decay time of 216 days.
 
-This object nevertheless highlights a restriction: The available optical to infrared data from ZTF does not constrain blackbodies well. When including additional UV data for \textit{AT2019dsg} near light curve maximum, the inferred blackbody temperature is \SI{4e4}{\K}, significantly higher.
+This object nevertheless highlights a restriction: The available optical to infrared data from ZTF does not constrain blackbodies well. When including additional UV data for \textit{AT2019dsg} near light curve maximum, the inferred blackbody temperature is \SI{4e4}{\K}, significantly higher. This is not a failure of the fit procedure, but driven by the high UV flux (which can be seen in Fig.~\ref{fig:at2019dsg_lc}).
 
 \subsection{Fitting a SN Ia Model}
 As \textbf{SNe Ia are a prominent contaminant} for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were additionally subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
 
 SALT2 assumes the light curve is indeed a supernova Ia and applies empirical corrections to the light curve color and stretch (i.e.~the width of the light curve). This is achieved by matching templates generated by a set of well-sampled Ia light curves and spectra of varying distance. The resulting color and stretch correction parameters, as well as the peak brightness and the reduced $\chi^2$ were saved and will later be used as features in training a machine learning model.
 
-\begin{figure}[htb]
+\begin{figure}[H]
     \includegraphics[width=1\textwidth]{nuclear/salt.pdf}
     \caption[SALT2 Fit]{Examplary SALT2 fit output. The three panels show three ZTF bands. Time 0 is the fitted peak of the assumed SN Ia; and as one can see the transient in question is fairly well approximated by SN Ia light curve, with a reduced  $\chi^2=2.67$. The transient is in a fact a spectroscopically classified supernova Ia.}
     \labfig{salt2}
 \end{figure}
 
 The fits were performed with \texttt{SNCosmo}, which itself fit the light curve using \texttt{iminuit/MIGRAD}.
+
+\section{Optical Flare Analysis}
+Another feature which will later be used in the classification of transients are \textbf{simultaneous flares} across the well-sampled ZTF \textit{g}- and \textit{r}-bands. The number and timing of optical flares within different bands can then be used to differentiate between different types of transients.
+
+\subsection{Bayesian Block Algorithm}
+To determine time periods of heightened activity, a Bayesian block algorithm was employed. This was a version of a package developed at DESY, modified by the author to analyze optical ZTF light curves instead of infrared \textit{WISE} data.
+
+The Baysian Block algorithm is explained in~\sidecite{Scargle1998}; the implementation used here is integrated in the \texttt{astropy} package. The light curves are first smoothed by calculating the median and standard deviation within a 10 day rolling window. After that, only data points lying within $3 \sigma$ distance in magnitude space from the median are used. This gets rid of flux outliers, which are quite frequent for the forced photometry light curves of the nuclear sample.
+
+The prior used for the Bayesian Block analysis was $10 \times \log(n_\text{data})$, with $n_\text{data}$ being the number of datapoints in the smoothed single-band light curve. These numbers were determined empirically to yield robust results. They are a compromise between sensitivity to flux changes and detecting too many, too small blocks to be meaningful.
+
+\subsection{Block Coincidence}
+As they are much better sampled than the \textit{i}-band, the \textit{g}- and \textit{r}-band are used to check for blocks temporally coincident in both bands.
+
+For this, each region with increased flux compared to a baseline in the \textit{g}-band is checked to see if there is a corresponding \textit{r}-band block with increased flux overlapping in time.
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{nuclear/bayesian_blocks.pdf}
+    \caption[Bayesian Blocks]{Bayesian Blocks.}
+    \labfig{bayesian_blocks}
+\end{figure}
