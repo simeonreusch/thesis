@@ -44,7 +44,7 @@ This filter was then applied to all ZTF alerts issued between 1 July, 2018 and 1
 \subsection{Rejection Statistics}
 From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimately \textcolor{red}{11687} nuclear transients are selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom.
 
-\begin{figure}[htb]
+\begin{figure}[h!]
     \begin{tikzpicture}[node distance=1.2cm]
         \node (start) [keep] {XXX initial ZTF alerts};
         \node (dec1) [decision,  font=\small, align=center, below of=start] {SQL\\Filter};
@@ -122,7 +122,7 @@ The results of the crossmatches were stored locally in a \texttt{MongoDB} databa
 \section{Light Curve Fits}
 To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then be employed in feature-extraction based machine learning algorithms.
 
-\subsection{TDE Model Fit}
+\subsection{Fitting a TDE Model}
 To model a TDE-like source evolution, a variation of the parametrization presented in~\cite{Velzen2021a} was used.
 
 \subsubsection{TDE Parametrization}
@@ -167,26 +167,54 @@ This model has been realized as an instantiation of an \texttt{SNCosmo} source m
 To account for Milky Way dust extinction along the line of sight, the infrared dust maps by Schlegel, Finkbeiner y \& Davis were used~\sidecite{Schlegel1998}, as provided by the \texttt{sfdmap}\sidenote{\url{https://github.com/kbarbary/sfdmap}} Python package.
 
 \subsubsection{TDE Fit Priors}
-To constrain the fits and mitigate runaway, fit priors were used, partly taken from~\cite{Velzen2021a}. These are shown in Table~\ref{tab:tde_fit_priors}
+To constrain the fits and mitigate runaway, fit priors were used, partly taken from~\cite{Velzen2021a}. These are shown in Table~\ref{tab:tde_fit_priors}.
 
-\begin{table}
+The prior on the time of peak, here dubbed $t_0$ was inferred from a peak finding algorithm that identified the highest flux point in each band (given it had a signal-to-noise ratio of $>3$) after smoothing the light curve with a rolling window, calculating the median flux within a widow width of 10 days.
+
+\begin{table}[h]
     \begin{center}
         \begin{tabular}{c|c|c|c}
-            Parameter            & Description        & Prior    & Bounds                              \\
+            Param.               & Description        & Prior    & Bounds                              \\
             \hline
             $t_\text{peak}$      & Peak time          & $t_0$    & $t­_0 \pm 30$ days                  \\
             $\log T_\text{peak}$ & Peak temperature   & 4 K      & [3.5, 5]~\unit{\K}                  \\
             $\log \sigma$        & Gaussian rise time & 1.6 days & [0,5] days                          \\
             $\log \tau$          & Exp. decay time    & 2.3 days & [0,5] days                          \\
             $\Delta T$           & Temp. change / day & 0        & $T_\text{peak} \pm 15000$ K (total) \\
-            $t_\text{cutoff} T$  & End of temp. evol. & 300      & [100, 1200] days $+t_0$
+            $t_\text{cutoff}$    & End of temp. evol. & 300      & [100, 1200] days $+t_0$
         \end{tabular}
     \end{center}
     \caption[TDE Fit priors]{Priors for the TDE fit.}\label{tab:tde_fit_priors}
 \end{table}
 
-\subsection{SNIa Fit}
-As \textbf{SNe Ia are a prominent contaminant} for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
+To increase fit stability, the daily temperature change $\Delta T$ was limited to an integrated maximum change of $T_\text{peak} \pm \SI{1.5e4}{\K}$.
+
+As the blackbody fits are not constrained by UV data, in some cases \textbf{temperature runaway} occured when allowing all fit parameters to vary freely within their bounds. This can be explained as follows: A decrease in brightness over time can be either be achieved by exponential decay or by an increase in temperature. The latter gradually moves the blackbody spectrum outside the ZTF bands, which then translates to decreasing brightness.
+
+To adress this issue, the fits were performed as a \textbf{two-stage process}: First, the temperature evolution was disallowed, i.e. $\Delta aT$ was set to $0$ and $t_\text{cutoff}$ was removed as parameter. The best-fit values for $t_\text{peak}$, $\log T­­_\text{peak}$, $\log \sigma$ and $\log \tau$ obtained in this first stage were then used as fit priors for stage 2. This procedure solved the temperature runaway in almost all cases.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/ZTF18aaymybb_exp.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/ZTF19aapreis_exp.pdf}
+    \end{subfigure}
+    \caption[Two exemplary TDE fits]{Two exemplary TDE light curve fits. \textbf{Left}: \textit{AT2021njj}, displaying periodic AGN activity not well captured by the fit.\ \textbf{Right}: \textit{AT2019dsg}, a TDE which is captured fairly well by the fit routine.}
+    \labfig{tde_fit_comparison}
+\end{figure}
+
+Fig.~\ref{fig:tde_fit_comparison} shows \textbf{two exemplary TDE fits}; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section \ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand --- whatever it actually is, as the object has no spectroscopic classification except for `AGN', it is clearly not a TDE. The fit unsurprisingly cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
+
+The successful fit for \textit{AT2019dsg} meanwhile results in the following values: A reduced $\chi^2$of $4.1$, a peak temperature of \SI{8700}{\K} which decays by \SI{78}{\K} per day for the following 138 days, an initial risetime of 21 days, and a characteristic light curve decay time of 216 days.
+
+This object nevertheless highlights a restriction: The available optical to infrared data from ZTF does not constrain blackbodies well. When including additional UV data for \textit{AT2019dsg} near light curve maximum, the inferred blackbody temperature is \SI{4e4}{\K}, significantly higher.
+
+\subsection{Fitting a SN Ia Model}
+As \textbf{SNe Ia are a prominent contaminant} for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were additionally subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
 
 SALT2 assumes the light curve is indeed a supernova Ia and applies empirical corrections to the light curve color and stretch (i.e.~the width of the light curve). This is achieved by matching templates generated by a set of well-sampled Ia light curves and spectra of varying distance. The resulting color and stretch correction parameters, as well as the peak brightness and the reduced $\chi^2$ were saved and will later be used as features in training a machine learning model.
 
