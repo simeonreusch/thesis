@@ -250,8 +250,8 @@ One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_bl
 \section{Training Sample}
 As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
 
-\subsection{The Bright Transient Survey}
-The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
+\subsection{The Bright Transient Survey}\label{bts}
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.\todo{a cool plot}
 
 This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
 
@@ -268,7 +268,7 @@ These issues need to be solved somehow. Two procedures will be described below: 
 \subsection{Noisification: Enhancing the training set}
 One promising strategy is to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
 
-This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure works as follows:
+This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure was implemented as Python package. The procedure works as follows:
 
 Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift). \textbf{Draw a new redshift} $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
 
@@ -280,7 +280,7 @@ With this scaling factor, the child lightcurve flux is simply $f_\text{child} = 
 
 If an \texttt{SNCosmo} model for the transient type did exist, \textbf{K-correction} was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
 
-If
+As a last step, the created light curve is sampled with a default retention fraction of 0.9, i.e.~\SI{10}{\percent} of data points are randomly dropped. Additionally, the observation times are slightly randomized to avoid creating regularities a machine-learning algorithm could pick up. This is achieved by scattering the observation dates around their original values, with a $\sigma$ of $0.03$ days.
 
 \subsection{AGN Rejection}
 
