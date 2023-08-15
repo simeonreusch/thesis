@@ -276,9 +276,11 @@ After this, \textbf{the parent flux was redrawn} from a normal distribution cent
 \begin{equation}
     a = \frac{D_L(z_\text{parent})^2}{D_L(z_\text{child})^2}.
 \end{equation}
-With this scaling factor, the flux of the child lightcurve simply is $f_\text{child} = a f_\text{parent}$.
+With this scaling factor, the child lightcurve flux is simply $f_\text{child} = a f_\text{parent}$.
 
-If an \texttt{SNCosmo} model for the transient type did exist, \textbf{K-correction} was applied. This
+If an \texttt{SNCosmo} model for the transient type did exist, \textbf{K-correction} was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
+
+If
 
 \subsection{AGN Rejection}
 
