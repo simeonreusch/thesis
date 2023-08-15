@@ -239,10 +239,30 @@ As they are much better sampled than the \textit{i}-band, the \textit{g}- and \t
 
 For this, each region with increased flux compared to a baseline in the \textit{g}-band is checked to see if there is a corresponding \textit{r}-band block with increased flux overlapping in time.
 
-\begin{figure}]
+\begin{figure}
     \includegraphics[width=1\textwidth]{nuclear/bayesian_blocks.pdf}
-    \caption[Bayesian Blocks]{Bayesian Blocks identified for \textit{AT2018jbv}: There is one block both in \textit{g}- and \textit{r}-band, which overlaps. This is a strong indicator that the transient is a one-time flare, stemming from e.g. a supernova or a TDE, in contrast to stochastic AGN variability.}
+    \caption[Bayesian Blocks]{\textbf{Top}: Bayesian Blocks identified for \textit{AT2018jbv}. There is one block both in \textit{g}- and \textit{r}-band, which overlaps. This is a strong indicator that the transient is a one-time flare, stemming from e.g.~a supernova or a TDE (the transient is in fact a TDE), in contrast to stochastic AGN variability. \textit{Bottom}: Bayesian Blocks for ZTF18aaiceki, showing AGN activity. This is correctly captured by a large number of overlapping regions.}
     \labfig{bayesian_blocks}
 \end{figure}
 
-One can see an example of such an overlapping block in Fig.~\ref{fig:bayesian_blocks}, which shows the result of the Bayesian Block algorithm for \textit{AT2018jbv}, a transient from the nuclear sample and candidate superluminous supernova of Type I.
+One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_blocks}, which shows the result of the Bayesian Block algorithm for \textit{AT2018jbv} and \textit{ZTF18aaiceki}. Both are transients from the nuclear sample, the first one being a TDE, the second an AGN displaying stochastic variability.
+
+\section{Training Sample}
+As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
+
+\subsection{The Bright Transient Survey}
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag.
+
+This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
+
+There are three potential issues that need to adressed though when using the BTS as starting point for a training sample:
+
+\begin{description}
+    \item[Brightness bias] lol
+    \item[Class imbalance]
+    \item[Anti-AGN bias]
+\end{description}
+
+\subsection{Noisification: Addressing the BTS Brightness Bias}
+
+\subsection{AGN-Veto}
