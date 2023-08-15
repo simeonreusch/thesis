@@ -251,18 +251,35 @@ One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_bl
 As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
 
 \subsection{The Bright Transient Survey}
-The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag.
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
 
 This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
 
 There are three potential issues that need to adressed though when using the BTS as starting point for a training sample:
 
 \begin{description}
-    \item[Brightness bias] lol
-    \item[Class imbalance]
-    \item[Anti-AGN bias]
+    \item[Brightness bias] The BTS restriction to objects usually brighter than 18.5 mag means that the majority of the BTS sample will be brighter than the nuclear sample with its magnitude cut of 20.
+    \item[Class imbalance] The BTS is heavily skewed towards supernovae. Also, because SNe Ia are brighter, the majority of the SNe contained in a flux-limited sample like the BTS will be of Type Ia. Roughly 3/4 of all BTS transients are SNe Ia~\cite{Perley2020}.
+    \item[Anti-AGN bias] To reduce contamination stemming from AGN variability, the BTS vetoes transient host galaxies that likely harbor an AGN. This is achieved by crossmatching candidate sources to known AGN, based on \textit{WISE} color cuts, or by rejecting sources with previous variability most likely hinting at AGN activity. As the nuclear sample will contain
 \end{description}
 
-\subsection{Noisification: Addressing the BTS Brightness Bias}
+These issues need to be solved somehow. Two procedures will be described below: \textbf{Noisification} addresses the brightness bias and partially the class imbalance, while \textbf{either rejecting likely AGN} within the nuclear sample or \textbf{expanding the training set} with known AGN deals with the anti-AGN bias.
 
-\subsection{AGN-Veto}
+\subsection{Noisification: Enhancing the training set}
+One promising strategy is to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
+
+This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure works as follows:
+
+Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift). \textbf{Draw a new redshift} $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
+
+After this, \textbf{redraw the parent flux} from a normal distribution centered around each parent flux value, scaled by its error. Rescale these re-drawn flux measurements with the new redshift $z_\text{child}$. As the flux $F$ scales according to $D_L=\frac{L}{4 \pi F}$ i.e.~with the square of the luminosity distance, one can calculate a \textbf{flux scaling factor} $a$ according to
+\begin{equation}
+    a = \frac{D_L(z_\text{parent})^2}{D_L(z_\text{child})^2}.
+\end{equation}
+With this, the flux of the child lightcurve simply is $f_\text{child} = a f_\text{parent}$.
+
+If an \texttt{SNCosmo} model for the transient type exists, apply \textbf{K-correction}. This
+
+\subsection{AGN Rejection}
+
+\subsection{Sample Enhancement}
