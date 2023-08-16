@@ -4,7 +4,9 @@ Motivated by the three neutrinos coincident with accretion phenomena in the core
 
 The rate of transients detected by LSST will by far exhaust the available spectroscopic resources, thus requiring informed decisions about when to rely on spectroscopy for classification and characterization. The vast majority of LSST-detected transients will either be photometrically classified, or not classified at all. Therefore, photometrically classifying the ZTF nuclear transients can serve as a precursor study to LSST-era astronomy.
 
-This chapter is dedicate to the nuclear sample, and is structured as follows: A discussion on the sample creation will be followed by different methods to classify the sample. This will be done with a special focus on TDEs.
+This chapter is dedicated to the nuclear sample, and is structured as follows: A discussion on the sample creation will be followed by different methods to classify the sample. This will be done with a special focus on TDEs.
+
+The routines used to generate and evaluate the nuclear sample was written in Python, and can be retrieved online\sidenote{\url{https://github.com/simeonreusch/ztfnuclear}}.
 
 \section{Sample Creation}
 The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), using its capability to rerun analyses on archival data. To perform such a rerun, a modified version of the \texttt{AMPEL} nuclear filter was used.
@@ -302,7 +304,18 @@ Depending on the number of light curves for a specific class, the number of desi
 \subsection{AGN Rejection}
 To match the anti AGN-bias within the BTS, in principle two methods are available: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification.
 
-The latter approach was chosen here, so only those nuclear transients that survived the AGN rejection were kept for classification.
+The latter approach was chosen here, so only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \text{WISE}-colors and matches to the Milliquas catalog.
+
+\subsubsection{\textit{WISE} color cut}
+The cuts applied were taken from~\cite{Hviding2022}. The authors evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color-color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
+\begin{subequations}
+    \begin{eqnarray}
+        1.734 < (\textit{W2}-\textit{W3}) < 3.916 \\
+        (\textit{W1}-\textit{W2}) > 0.0771 (\textit{W2}-\textit{W3}) + 0.319 \\
+        (\textit{W1}-\textit{W2}) > 0.261 ((\textit{W2}-\textit{W3}) - 0.260.
+    \end{eqnarray}
+\end{subequations}
+All objects lying within this box were rejected as likely AGN.
 
 \subsection{Adding non-BTS Sources}
 As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not accessible to the author, the BTS underperformed significantly in terms of TDE detection rate.
