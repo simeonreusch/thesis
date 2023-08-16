@@ -315,7 +315,13 @@ The cuts applied were taken from~\cite{Hviding2022}. The authors evaluated rough
         (\textit{W1}-\textit{W2}) > 0.261 ((\textit{W2}-\textit{W3}) - 0.260.
     \end{eqnarray}
 \end{subequations}
-All objects lying within this box were rejected as likely AGN.
+All objects lying within this box (see Fig.~\ref{fig:agn_box}) were rejected as likely AGN.
+
+\begin{figure}[htpb]
+    \includegraphics[width=0.8\textwidth]{nuclear/agn_box.pdf}
+    \caption[Infrared AGN Selection]{AGN Selection based on infrared \textit{WISE} colors. It shows the \textit{W2}-\textit{W3} vs. \textit{W1}-\textit{W1} color; the fraction of spectroscopically classified AGN is encoded in datapoint color. The dot-dot-dashed box is the one used to flag likely AGN. Adapted from~\cite{Hviding2022}.}
+    \labfig{agn_box}
+\end{figure}
 
 \subsection{Adding non-BTS Sources}
 As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not accessible to the author, the BTS underperformed significantly in terms of TDE detection rate.
