@@ -1,6 +1,5 @@
 \setchapterimage[7cm]{ztf/ztf_telescope.png}
-\chapter{The Nuclear Sample}\label{ztf}
-\labch{nucsam}
+\chapter{The Nuclear Sample}\label{nucsam}
 Motivated by the three neutrinos coincident with accretion phenomena in the cores of active galaxies, it will be instructive to create a systematic sample of nuclear transients in the ZTF footprint. Furthermore, with the advent of a deep high-cadence sky surveys in the form of the Legacy Survey of Space and Time (LSST, hosted by the Vera C. Rubin Observatory)~\sidecite{Ivezic2019} in the near future, photometric identification of transients will be crucial.
 
 The rate of transients detected by LSST will by far exhaust the available spectroscopic resources, thus requiring informed decisions about when to rely on spectroscopy for classification and characterization. The vast majority of LSST-detected transients will either be photometrically classified, or not classified at all. Therefore, photometrically classifying the ZTF nuclear transients can serve as a precursor study to LSST-era astronomy.
@@ -10,7 +9,7 @@ This chapter is dedicate to the nuclear sample, and is structured as follows: A 
 \section{Sample Creation}
 The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), using its capability to rerun analyses on archival data. To perform such a rerun, a modified version of the \texttt{AMPEL} nuclear filter was used.
 
-\subsection{\texttt{AMPEL} Nuclear Filter}
+\subsection{\texttt{AMPEL} Nuclear Filter}\label{nuclear_filter}
 
 The filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF.
 
@@ -268,23 +267,44 @@ These issues need to be solved somehow. Two procedures will be described below: 
 \subsection{Noisification: Enhancing the training set}
 One promising strategy is to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
 
-This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure was implemented as Python package. The procedure works as follows:
+This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure was implemented as Python package~\sidecite{Reusch2023c} and works as follows:
 
-Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift). \textbf{Draw a new redshift} $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
+\subsubsection{Draw new redshift}
+Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift).\textbf{Draw a new redshift} $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
 
+\subsubsection{Scale and scatter the flux}
 After this, \textbf{the parent flux was redrawn} from a normal distribution centered around each parent flux value, scaled by its error. This was done to account for the fact that flux measurements are expected to scatter around their true value with their error, thereby simulating a `new' measurement. After this, the re-drawn flux measurements were rescaled with the new redshift $z_\text{child}$. The flux $F$ scales according to $D_L=\frac{L}{4 \pi F}$ i.e.~with the square of the luminosity distance (see Section~\ref{fitmodels}). Therefore, one can determine a \textbf{flux scaling factor} $a$ according to
 \begin{equation}
     a = \frac{D_L(z_\text{parent})^2}{D_L(z_\text{child})^2}.
 \end{equation}
 With this scaling factor, the child lightcurve flux is simply $f_\text{child} = a f_\text{parent}$.
 
-The flux error gets scaled accordingly, but with two additional empirical constant coefficients determined by fitting the flux error as a function of flux. This procedure showed that the error $F_\text{err}$ deviates from the expected $F$, but can be well approximated by $F_\text{err} = F^{1/2}$
+The flux error gets scaled accordingly, but with two additional empirical constant coefficients $e_f$ and $e_b$ determined by fitting the flux error as a function of flux. This procedure showed that the error $F_\text{err}$ deviates from the expected $\sqrt{F}$ behavior, but can be well approximated by $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. The error as a function of flux, as well as the different approximations are shown in Fig.~\ref{fig:ztf_error_dist}. The factors $e_f$ and $e_b$ were determined as $e_f = 0.54$ and $e_b = 5.37$.
 
+\begin{marginfigure}
+    \includegraphics{nuclear/ztf_error_dist.pdf}
+    \caption[ZTF Error Distribution]{ZTF error distribution: $F$ vs. $F_\text{err}$ in percentage of flux. The red curve shows the expected error behavior ($F_\text{err}\propto \sqrt{F})$, while the green curve shows the improved version $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. Figure by Alice Townsend, small modifications by the author.}
+    \labfig{ztf_error_dist}
+\end{marginfigure}
+
+\subsubsection{Apply K-Correction}
 If an \texttt{SNCosmo} model for the transient type did exist, \textbf{K-correction} was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
 
+\subsubsection{Scatter observations}
 As a last step, the created light curve is sampled with a default retention fraction of 0.9, i.e.~\SI{10}{\percent} of data points are randomly dropped. Additionally, the observation times are slightly randomized to avoid creating regularities a machine-learning algorithm could pick up. This is achieved by scattering the observation dates around their original values, with a $\sigma$ of $0.03$ days.
 
-\subsection{AGN Rejection}
-asdfasdfasd\cite{lol}
+\subsubsection{Reject faint light curves}
+Finally, for each generated light curve, at least 5 datapoints were required to \textbf{lie above a detection threshold} of $5 \sigma$. If that requirement was not met, the light curve was discarded. This was implemented to mimic the nuclear filter (see Section~\ref{nuclear_filter}), which reacts to alerts issued by ZTF. Only datapoints with a signal-to-noise ratio of $>5$ warrant an alert, so the noisified light curves need at least some datapoints above that threshold. The minimal number of detections for the noisified light curves is a bit higher compared to the nuclear filter (5 vs. 3) to account for the fact that forced photometry is slightly more sensitive than the PSF photometry used in the alerts.
 
-\subsection{Sample Enhancement}
+\subsubsection{Sample dynamically}
+Depending on the number of light curves for a specific class, the number of desired child light curves per parent light curve was determined to yield a noisified training set with balanced classes. For example, only 3 children per SN Ia light curve were generated, but up to 14 children per light curve of all other types of supernovae. The only exception were variable stars: For these, the redshift $\approx 0$ and could not be varied, so no noisified children were generated.
+
+\subsection{AGN Rejection}
+To match the anti AGN-bias within the BTS, in principle two methods are available: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification.
+
+The latter approach was chosen here, so only those nuclear transients that survived the AGN rejection were kept for classification.
+
+\subsection{Adding non-BTS Sources}
+As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not accessible to the author, the BTS underperformed significantly in terms of TDE detection rate.
+
+To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
