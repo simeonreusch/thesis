@@ -278,10 +278,13 @@ After this, \textbf{the parent flux was redrawn} from a normal distribution cent
 \end{equation}
 With this scaling factor, the child lightcurve flux is simply $f_\text{child} = a f_\text{parent}$.
 
+The flux error gets scaled accordingly, but with two additional empirical constant coefficients determined by fitting the flux error as a function of flux. This procedure showed that the error $F_\text{err}$ deviates from the expected $F$, but can be well approximated by $F_\text{err} = F^{1/2}$
+
 If an \texttt{SNCosmo} model for the transient type did exist, \textbf{K-correction} was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
 
 As a last step, the created light curve is sampled with a default retention fraction of 0.9, i.e.~\SI{10}{\percent} of data points are randomly dropped. Additionally, the observation times are slightly randomized to avoid creating regularities a machine-learning algorithm could pick up. This is achieved by scattering the observation dates around their original values, with a $\sigma$ of $0.03$ days.
 
 \subsection{AGN Rejection}
+asdfasdfasd\cite{lol}
 
 \subsection{Sample Enhancement}
