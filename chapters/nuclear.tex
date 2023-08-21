@@ -347,7 +347,15 @@ In total the following number of objects were processed during the training samp
 \end{description}
 In total, the final training sample contained \textcolor{red}{xx} light curves.
 
-\section{Model Architecture}
-In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below) has performed well when classifying structured data.
+\section{Training the Model}
+In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
 
-In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification. \textbf{Random forests} build upon this concept by using (a) multiple decision trees with (b) a random subset of features. Alternatively, decision trees can be \textbf{boosted}, meaning they are generated an evaluated in sequence, each tree being fed the residuals of the previous tree.
+\subsection{Boosted Decision Trees}
+In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification. \textbf{Ensemble methods} build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (\textbf{random forest}) or by working in sequence. The latter are called \textbf{boosted} decision trees, meaning they are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is dubbed \textbf{gradient boosting}. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
+
+\subsection{Hyperparameter Search}
+As is usual with such algorithms, there is a number of \textbf{hyperparameters} which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees which are not the first one, and \texttt{n\_estimators} controls the number of trees.
+
+These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by drawing \textcolor{red}{100} times from a grid of 403200 combinations of parameters (a higher number of iterations was computationally infeasible). The grid employed as well as the chosen hyperparameters are displayed in the appendix in Table~\ref{tab:xgboost_grid_search}\todo{chosen values bold in appendix}.
+
+\subsection{Training Procedure}
