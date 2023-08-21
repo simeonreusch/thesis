@@ -305,7 +305,7 @@ The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}
 
 \begin{figure}[H]
     \includegraphics[width=1\textwidth]{nuclear/noisify_ZTF19acapeun.pdf}
-    \caption[bla]{bla}
+    \caption[Noisification example]{Original and noisified light curve of \textit{SN2019qym}, a SN Ia with a redshift of $z=0.02$. The original two bands are shown in green and red, while the noisified copy at a redshift of $z=0.09$ is displayed in blue and pink. Figure by A. Townsend, with slight modifications by the author.}
     \labfig{noisify_example}
 \end{figure}
 
@@ -320,10 +320,10 @@ The cuts applied were taken from~\cite{Hviding2022}. The authors evaluated rough
     \begin{eqnarray}
         1.734 < (\textit{W2}-\textit{W3}) < 3.916 \\
         (\textit{W1}-\textit{W2}) > 0.0771 (\textit{W2}-\textit{W3}) + 0.319 \\
-        (\textit{W1}-\textit{W2}) > 0.261 ((\textit{W2}-\textit{W3}) - 0.260.
+        (\textit{W1}-\textit{W2}) > 0.261 (\textit{W2}-\textit{W3}) - 0.260.
     \end{eqnarray}
 \end{subequations}
-All objects lying within this box (see Fig.~\ref{fig:agn_box}) were rejected as likely AGN.
+All objects lying within this box (dot-dot-dashed contours in Fig.~\ref{fig:agn_box}) were rejected as likely AGN.
 
 \begin{figure}[htpb]
     \includegraphics[width=0.8\textwidth]{nuclear/agn_box.pdf}
@@ -336,5 +336,18 @@ As one of the desired features of the trained classifier was its ability to corr
 
 To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
 
+\subsection{Creating a less biased Training Sample}
+In total the following number of objects were processed during the training sample noisification:
+\begin{description}
+    \item[SNe Ia] The BTS contained 3130 SNe Ia, from which 11077 nosified children were created,~i.e. 3.5 children per original light curve on average. The total number of light curves (original ones plus children) was 14207.
+    \item[Other types of SNe] 1058 supernovae of not-Ia type were available in the BTS. With an average of 10.1 children per light curve this amounted to 10698 noisified children and 11756 light curves in total.
+    \item[\textcolor{red}{AGN}] xx AGN were orinally present. xx children were created (x per parent), resulting in xx light curves.
+    \item[TDE] Starting with 65 TDE, 12212 children were creating with a large number of children per light curve (187.9). This amounted to 12277 light curves in total.
+    \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.
+\end{description}
+In total, the final training sample contained \textcolor{red}{xx} light curves.
 
 \section{Model Architecture}
+In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below) has performed well when classifying structured data.
+
+In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification. \textbf{Random forests} build upon this concept by using (a) multiple decision trees with (b) a random subset of features. Alternatively, decision trees can be \textbf{boosted}, meaning they are generated an evaluated in sequence, each tree being fed the residuals of the previous tree.
