@@ -269,7 +269,7 @@ These issues need to be solved somehow. Two procedures will be described below: 
 \subsection{Noisification: Enhancing the training set}
 One promising strategy is to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
 
-This method, here dubbed ``Noisification'', was developed by Alice Townsend, with significant contribution by the author. The procedure was implemented as Python package~\sidecite{Reusch2023c} and works as follows:
+This method, here dubbed ``Noisification'', was developed by A. Townsend, with significant contribution by the author. The procedure was implemented as Python package~\sidecite{Reusch2023c} and works as follows:
 
 \subsubsection{Draw new redshift}
 Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift).\textbf{Draw a new redshift} $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
@@ -285,7 +285,7 @@ The flux error gets scaled accordingly, but with two additional empirical consta
 
 \begin{marginfigure}
     \includegraphics{nuclear/ztf_error_dist.pdf}
-    \caption[ZTF Error Distribution]{ZTF error distribution: $F$ vs. $F_\text{err}$ in percentage of flux. The red curve shows the expected error behavior ($F_\text{err}\propto \sqrt{F})$, while the green curve shows the improved version $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. Figure by Alice Townsend, small modifications by the author.}
+    \caption[ZTF Error Distribution]{ZTF error distribution: $F$ vs. $F_\text{err}$ in percentage of flux. The red curve shows the expected error behavior ($F_\text{err}\propto \sqrt{F})$, while the green curve shows the improved version $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. Figure by A. Townsend with small modifications by the author.}
     \labfig{ztf_error_dist}
 \end{marginfigure}
 
@@ -300,6 +300,14 @@ Finally, for each generated light curve, at least 5 datapoints were required to 
 
 \subsubsection{Sample dynamically}
 Depending on the number of light curves for a specific class, the number of desired child light curves per parent light curve was determined to yield a noisified training set with balanced classes. For example, only 3 children per SN Ia light curve were generated, but up to 14 children per light curve of all other types of supernovae. The only exception were variable stars: For these, the redshift $\approx 0$ and could not be varied, so no noisified children were generated.
+
+The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}. It shows the light curve of a SN Ia, \textit{SN2019qym}, detected with a redshift of $z=0.02$. The original light curve can be seen, as well as a noisified child light curve at higher redshift ($z=0.09$). Note the increase errors (the original object was very bright, so only one datapoint in the \textit{g}-band at 35 days after peak has visible error bars), the slighty different modified observation dates and the random removal of datapoints.
+
+\begin{figure}[H]
+    \includegraphics[width=1\textwidth]{nuclear/noisify_ZTF19acapeun.pdf}
+    \caption[bla]{bla}
+    \labfig{noisify_example}
+\end{figure}
 
 \subsection{AGN Rejection}
 To match the anti AGN-bias within the BTS, in principle two methods are available: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification.
@@ -327,3 +335,6 @@ All objects lying within this box (see Fig.~\ref{fig:agn_box}) were rejected as 
 As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not accessible to the author, the BTS underperformed significantly in terms of TDE detection rate.
 
 To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
+
+
+\section{Model Architecture}
