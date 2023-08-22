@@ -40,44 +40,48 @@ The criteria used were:
     \labfig{rbvsdrb}
 \end{figure}
 
-This filter was then applied to all ZTF alerts issued between 1 July, 2018 and 1 January, 2022, comprising 3.5 years of data in total.
+This filter was then applied to all ZTF alerts issued between 1 April, 2018 and 30 April, 2022, comprising over 4 years of data in total.
 
 \subsection{Rejection Statistics}
-From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimately \textcolor{red}{11687} nuclear transients are selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom.
+From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 years, ultimately 11687 nuclear transients were selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom.
 
 \begin{figure}[h!]
-    \begin{tikzpicture}[node distance=1.2cm]
-        \node (start) [keep] {XXX initial ZTF alerts};
-        \node (dec1) [decision,  font=\small, align=center, below of=start] {SQL\\Filter};
+    \begin{tikzpicture}[node distance=1.4cm]
+        \node (start) [keep] {355,429,833 initial ZTF alerts};
+        \node (dec1) [decision,  font=\small, align=center, below of=start] {SQL Filter};
         \node (expl1) [explain, font=\small, align=left, left of=dec1, xshift=-1.8cm] {$<20$ mag\\\texttt{rbscore} $>0.3$\\PS1 dist $<0.5$ arcsec\\$\geq 3$ detections};
-        \node (disc1) [discard, font=\small, right of=dec1, xshift=2.1cm] {Discard xx alerts};
-        \node (keep1) [keep, font=\small, below of=dec1] {Keep 94,714,866 alerts};
+        \node (disc1) [discard, font=\small, right of=dec1, xshift=2.48cm] {Discard alerts};
+        \node (dec1a) [decision, font=\small, align=center, below of=dec1] {Transient\\already accepted?};
+        \node (disc1a) [discard, font=\small, right of=dec1a, xshift=2.48cm] {Ignore};
+        \node (keep1) [keep, font=\small, below of=dec1a] {Keep 81,387,053 alerts};
         \node (dec2) [decision, font=\small, align=center, below of=keep1] {\texttt{sgscore}\\veto};
         \node (expl2) [explain, font=\small, align=left, left of=dec2, xshift=-2.2cm] {\texttt{sgscore} $\leq0.3$};
-        \node (disc2) [discard, font=\small, right of=dec2, xshift=2.3cm] {Discard 94,485,886 alerts};
-        \node (keep2) [keep, font=\small, below of=dec2] {Keep xx alerts};
+        \node (disc2) [discard, font=\small, right of=dec2, xshift=2.76cm] {Discard 81,204,804 alerts};
+        \node (keep2) [keep, font=\small, below of=dec2] {Keep 182,080 alerts};
         \node (dec3) [decision, font=\small, align=center, below of=keep2] {PS1\\veto};
         \node (expl3) [explain, font=\small, align=left, left of=dec3, xshift=-1.5cm] {PS1 source faint enough\\good PS1 photometry};
-        \node (disc3) [discard, font=\small, right of=dec3, xshift=2cm] {Discard xx alerts};
-        \node (keep3) [keep, font=\small, below of=dec3] {Keep xx alerts};
+        \node (disc3) [discard, font=\small, right of=dec3, xshift=2.5cm] {Discard 20,331 alerts};
+        \node (keep3) [keep, font=\small, below of=dec3] {Keep 161,749 alerts};
         \node (dec4) [decision, font=\small, align=center, below of=keep3] {Photometry\\veto};
         \node (expl4) [explain, font=\small, align=left, left of=dec4, xshift=-1.5cm] {$<20$ mag\\$\geq$ 3 detections\\flux increase $>2.5$ mag};
-        \node (disc4) [discard, font=\small, right of=dec4, xshift=2cm] {Discard xx alerts};
-        \node (keep4) [keep, font=\small, below of=dec4] {Keep xx alerts};
+        \node (disc4) [discard, font=\small, right of=dec4, xshift=2.5cm] {Discard 68,985 alerts};
+        \node (keep4) [keep, font=\small, below of=dec4] {Keep 92,764 alerts};
         \node (dec5) [decision, font=\small, align=center, below of=keep4] {Position\\veto};
         \node (expl5) [explain, font=\small, align=left, left of=dec5, xshift=-1.5cm] {$>5$ deg from gal. plane\\not potential mover};
-        \node (disc5) [discard, font=\small, right of=dec5, xshift=2cm] {Discard xx alerts};
-        \node (keep5) [keep, font=\small, below of=dec5] {Keep xx alerts};
+        \node (disc5) [discard, font=\small, right of=dec5, xshift=2.5cm] {Discard 38,600 alerts};
+        \node (keep5) [keep, font=\small, below of=dec5] {Keep 54,164 alerts};
         \node (dec6) [decision, font=\small, align=center, below of=keep5] {\textit{Gaia}\\veto};
         \node (expl6) [explain, font=\small, align=left, left of=dec6, xshift=-1.5cm] {No match to \textit{Gaia} star\\$\leq30$ \textit{Gaia} stars close by};
-        \node (disc6) [discard, font=\small, right of=dec6, xshift=2cm] {Discard xx alerts};
-        \node (keep6) [keep, font=\small, below of=dec6] {Keep xx alerts};
+        \node (disc6) [discard, font=\small, right of=dec6, xshift=2.5cm] {Discard 42,477 alerts};
+        \node (keep6) [keepfinal, font=\small, below of=dec6] {Keep 11687 transients};
         \draw [arrow] (start) -- (dec1);
         \draw [arrow] (keep1) -- (dec2);
         \draw [arrow] (dec1) -- node[midway,above] {\small no} (disc1);
-        \draw [arrow] (dec1) -- node[midway,left] {\small yes} (keep1);
+        \draw [arrow] (dec1) -- node[midway,left] {\small yes} (dec1a);
         \draw [arrow] (dec2) -- node[midway,above] {\small no} (disc2);
+        \draw [arrow] (dec1a) -- node[midway,above] {\small yes} (disc1a);
         \draw [arrow] (dec2) -- node[midway,left] {\small yes} (keep2);
+        \draw [arrow] (dec1a) -- node[midway,left] {\small no} (keep1);
         \draw [arrow] (keep2) -- (dec3);
         \draw [arrow] (dec3) -- node[midway,above] {\small no} (disc3);
         \draw [arrow] (dec3) -- node[midway,left] {\small yes} (keep3);
@@ -91,11 +95,13 @@ From a total sample of XXX alerts issued by ZTF during these 3.5 years, ultimate
         \draw [arrow] (dec6) -- node[midway,above] {\small no} (disc6);
         \draw [arrow] (dec6) -- node[midway,left] {\small yes} (keep6);
     \end{tikzpicture}
-    \caption[Nuclear filter flow chart]{Flow chart showing the workings of the nuclear filter.}
+    \caption[Nuclear filter flow chart]{Flow chart showing the rejection statistics of the nuclear filter. Note that the filter silently auto-accepts alerts belonging to a transient that has already passed the filter. This is why the final number of alerts equals the number of transients that pass the nuclear filter.}
     \labfig{nuclear_decision}
 \end{figure}
 
-As one can see, the vast majority of alerts are rejected based on them being either too faint, likely being bogus, or likely being stars.
+As one can see, the vast majority of alerts were rejected based on them being either too faint, likely being bogus, or likely being stars. The majority of alerts already get filtered by the initial SQL query. The SQL-based filtering was also the most efficient one, so the author made sure that the amount of filtering at that stage (on the archive server) was maximized.
+
+This was followed by the live transfer all surviving alerts to another machine and processing of the subsequent filtering stages. In total, the filtering process took roughly 5 weeks.
 
 \subsection{Forced photometry}
 To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section \ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
@@ -113,7 +119,7 @@ To enrich the sample by information available on the transients, these were cros
     \item[Photometric Redshifts] Additionally, \texttt{T2DigestRedshifts} also provides \textbf{photometric redshifts} from the Legacy Survey~\sidecite{Zhou2020}, the 2MASS Photometric Redshift Catalog~\sidecite{Bilicki2013}, and photometric redshifts from the PS1 Source Types and Redshifts with Machine learning (PS1-STRM) catalog~\sidecite{Beck2020} as well as GLADE.
     \item[Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. It provided a web interface to upload spectroscopy, discuss photometry and add classifications and redshift. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal, but greater modularity and API support. Both services were queried for transient classifications and redshifts.
     \item[TNS] The Transient Name Server (see Section~\ref{catmatch}) was also used to obtain classifications and redshifts of known transients.
-    \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors. This was used in AGN rejection, see \textcolor{red}{Section}.
+    \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors. This was used in AGN rejection, see Section~\ref{agn_rejection}.
     \item[CRTS DR1] The Catalina Real-time Transient Survey Catalog contains cataclysmic variables which were crossmatched against to reduce contamination by foreground stars.
     \item[SDSS] The Sloan Digital Sky Survey was also used to crossmatch against foreground stars.
 \end{description}
@@ -252,15 +258,21 @@ One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_bl
 As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
 
 \subsection{The Bright Transient Survey}\label{bts}
-The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.\todo{a cool plot}
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
 
 This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
+
+\begin{marginfigure}
+    \includegraphics{nuclear/BTS_full.pdf}
+    \caption[BTS Composition]{Composition of the Bright Transient Survey sample used in this study. The classified part of the sample is heavily biased towards SNe Ia, AGN are vastly undersampled.}
+    \labfig{bts_composition}
+\end{marginfigure}
 
 There are three potential issues that need to adressed though when using the BTS as starting point for a training sample:
 
 \begin{description}
     \item[Brightness bias] The BTS restriction to objects usually brighter than 18.5 mag means that the majority of the BTS sample will be brighter than the nuclear sample with its magnitude cut of 20.
-    \item[Class imbalance] The BTS is heavily skewed towards supernovae. Also, because SNe Ia are brighter, the majority of the SNe contained in a flux-limited sample like the BTS will be of Type Ia. Roughly 3/4 of all BTS transients are SNe Ia~\cite{Perley2020}.
+    \item[Class imbalance] The BTS is heavily skewed towards supernovae. Also, because SNe Ia are brighter, the majority of the SNe contained in a flux-limited sample like the BTS will be of Type Ia~\cite{Perley2020}. Almost \SI{70}{\percent} of all classified BTS transients are SNe Ia.
     \item[Anti-AGN bias] To reduce contamination stemming from AGN variability, the BTS vetoes transient host galaxies that likely harbor an AGN. This is achieved by crossmatching candidate sources to known AGN, based on \textit{WISE} color cuts, or by rejecting sources with previous variability most likely hinting at AGN activity. As the nuclear sample will contain
 \end{description}
 
@@ -309,7 +321,7 @@ The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}
     \labfig{noisify_example}
 \end{figure}
 
-\subsection{AGN Rejection}
+\subsection{AGN Rejection}\label{agn_rejection}
 To match the anti AGN-bias within the BTS, in principle two methods are available: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification.
 
 The latter approach was chosen here, so only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \text{WISE}-colors and matches to the Milliquas catalog.
