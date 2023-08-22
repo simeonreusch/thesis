@@ -43,7 +43,7 @@ The criteria used were:
 This filter was then applied to all ZTF alerts issued between 1 April, 2018 and 30 April, 2022, comprising over 4 years of data in total.
 
 \subsection{Rejection Statistics}
-From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 years, ultimately 11687 nuclear transients were selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom.
+From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 years, ultimately 11687 nuclear transients were selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom. In total, \SI{0.2}{\percent} of alerts issued by ZTF were accepted by the filter.
 
 \begin{figure}[h!]
     \begin{tikzpicture}[node distance=1.4cm]
@@ -52,34 +52,33 @@ From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 ye
         \node (expl1) [explain, font=\small, align=left, left of=dec1, xshift=-1.8cm] {$<20$ mag\\\texttt{rbscore} $>0.3$\\PS1 dist $<0.5$ arcsec\\$\geq 3$ detections};
         \node (disc1) [discard, font=\small, right of=dec1, xshift=2.48cm] {Discard alerts};
         \node (dec1a) [decision, font=\small, align=center, below of=dec1] {Transient\\already accepted?};
-        \node (disc1a) [discard, font=\small, right of=dec1a, xshift=2.48cm] {Ignore};
         \node (keep1) [keep, font=\small, below of=dec1a] {Keep 81,387,053 alerts};
         \node (dec2) [decision, font=\small, align=center, below of=keep1] {\texttt{sgscore}\\veto};
         \node (expl2) [explain, font=\small, align=left, left of=dec2, xshift=-2.2cm] {\texttt{sgscore} $\leq0.3$};
-        \node (disc2) [discard, font=\small, right of=dec2, xshift=2.76cm] {Discard 81,204,804 alerts};
+        \node (disc2) [discard, font=\small, right of=dec2, xshift=2.44cm,align=center] {Discard\\81,204,804\\alerts};
         \node (keep2) [keep, font=\small, below of=dec2] {Keep 182,080 alerts};
         \node (dec3) [decision, font=\small, align=center, below of=keep2] {PS1\\veto};
         \node (expl3) [explain, font=\small, align=left, left of=dec3, xshift=-1.5cm] {PS1 source faint enough\\good PS1 photometry};
-        \node (disc3) [discard, font=\small, right of=dec3, xshift=2.5cm] {Discard 20,331 alerts};
+        \node (disc3) [discard, font=\small, right of=dec3, xshift=2.5cm, align=center] {Discard\\20,331 alerts};
         \node (keep3) [keep, font=\small, below of=dec3] {Keep 161,749 alerts};
         \node (dec4) [decision, font=\small, align=center, below of=keep3] {Photometry\\veto};
         \node (expl4) [explain, font=\small, align=left, left of=dec4, xshift=-1.5cm] {$<20$ mag\\$\geq$ 3 detections\\flux increase $>2.5$ mag};
-        \node (disc4) [discard, font=\small, right of=dec4, xshift=2.5cm] {Discard 68,985 alerts};
+        \node (disc4) [discard, font=\small, right of=dec4, xshift=2.5cm, align=center] {Discard\\68,985 alerts};
         \node (keep4) [keep, font=\small, below of=dec4] {Keep 92,764 alerts};
         \node (dec5) [decision, font=\small, align=center, below of=keep4] {Position\\veto};
         \node (expl5) [explain, font=\small, align=left, left of=dec5, xshift=-1.5cm] {$>5$ deg from gal. plane\\not potential mover};
-        \node (disc5) [discard, font=\small, right of=dec5, xshift=2.5cm] {Discard 38,600 alerts};
+        \node (disc5) [discard, font=\small, right of=dec5, xshift=2.5cm, align=center] {Discard\\38,600 alerts};
         \node (keep5) [keep, font=\small, below of=dec5] {Keep 54,164 alerts};
         \node (dec6) [decision, font=\small, align=center, below of=keep5] {\textit{Gaia}\\veto};
         \node (expl6) [explain, font=\small, align=left, left of=dec6, xshift=-1.5cm] {No match to \textit{Gaia} star\\$\leq30$ \textit{Gaia} stars close by};
-        \node (disc6) [discard, font=\small, right of=dec6, xshift=2.5cm] {Discard 42,477 alerts};
-        \node (keep6) [keepfinal, font=\small, below of=dec6] {Keep 11687 transients};
+        \node (disc6) [discard, font=\small, right of=dec6, xshift=2.5cm, align=center] {Discard\\42,477 alerts};
+        \node (keep6) [keep, font=\small, below of=dec6] {Keep 723,053 alerts};
+        \node (keep7) [keepfinal, font=\small, below of=keep6] {Keep 11,687 transients};
         \draw [arrow] (start) -- (dec1);
         \draw [arrow] (keep1) -- (dec2);
         \draw [arrow] (dec1) -- node[midway,above] {\small no} (disc1);
         \draw [arrow] (dec1) -- node[midway,left] {\small yes} (dec1a);
         \draw [arrow] (dec2) -- node[midway,above] {\small no} (disc2);
-        \draw [arrow] (dec1a) -- node[midway,above] {\small yes} (disc1a);
         \draw [arrow] (dec2) -- node[midway,left] {\small yes} (keep2);
         \draw [arrow] (dec1a) -- node[midway,left] {\small no} (keep1);
         \draw [arrow] (keep2) -- (dec3);
@@ -93,9 +92,11 @@ From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 ye
         \draw [arrow] (dec5) -- node[midway,left] {\small yes} (keep5);
         \draw [arrow] (keep5) -- (dec6);
         \draw [arrow] (dec6) -- node[midway,above] {\small no} (disc6);
-        \draw [arrow] (dec6) -- node[midway,left] {\small yes} (keep6);
+        \draw [arrow] (dec6) -- node[left] {\small yes} (keep6);
+        \draw [arrow] (dec1a.east) -- ++(4,0) node[midway,above]{\small yes} |- (keep6.east);
+        \draw [arrow] (keep6) -- node[midway,left] {\small translates to} (keep7);
     \end{tikzpicture}
-    \caption[Nuclear filter flow chart]{Flow chart showing the rejection statistics of the nuclear filter. Note that the filter silently auto-accepts alerts belonging to a transient that has already passed the filter. This is why the final number of alerts equals the number of transients that pass the nuclear filter.}
+    \caption[Nuclear filter flow chart]{Flow chart showing the rejection statistics of the nuclear filter.}
     \labfig{nuclear_decision}
 \end{figure}
 
