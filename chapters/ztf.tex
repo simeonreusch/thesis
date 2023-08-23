@@ -1,9 +1,9 @@
-\setchapterimage[7cm]{ztf/ztf_telescope.png}
+\setchapterimage[7cm]{ztf/ztf_telescope_cropped.png}
 \chapter{The Zwicky Transient Facility}\label{ztf}
 \labch{ZTF}
-The second instrument relevant for this thesis is the \textbf{Zwicky Transient Facility} (ZTF). It is named after the notorious Swiss-American astronomer Fritz Zwicky\sidenote{Zwicky first employed the Virial theorem to infer the existence of dark matter~\cite{Zwicky1933}. Furthermore, together with Walter Baade, he posited the existence of supernovae and the creation of neutron stars in such events~\cite{Baade1934}.}.
+The\marginnote{The P48 dome at Mount Palomar, housing the Zwicky Transient Facility. Image credit: Caltech.} second instrument relevant for this thesis is the \textbf{Zwicky Transient Facility} (ZTF). It is named after the notorious Swiss-American astronomer Fritz Zwicky\sidenote{Zwicky first employed the Virial theorem to infer the existence of dark matter~\cite{Zwicky1933}. Furthermore, together with Walter Baade, he posited the existence of supernovae and the creation of neutron stars in such events~\cite{Baade1934}.}.
 
-ZTF is a wide-field optical survey telescope. Its wide field means that its use case is to periodically scan the full sky, in contrast to taking pictures of specific objects. As its angular resolution is poor, ZTF is mainly used to register changes in brightness and therefore to detect transient events (short: \textbf{transients}).\sidenote{Transient astrophysical events can be defined as the time evolution of flux at different wavelengths within a small region on the sky.} 
+ZTF is a wide-field optical survey telescope. Its wide field means that its use case is to periodically scan the full sky, in contrast to taking pictures of specific objects. As its angular resolution is poor, ZTF is mainly used to register changes in brightness and therefore to detect transient events (short: \textbf{transients}).\sidenote{Transient astrophysical events can be defined as the time evolution of flux at different wavelengths within a small region on the sky.}
 
 ZTF is located at Mount Palomar in California, United States, at \SI{1700}{\m} above sea level, roughly \SI{130}{\km} southeast of Los Angeles. Its optical system, the \SI{1.2}{\m} (48 inch) Samuel Oschin telescope, follows a Schmidt design (see Section~\ref{telescope_design}) and was inaugurated in 1948~\cite{Harrington1952}. At first light and for years to come, it was the largest Schmidt telescope in the world. Originally, the telescope exposed photographic plates, covering a field of view (FoV) of \SI{44}{\square\deg}. As such photographic plates have obvious drawbacks, and because technological progress made it possible, the Near-Earth Asteroid Tracking (NEAT) program~\sidecite{Pravdo1999} replaced them with a charge-coupled device (CCD) camera in the early 2000s.\marginnote{See \url{https://sites.astro.caltech.edu/palomar/about/telescopes/oschin.html} for a historical overview.}
 
@@ -42,7 +42,7 @@ The ZTF camera is a CCD design, consisting of 16 individual CCDs by commercial m
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{ztf/ztf_fov.pdf}
-    \caption[ZTF Field of View]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST)~\cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From~\cite{Laher2018}, highlighting by the author.}
+    \caption[ZTF field of view]{ZTF field of view (highlighted in red) in comparison to other sky survey telescopes, including the future Rubin observatory (LSST)~\cite{Ivezic2019}. Note also the 6.5-fold increase with respect to ZTF's predecessor, PTF/iPTF. From~\cite{Laher2018}, highlighting by the author.}
     \labfig{ztf_fov}
 \end{figure}
 
@@ -77,10 +77,10 @@ The typical \textbf{single exposure time} for the ZTF camera is \SI{30}{\second}
 
 Four additional smaller CCDs (2k x 2k pixels) are used as guidance, tip, tilt and focus sensors, with one additional Archon controller to read them out~\sidecite{Dekany2020}. To reduce the thermal noise of the camera, it was placed on a cold plate, which is cooled by a cryocooler to \SI{160}{\kelvin}~\cite{Dekany2016}.
 
-\section{Optical System} 
+\section{Optical System}
 
 \subsection{Filters and Shutter}\label{ztf_filters}
-Because the CCD is only sensitive to the total amount of collected photoelectrons, the wavelength information of the incident photons is lost. To circumvent this, different optical bandpass \textbf{filters} must be placed in front of the camera. Color information can then be obtained by imaging the object in question with a least two filters. ZTF employs three different filters: A \textit{g}-band filter with a median wavelength of \SI{472}{\nano\meter} (corresponding to blue light), an \textit{r}-band filter (median wavelength: \SI{634}{\nano\meter}, red light) and an \textit{i}-band filter (\SI{789}{\nano\meter}, near-infrared). These filters can be exchanged with a robotic arm, securely stowing the replaced filter and magnetically attaching the new one~\cite{Dekany2020}; a process taking \SI{110}{\second}~\cite{Bellm2019}. 
+Because the CCD is only sensitive to the total amount of collected photoelectrons, the wavelength information of the incident photons is lost. To circumvent this, different optical bandpass \textbf{filters} must be placed in front of the camera. Color information can then be obtained by imaging the object in question with a least two filters. ZTF employs three different filters: A \textit{g}-band filter with a median wavelength of \SI{472}{\nano\meter} (corresponding to blue light), an \textit{r}-band filter (median wavelength: \SI{634}{\nano\meter}, red light) and an \textit{i}-band filter (\SI{789}{\nano\meter}, near-infrared). These filters can be exchanged with a robotic arm, securely stowing the replaced filter and magnetically attaching the new one~\cite{Dekany2020}; a process taking \SI{110}{\second}~\cite{Bellm2019}.
 
 The main decision goal for the filter selection was to maximize the signal-to-noise ratio by avoiding major sky emission lines at Mt. Palomar while avoiding excessive costs. ZTF does not exactly match the filters of potential calibrators, e.g.\ the Sloan Digital Sky Survey (SDSS)~\sidecite{York2000}, PanSTARRS (PS1)~\sidecite{Kaiser2002} or \textit{Gaia}~\sidecite{Prusti2016}.
 
@@ -121,7 +121,7 @@ The full \textbf{calibration and image processing pipeline} is shown in Fig.~\re
 Each image taken on site (calibration and science exposures alike) is stored as a FITS file and subsequently compressed loslessly. The compressed images on average use \SI{5}{\bit} per pixel, so the full image is roughly \SI{380}{\mega\byte} large. These images are immediately sent to IPAC with the High Performance Wireless Research \& Educational Network (HPWREN)\sidenote{\url{https://hpwren.ucsd.edu/}}, a microwave-based data network, linking Palomar Observatory with the IPAC post-processing site. Each transfer typically takes \SI{20}{\second}, keeping up with the pace of ZTF observations~\cite{Dekany2020}.
 
 \subsection{Overscan Correction}
-As the temperature of the CCDs changes with time, each image is subject to a time-dependent global offset induced by \textbf{thermal noise}. To correct for this, an \textbf{overscan} region is used. In the case of the ZTF CCDs, this region does not correspond to physical pixels, but is created during CCD readout. If one reads out more clock cycles (each cycle corresponds to one pixel readout and a global charge shift, see Section~\ref{ccs}) than pixels are available, the charge that has gathered during science readout can be accessed. 
+As the temperature of the CCDs changes with time, each image is subject to a time-dependent global offset induced by \textbf{thermal noise}. To correct for this, an \textbf{overscan} region is used. In the case of the ZTF CCDs, this region does not correspond to physical pixels, but is created during CCD readout. If one reads out more clock cycles (each cycle corresponds to one pixel readout and a global charge shift, see Section~\ref{ccs}) than pixels are available, the charge that has gathered during science readout can be accessed.
 
 For ZTF, this overscan is performed with 24 additional cycles, corresponding to 24 overscan pixels for each sensor row. After this, the median of these 24 pixels is taken and the full overscan column is fitted with a quadratic function, resulting in one column of overscan values. For each and every image taken by the camera, this column of overscan values is computed and subtracted from each row of the image~\cite{Masci2019a}.
 
@@ -166,30 +166,30 @@ To simplify matters, ZTF is photometrically calibrated against a reference surve
 The brightness of both ZTF and PS1 are measured in \textbf{magnitudes}. Magnitudes are somewhat counterintuitive, as a higher value corresponds to a fainter source.\sidenote{This can be traced back over 2000 years to Greek/Roman astronomers Hipparchus and Ptolemy~\cite{Krisciunas2001}. They classified the brightest stars to be of ``first order'' or ``first magnitude'', with subsequently dimmer stars assigned lower magnitudes until the dimmest stars visible to the naked eye were of ``sixth magnitude''. The system stuck and was put on firm footing by Norman Pogson in 1856. He defined a star being 5 magnitudes brighter than another one to be 100 times brighter~\cite{Jones1968}.} The following definition holds:
 
 \begin{definition}
-\labdef{magnitude}
-A star one magnitude brighter than another star is $\sqrt[5]{100} \approx 2.512$ times brighter
+    \labdef{magnitude}
+    A star one magnitude brighter than another star is $\sqrt[5]{100} \approx 2.512$ times brighter
 \end{definition}
 If one uses the \textbf{flux density} (power per unit area) on Earth as a measure of brightness, it follows from Def.~\ref{def:magnitude} that the difference between two objects with magnitudes $m_1$ and $m_2$ and respective flux densities $f_1$ and $f_2$ is:
 \begin{equation}
-m_1 - m_2 = -2.5 \log_{10}{\frac{f_1}{f_2}}.
+    m_1 - m_2 = -2.5 \log_{10}{\frac{f_1}{f_2}}.
 \end{equation}
-Now we have a relative definition of an source's magnitude, but we need an absolute one. In other words, one needs to know what constitutes a magnitude of 0 (the \textbf{zero point} of the magnitude scale). ZTF uses AB magnitudes~\sidecite{Oke1983}, which are defined via the \textbf{spectral flux density} $f_\nu$ (\unit{\W\per\m\per\Hz}). In this sytem, the magnitude is a logarithm of the spectral flux density: 
+Now we have a relative definition of an source's magnitude, but we need an absolute one. In other words, one needs to know what constitutes a magnitude of 0 (the \textbf{zero point} of the magnitude scale). ZTF uses AB magnitudes~\sidecite{Oke1983}, which are defined via the \textbf{spectral flux density} $f_\nu$ (\unit{\W\per\m\per\Hz}). In this sytem, the magnitude is a logarithm of the spectral flux density:
 
 \begin{definition}
-\labdef{abmag_density}
-$m_{\text{AB}}(\nu) = -2.5 \log_{10}{(f_\nu/\SI{3631}{\jansky})}$
+    \labdef{abmag_density}
+    $m_{\text{AB}}(\nu) = -2.5 \log_{10}{(f_\nu/\SI{3631}{\jansky})}$
 \end{definition}
 
 As one can see, a source with constant spectral flux density $f_{\nu,0} = \SI{3631e-23}{\W\per\cm\per\Hz} = \SI{3631}{\jansky}$ has a magnitude of 0.\sidenote{The value of $f_\nu,0$ is not entirely random: The traditional zero point was the star Vega. Vega's magnitude in the AB system as defined above, integrated over the \textit{V}-band, is 0.03, close to the traditional 0. The AB system has the advantage of not relying on a physical source.} Now, telescopes like ZTF and PS1 use bandpass filters (see Section~\ref{ztf_filters}), so the spectral flux density needs to be integrated over the filter wavelengths. Therefore, the magnitude definition changes to~\sidecite{Tonry2012}:
 
 \begin{definition}
-\labdef{abmag}
-$m = -2.5 \log_{10}{\frac{\int{f_\nu(h \nu)^{-1}A(\nu)\,d\nu}}{\int{\SI{3631}{\jansky}(h \nu)^{-1}A(\nu)\,d\nu }}}$
+    \labdef{abmag}
+    $m = -2.5 \log_{10}{\frac{\int{f_\nu(h \nu)^{-1}A(\nu)\,d\nu}}{\int{\SI{3631}{\jansky}(h \nu)^{-1}A(\nu)\,d\nu }}}$
 \end{definition}
 Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross section (i.e.\ the chance of an incoming photon to produce an electron in the detector\sidenote{More general, $A(\nu)$ is $A(\nu,\theta,t)$, also depending on the angle of the incoming photon and therefore the atmospheric column along the line of sight, as well as time.}). ZTF does not use a precisely modeled response function $A(\nu)$, but relies on PS1. To first order, ZTF magnitudes are tied to the PS1 system via their zero point:
 
 \begin{equation}\label{eqn:mag}
-m_\text{cal} = m_\text{instr} + \text{ZP}.
+    m_\text{cal} = m_\text{instr} + \text{ZP}.
 \end{equation}
 
 To do this, all extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one could to first order calculate $m_\text{cal}$.
@@ -197,7 +197,7 @@ To do this, all extracted sources are spatially matched to the PS1 calibrator ca
 But there is a potential complication: The ZTF and PS1 filters are fairly similar, but do not exactly match. Eq.~\ref{eqn:mag} assumes a constant spectrum which is not the case for most celestial objects. Therefore, an object will have slightly different brightness values when measured through the ZTF and the corresponding PS1 filter. To account for this, a linear, filter-dependent \textbf{color correction} $c_f$ needs to be applied:
 
 \begin{equation}
-m_\text{cal} = m_\text{instr} + \text{ZP}_f + c_f \times \text{PS1}_\text{clr},
+    m_\text{cal} = m_\text{instr} + \text{ZP}_f + c_f \times \text{PS1}_\text{clr},
 \end{equation}
 where $\text{PS1}_\text{clr}$ is filter dependent ($g_\text{PS1}-r_\text{PS1}$ for the ZTF \textit{g}/\textit{r}-band, and $r_\text{PS1}-i_\text{PS1}$ for the \textit{i}-band).
 
@@ -230,5 +230,5 @@ ZTF is supporting three main \textbf{survey programs}: First, there is the NSF M
 
 Another \SI{40}{\percent} are allocated to the partners of the ZTF collaboration. During the first year of ZTF operation, this allocation was dedicated to the Extragalactic High Cadence Survey, the \textit{i}-band Survey, to ToO observations like the Neutrino Follow-up Program (see Chapter~\ref{fupipeline}), to the Twilight Survey, the High-cadence Plane Survey and the Asteroid Rotation Period Survey~\cite{Bellm2019a}.
 
-The last \SI{20}{\percent} are private Caltech time, with surveys selected each semester by the Caltech Time Allocation Committee~\cite{Bellm2019a}. A prominent example is the observational campaign to follow up 
+The last \SI{20}{\percent} are private Caltech time, with surveys selected each semester by the Caltech Time Allocation Committee~\cite{Bellm2019a}. A prominent example is the observational campaign to follow up
 LIGO-Virgo (LV)~\sidecite{Aasi2015,Acernese2014} gravitational wave (GW) localizations during the 3rd observational run (O3)~\sidecite{Kasliwal2020}.

@@ -1,7 +1,7 @@
 \setchapterimage[7cm]{fu/heading3.png}
 \chapter{The ZTF Neutrino Follow-Up Program}\label{fupipeline}
 \labch{fupipeline}
-After introducing the IceCube detector (see Chapter~\ref{ic}) and the Zwicky Transient Facility (see Chapter~\ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy \textbf{neutrino follow-up pipeline}.
+After\marginnote{Left: The IceCube detector (Image credit: IceCube). Center: Mount Palomar (image credit: Caltech). Right: The \texttt{AMPEL} framework.} introducing the IceCube detector (see Chapter~\ref{ic}) and the Zwicky Transient Facility (see Chapter~\ref{ztf}), we now have all the ingredients to introduce the ZTF high-energy \textbf{neutrino follow-up pipeline}.
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section~\ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
@@ -137,7 +137,7 @@ Fig.~\ref{fig:nuztf_sample_output} shows a page from the final \texttt{pdf} file
 
 In addition the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
 
-The code can either be run locally, or through the interaction with a Slackbot. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of Icecube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview \texttt{pdf} and the GCN draft to Slack.
+The code can either be run locally, or through the interaction with a bot running on Slack. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of Icecube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview \texttt{pdf} and the GCN draft to Slack.
 
 \section{Forced Photometry with \texttt{fpbot}}\label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot}~\sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
@@ -152,7 +152,7 @@ The possibility to extract flux prior to the first alert detection makes forced 
 \subsection{The \texttt{fpbot} Pipeline}
 \begin{marginfigure}
     \includegraphics{fu/fpbot_slack_border.pdf}
-    \caption[\texttt{fpbot} Slackbot interaction]{Sample interaction with the \texttt{fpbot} Slackbot, obtaining forced photometry for ZTF20abydkrl.}
+    \caption[\texttt{fpbot} Slack bot interaction]{Sample interaction with the \texttt{fpbot} Slack bot, obtaining forced photometry for ZTF20abydkrl.}
     \labfig{fpbot_slackbot}
 \end{marginfigure}
 \texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interface, or within a dedicated Slack channel to serve the broader community.
