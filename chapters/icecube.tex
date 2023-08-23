@@ -1,7 +1,7 @@
-\setchapterimage[7cm]{ic/ic_icecube.jpg}
+\setchapterimage[7cm]{ic/ic_icecube_crop.jpg}
 \chapter{The IceCube Detector}\label{ic}
 \labch{IceCube}
-One of the two most relevant instruments for this thesis is the \textbf{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location~\sidecite{Andres1999, Andres2000}.
+One\marginnote{The IceCube Detector. Image credit: IceCube/NSF.} of the two most relevant instruments for this thesis is the \textbf{IceCube Detector}, a neutrino detector located at the geographic South Pole. It is the successor to the Antarctic Muon And Neutrino Detector Array (AMANDA) at the same location~\sidecite{Andres1999, Andres2000}.
 \begin{marginfigure}
     \includegraphics{ic/ic_cherenkov1.pdf}
     \includegraphics{ic/ic_cherenkov2.pdf}
@@ -12,17 +12,17 @@ The basic operational principle of IceCube (and already of AMANDA) is the detect
 
 \section{Cherenkov Radiation}\label{cherenkov_radiation}
 
-Cherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenkov~\sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that very medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_0$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. Note that the phase velocity of light in a medium can exceed $c_0$, so $n<1$ is possible. 
+Cherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenkov~\sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that very medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_0$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. Note that the phase velocity of light in a medium can exceed $c_0$, so $n<1$ is possible.
 
 When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized. When they relax back to the ground state, the atoms emit electromagnetic radiation.
 
 For non-relativistic particles, this radiation destructively interferes with itself, canceling out all signals (see the bottom panel of Fig.~\ref{fig:cherenkov}). But if the particle is traveling faster than the speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a \textbf{cone-shaped wavefront} gets created (see top panel of Fig.~\ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation. If the particle has speed $v=\beta c_0$, the angle $\theta$ between the particle trajectory and the direction of the Cherenkov radiation can be calculated as~\sidecite{LAnnunziata2020}
 
 \begin{equation}
-\cos{\theta} = \frac{\beta}{n}.
+    \cos{\theta} = \frac{\beta}{n}.
 \end{equation}
 
-If the medium is ice, to first order the refractive index $n$ is $\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g.\ on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$. 
+If the medium is ice, to first order the refractive index $n$ is $\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g.\ on depth; a fact we will come back to later when discussing directional reconstruction of high-energy IceCube neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$.
 \begin{marginfigure}
     \includegraphics{ic/ic_cherenkov_spectrum.pdf}
     \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks at $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adapted from~\cite{Fulop1992}.}
@@ -62,7 +62,7 @@ The circular main board hosts data acquisition and control systems, as well as u
 
 \begin{marginfigure}
     \includegraphics{ic/ic_DOM_connections.pdf}
-    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbors above and below. Adapted from~\cite{Aartsen2017}.} 
+    \caption[IceCube DOM connections]{Connection scheme for four IceCube DOMs along one string. Pairs of DOMs share one twisted-pair cable. Also, each DOM is directly connected to its direct neighbors above and below. Adapted from~\cite{Aartsen2017}.}
     \labfig{ic_dom_connections}
 \end{marginfigure}
 
@@ -94,13 +94,13 @@ In total, approximately 5800 DOM units were built and tested, 300 failing tests 
 
 The instrumented part of the strings starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig.~\ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig.~\ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The \textbf{total instrumented volume} of glacial ice is thus \SI{1}{\km\cubed}~\cite{Aartsen2017}. Of the 5160 deployed DOMs, 92 are dead as of March 2023, a loss of \SI{1.7}{\percent}\sidenote{This is better than the predicted failure percentage, which was projected to be \SI{2}{\percent} by 2023~\cite{Aartsen2017}.}.
 
-One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold\todo{What's the normal energy threshold?} of \SI{10}{\GeV}. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs~\cite{Aartsen2017}. 
+One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold\todo{What's the normal energy threshold?} of \SI{10}{\GeV}. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs~\cite{Aartsen2017}.
 
 
-\subsection{Deployment} 
+\subsection{Deployment}
 As one can imagine, embedding the DOMs within the ice was a non-trivial task. It required drilling 86 boreholes with a diameter\sidenote{The hole diameter was larger than the DOM diameter (\SI{35}{\cm}) to account for partial refreezing of the bore hole.} of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole was drilled every \SI{48}{\hour} on average\sidenote{Drill operation happened around the clock.}~\cite{Aartsen2017}. It took 7 drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig.~\ref{fig:ic_drill} shows the tower operations site directly above the bore hole~\sidecite{Benson2014}.
 
-The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter}~\cite{Benson2014}. 
+The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter}~\cite{Benson2014}.
 
 \begin{figure}[]
     \includegraphics{ic/ic_drill.pdf}
@@ -165,7 +165,7 @@ The main angular reconstruction algorithm for muon tracks used in IceCube is bas
 This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_i$ of $\vec{x}$ are independent, it can be expressed as
 
 \begin{equation}
-\mathcal{L}(\vec{x}|\vec{a}) = \prod_i p(x_i|\vec{a}).
+    \mathcal{L}(\vec{x}|\vec{a}) = \prod_i p(x_i|\vec{a}).
 \end{equation}
 
 Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. The reconstruction consists in obtaining the set of unknown track parameters $\vec{a}$ that maximizes the likelihood $\mathcal{L}$ (or, for technical reasons, minimizes $-\log{\mathcal{L}}$).
@@ -184,7 +184,7 @@ So we are dealing with one time parameter, one energy parameter and positional p
 Now, a DOM in the detector at position $\vec{r}_i$ at a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon traveling along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as
 
 \begin{equation}
-t_\text{geo} = t_0 + \frac{|\vec{p}\cdot(\vec{r_i}-\vec{r_0})|+d\cdot \tan{\theta_\text{C}}}{c_0},
+    t_\text{geo} = t_0 + \frac{|\vec{p}\cdot(\vec{r_i}-\vec{r_0})|+d\cdot \tan{\theta_\text{C}}}{c_0},
 \end{equation}
 
 with $c_0$ the vacuum speed of light. As this does not take scattering into account, it is useful to define a \textbf{relative time of arrival}, the time residual $t_\text{res} = t_\text{hit} - t_\text{geo}$. This is the additional time \textbf{introduced by scattering} as opposed to a Cherenkov photon traveling directly from the muon to the DOM\@.
@@ -198,24 +198,24 @@ As the position of the DOM is known, $t_\text{res}$ is the most significant obse
 Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM\@. One simplification is to \textbf{only regard the first photon} hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called \textbf{Single Photoelectron} (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
-\mathcal{L}_\text{1st}(\vec{x}|\vec{a}) = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,\ldots),
+    \mathcal{L}_\text{1st}(\vec{x}|\vec{a}) = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,\ldots),
 \end{equation}
 
-where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained from simulations modeling the photon propagation through the Antarctic ice (this is necessary because the photon scatter needs to be accounted for). The simulation results are either stored in look-up tables or approximated by analytical functions~\cite{Ahrens2004}. 
+where the probability density function $p(t_{\text{res},i}|\vec{a})$ is obtained from simulations modeling the photon propagation through the Antarctic ice (this is necessary because the photon scatter needs to be accounted for). The simulation results are either stored in look-up tables or approximated by analytical functions~\cite{Ahrens2004}.
 
 \subsection{Multi Photoelectron Fit}
-A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon. This is because more photon hits mean that the DOM is closer to the event, and therefore receives a higher signal --- which means that the event is detected earlier. 
+A complication is that one expects the first photon in a DOM detecting multiple photons \textit{earlier} than a photon detected by a DOM only registering a single photon. This is because more photon hits mean that the DOM is closer to the event, and therefore receives a higher signal --- which means that the event is detected earlier.
 
 This leads to the \textbf{Multi Photoelectron} (MPE) fit. Here, the single photon part of the likelihood is modified by the cumulative PDF (CDF), which is given time-integrating the photon arrival PDF from the $t_\text{res}$ to infinity:
 
 \begin{equation}
-P(t_{\text{res},i}|\vec{a}) = \int^{\infty}_{t_{\text{res},i}}p(t|\vec{a})\,dt.
+    P(t_{\text{res},i}|\vec{a}) = \int^{\infty}_{t_{\text{res},i}}p(t|\vec{a})\,dt.
 \end{equation}
 
 Using this, the MPE likelihood is given as
 
 \begin{equation}
-\mathcal{L}_\text{MPE} = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}) \cdot N_i \cdot (1-P(t_{\text{res},i}|\vec{a}))^{N_i-1},
+    \mathcal{L}_\text{MPE} = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}) \cdot N_i \cdot (1-P(t_{\text{res},i}|\vec{a}))^{N_i-1},
 \end{equation}
 
 where $N_i$ is the total number of photons recorded by $\text{DOM}_i$~\cite{Ahrens2004}. This is almost what is used by the angular reconstruction used for the alerts IceCube distributes\sidenote{See Section~\ref{ic_alerts}.}. The difference is the PDF used, which is described in the following Section~\ref{spline_mpe}.
@@ -231,8 +231,8 @@ where $\alpha=\frac{d_\text{eff}}{\lambda}$, $\beta=\frac{1}{\tau} + \frac{c_m}{
 
 The basic idea is to create a \textbf{large lookup table of simulated minimally ionizing muon tracks} of infinite length with many different positions and orientations, i.e.\ high-dimensional histograms. A comprehensive look-up table of these simulations would be too storage intensive (hundreds of \unit{\giga\byte}), as well as numerically problematic due to empty bins or interpolation artifacts. To mitigate this, the histograms are normalized and \textbf{interpolated with multi-dimensional basis splines}~\sidecite{Whitehorn2013}. These splines then represent the photon arrival PDF dependent on the track vertex and orientation in the detector. They are defined by knots of fixed positions, so the PDF becomes
 \begin{equation}
-     p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
- \end{equation} 
+    p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
+\end{equation}
 Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
 
 \subsection{\texttt{Millipede} Reconstruction}\label{millipede}
@@ -281,13 +281,13 @@ When searching for the sources of astrophysical neutrinos, there are two major s
 \begin{description}
     \item[Atmospheric Muons] are created by \textbf{cosmic rays hitting the atmosphere}. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e.\ \textbf{the northern hemisphere}. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig.~\ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller~\sidecite{Chirkin2004} than the distance they have to cross (see Fig.~\ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going~\sidecite{Ahlers2018a}.
 
-    One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability~\sidecite{Aartsen2017c}.
+        One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability~\sidecite{Aartsen2017c}.
 
-    \begin{figure}[htb]
-        \includegraphics[width=0.5\textwidth]{ic/ic_absorption_earth.pdf}
-        \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From~\cite{Aartsen2017c}.}
-        \labfig{ic_absorption_earth}
-    \end{figure}
+        \begin{figure}[htb]
+            \includegraphics[width=0.5\textwidth]{ic/ic_absorption_earth.pdf}
+            \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From~\cite{Aartsen2017c}.}
+            \labfig{ic_absorption_earth}
+        \end{figure}
 
     \item[Atmospheric Neutrinos] also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an \textbf{irreducible background}: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos~\cite{Ahlers2018a}.
 
@@ -303,18 +303,18 @@ Gold and Bronze alerts are drawn from three different selection schemes, origina
 
     \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions~\cite{Abbasi2023}.
 
-    \begin{marginfigure}
-        \includegraphics{ic/ic_HESE_veto.pdf}
-        \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From~\cite{Aartsen2013}.}
-        \labfig{ic_hese_veto}
-    \end{marginfigure}
+        \begin{marginfigure}
+            \includegraphics{ic/ic_HESE_veto.pdf}
+            \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From~\cite{Aartsen2013}.}
+            \labfig{ic_hese_veto}
+        \end{marginfigure}
 
     \item[GFU] events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
 \end{description}
 
 The cuts from all three event pools are gauged to achieve two different average values of \textbf{signalness}, which is a proxy for the probability that the event is of astrophysical origin~\cite{Abbasi2023}. It is defined as
 \begin{definition}\label{signalness_def}
-$\text{Signalness}(E,\theta_\text{zen}) = \frac{N_\text{signal}(E,\theta_\text{zen})}{N_\text{signal}(E,\theta_\text{zen})+N_\text{background}(E,\theta_\text{zen})}$
+    $\text{Signalness}(E,\theta_\text{zen}) = \frac{N_\text{signal}(E,\theta_\text{zen})}{N_\text{signal}(E,\theta_\text{zen})+N_\text{background}(E,\theta_\text{zen})}$
 \end{definition}
 Here E is the reconstructed neutrino energy, and $N_\text{signal}(E,\theta_\text{zen})$ and $N_\text{background}(E,\theta_\text{zen})$ are the number of signal and background events at zenith angle $\theta_\text{zen}$ above energy $E$ as determined by simulations~\cite{Abbasi2023}.
 
