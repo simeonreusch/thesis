@@ -382,10 +382,14 @@ After obtaining a classified training sample (BTS light curves, see Section~\ref
 The set of features used for training was the following:
 
 \begin{description}
-    \item[Peak magnitude] The peak observed magnitude (regardless of filter). This value was scaled accordingly for the noisified and redshifted child light curves:
-        \begin{equation}
-            m_\text{child} = m_\text{parent} - 5[\log_{10} D_L(z_\text{parent})-1] + 5[\log_{10}D_L(z_\text{child})-1]
-        \end{equation}
+    \item[Peak magnitude] This is the peak observed magnitude (in any filter). The value was scaled accordingly for the noisified and redshifted child light curves:
+        \begin{subequations}
+            \begin{eqnarray}
+                m_\text{child} &=& m_\text{parent} - \mu­_\text{parent} + \mu_\text{child}~~\text{and}\\
+                \mu &=& 5(\log_{10}D_L(z)+1),
+            \end{eqnarray}
+        \end{subequations}
+        where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
     \item[SALT2 Fit Results] This included SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
     \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked on this parameter. The results also included the $\chi^2$ and degrees of freedom.
     \item[Overlapping blocks] The number of overlapping regions, extracted with the bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
