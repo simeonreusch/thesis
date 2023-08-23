@@ -382,11 +382,18 @@ After obtaining a classified training sample (BTS light curves, see Section~\ref
 The set of features used for training was the following:
 
 \begin{description}
-    \item[Peak magnitude] The peak observed magnitude (regardless of filter). This value was scaled accordingly for the noisified and redshifted child light curves.
+    \item[Peak magnitude] The peak observed magnitude (regardless of filter). This value was scaled accordingly for the noisified and redshifted child light curves:
+        \begin{equation}
+            m_\text{child} = m_\text{parent} - 5[\log_{10} D_L(z_\text{parent})-1] + 5[\log_{10}D_L(z_\text{child})-1]
+        \end{equation}
     \item[SALT2 Fit Results] This included SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
     \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked on this parameter. The results also included the $\chi^2$ and degrees of freedom.
     \item[Overlapping blocks] The number of overlapping regions, extracted with the bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
     \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were also added.
     \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), is included as a proxy for host galaxy photometry and morphology.
-    \item[Distance to core] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves will change with respect to their parents, this value was recalculated for all children.
+    \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves will change with respect to their parents, this value was recalculated for all children. This was done according to
+        \begin{equation}
+            \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
+        \end{equation}
+        where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
