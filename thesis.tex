@@ -1,11 +1,9 @@
 % Load the kaobook class
 \documentclass[
-    a4paper, % Page size
-    fontsize=10pt, % Base font size
-    twoside=true, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
-    %open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
-    %chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
-    numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+    a4paper,
+    fontsize=10pt,
+    twoside=true,
+    numbers=noenddot,
     fontmethod=tex,
 ]{kaobook}
 
@@ -64,17 +62,13 @@
 \graphicspath{{figures/}{images/}}
 
 \makeindex[columns=3, title=Alphabetical Index, intoc]
-
+\newcommand\xx{\textcolor{red}{XX}}
 
 \begin{document}
 
-%----------------------------------------------------------------------------------------
-%   BOOK INFORMATION
-%----------------------------------------------------------------------------------------
 \subject{Doctoral Thesis}
-% \titlehead{Optical Follow-Up of High-Energy Neutrinos}
 \title[Optical Follow-Up of High-Energy Neutrinos]{Optical Follow-Up of High-Energy Neutrinos}
-\author[SR]{Simeon Reusch}% \orcidlink{0000-0002-7788-628X}}
+\author[SR]{Simeon Reusch \orcidlink{0000-0002-7788-628X}}
 \date{\today}
 \publishers{Humboldt-Universität zu Berlin}
 
@@ -107,16 +101,8 @@
 
 \maketitle
 
-\begingroup % Local scope for the following commands
-
-% Define the style for the TOC, LOF, and LOT
-%\setstretch{1} % Uncomment to modify line spacing in the ToC
-%\hypersetup{linkcolor=blue} % Uncomment to set the colour of links in the ToC
-\setlength{\textheight}{230\vscale} % Manually adjust the height of the ToC pages
-
-% Turn on compatibility mode for the etoc package
-%\etocstandarddisplaystyle % "toc display" as if etoc was not loaded
-%\etocstandardlines % "toc lines as if etoc was not loaded
+\begingroup
+\setlength{\textheight}{230\vscale}
 
 \tableofcontents
 \listoffigures
@@ -130,8 +116,6 @@
 
 \mainmatter
 \setchapterstyle{kao}
-
-%\chapter{Theoretical background}
 \pagelayout{margin}
 
 % \input{chapters/introduction.tex}
@@ -140,15 +124,15 @@
 % \input{chapters/ztf.tex}
 % \input{chapters/followup.tex}
 % \input{chapters/at2019fdr.tex}
-% \input{chapters/nuclear.tex}
-\input{chapters/conclusion.tex}
+\input{chapters/nuclear.tex}
+% \input{chapters/conclusion.tex}
 % \input{chapters/appendix.tex}
 
 \backmatter
 \setchapterstyle{plain}
 
 \printbibliography[heading=bibintoc, title=Bibliography]
-\input{chapters/declaration.tex}
+% \input{chapters/declaration.tex}
 
 
 

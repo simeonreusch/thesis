@@ -127,7 +127,7 @@ To enrich the sample by information available on the transients, these were cros
 
 The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval.
 
-\section{Light Curve Fits}
+\section{Creating Features: Light Curve Fits}
 To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated TDE light curve model, as well as a supernova Ia model. Both fit results can then later be employed in feature-extraction based machine learning algorithms.
 
 \subsection{Fitting a TDE Model}\label{tde_model}
@@ -232,7 +232,7 @@ SALT2 assumes the light curve is indeed a supernova Ia and applies empirical cor
 
 The fits were performed with \texttt{SNCosmo}, which itself fit the light curve using \texttt{iminuit/MIGRAD}.
 
-\section{Optical Flare Analysis}\label{bayesian_blocks}
+\section{Creating Features: Optical Flare Analysis}\label{bayesian_blocks}
 Another feature which will later be used in the classification of transients are \textbf{simultaneous flares} across the well-sampled ZTF \textit{g}- and \textit{r}-bands. The number and timing of optical flares within different bands can then be used to differentiate between different types of transients.
 
 \subsection{Bayesian Block Algorithm}
@@ -369,7 +369,7 @@ In total, the final training sample contained \textcolor{red}{xx} light curves.
 In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
 
 \subsection{Boosted Decision Trees}
-In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification. \textbf{Ensemble methods} build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (\textbf{random forest}) or by working in sequence. The latter are called \textbf{boosted} decision trees, meaning they are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is dubbed \textbf{gradient boosting}. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
+In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification of an object. \textbf{Ensemble methods} build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (\textbf{random forest}) or by working in sequence. The latter method is dubbed \textbf{boosted} decision trees, meaning decision trees are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the (weighted) sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is called \textbf{gradient boosting}. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
 
 \subsection{Hyperparameter Search}
 As is usual with such algorithms, there is a number of \textbf{hyperparameters} which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees which are not the first one, and \texttt{n\_estimators} controls the number of trees.
@@ -401,3 +401,65 @@ The set of features used for training was the following:
         \end{equation}
         where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
+
+\section{Visual Cuts}
+The traditional method of selecting TDE candidates are \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). To get a handle on the results of the machine learning classification and \textbf{evaluate the discriminatory power} of the features in an independent way, a similar approach was chosen here.
+
+To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in training the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
+
+\subsection{Cut stages}
+\begin{description}
+    \item[AGN Veto] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas and selecting based on \textit{WISE} colors (see Section~\ref{agn_rejection}).
+    \item[Core distance] As the BTS is not selecting nuclear transients per se, this needs to be enforced by
+    \item[asd] asd
+\end{description}
+
+\subsection{Results}
+The final selection of TDE candidates retained \xx of the initial \xx TDE. This translates to a purity of \xx and efficiency of \xx.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq'].pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes'].pdf}
+    \end{subfigure}
+    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey. These are displayed in the rise- and decay time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline Top row: No cuts applied (only fit success required, left) and the Milliquas-based AGN veto (right).\newline \newline Second row: AGN cut based on \textit{WISE} colors (left) and cut based on the core distance (right).\newline \newline Third row: The \texttt{sgscore} is required to lie below 0.3 (left) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (right)\newline \newline Fourth row: The temperature and temperature evolution were required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$, as well as $\SI{-100}{\K\per\day} < \Delta T < \SI{150}{\K\per\day}$ (left) and the rise and decay times were required to lie within $\log \SI{0.8}{\day} < \text{risetime} < \log \SI{2.05}{\day}$ and $\log \SI{1.1}{\day} < \text{decaytime} < \log \SI{3.0}{\day}$ \newline \newline Bottom row: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (left), and that the transient light curve had exactly 1 flare (right).}
+    \labfig{bts_scatter}.
+\end{figure}
