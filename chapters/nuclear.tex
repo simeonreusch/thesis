@@ -359,11 +359,11 @@ In total the following number of objects were processed during the training samp
 \begin{description}
     \item[SNe Ia] The BTS contained 3130 SNe Ia, from which 11077 nosified children were created,~i.e. 3.5 children per original light curve on average. The total number of light curves (original ones plus children) was 14207.
     \item[Other types of SNe] 1058 supernovae of not-Ia type were available in the BTS. With an average of 10.1 children per light curve this amounted to 10698 noisified children and 11756 light curves in total.
-    \item[\textcolor{red}{AGN}] xx AGN were orinally present. xx children were created (x per parent), resulting in xx light curves.
+    \item[\textcolor{red}{AGN}] \xx AGN were orinally present. \xx children were created (\xx per parent), resulting in \xx light curves.
     \item[TDE] Starting with 65 TDE, 12212 children were creating with a large number of children per light curve (187.9). This amounted to 12277 light curves in total.
     \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.
 \end{description}
-In total, the final training sample contained \textcolor{red}{xx} light curves.
+In total, the final training sample contained \xx light curves.
 
 \section{Training the Model}
 In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
@@ -402,20 +402,30 @@ The set of features used for training was the following:
         where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
 
-\section{Visual Cuts}
-The traditional method of selecting TDE candidates are \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). To get a handle on the results of the machine learning classification and \textbf{evaluate the discriminatory power} of the features in an independent way, a similar approach was chosen here.
+\section{Finding candidate TDEs}
+Besides a full classification of the nuclear sample, another purpose of the classifier is to obtain a \textbf{selection of candidate TDE with high purity}.
+
+The traditional method of selecting TDE candidates is comprised of a sequence of \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). One way of increasing the purity of the machine-learning selected TDE is by defining such a set of visual cuts by studying the BTS sample, and applying the very same cuts to the nuclear sample.
+%  To get a handle on the results of the machine learning classification and \textbf{evaluate the discriminatory power} of the features in an independent way, a similar approach was chosen here.
 
 To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in training the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
 
-\subsection{Cut stages}
+\subsection{Visual Cuts}
+An overview over the sample after subsequent application of these cuts, as well as the TDE selection efficiency and purity can be seen in Figure~\ref{fig:bts_scatter}. These were the stages (the numbers in brackets correspond to the individual plots, with (1a) showing the sample without cuts):
+
 \begin{description}
-    \item[AGN Veto] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas and selecting based on \textit{WISE} colors (see Section~\ref{agn_rejection}).
-    \item[Core distance] As the BTS is not selecting nuclear transients per se, this needs to be enforced by
-    \item[asd] asd
+    \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
+    \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needs to be enforced by
+    \item[\texttt{sgscore} cut (3a)] Only transients with an \texttt{sgscore} $<0.3$ were allowed in this cut stage.
+    \item[SNIa diagonal cut (3b)] \xx
+    \item[Temperature cut (4a)] The temperature was required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$. Furthermore, the daily temperature change $\Delta T$ was required to lie between $\SI{-100}{\K\per\deh} < \Delta T < \SI{150}{\K\per\deh}$ (left).
+    \item[Rise- and decay time cut (4b)] The rise and decay times were required to lie within $\log \SI{0.8}{\deh} < \text{risetime} < \log \SI{2.05}{\deh}$ and $\log \SI{1.1}{\deh} < \text{decaytime} < \log \SI{3.0}{\deh}$.
+    \item[$\chi^2$ cut] Only those transients with a TDE fit reduced $\chi^2$ outperforming their SALT2 fit reduced $\chi^2$ were selected here to reject remaining likely SNe Ia.
+    \item[Flare cut] Finally, only transient with a single flare coincident in \textit{g}- and \textit{r}-band were allowed to reject likely stochastic AGN activity.
 \end{description}
 
 \subsection{Results}
-The final selection of TDE candidates retained \xx of the initial \xx TDE. This translates to a purity of \xx and efficiency of \xx.
+The final selection of TDE candidates retained \xx of the initial \xx TDE. This translated to a purity of \xx and efficiency of \xx.
 
 
 \begin{figure}[htb]
@@ -460,6 +470,6 @@ The final selection of TDE candidates retained \xx of the initial \xx TDE. This 
         \centering
         \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes'].pdf}
     \end{subfigure}
-    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey. These are displayed in the rise- and decay time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline Top row: No cuts applied (only fit success required, left) and the Milliquas-based AGN veto (right).\newline \newline Second row: AGN cut based on \textit{WISE} colors (left) and cut based on the core distance (right).\newline \newline Third row: The \texttt{sgscore} is required to lie below 0.3 (left) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (right)\newline \newline Fourth row: The temperature and temperature evolution were required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$, as well as $\SI{-100}{\K\per\day} < \Delta T < \SI{150}{\K\per\day}$ (left) and the rise and decay times were required to lie within $\log \SI{0.8}{\day} < \text{risetime} < \log \SI{2.05}{\day}$ and $\log \SI{1.1}{\day} < \text{decaytime} < \log \SI{3.0}{\day}$ \newline \newline Bottom row: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (left), and that the transient light curve had exactly 1 flare (right).}
-    \labfig{bts_scatter}.
+    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey. These are displayed in the rise- and decay time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDE (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied except requiring TDE fit success (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
+    \labfig{bts_scatter}
 \end{figure}
