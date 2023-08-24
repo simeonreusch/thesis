@@ -6,7 +6,7 @@ The rate of transients detected by LSST will by far exhaust the available spectr
 
 This chapter is dedicated to the nuclear sample, and is structured as follows: A discussion on the sample creation will be followed by different methods to classify the sample. This will be done with a special focus on TDEs.
 
-The routines used to generate and evaluate the nuclear sample was written in Python, and can be retrieved online\sidenote{\url{https://github.com/simeonreusch/ztfnuclear}}.
+The routines used to generate and evaluate the nuclear sample were written in Python, and are accessible online\sidenote{\url{https://github.com/simeonreusch/ztfnuclear}}.
 
 \section{Sample Creation}
 The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), using its capability to rerun analyses on archival data. To perform such a rerun, a modified version of the \texttt{AMPEL} nuclear filter was used.
@@ -417,11 +417,11 @@ An overview over the sample after subsequent application of these cuts, as well 
     \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
     \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needs to be enforced by
     \item[\texttt{sgscore} cut (3a)] Only transients with an \texttt{sgscore} $<0.3$ were allowed in this cut stage.
-    \item[SNIa diagonal cut (3b)] \xx
+    \item[SNIa diagonal cut (3b)] The transient had to be to the right side of a diagonal cut in the rise decay time plane, described by $3.55 - 2.29 \tau$ (with $\tau$ being the decay time and everything in $\log~\text{day}$).
     \item[Temperature cut (4a)] The temperature was required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$. Furthermore, the daily temperature change $\Delta T$ was required to lie between $\SI{-100}{\K\per\deh} < \Delta T < \SI{150}{\K\per\deh}$ (left).
     \item[Rise- and decay time cut (4b)] The rise and decay times were required to lie within $\log \SI{0.8}{\deh} < \text{risetime} < \log \SI{2.05}{\deh}$ and $\log \SI{1.1}{\deh} < \text{decaytime} < \log \SI{3.0}{\deh}$.
-    \item[$\chi^2$ cut] Only those transients with a TDE fit reduced $\chi^2$ outperforming their SALT2 fit reduced $\chi^2$ were selected here to reject remaining likely SNe Ia.
-    \item[Flare cut] Finally, only transient with a single flare coincident in \textit{g}- and \textit{r}-band were allowed to reject likely stochastic AGN activity.
+    \item[$\chi^2$ cut (5a)] Only those transients with a TDE fit reduced $\chi^2$ outperforming their SALT2 fit reduced $\chi^2$ were selected here to reject remaining likely SNe Ia. Also, the reduced TDE fit $\chi^2$ was required to lie below 6.
+    \item[ (5b)] Finally, only transient with a single flare coincident in \textit{g}- and \textit{r}-band were allowed to reject likely stochastic AGN activity.
 \end{description}
 
 \subsection{Results}
