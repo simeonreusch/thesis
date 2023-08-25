@@ -415,7 +415,7 @@ An overview over the sample after subsequent application of these cuts, as well 
 
 \begin{description}
     \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
-    \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needs to be enforced by
+    \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needs to be enforced by requiring a maximum core distance of 0.4 arcseconds.
     \item[\texttt{sgscore} cut (3a)] Only transients with an \texttt{sgscore} $<0.3$ were allowed in this cut stage.
     \item[SNIa diagonal cut (3b)] The transient had to be to the right side of a diagonal cut in the rise decay time plane, described by $3.55 - 2.29 \tau$ (with $\tau$ being the decay time and everything in $\log~\text{day}$).
     \item[Temperature cut (4a)] The temperature was required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$. Furthermore, the daily temperature change $\Delta T$ was required to lie between $\SI{-100}{\K\per\deh} < \Delta T < \SI{150}{\K\per\deh}$ (left).
@@ -425,7 +425,9 @@ An overview over the sample after subsequent application of these cuts, as well 
 \end{description}
 
 \subsection{Results}
-The final selection of TDE candidates retained \xx of the initial \xx TDE. This translated to a purity of \xx and efficiency of \xx.
+Before all cuts, only requiring TDE model fit success, the sample consists of 4094 transients, of which 64 are TDE. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
+
+The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection efficiency of \SI{48.4}{\percent}, i.e. roughly half of the TDE survive all cuts.
 
 
 \begin{figure}[htb]
@@ -470,6 +472,6 @@ The final selection of TDE candidates retained \xx of the initial \xx TDE. This 
         \centering
         \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes'].pdf}
     \end{subfigure}
-    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey. These are displayed in the rise- and decay time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDE (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied except requiring TDE fit success (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
+    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey (augmented with additional TDEs). These are displayed in the rise- and decay time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDE (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied except requiring TDE fit success (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
     \labfig{bts_scatter}
 \end{figure}
