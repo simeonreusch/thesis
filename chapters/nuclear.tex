@@ -30,7 +30,7 @@ The criteria used were:
     \item[Galactic cut] The object must be separated by at least \SI{5}{\degree} from the galactic plane to avoid contamination by foreground stars.
     \item[PS1 photometry] To avoid crowded areas, transients where more than 100 objects in the vicinity have a counterpart in PS1 are removed.
     \item[Brightness] At least one alert datapoint of the transient must be brighter than 20 mag.
-    \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results \sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as we also require the transient to have a PS1 counterpart. Figure~\ref{fig:rbvsdrb} shows a comparison of the False Negative Rate (FNR) of \texttt{rbscore} vs. \texttt{drbscore}. At the chosen threshold of $0.3$, the FNR for both algorithms is a the percent level.
+    \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results~\sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as we also require the transient to have a PS1 counterpart. Figure~\ref{fig:rbvsdrb} shows a comparison of the False Negative Rate (FNR) of \texttt{rbscore} vs. \texttt{drbscore}. At the chosen threshold of $0.3$, the FNR for both algorithms is a the percent level.
     \item[Core distance] For all objects that make it this far, their distance to the core is computed. To make this more robust, three different distance metrics are computed. The \textbf{mean distance} to the PS1 source in the reference images, the \textbf{median distance} to that, and lastly, a \textbf{weighted distance}. The latter is computed according to~\sidecite{Velzen2019} and accounts for the fact that the RMS of the angular core distance scales linearly with magnitude. $\sigma_\text{dist}$ = $0.24 + 0.04(m-20)$, where $m$ is the difference photometry magnitude. This stage rejects all transients for which none of the three distances lies below 0.5 arcseconds.
 \end{description}
 
@@ -436,7 +436,7 @@ The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:e
     \caption[Visual TDE selection]{Efficiency (green line) and purity (magenta, dash-dot) of the visual TDE selection. The cut stages are shown on the x-axis, with each new cut added on top of all previous cuts.}
     \labfig{efficiency_purity}
 \end{figure}
-To estimate the individual selection power of the different cuts, these were also applied singularly, i.e.~without any other cuts.
+To estimate the individual selection power of the different cuts, these were also applied singularly, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}.
 
 \begin{figure}[htb]
     \centering
@@ -483,3 +483,26 @@ To estimate the individual selection power of the different cuts, these were als
     \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey (augmented with additional TDEs). These are displayed in the rise- and decay-time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDEs (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied except requiring TDE fit success (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
     \labfig{bts_scatter}
 \end{figure}
+
+
+\begin{table}
+    \centering
+    \def\arraystretch{1.2}
+    \begin{tabular}{c c c c c c}
+        \textbf{Parameter}         & \textbf{Purity} & \textbf{Efficiency} & \textbf{Purity}    & \textbf{Efficiency} & \textbf{Ratio} \\
+                                   & \textbf{(\%)}   & \textbf{(\%)}       & \textbf{gain (\%)} & \textbf{loss (\%)}  &                \\
+        \hline
+        \textbf{No cut}            & 1.6             & 100                 & 0                  & 0                   & ---            \\
+        \textbf{Milliquas cut}     & 1.6             & 100                 & 1.8                & 0                   & ---            \\
+        \textbf{\textit{WISE} cut} & 1.6             & 98.4                & 0.7                & 1.6                 & 0.5            \\
+        \textbf{Core distance}     & 8.7             & 82.8                & 458.5              & 17.2                & 26.7           \\
+        \textbf{\texttt{sgscore}}  & 2.5             & 98.4                & 58.2               & 1.6                 & 37.2           \\
+        \textbf{SN Ia Cut}         & 5.2             & 90.6                & 234.9              & 9.4                 & 25.1           \\
+        \textbf{Temperature}       & 3.1             & 85.9                & 101.4              & 14.1                & 7.2            \\
+        \textbf{Rise-/Decay}       & 2.4             & 84.4                & 52.0               & 15.6                & 3.3            \\
+        \textbf{$\chi^2$}          & 3.6             & 92.2                & 127.4              & 7.8                 & 16.3           \\
+        \textbf{One flare}         & 2.2             & 82.8                & 43.7               & 17.2                & 2.5            \\
+    \end{tabular}
+    \caption[bla]{bla}
+    \label{tab:visual_selection}
+\end{table}
