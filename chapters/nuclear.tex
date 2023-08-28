@@ -163,13 +163,13 @@ Lastly, $T(t)$ was allowed to change linearly during an interval after $t_\text{
 \end{equation}
 with $\Delta T$ being the coefficient of temperature change. Also, there was a check that required at least 10 datapoints within the interval 30 days prior to peak time and one year after that. If that check did not succeed, the fit was set to fail due to poor source sampling.
 
-As a source luminosity can only be calculated when the redshift is known, and this was not true for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see Fig.~\ref{fig:bb_lumi_spread}), and only the shape of the light curve is relevant for the goodness of fit.\cite{Hammerstein2022}
-
 \begin{marginfigure}
     \includegraphics{nuclear/tde_bb_lumi_spread.pdf}
     \caption[TDE blackbody luminosity spread]{TDE blackbody luminosity spread. Relevant is the y-axis here, showing the large spread in observed TDE luminosities; the TDEs shown are from the ZTF Phase I. From~\cite{Hammerstein2022}}
     \labfig{bb_lumi_spread}
 \end{marginfigure}
+
+As a source luminosity can only be calculated when the redshift is known, and this was not true for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see Fig.~\ref{fig:bb_lumi_spread}), and only the shape of the light curve is relevant for the goodness of fit.\cite{Hammerstein2022}
 
 This model has been realized as an instantiation of an \texttt{SNCosmo} source model, as this package has the advantage of built in filter profiles, that allowed the correct evaluation of the blackbody flux as seen through the ZTF filters. To save computing time, the fit algorithm used was not a Markov-Chain Monte Carlo as in~\cite{Velzen2021a}, but \texttt{iminuit/MIGRAD}.
 
