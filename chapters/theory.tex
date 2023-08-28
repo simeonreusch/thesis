@@ -1,6 +1,6 @@
 \setchapterimage[7cm]{theory/AT2019dsg_cropped.jpg}
 \chapter{Neutrino Astronomy}\label{theory}
-\labch{Neutrino Astronomy}
+\labch{neutrino_astronomy}
 
 Contrary\marginnote{Artistic impression of a tidal disruption event. Material from the shredded star starts accreting around a black hole, and a jet is launched. Image Credit: DESY and Science Communication Lab.} to photons --- especially optical ones --- neutrinos are extremely hard to detec. This explains why neutrino astronomy is such a recent development. As this thesis is concerned with \textbf{the identification of the astrophysical sources of high-energy neutrinos}, this chapter will first detail what neutrinos are, and then explain how high-energy neutrino astronomy has advanced. This will be followed by a discussion of different types of proposed source classes of high-energy neutrinos. Lastly, established counterparts to neutrinos will be discussed, as well as upper limits on most of the proposed source classes.
 
@@ -8,13 +8,14 @@ Contrary\marginnote{Artistic impression of a tidal disruption event. Material fr
 Neutrinos were first predicted by Pauli in the 1930s~\sidecite{Giunti2007}, given firm theoretical footing by Fermi in 1934~\sidecite{Fermi1934}, and experimentally detected by Reines and Cowan in 1955~\sidecite{Reines1956}.
 
 \subsection{The Neutrino Hypothesis}\label{neutrino_hypothesis}
-Wolfgang Pauli reluctantly proposed the neutrino \textbf{to explain the continuous $\beta$-spectrum of decaying uranium}. When nuclear elements decay, they emit different particles. Their types of emission were dubbed $\alpha$-, $\beta$- and $\gamma$ radiation; the first being helium-4 nuclei, the second electrons or protons, and lastly energetic photons. Contrary to $\alpha$- and $\gamma$-radiation, \textbf{the spectrum of $\beta$-radiation turned out to be continuous}, while one would expect discrete energy levels for the emitted particles.
 
 \begin{marginfigure}
     \includegraphics{theory/pauli_neutrino.jpg}
     \caption[Pauli's letter proposing the neutrino]{Pauli's open letter from December 1930, proposing the existence of the neutrino (he called it `neutron' at the time) to the community. Image credit: Pauli Letter Collection, CERN.}
     \labfig{pauli_letter}
 \end{marginfigure}
+
+Wolfgang Pauli reluctantly proposed the neutrino \textbf{to explain the continuous $\beta$-spectrum of decaying uranium}. When nuclear elements decay, they emit different particles. Their types of emission were dubbed $\alpha$-, $\beta$- and $\gamma$ radiation; the first being helium-4 nuclei, the second electrons or protons, and lastly energetic photons. Contrary to $\alpha$- and $\gamma$-radiation, \textbf{the spectrum of $\beta$-radiation turned out to be continuous}, while one would expect discrete energy levels for the emitted particles.
 
 In $\beta^-$-decay, the nucleus of an atom emits an electron when undergoing the nuclear transition $(A,Z)\rightarrow(A,Z+1) + e^-$. Here, $A$ is the mass number (the total number of nucleons in the atom), and $Z$ is the atomic number (the number of protons in the nucleus) --- a neutron-proton conversion occurs, as we nowadays now. In this scenario, the decay is a two body problem, involving the nucleus and an electron. When converting a neutron into a proton, the resulting binding energy of the atom is lower, and this energy needs to be accounted for. Also, the positive charge gained by the nucleus during the transition needs to be equalized somewhere.
 
@@ -65,13 +66,13 @@ By observing solar neutrino oscillations, the SNO experiment also established th
     m_\nu = \sqrt{ \Sigma_i |U_{ei}|^2 m_i^2 }
 \end{equation}
 
-where $U$ is the PMNS matrix describing the neutrino state mixing, i.e.\ a collection of somewhat arbitrary numbers. If one could take individual mass measurements of the electron neutrino, one would measure the mass $m_i$ with probability $|U_{ei}|^2$.
-
 \begin{marginfigure}
     \includegraphics{theory/mass_history.pdf}
     \caption[Neutrino mass upper limit history]{The history of upper limits on the neutrino mass. From~\cite{Aker2022}.}
     \labfig{mass_history}
 \end{marginfigure}
+
+where $U$ is the PMNS matrix describing the neutrino state mixing, i.e.\ a collection of somewhat arbitrary numbers. If one could take individual mass measurements of the electron neutrino, one would measure the mass $m_i$ with probability $|U_{ei}|^2$.
 
 Neutrino oscillations are only sensitive to the squared mass differences between the three mass states, as there is no zeropoint in Eq.~\ref{pmns}. One way to measure the average proper neutrino mass is the \textbf{close inspection of the beta-decay}\sidenote{See Section~\ref{neutrino_hypothesis}.} \textbf{spectrum}. The most recent in a long line of experiments to determine neutrino masses (see Fig. \ref{fig:mass_history}) is the Karlsruhe Tritium Neutrino Experiment (KATRIN). It uses the beta decay of tritium. If the neutrino is massless, the energy spectrum of the emitted electron will extend up to the total energy of the decay (\SI{18.6}{\eV}). On the other hand, if the neutrino is non-zero, the electron energy will never exceed the energy of that neutrino mass. Note that in principle one could obtain all three neutrino masses from such an experiment if it weren't for current technological limitations. The latest upper limit from KATRIN on the neutrino mass is $m_\nu < \SI{0.8}{\eV}$ at the \SI{90}{\percent} confidence level~\sidecite{Aker2022}.
 
@@ -111,20 +112,20 @@ As briefly mentioned above, the solar neutrinos stem from two processes: The $pp
 
 As one can see in Fig.~\ref{fig:solar_neutrino_flux}, the predicted solar neutrino spectrum is composed of different channels. Towards \unit{\mega\eV} energies, the solar neutrino flux is dominated by the decay of $^8\text{B}\rightarrow ~^8\text{Be} + e^+ + \nu_e$ (green curve) happening in one of the subsequent evolutions of the $pp$ chain. This particular process does not contribute much to the radiative energy output of the sun, but it was the responsible mechanism for the solar neutrino flux, of which $\frac{2}{3}$ were missing, constituting the aforementioned solar neutrino puzzle.
 
-Fig.~\ref{fig:solar_neutrino_flux} also shows that the predicted flux cuts off around \SI{\sim10}{\mega\eV}, so only low-energy neutrinos are expected from the sun and similar stars.
-
-\subsection{Supernovae}\label{sne}
-Only with the first \textbf{extragalactic neutrino source} the era of neutrino astronomy truly began. This source was \emph{SN1987a}, an extremely close-by supernova in the Large Magellanic Cloud (LMC) that occured in February 1987~\sidecite{Kunkel1987}.
-
-Since Kepler's supernova almost 500 years ago\sidenote{A Type Ia supernova (see below) that occured in 1604 in the Milky Way}, \textbf{\emph{SN1987a}} was the first supernova observable by the naked eye alone, with an impressive brightness of $3-4$ mag due to its proximity~\sidecite{Spurio2018}.\ \emph{SN1987a} was the core-collapse of \emph{Sanduleak-69202}, a blue supergiant, resulting in a Type IIP supernova\sidenote{Though the rise instead of a plateau phase within its light curve gave it its own class, \emph{SN1987A}-likes~\cite{Arcavi2017}.}~\sidecite{Utrobin2021}. After the optical detection of the source the neutrino detectors Kamiokande-II, Irvine-Michigan-Brookhaven (IMB) and the Baksan Neutrino Observatory (BNO) \textbf{found a burst of neutrinos predating the light from the supernova by 3 hours}~\sidecite{Hirata1987,Bionta1987}.
-
-In total, 25 neutrinos were detected by the three instruments (had IceCube already been operational in 1987, it should have detected \num{\sim13000} neutrinos~\sidecite{Halzen2017}). These rates were in agreement with theoretical models for core-collapse supernovae, assuming that \SI{99}{\percent} of the supernova energy is released in the form of neutrinos of all flavors.
-
 \begin{marginfigure}
     \includegraphics{theory/sn1987a_flux.pdf}
     \caption[Neutrinos from \emph{SN1987a}]{The neutrinos from \emph{SN1987a}, as measured by Kamiokande-II, IMB and BNO (Baksan). Figure\ adapted from~\cite{Grupen2005}.}
     \labfig{sn1987a_flux}
 \end{marginfigure}
+
+Fig.~\ref{fig:solar_neutrino_flux} also shows that the predicted flux cuts off around \SI{\sim10}{\mega\eV}, so only low-energy neutrinos are expected from the sun and similar stars.
+
+\subsection{Supernovae}\label{sne}
+Only with the first \textbf{extragalactic neutrino source} the era of neutrino astronomy truly began. This source was \emph{SN1987a}, an extremely close-by supernova in the Large Magellanic Cloud (LMC) that occured in February 1987~\sidecite{Kunkel1987}.
+
+Since Kepler's supernova almost 500 years ago\sidenote{It was a Type Ia supernova (see below) that occured in 1604 in the Milky Way.}, \textbf{\emph{SN1987a}} was the first supernova observable by the naked eye alone, with an impressive brightness of $3-4$ mag due to its proximity~\sidecite{Spurio2018}.\ \emph{SN1987a} was the core-collapse of \emph{Sanduleak-69202}, a blue supergiant, resulting in a Type IIP supernova\sidenote{Though the rise instead of a plateau phase within its light curve gave it its own class, \emph{SN1987A}-likes~\cite{Arcavi2017}.}~\sidecite{Utrobin2021}. After the optical detection of the source the neutrino detectors Kamiokande-II, Irvine-Michigan-Brookhaven (IMB) and the Baksan Neutrino Observatory (BNO) \textbf{found a burst of neutrinos predating the light from the supernova by 3 hours}~\sidecite{Hirata1987,Bionta1987}, see also Fig.~\ref{fig:sn1987a_flux}.
+
+In total, 25 neutrinos were detected by the three instruments (had IceCube already been operational in 1987, it should have detected \num{\sim13000} neutrinos~\sidecite{Halzen2017}). These rates were in agreement with theoretical models for core-collapse supernovae, assuming that \SI{99}{\percent} of the supernova energy is released in the form of neutrinos of all flavors.
 
 Historically, supernovae are \textbf{classified according to the presence of lines in their spectra}.\ \textbf{SNe of Type I} lack hydrogen lines, in contrast to \textbf{Type II SNe} which do show hydrogen lines. Non-hydrogen SNe are further subdivided into \textbf{SNe Ia} that display silicon lines, \textbf{SNe Ib} that do not display silicon lines, but helium lines, and \textbf{SNe Ic} that have neither.
 
@@ -174,28 +175,29 @@ It has to be noted though that the exact mechanism the neutrinos play in the SN 
 
 Now, there might also be more energetic neutrinos. But as these are thought to be produced during the same processes as \textbf{cosmic rays}, high-energy neutrinos are \textbf{intricately linked} to them. Therefore, one first needs a basic understanding of cosmic rays to understand high-energy neutrino production.
 
-\subsection{Discovery}
-
 \begin{marginfigure}
     \includegraphics{theory/hess_balloon.png}
     \caption[Hess in his balloon]{Hess in his balloon after landing in Brandenburg, Germany in 1912, having just discovered cosmic rays. From~\cite{Steinmaurer1985}.}
     \labfig{hess_balloon}
 \end{marginfigure}
 
+\subsection{Discovery}
+
 Cosmic rays were discovered in 1912 by Victor Hess. At the time, it had already been discovered that electroscopes --- devices measuring electric charge and voltage --- sometimes suddenly discharged. This was attributed to particles ionizing the air in the vessel, making it conductive and therefore allowing it to discharge. This was corroborated by the fact that reduced air pressure would slow the speed of the discharge. Another hint was that when shielding the isolated vessel, the ionization would decrease. The source of these ionizing particles was unknown, though.
 
 Hess measured the flux of ionizing radiation with three electrometers during several balloon journeys. In total, he carried out 10 balloon ascents in the period of 1911--1913. The first ascent over \SI{5}{\km} in August 1912 marked the discovery of cosmic rays, when he registered a 16-fold increase in ionization measured by the electrometers at that height. Hess consequently concluded that the ionizing radiation must be of extra-terrestrial origin~\sidecite{Steinmaurer1985}.
-
-\subsection{Composition and Energy Spectrum}
-More than 100 years later, we know that this ionizing radiation consists of particles, spanning a broad range of energies. These particles are mostly protons, but all stable charged particles and nuclei with lifetimes of $\mathcal{O}(\SI{e6}{\year})$ can be found; most prominently protons, electrons, helium, but also e.g.\ carbon, oxygen and iron~\sidecite{Workman2022}.
-
-As can be seen in Fig.~\ref{fig:cr_spectrum}, the cosmic ray spectrum spans a wide range of energies, from a few \unit{\mega\eV} up to \SI{e21}{\eV} (\unit{\zetta\eV}), with the high end of the energy spectrum constituting Ultra High-Energy Cosmic Rays (UHECR).
 
 \begin{marginfigure}
     \includegraphics{theory/cr_spectrum.pdf}
     \caption[Cosmic ray spectrum]{Cosmic ray spectrum, as seen by a range of experiments. From~\cite{Hillas2006}.}
     \labfig{cr_spectrum}
 \end{marginfigure}
+
+\subsection{Composition and Energy Spectrum}
+
+More than 100 years later, we know that this ionizing radiation consists of particles, spanning a broad range of energies. These particles are mostly protons, but all stable charged particles and nuclei with lifetimes of $\mathcal{O}(\SI{e6}{\year})$ can be found; most prominently protons, electrons, helium, but also e.g.\ carbon, oxygen and iron~\sidecite{Workman2022}.
+
+As can be seen in Fig.~\ref{fig:cr_spectrum}, the cosmic ray spectrum spans a wide range of energies, from a few \unit{\mega\eV} up to \SI{e21}{\eV} (\unit{\zetta\eV}), with the high end of the energy spectrum constituting Ultra High-Energy Cosmic Rays (UHECR).
 
 The UHECR part of the spectrum is shown in Fig.~\ref{fig:uhecr_spectrum}. It can be described by a series of power laws with different spectral indices, i.e. $E^{-\gamma}$, with $\gamma$ being the spectral index. The UHECR spectrum shows several interesting features, dubbed the Knee, the anatomically challenging Second Knee, and the Ankle. These are the points where the spectral index changes, and which are possibly associated with a transition to a new source class, e.g.\ from galactic to extragalactic sources around the ankle (see~\sidecite{Taylor2016}). This is still an active field of research~\cite{Workman2022}.
 
@@ -371,11 +373,11 @@ Meanwhile, \textbf{long GRBs} are hypothesized to be the signatures of \textbf{j
 
 Both short and long GRBs have been proposed as potential sources of high-energy neutrinos. For short GRBs, neutrinos are only attributable to a source if a GRB afterglow is detected, i.e.\ longer lasting X-ray, optical and radio emission~\sidecite{Waxman1997}. The event signature as accessible by IceCube and ZTF (see next two chapters) would be a prompt high-energy neutrino coincident with the gamma-ray signal, accompanied by optical emission quickly fading over the subsequent days.
 
-\begin{figure}[htb]
-    \includegraphics[width=1\textwidth]{theory/grb_model.pdf}
+\begin{figure*}[htb]
+    \includegraphics[width=1.4\textwidth]{theory/grb_model.pdf}
     \caption[High-energy neutrinos from GRBs]{Concordance scenario for neutrinos from failed, semi-failed and successful jets launched by CCSNe.\ \textbf{Left}: The jet fails to punch through the environment, resulting in orphan neutrinos from the jet without any photons (no GRB).\ \textbf{Middle}: Here, the jet fails too, but triggers a shock breakout, resulting in a second wave of neutrinos, accompanied by a low-luminosity gamma-ray signal (low-luminosity GRB).\ \textbf{Right}: The jet launches successfully, generating prompt neutrinos accompanied by gamma-rays (long GRB). Adapted from~\cite{Senno2016}.}
     \labfig{grb_model}
-\end{figure}
+\end{figure*}
 
 Long GRBs on the other hand are also predicted to produce high-energy neutrinos~\sidecite{Meszaros2001}. One needs to distinguish three different scenarios, as illustrated in Fig.~\ref{fig:grb_model}:
 \begin{description}
@@ -401,20 +403,19 @@ Today we assume that most galaxies contain a SMBH at their center. If the accret
 
 As can be seen in Fig.~\ref{fig:agn_unification}, these systems are thought to contain a SMBH in the center. The black hole is fed by a surrounding accretion disk of hot material, which in turn is enshrouded in a dusty torus.
 
-Perpendicular to the accretion disk, often \textbf{energetic jets of relativistic material} are launched from the system. When one looks directly into the jet, the system appears as \textbf{blazar} (top of~\ref{fig:agn_unification}). If one moves away from the jet direction, the AGN will in general appear as Type I AGN, displaying broad emission lines stemmming from the so-called \textbf{Broad-Line Region} (BLR), lying at a distance of \SIrange{e-2}{1}{\parsec} to the SMBH. It consists of gas clouds, and the Doppler-induced line-broadening suggests high velocities, resulting from the fact that the material is deep within the gravitational well of the SMBH.
-
 \begin{marginfigure}
     \includegraphics{theory/m87.jpg}
     \caption[M87 jet]{Hubble Space Telescope composite image of the jet launched by the AGN within M87, \SI{17}{\mega\parsec} away. Image credit: NASA/Hubble Heritage Team}
     \labfig{m87_jet}
 \end{marginfigure}
 
+Perpendicular to the accretion disk, often \textbf{energetic jets of relativistic material} are launched from the system. When one looks directly into the jet, the system appears as \textbf{blazar} (top of~\ref{fig:agn_unification}). If one moves away from the jet direction, the AGN will in general appear as Type I AGN, displaying broad emission lines stemmming from the so-called \textbf{Broad-Line Region} (BLR), lying at a distance of \SIrange{e-2}{1}{\parsec} to the SMBH. It consists of gas clouds, and the Doppler-induced line-broadening suggests high velocities, resulting from the fact that the material is deep within the gravitational well of the SMBH.
+
 Moving further away from the jet, one gradually moves into the Type II AGN class: The BLR close to the core gets hidden behind the dust torus, and only the  \textbf{Narrow-Line Region} (NLR) is still visible, as it is more distant from the core (\SIrange{e2}{e4}{\parsec}). Also here, gas heated by the core radiates, but the gas density is lower compared to the BLR, and from the line-broadening one can infer much lower velocities of \SI{\sim500}{\kilo\m\per\s}~\sidecite{Beckmann2012}.
 
 If a jet is present, the AGN strongly emits in radio wavelengths. This is caused by the synchrotron emission of highly relativistic electrons. These AGN were labeled `radio loud', in contrast to `radio quiet' AGN without a jet.
 
-AGN have been proposed as sources of high-energy neutrinos as early as the 1970s~\sidecite{Eichler1979}.
-The most promising site of high-energy neutrino production is the relativistic jet. In some cases such jets can be visually detected, like the prominent jet visible in M87 (see Fig~\ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. Only a minority \SIrange{10}{20}{\percent} of observed AGN show evidence of such jets\sidenote{The intrinsic fraction of jetted AGN is considerably lower, with \SIrange{0.1}{0.2}{\percent}.}~\sidecite{Padovani2010}.
+AGN have been proposed as sources of high-energy neutrinos as early as the 1970s~\sidecite{Eichler1979}. The most promising site of high-energy neutrino production is the relativistic jet. In some cases such jets can be visually detected, like the prominent jet visible in M87 (see Fig~\ref{fig:m87_jet}). Jets are thought to be highly collimated, extremely energetic plasma structures launched from the accretion disk. Only a minority \SIrange{10}{20}{\percent} of observed AGN show evidence of such jets~\sidecite{Padovani2010}. Note that the intrinsic fraction of jetted AGN is considerably lower, with an estimate of \SIrange{0.1}{0.2}{\percent}.
 
 When the electrons and protons contained in the jet plasma are clumped together in relativistically moving `blobs' and are spinning in magnetic fields, they emit synchrotron radiation~\sidecite{Combes2021}. This is the usual explanation for the first hump in a typical blazar spectral energy distribution (SED).
 
@@ -432,13 +433,15 @@ TDEs have already been predicted in the 1970s~\sidecite{Hills1975}, and the firs
 
 TDEs normally emit a continuous spectrum that can be well approximated by a blackbody. Peculiarly, there seems to be a somewhat bimodal distribution of blackbody temperatures: One optical/UV population, and a second population peaking in the X-ray, better described by blackbodies of higher temperature~\cite{Gezari2021}.
 
+As the accretion disk hypothesized  to form from the infalling material after the disruption will most likely be very hot, it is unclear what the cause of the optical/UV emission is. Furthermore, the blackbody radii inferred from the optical/UV emission exceed the size of the freshly formed accretion disk by $1-2$ orders of magnitude.
+
 \begin{marginfigure}
     \includegraphics{theory/tde_cumulative.pdf}
     \caption[TDE detections]{Cumulative number of TDE detections, with the color encoding the discovery wavelength. The relative increase in the detection rate is driven by ZTF\@. Adopted from~\cite{Gezari2021}.}
     \labfig{tde_cumulative}
 \end{marginfigure}
 
-As the accretion disk hypothesized to form from the infalling material after the disruption will most likely be very hot, it is unclear what the cause of the optical/UV emission is. Furthermore, the blackbody radii inferred from the optical/UV emission exceed the size of the freshly formed accretion disk by $1-2$ orders of magnitude. To date, multiple models have been brought forward to motivate the optical/UV emission, such as semi-relativistic outflows or winds, or diffusive shock acceleration stemming from the tidal stream intersecting itself~\cite{Gezari2021}.
+To date, multiple models have been brought forward to motivate the optical/UV emission, such as semi-relativistic outflows or winds, or diffusive shock acceleration stemming from the tidal stream intersecting itself~\cite{Gezari2021}.
 
 If the material from the disrupted star is circularized rapidly, one interesting approach to unify the two populations (X-ray vs.\ optical/UV) is a viewing angle dependent model, akin to the unified AGN model presented in Section~\ref{agn}.
 
@@ -526,13 +529,15 @@ However, a more recent study correlating this set of jetted AGN with the IceCube
 
 The picture changes significantly when looking at \textbf{non-jetted AGN}: A recent study found a \SI{2.6}{\sigma} excess when correlating an infrared-selected subpopulation of non-jetted AGN with the astrophysical neutrino flux~\sidecite{Abbasi2022c}. The accretion disk luminosity of the AGN was estimated with the soft X-ray flux, and the source neutrino flux was weighted by that. The AGN population was selected based on their radio emission and infrared colors, and the \SI{2.6}{\sigma} excess (post trial) was obtained from the infrared-selected sample of 32249 AGN\@.
 
+If this excess is interpreted as constituting a physical signal, it contributes $10^{+5}_{-4} ~\%$ of the diffuse flux at \SI{100}{\tera\eV}, see Fig.~\ref{fig:agn_ir_contrib}.
+
 \begin{marginfigure}
     \includegraphics{theory/agn_ir.pdf}
     \caption[Non-jetted AGN]{Contribution of non-jetted AGN to the diffuse IceCube neutrino flux. The best-fit power law muon neutrino flux is shown in blue, corrected for completeness. Adapted from~\cite{Abbasi2022c}.}
     \labfig{agn_ir_contrib}
 \end{marginfigure}
 
-If this excess is interpreted as constituting a physical signal, it contributes $10^{+5}_{-4} ~\%$ of the diffuse flux at \SI{100}{\tera\eV}, see Fig.~\ref{fig:agn_ir_contrib}. Correcting for completeness, \SIrange{27}{100}{\percent} of the observed \SI{100}{\tera\eV} neutrinos \textbf{could stem from particle acceleration within the accretion disks or coronae of AGN}~\cite{Abbasi2022c}.
+Correcting for completeness, \SIrange{27}{100}{\percent} of the observed \SI{100}{\tera\eV} neutrinos \textbf{could stem from particle acceleration within the accretion disks or coronae of AGN}~\cite{Abbasi2022c}.
 \todo{buson paper}
 % https://arxiv.org/pdf/2306.09018.pdf
 

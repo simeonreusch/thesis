@@ -1,5 +1,6 @@
 \setchapterimage[7cm]{nuclear/nuclear_sample_cutouts.png}
 \chapter{The Nuclear Sample}\label{nucsam}
+\labch{nuclear}
 Motivated\marginnote{Cutouts of several transients in the nuclear sample, as seen in the ZTF \textit{g}-band near optical peak.} by the three neutrinos coincident with accretion phenomena in the cores of active galaxies, it will be instructive to create a systematic sample of nuclear transients in the ZTF footprint. Furthermore, with the advent of a deep high-cadence sky surveys in the form of the Legacy Survey of Space and Time (LSST, hosted by the Vera C. Rubin Observatory)~\sidecite{Ivezic2019} in the near future, photometric identification of transients will be crucial.
 
 The rate of transients detected by LSST will by far exhaust the available spectroscopic resources, thus requiring informed decisions about when to rely on spectroscopy for classification and characterization. The vast majority of LSST-detected transients will either be photometrically classified, or not classified at all. Therefore, photometrically classifying the ZTF nuclear transients can serve as a precursor study to LSST-era astronomy.
@@ -402,8 +403,17 @@ The set of features used for training was the following:
         where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
 
+\section{Evaluating the Model}
+As a large fraction of the nuclear sample was unclassified --- this is why we needed a classifier in the first place --- evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A part of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a \textbf{test set}.
+
+\subsection{Strict Separation of Training and Test}
+One pitfall needs to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
+
+\subsection{Performance}
+The performance of the model can be seen in Fig.\xx.
+
 \section{Finding candidate TDEs}
-Besides a full classification of the nuclear sample, another purpose of the classifier is to obtain a \textbf{selection of candidate TDE with high purity}.
+Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
 
 The traditional method of selecting TDE candidates is comprised of a sequence of \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). One way of increasing the purity of the machine-learning selected TDE is by defining such a set of visual cuts by studying the BTS sample, and applying the very same cuts to the nuclear sample.
 %  To get a handle on the results of the machine learning classification and \textbf{evaluate the discriminatory power} of the features in an independent way, a similar approach was chosen here.
@@ -425,8 +435,9 @@ An overview over the sample after subsequent application of these cuts, as well 
 \end{description}
 
 \subsection{Results}
-Before all cuts, only requiring TDE model fit success, the sample consists of 4094 transients, of which 64 are TDE. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
+Before all cuts, only requiring the TDE model fit to succeed, the sample consists of 4094 transients, of which 64 are TDEs. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
 
+\subsubsection{All Cuts Combined}
 The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection efficiency of \SI{48.4}{\percent}, i.e.~roughly half of the TDE survive all cuts. These numbers are somewhat promising, as objects lying within the final selection \textbf{have a 4 in 5 chance of correctly being identified as TDE}, while only sacrificing half the TDE population. Of course, there is always a trade-off between efficiency and purity, and a program designated to maximizing the number of TDEs discovered might accept a lower purity.
 
 The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:efficiency_purity}.
@@ -436,7 +447,9 @@ The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:e
     \caption[Visual TDE selection]{Efficiency (green line) and purity (magenta, dash-dot) of the visual TDE selection. The cut stages are shown on the x-axis, with each new cut added on top of all previous cuts.}
     \labfig{efficiency_purity}
 \end{figure}
-To estimate the individual selection power of the different cuts, these were also applied singularly, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}. When using the ratio between purity gain and efficiency loss as a figure of merit, the \texttt{sgscore} cut is the best. When applied to the nuclear sample though, it will not improve things like here for the BTS, as the nuclear sample by construction already includes this cut. The next best ones are the core distance cut (also this is already incorporated in the nuclear sample), and the diagonal rise-decay time based SN Ia cut.
+
+\subsubsection{Independent Cuts}
+To estimate the individual selection power of the different cuts, these were also applied independently, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}. When using the ratio between purity gain and efficiency loss as a figure of merit, the \texttt{sgscore} cut is the best. When applied to the nuclear sample though, it will not improve things like here for the BTS sample, as the nuclear sample by construction already includes this cut. The next best ones are the core distance cut (also this is already incorporated in the nuclear sample), and the diagonal rise-decay time based SN Ia cut.  The \textit{WISE} color cut and the Milliquas cut have basically no effect, which is not surprising the heavy bias against AGN of the Bright Transient Survey. The $\chi^2$ and temperature cuts seem to work fine, while the rise-/decay-time based cut and the one flare requirement seem to underperform.
 
 \begin{figure}[htb]
     \centering
@@ -480,7 +493,7 @@ To estimate the individual selection power of the different cuts, these were als
         \centering
         \includegraphics[width=1\textwidth]{nuclear/scatter/tde_rise_decay_['nocut', 'milliquas_noagn', 'wise_noagn', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes'].pdf}
     \end{subfigure}
-    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey (augmented with additional TDEs). These are displayed in the rise- and decay-time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDEs (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied except requiring TDE fit success (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
+    \caption[BTS selection]{Visual selection of TDEs among the classified objects of the Bright Transient Survey (augmented with additional TDEs). These are displayed in the rise- and decay-time plane, as derived from the TDE fit (see Section~\ref{tde_model}). From top to bottom and left to right, more and more cuts are added.\newline \newline All classes also used in the training of the classifier are shown. These were TDEs (red stars), SNe Ia (green diagonal crosses), non-Ia SNe (purple squares), AGN (brown hexagons), other types (orange circles), and unclassified objects (blue crosses).\newline \newline \textbf{Top row}: No cuts applied (1a) and the Milliquas-based AGN veto (1b).\newline \newline \textbf{Second row}: AGN cut based on \textit{WISE} colors (2a) and cut based on the core distance (2b).\newline \newline \textbf{Third row}: The \texttt{sgscore} is required to lie below 0.3 (3a) and SNe Ia are removed by a diagonal cut in the rise-/decay time plane (3b)\newline \newline \textbf{Fourth row}: The temperature and temperature evolution were restricted (4a), as were the rise and decay times (4b). \newline \newline \textbf{Bottom row}: Finally, it was required that the TDE model was a better fit than the SALT2 model by requiring the reduced $\chi^2$ of the TDE fit to be smaller than the SALT2 fit's $\chi^2$ (5a), and that the transient light curve had exactly 1 flare (5b).}
     \labfig{bts_scatter}
 \end{figure}
 
@@ -503,6 +516,6 @@ To estimate the individual selection power of the different cuts, these were als
         \textbf{$\chi^2$}          & 3.6             & 92.2                & 127.4              & 7.8                 & 16.3           \\
         \textbf{One flare}         & 2.2             & 82.8                & 43.7               & 17.2                & 2.5            \\
     \end{tabular}
-    \caption[BTS visual cuts]{All cuts applied to the BTS to single out TDEs, applied individually. \textbf{Purity} is the fraction of TDE compared to all remaining objects after the cut, while \textbf{efficiency} is the percentage of TDEs retained by the cut. The purity and efficiency gain are computed with respect to no cuts applied, while the \textbf{ratio} serves as a figure of merit and simply is efficiency divided by purity.}
+    \caption[BTS visual cuts]{All cuts applied to the BTS to single out TDEs, applied individually. \textbf{Purity} is the fraction of TDE compared to all remaining objects after the cut, while \textbf{efficiency} is the percentage of TDEs retained by the cut. The \textbf{purity gain} and \textbf{efficiency loss} are computed with respect to no cuts applied, while the \textbf{ratio} serves as a figure of merit and simply is efficiency divided by purity.}
     \label{tab:visual_selection}
 \end{table}
