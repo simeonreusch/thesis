@@ -12,11 +12,11 @@ Given the limit observational time at our disposal, we are only sensitive to a s
 
 \begin{description}
     \item[Optical AGN flares] As we are decidedly an optical and time-domain program, we restrict ourselves to AGN (including blazar) undergoing significant optical flaring activity around the time of neutrino detection.
-    \item[CCSNe] We are sensitive to the subtypes of CCSNe that have been proposed as potential high-energy neutrino sources, i.e. CCSNe with signs of CSM interaction, and CCSNe that launch jets. The contamination by SNe Ia and the need to determine the exact type of CCSN demand spectroscopic follow up (see Section~\ref{spec_resources}).
+    \item[CCSNe] We are sensitive to the subtypes of CCSNe that have been proposed as potential high-energy neutrino sources, i.e. CCSNe with signs of CSM interaction, and CCSNe that launch jets. This class is heavily contaminated by SNe Ia. Because of this, and because not all types of CCSNe are predicted to emit neutrinos, the exact type of CCSN needs to be determined with spectroscopic follow up (see Section~\ref{spec_resources}).
     \item[Short and long GRBs] We are both sensitive to jets launched by CCSNe (long GRBs) and binary mergers (sGRB), given they are optically detectable. Both the emerging CCSN, as well as the rapidly fading red optical emission by sGRBs are good signatures to test, though the sGRB afterglow might evolve too quickly for us to catch it.
     \item[TDEs] Lastly, we are also sensitive to TDEs. Due to the significant model uncertainties, we do not restrict ourselves in terms of how old the TDE must be at the time of neutrino detection, given it is still active.
 \end{description}
-
+All other possible sources are not captured by this follow-up program, because they are either too quickly evolving (sGRBs might fall under this category), too faint, or the neutrino emission might not be correlated to optical emission.
 
 \section{Alert Cuts}\label{alert_cuts}
 Two factors motivate imposing additional cuts on the alert stream received via GCN notices: We only have limited telescope time, and too large uncertainty areas would result in the significance of potential counterparts dropping too much. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: \textbf{Gold alerts} with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts), and \textbf{bronze alerts} with an average purity of \SI{30}{\percent} (\SI{64}{\percent}).
@@ -166,7 +166,9 @@ The fit results are stored as \texttt{csv} files and returned either via Slack c
 \section{Spectroscopic Resources}\label{spec_resources}
 To classify promising counterpart candidates, the author's group has successfully submitted proposals for \textbf{spectroscopic resources} during the run of the neutrino follow-up program. Several of these proposals were led by the author.
 
-The instruments that were available to author's group for ToO observations during the last four years comprised SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter})~\sidecite{Djupvik2010}, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter})~\sidecite{Mancini1997}, the Gemini Multi-Object Spectrograph (GMOS-N)~\sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}), the Multi-Object Double Spectrograph (MODS)~\sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}), the Low-Resolution Imaging Spectrometer (LRIS)~\sidecite{Oke1995} on the W. M. Keck Observatory (Keck, \SI{10}{\meter}) and the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS)~\sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}).
+The instruments that were available to the author's group for ToO observations during the last four years comprised the following instruments, in ascending order with respect to mirror size:
+
+SEDM on the Palomar P60 telescope (\SI{1.5}{\meter}), the Alhambra Faint Object Spectrograph and Camera (ALFOSC) on the Nordic Optical Telescope (NOT, \SI{2.6}{\meter})~\sidecite{Djupvik2010} on La Palma, the Device Optimized for the LOw RESolution (Dolores) on the Telescopio Nazionale Galileo (TNG, \SI{3.6}{\meter})~\sidecite{Mancini1997}, also on La Palma, the Gemini Multi-Object Spectrograph (GMOS-N)~\sidecite{Hook2004} on the Gemini North Telescope (\SI{8.1}{\meter}) in Hawaii, Multi-Object Double Spectrograph (MODS)~\sidecite{Pogge2010} on the Large Binocular Telescope (LBT, 2x\SI{8.4}{\meter}) in Arizona, the Low-Resolution Imaging Spectrometer (LRIS)~\sidecite{Oke1995} on the W. M. Keck Observatory (Keck, \SI{10}{\meter}) in Hawaii and lastly the Optical System for Imaging and low-Intermediate-Resolution Integrated Spectroscopy (OSIRIS)~\sidecite{Cepa2003} on the Gran Telescopio Canarias (GTC, \SI{10.4}{\meter}) on La Palma.
 
 The image reduction pipelines used were either custom routines provided by the instrument facility, \texttt{pyraf}\sidenote{\url{https://github.com/iraf-community/pyraf}}, a Python wrapper to IRAF~\sidecite{Tody1986}, or \texttt{pypeit}~\sidecite{Prochaska2020}, a Python-based reduction package. The latter was used for NOT/ALFOSC, TNG/Dolores, Gemini/GMOS-N, LBT/MODS and GTC/OSIRIS, while \texttt{pyraf} was used for Keck/LRIS.
 
@@ -241,7 +243,7 @@ We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectr
 
 The proximity of the source to the nucleus of its host galaxy stipulated a TDE origin~\sidecite{IC210629A2}. To classify the transient, we triggered two \SI{750}{\second} observations with Gemini/GMOS-N and reduced the spectrum with \texttt{pypeit}.
 
-The spectrum showed features typical for AGN, most importantly broad Balmer lines ($\text{H}_\alpha$, $\text{H}_\beta$ and $\text{H}_\gamma$). These allowed also to infer a redshift of $z=0.194$~\sidecite{IC210629A3}. As there was no contemporaneous flaring activity in the optical light curve, we ruled out this candidate as \textbf{regular AGN activity}\todo{need small section on FU classes at the beginning}.
+The spectrum showed features typical for AGN, most importantly broad Balmer lines ($\text{H}_\alpha$, $\text{H}_\beta$ and $\text{H}_\gamma$). These allowed also to infer a redshift of $z=0.194$~\sidecite{IC210629A3}. As there was no contemporaneous flaring activity in the optical light curve, we ruled out this candidate as \textbf{regular AGN activity}.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF21abecljv_spectrum.pdf}

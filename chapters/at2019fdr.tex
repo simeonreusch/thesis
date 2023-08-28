@@ -192,7 +192,7 @@ The host model was subsequently subtracted from all measurements possibly contai
 \section{SED Blackbody Modeling}
 After compiling and reducing the individual light curve measurements, a physical model motivating the detected light needed to be applied.
 
-To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e.\ a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The \textbf{double blackbody model matched the observations best}. In the following, I will detail the derivation of this model and the energy output of the system derived from this, including a discussion of dust extinction.
+To explain the SED, we experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e.\ a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The \textbf{double blackbody model matched the observations best}. In the following, the derivation of this model and the energy output of the system derived from this will be detailed, including a discussion of dust extinction.
 
 \subsection{Fit Epochs}
 First, we isolated \textbf{three regions of interest}. These comprised (1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch (2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch (3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
@@ -396,7 +396,7 @@ After the publication of our paper on \emph{AT2019fdr}, the transient underwent 
 
 Interestingly, also \emph{PS1--10adi} showed late-stage rebrightening~\cite{Jiang2019}. For this transient, the authors discussed a variety of causes for this. They concluded that late-stage accretion was unlikely, based on the different properties of the dust echoes of the initial flare and the rebrightening. They also discard interaction between the debris and the SMBH torus, based on the fact that the complete conversion of the unbound debris' orbital energy was insufficient to explain the brightness of the rebrightening. Instead, they favor a scenario where a mildly relativistic outflow from the TDE is responsible for the rebrightening~\cite{Jiang2019}.
 
-It remains an open question if the long-lasting rebrightening of \emph{AT2019fdr} can be explained by such an outflow. One could also hypothesize that a perturbation in the accretion disk, triggered by the TDE, is responsible for the increased optical flux (see e.g.~\sidecite{Ricci2022}).\todo{ask Walter or Sjoert}
+It remains an open question if the long-lasting rebrightening of \emph{AT2019fdr} can be explained by such an outflow. One could also hypothesize that a perturbation in the accretion disk, triggered by the TDE, is responsible for the increased optical flux (see e.g.~\sidecite{Ricci2022}).
 
 \subsection{Additional Evidence}
 As already discussed in Section~\ref{x_ray_obs}, \emph{AT2019fdr} was detected by \textit{SRG}/eROSITA on the first visit with an unusually soft thermal spectrum of \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}. As AGN X-ray spectra are \textbf{rarely soft}~\sidecite{Saxton2020}, this can be \textbf{counted as evidence in favor of the TDE interpration}.
@@ -408,7 +408,7 @@ The dust echo (see Section~\ref{dust_echo}) we found, together with the energy b
 \section{Chance Coincidence}
 To compute the \textbf{chance coincidence} of observing a TDE comparable to \emph{AT2019fdr} in spatial and temporal coincidence with a high-energy neutrino, we created a sample of TDEs and candidate TDEs of comparable or higher brightness.
 
-The sample from which these sources were selected was the full sample of nuclear transients as selected by a filter implemented in \texttt{AMPEL} (see Section~\ref{ampel}). This filter required at least 10 detections in both the \textit{g}- and the \textit{r}-band. Additionally, we required a weighted maximum distance of the flare to its host of $\leq \SI{0.5}{\arcsecond}$, and that most datapoints had positive flux after subtraction of the reference image. A detailed discussion of the nuclear filter applied will be provided in the next chapter.\todo{ref}
+The sample from which these sources were selected was the full sample of nuclear transients as selected by a filter implemented in \texttt{AMPEL} (see Section~\ref{ampel}). This filter required at least 10 detections in both the \textit{g}- and the \textit{r}-band. Additionally, we required a weighted maximum distance of the flare to its host of $\leq \SI{0.5}{\arcsecond}$, and that most datapoints had positive flux after subtraction of the reference image. A detailed discussion of the nuclear filter applied can be found in Section~\ref{nuclear_filter}.
 
 We restricted the dataset to transients first detected after January 1, 2018 to ensure that all of them had high-quality reference images. We also required the transients to have peaked before July 2020; 3172 flare candidates remained after these cuts.
 

@@ -94,7 +94,7 @@ In total, approximately 5800 DOM units were built and tested, 300 failing tests 
 
 The instrumented part of the strings starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig.~\ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig.~\ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The \textbf{total instrumented volume} of glacial ice is thus \SI{1}{\km\cubed}~\cite{Aartsen2017}. Of the 5160 deployed DOMs, 92 are dead as of March 2023, a loss of \SI{1.7}{\percent}\sidenote{This is better than the predicted failure percentage, which was projected to be \SI{2}{\percent} by 2023~\cite{Aartsen2017}.}.
 
-One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold\todo{What's the normal energy threshold?} of \SI{10}{\GeV}. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs~\cite{Aartsen2017}.
+One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is \textit{DeepCore}, designed to have a lower energy threshold of \SI{10}{\GeV}, a significant improvement over the \SI{100}{\GeV} for the rest of the detector. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs~\cite{Aartsen2017}.
 
 
 \subsection{Deployment}
@@ -109,13 +109,14 @@ The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water h
 \end{figure}
 
 \subsection{The IceTop Surface Array}
-In addition to the in-ice detector, IceCube has a \textbf{surface air shower detector} for cosmic-ray physics\sidenote{See Section~\ref{cosmic_rays}.}, named IceTop. It was designed to study the cosmic-ray mass composition by correlating the energy it measures on the surface with the energy deposited by muons in the ice as measured by the in-ice detector~\sidecite{Abbasi2013}. The energy sensitivity range of IceTop is \SI{300}{\tera\eV} to \SI{1}{\exa\eV}~\sidecite{Aartsen2013a}.
 
 \begin{marginfigure}
     \includegraphics{ic/ic_icetop.pdf}
     \caption[IceTop detector]{IceTop surface Cherenkov detector tank. From~\cite{Abbasi2013}.}
     \labfig{ic_icetop}
 \end{marginfigure}
+
+In addition to the in-ice detector, IceCube has a \textbf{surface air shower detector} for cosmic-ray physics\sidenote{See Section~\ref{cosmic_rays}.}, named IceTop. It was designed to study the cosmic-ray mass composition by correlating the energy it measures on the surface with the energy deposited by muons in the ice as measured by the in-ice detector~\sidecite{Abbasi2013}. The energy sensitivity range of IceTop is \SI{300}{\tera\eV} to \SI{1}{\exa\eV}~\sidecite{Aartsen2013a}.
 
 The IceTop surface array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two standard IceCube DOMs (see Section~\ref{DOM})~\cite{Abbasi2013} which are operated at two different gain levels to increase the dynamic range.
 
@@ -173,13 +174,13 @@ Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x
 \subsection{Parametrization}
 \begin{figure}[htb]
     \includegraphics[width=0.6\textwidth]{ic/amanda_reco.pdf}
-    \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction. Adapted from~\cite{Ahrens2004}.}
+    \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction, describing the trajectory of a muon (red line) with energy $E_0$ that is in position $\vec{r_0}$ at time $t_0$, traveling towards direction $\vec{p}$. Cherenkov light from that muon is detected by a DOM at position $\vec{r_i}$ at distance $d$ to the trajectory with a light travel time $t_\text{geo}$. Adapted from~\cite{Ahrens2004}.}
     \labfig{ic_reco_cherenkov}
 \end{figure}
 
-To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we \textbf{neglect stochastic photon losses}, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector are visualized in Fig.~\ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we \textbf{neglect stochastic photon losses}, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector is visualized in Fig.~\ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$.
 
-So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the Earth, centered on the detector surface and pointing southwards. An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels from the 90th Meridian East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
+So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the Earth, centered on the detector surface and pointing `southwards' (away from the Earth). An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels along the 90th Meridian from East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the \textit{track hypothesis}.
 
 Now, a DOM in the detector at position $\vec{r}_i$ at a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon traveling along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as
 
@@ -233,15 +234,16 @@ The basic idea is to create a \textbf{large lookup table of simulated minimally 
 \begin{equation}
     p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
 \end{equation}
-Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
-
-\subsection{\texttt{Millipede} Reconstruction}\label{millipede}
 
 \begin{marginfigure}
     \includegraphics[width=1\textwidth]{ic/ic_millipede_IC221124A.pdf}
     \caption[\texttt{Millipede} reconstruction of \emph{IC221124A}]{\texttt{Millipede} reconstruction of \emph{IC221124A}.}
     \labfig{ic_millipede}
 \end{marginfigure}
+
+Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
+
+\subsection{\texttt{Millipede} Reconstruction}\label{millipede}
 
 High-energy neutrino events that pass the realtime alert selection criteria (see Section~\ref{ic_alert_program}) are subjected to a more sophisticated algorithm, which uses the information from all the detected photons. This algorithm is dubbed \texttt{Millipede}. Due to its \textbf{high demand of computational resources} it is only run for selected events at the IceCube data center in Madison.
 
