@@ -436,7 +436,7 @@ The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:e
     \caption[Visual TDE selection]{Efficiency (green line) and purity (magenta, dash-dot) of the visual TDE selection. The cut stages are shown on the x-axis, with each new cut added on top of all previous cuts.}
     \labfig{efficiency_purity}
 \end{figure}
-To estimate the individual selection power of the different cuts, these were also applied singularly, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}.
+To estimate the individual selection power of the different cuts, these were also applied singularly, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}. When using the ratio between purity gain and efficiency loss as a figure of merit, the \texttt{sgscore} cut is the best. When applied to the nuclear sample though, it will not improve things like here for the BTS, as the nuclear sample by construction already includes this cut. The next best ones are the core distance cut (also this is already incorporated in the nuclear sample), and the diagonal rise-decay time based SN Ia cut.
 
 \begin{figure}[htb]
     \centering
@@ -503,6 +503,6 @@ To estimate the individual selection power of the different cuts, these were als
         \textbf{$\chi^2$}          & 3.6             & 92.2                & 127.4              & 7.8                 & 16.3           \\
         \textbf{One flare}         & 2.2             & 82.8                & 43.7               & 17.2                & 2.5            \\
     \end{tabular}
-    \caption[bla]{bla}
+    \caption[BTS visual cuts]{All cuts applied to the BTS to single out TDEs, applied individually. \textbf{Purity} is the fraction of TDE compared to all remaining objects after the cut, while \textbf{efficiency} is the percentage of TDEs retained by the cut. The purity and efficiency gain are computed with respect to no cuts applied, while the \textbf{ratio} serves as a figure of merit and simply is efficiency divided by purity.}
     \label{tab:visual_selection}
 \end{table}
