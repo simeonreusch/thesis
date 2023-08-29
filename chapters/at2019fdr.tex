@@ -436,13 +436,55 @@ where the sum is the cumulative distribution function of the Poisson distributio
 
 We have so far detailed the data reduction for \emph{AT2019fdr}, established that it likely was a TDE --- albeit an unusual one --- modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to \emph{AT2019fdr} is quite improbable.
 
-We now need to evaluate if there are models that render \emph{AT2019fdr} capable of producing the observed high-energy neutrino, and STUFF. This will be done in the next section.
+During the work on \textit{AT2019fdr}, another candidate emerged as a potential high-energy neutrino counterpart, also accompanied by a dust echo. This will be presented in the next Section (\ref{at2019aalc}).
 
-\section{Adding a Third Event: \textit{AT2019aalc}}
+\section{Adding a Third Event: \textit{AT2019aalc}}\label{at2019aalc}
 As both high-energy neutrino associated TDEs had prominent dust echoes, this prompted a search for other optical flares accompanied by a strong dust echo and in coincidence with high-energy neutrinos.
 
-Such a study found a third candidate counterpart, that so far was missed as its sky location was inaccessible to ZTF at the time of neutrino detection due to its proximity to the sun: \textbf{\textit{AT2019aalc}}, possible counterpart for neutrino \textit{IC191119A}~\cite{Velzen2021}.
+\subsection{Event Details}
+Such a study found a third candidate counterpart, that so far was missed as its sky location was inaccessible to ZTF at the time of neutrino detection due to its proximity to the sun: \textbf{\textit{AT2019aalc}}, possible counterpart for neutrino \textit{IC191119A}~\cite{Velzen2021}. It featured the largest dust echo luminosity of all three transients, while the dust echo strength as defined in~\cite{Velzen2021} is a bit lower due to pre-flare variability.
 
-In contrast to \textit{AT2019dsg} and \textit{AT2019fdr}, much less is known about \textit{AT2019aalc}. Early scanning discarded it as probable AGN activity (which it still could be), and was not studied further until it emerged as neutrino counterpart candidate many months later.
+In contrast to \textit{AT2019dsg} and \textit{AT2019fdr}, much less is known about \textit{AT2019aalc}. Early scanning discarded it as probable AGN activity (which it still could be), and was not studied further until it emerged as neutrino counterpart candidate many months later (the neutrino itself arrived about 5 months after optical peak). For this reason, no UV measurements or spectra were taken. This is why the classification as a TDE is a much more tentative one, but nevertheless compatible with the light curve.
 
-Table and cite~\sidecite{Reusch2023d}.
+\textit{AT2019aalc}'s peak \textit{g}-band luminosity was comparable to \textit{AT2019fdr} and it was also detected by \textit{SRG}/eROSITA on one visit. Like \textit{AT2019fdr} and \textit{AT2019dsg}, it displayed a \textbf{soft thermal spectrum} with a blackbody temperature of \SI{172\pm10}{\eV}; this counts as evidence favoring a TDE interpretation. Also, there was an archival radio detection by VLASS.
+
+The \textbf{chance coincidence} of finding three such dust-echo events in spatial and temporal coincidence with a high-energy neutrino was found to be $3.7\sigma$. The soft X-ray was not part of the initial selection criteria, but emerged ex post.
+
+\subsection{Comparing the Candidate Counterparts}
+Table~\ref{tab:comparison} shows a comparison of the relevant measurements and inferred quantities of the three events. One commonality is that the neutrino was significantly delayed with respect to the optical peak, by about 5--10 months. All were detected in X-rays with a low temperature, and all were accompanied by a prominent dust echo. There have been attempts to draw conclusions from these facts.
+
+\begin{table*}[htb]
+    \centering
+    \setlength{\tabcolsep}{12pt}
+    \begin{tabular}{c  c  c  c}
+        \textbf{Property}          & \textbf{AT2019dsg}        & \textbf{AT2019fdr}      & \textbf{AT2019aalc}    \\
+        \hline
+        TDE                        & yes                       & strong candidate        & candidate              \\
+        Peak bol. luminosity       & \SI{3.5e44}{\erg\per\s}   & \SI{1.3e45}{\erg\per\s} & ---                    \\
+        SMBH Mass                  & $10^{6}-10^{6.7} M_\odot$ & $10^{7.55} M_\odot$     & $10^{7.2} M_\odot$     \\
+        Radio                      & evolving                  & not evolving            & archival det.          \\
+        UV                         & very bright               & bright                  & ---                    \\
+        X-ray                      & early, soft spectrum      & late, soft spectrum     & soft spectrum          \\
+        Dust echo strength         & $92.2$                    & $39.2$                  & $15.7$                 \\
+        $\nu$ delay                & $\sim 5$ months           & $\sim 10$ months        & $\sim5$ months         \\
+        $\nu$ production           & possible                  & possible                & possible               \\
+        $\nu$ energy               & \SI{217}{\tera\eV}        & \SI{82}{\tera\eV}       & \SI{176}{\tera\eV}     \\
+        $\nu$ 90\% uncertainty box & \SI{25.5}{\square\deg}    & \SI{25.2}{\square\deg}  & \SI{61.2}{\square\deg} \\
+        $\nu$ signalness           & 0.59                      & 0.59                    & 0.45                   \\
+        \hline
+    \end{tabular}
+    \caption[Comparison of all counterpart candidates]{Comparing the multi-messenger properties of the candidate TDEs coincident with high-energy neutrinos. The dust echo strength was defined as $\Delta F/F_{\text{RMS}}$ (flux increase after optical/UV peak vs.~the root mean square of the pre-flare flux); \textit{$\nu$ production} means that models exist showing that the source might be capable of producing a neutrino with the respective detected energy; for $\nu$ signalness see Definition~\ref{signalness_def}. `---' denotes insufficient modeling or missing data. Table is adapted from~\cite{Reusch2023d}.}
+    \label{tab:comparison}
+\end{table*}
+
+The observed delay might either be a statistical effect, or it could carry physical meaning. In \cite{Velzen2021} this was explained by the assumption that the debris first needs to circularize before the first neutrinos are produced. In \sidecite{Winter2023} the observed time delay of the neutrino was combined with the fact that the dust echo was peaking around neutrino detection time for all three transients, as one can see in Figure~\ref{fig:dust_echo_comparison}.
+
+One of the models presented makes use of that, as the photons from the dust echo serve as targets for the protons accelerated within the source. Therefore, the neutrino delay arises naturally from the the delay of the infrared emission. The energies involved in this model would make TDEs interesting candidates for the production of Ultra-High Energy Cosmic Rays (UHECR). The downside of this model is that it requires very high proton energies.
+
+A companion model swaps the infrared target photons for X-ray photons, as all three sources showed signs of soft X-ray emission. That model can also explain the time delay, which arises from the confinment of moderate energy protons in this case. The observed neutrino energies are explained better here, but the observed neutrino delay is described less well in comparison to the IR model. Lastly, a third model uses optical/UV target photons (as was done in~\cite{Velzen2021}). This yields the highest neutrino production efficiency, but does not explain the observed time delay of the neutrino.
+
+\begin{figure*}[htb]
+    \includegraphics[]{AT2019fdr/comparison.pdf}
+    \caption{All three candidate counterpart TDEs with ZTF optical light curve and \textit{WISE} detections, showing the relative strength of the dust echo. The neutrino arrival times are shown as dotted vertical lines. Figures adapted from~\cite{Velzen2021}.}
+    \labfig{dust_echo_comparison}
+\end{figure*}
