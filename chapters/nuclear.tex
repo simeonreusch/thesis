@@ -412,7 +412,21 @@ As a large fraction of the nuclear sample was unclassified --- this is why we ne
 One pitfall needs to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
 
 \subsection{Performance}
-The performance of the model can be seen in Fig.\xx.
+We are now ready to see how the model performs. This is done by first investigating the feature importance, and then by evaluating the confusion matrices.
+
+\subsubsection{Feature Importance}
+As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks decent. There is not one dominating feature, which would be indicative of the classifier finding a loop hole regarding the actual task. There are also no features that do not influence the classification at all.
+
+\begin{figure}[htpb]
+    \includegraphics[width=0.6\textwidth]{nuclear/feature_importance_niter_50_nsample_2000.pdf}
+    \caption[Feature importance]{Feature importance for the classifier when trained with the augmented BTS sample.}
+    \labfig{feature_importance}
+\end{figure}
+
+The two most important features are the TDE fit rise- and decay time, followed by the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. Interestingly, the temperature does not seem to play a major role. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+
+\subsubsection{Confusion Matrices}
+asdf
 
 \section{Finding candidate TDEs}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
@@ -422,7 +436,7 @@ The traditional method of selecting TDE candidates is comprised of a sequence of
 
 To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in training the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
 
-\subsection{Visual Cuts}
+\subsection{Visual Cuts: Different Cut Stages}
 An overview over the sample after subsequent application of these cuts, as well as the TDE selection efficiency and purity can be seen in Figure~\ref{fig:bts_scatter}. These were the stages (the numbers in brackets correspond to the individual plots, with (1a) showing the sample without cuts):
 
 \begin{description}
@@ -436,7 +450,7 @@ An overview over the sample after subsequent application of these cuts, as well 
     \item[Exactly one flare (5b)] Finally, only transient with a single flare coincident in \textit{g}- and \textit{r}-band were allowed to reject likely stochastic AGN activity.
 \end{description}
 
-\subsection{Results}
+\subsection{Visual Cuts: Evaluate the Cuts}
 Before all cuts, only requiring the TDE model fit to succeed, the sample consists of 4094 transients, of which 64 are TDEs. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
 
 \subsubsection{All Cuts Combined}
@@ -521,3 +535,7 @@ To estimate the individual selection power of the different cuts, these were als
     \caption[BTS visual cuts]{All cuts applied to the BTS to single out TDEs, applied individually. \textbf{Purity} is the fraction of TDE compared to all remaining objects after the cut, while \textbf{efficiency} is the percentage of TDEs retained by the cut. The \textbf{purity gain} and \textbf{efficiency loss} are computed with respect to no cuts applied, while the \textbf{ratio} serves as a figure of merit and simply is efficiency divided by purity.}
     \label{tab:visual_selection}
 \end{table}
+
+After establishing and verifying the visual cuts, everything is ready to use the visual cuts on the model predictions and investigate its performance further.
+
+\subsection{Running the Classifier}
