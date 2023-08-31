@@ -364,7 +364,7 @@ In total the following number of objects were processed during the training samp
     \item[Other types of SNe] 1058 supernovae of not-Ia type were available in the BTS. With an average of 10.1 children per light curve this amounted to 10698 noisified children and 11756 light curves in total.
     \item[\textcolor{red}{AGN}] 1893 AGN were originally present. \xx children were created (\xx per parent), resulting in \xx light curves.
     \item[TDE] Starting with 65 TDE, 12212 children were creating with a large number of children per light curve (187.9). This amounted to 12277 light curves in total.
-    \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.
+    \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.\todo{redo all numbers}
 \end{description}
 In total, the final training sample contained \xx light curves.
 
@@ -428,7 +428,33 @@ The two most important features are the TDE fit rise- and decay time, followed b
 Unfortunately, the temperature and temperature change do not seem to play a major role. This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs (see e.g.~\cite{Velzen2021a}). As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}
-To see how the model performs with regards to the test set,
+To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing noisified light curve children, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
+
+\subsubsection{Test without Noisified Children}
+The results from only allowing `real' light curves (i.e.~parent light curves) can be seen in Fig.~\ref{fig:confusion_nonoise}.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_False_normaliz_None.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_False_normaliz_all.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_False_normaliz_pred.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_False_normaliz_true.pdf}
+    \end{subfigure}
+    \caption[Confusion matrices]{Confusion matrices of the test set predictions, \textbf{excluding noisified light curves}. For each figure, the row corresponds to the true type, and the column to the predicted type of object. The figure on the top left shows the total numbers, while the figure on the top right shows percentage. The bottom left matrix shows prediction-normalized values, while the bottom right matrix shows truth-normalized values.}
+    \labfig{confusion_nonoise}
+\end{figure}
+
 
 \section{Finding candidate TDEs}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
