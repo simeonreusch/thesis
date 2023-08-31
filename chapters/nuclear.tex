@@ -358,15 +358,15 @@ To augment the training sample, all published ZTF-detected TDEs were also includ
 To counter the fact that almost no AGN were present in the BTS sample, forced photometry for an additional 1772 AGN light curves was acquired. This was done by crossmatching sources from a recent AGN study including redshifts~\sidecite{Mechbal2023} with ZTF alerts in a cone with a radius of 3 arcsec.
 
 \subsection{Creating a less biased Training Sample}
-In total the following number of objects were processed during the training sample noisification:
+It was not fully possible to control the number of noisified child light curves: There were cases of low-flux objects of which all noisified children failed the signal-to-noise cut. In total, the following number of objects were processed during the training sample noisification:
 \begin{description}
-    \item[SNe Ia] The BTS contained 3130 SNe Ia, from which 11077 nosified children were created,~i.e. 3.5 children per original light curve on average. The total number of light curves (original ones plus children) was 14207.
-    \item[Other types of SNe] 1058 supernovae of not-Ia type were available in the BTS. With an average of 10.1 children per light curve this amounted to 10698 noisified children and 11756 light curves in total.
-    \item[\textcolor{red}{AGN}] 1893 AGN were originally present. \xx children were created (\xx per parent), resulting in \xx light curves.
-    \item[TDE] Starting with 65 TDE, 12212 children were creating with a large number of children per light curve (187.9). This amounted to 12277 light curves in total.
-    \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.\todo{redo all numbers}
+    \item[SNe Ia] The BTS contained 8694 SNe Ia, from which 11077 nosified children were created,~i.e. 2.7 children per original light curve on average. The total number of light curves (original ones plus children) was 11924.
+    \item[Other types of SNe] 1075 supernovae of not-Ia type were available in the BTS. With an average of 10.6 children per light curve this amounted to 11420 noisified children and 12495 light curves in total.
+    \item[AGN] 1893 AGN were originally present. 7177 children were created (3.8 per parent), resulting in 9079 light curves.
+    \item[TDE] Starting with 66 TDE, 13097 children were creating with a large number of children per light curve (198). This amounted to 13163 light curves in total.
+    \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 525 parent light curves were used, rendering stars the most underrepresented class within the training sample.
 \end{description}
-In total, the final training sample contained \xx light curves.
+Overall, the final training sample contained 47186 light curves, generated from 6789 initial light curves. On average, $~\sim 6$ child light curves were creates from each parent.
 
 \section{Training the Model}
 In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
