@@ -355,14 +355,14 @@ As one of the desired features of the trained classifier was its ability to corr
 
 To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
 
-To counter the fact that almost no AGN were present in the BTS sample, forced photometry for an additional 1892 AGN light curves was acquired. This was done by crossmatching sources from a recent AGN study~\sidecite{Mechbal2023} with ZTF alerts in a cone with a radius of 3 arcsec.
+To counter the fact that almost no AGN were present in the BTS sample, forced photometry for an additional 1772 AGN light curves was acquired. This was done by crossmatching sources from a recent AGN study including redshifts~\sidecite{Mechbal2023} with ZTF alerts in a cone with a radius of 3 arcsec.
 
 \subsection{Creating a less biased Training Sample}
 In total the following number of objects were processed during the training sample noisification:
 \begin{description}
     \item[SNe Ia] The BTS contained 3130 SNe Ia, from which 11077 nosified children were created,~i.e. 3.5 children per original light curve on average. The total number of light curves (original ones plus children) was 14207.
     \item[Other types of SNe] 1058 supernovae of not-Ia type were available in the BTS. With an average of 10.1 children per light curve this amounted to 10698 noisified children and 11756 light curves in total.
-    \item[\textcolor{red}{AGN}] \xx AGN were orinally present. \xx children were created (\xx per parent), resulting in \xx light curves.
+    \item[\textcolor{red}{AGN}] 1893 AGN were originally present. \xx children were created (\xx per parent), resulting in \xx light curves.
     \item[TDE] Starting with 65 TDE, 12212 children were creating with a large number of children per light curve (187.9). This amounted to 12277 light curves in total.
     \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 505 parent light curves were used, rendering stars the most underrepresented class within the training sample.
 \end{description}
@@ -372,12 +372,12 @@ In total, the final training sample contained \xx light curves.
 In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
 
 \subsection{Boosted Decision Trees}
-In a regular \textbf{decision tree}, a set of binary decisions are employed to decide on the classification of an object. \textbf{Ensemble methods} build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (\textbf{random forest}) or by working in sequence. The latter method is dubbed \textbf{boosted} decision trees, meaning decision trees are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the (weighted) sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is called \textbf{gradient boosting}. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
+In a regular \textbf{decision tree}, a set of iterative binary decisions (hence `tree') are employed to decide on the classification of an object. \textbf{Ensemble methods} build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (\textbf{random forest}) or by working in sequence. The latter method qualifies \textbf{boosted} decision trees, meaning that decision trees are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the (weighted) sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is called \textbf{gradient boosting}. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
 
 \subsection{Hyperparameter Search}
 As is usual with such algorithms, there is a number of \textbf{hyperparameters} which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees which are not the first one, and \texttt{n\_estimators} controls the number of trees.
 
-These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameters combinations. The grid employed as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}\todo{chosen values bold in appendix}.
+These hyperparameters can be tuned by running a \textbf{grid search} in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameters combinations. The grid employed as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}\todo{chosen values bold in appendix}.
 
 \subsection{Training Procedure}
 After obtaining a classified training sample (BTS light curves, see Section~\ref{bts}), AGN and TDE light curves were added (Section~\ref{addsources}) and the sample was augmented and enlarged by noisification (Section~\ref{noisification}). After this, the full training sample was fit with SALT2~(Section~\ref{salt}) and a TDE model (Section\ref{tde_model}), as well as analyzed with a bayesian block algorithm (Section~\ref{bayesian_blocks}) to extract features.
@@ -406,7 +406,7 @@ The set of features used for training was the following:
 \end{description}
 
 \section{Evaluating the Model}
-As a large fraction of the nuclear sample was unclassified --- this is why we needed a classifier in the first place --- evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A part of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a \textbf{test set}.
+A large fraction of the nuclear sample was unclassified --- this is why we a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: \SI{30}{\percent} of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a \textbf{test set}.
 
 \subsection{Strict Separation of Training and Test}
 One pitfall needs to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
@@ -423,10 +423,12 @@ As one can see in Fig.~\ref{fig:feature_importance}, the feature importance look
     \labfig{feature_importance}
 \end{figure}
 
-The two most important features are the TDE fit rise- and decay time, followed by the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. Interestingly, the temperature does not seem to play a major role. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+The two most important features are the TDE fit rise- and decay time, followed by the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+
+Unfortunately, the temperature and temperature change do not seem to play a major role. This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs (see e.g.~\cite{Velzen2021a}). As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}
-asdf
+To see how the model performs with regards to the test set,
 
 \section{Finding candidate TDEs}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
