@@ -106,7 +106,7 @@ As one can see, the vast majority of alerts were rejected based on them being ei
 This was followed by the live transfer all surviving alerts to another machine and processing of the subsequent filtering stages. In total, the filtering process took roughly 5 weeks.
 
 \subsection{Forced photometry}
-To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section \ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
+To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section~\ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
 
 \subsection{Infrared Data}
 Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. This was achieved by using the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band.
@@ -214,7 +214,7 @@ Another measure to mitigate the issue was to perform the fits as a \textbf{two-s
     \labfig{tde_fit_comparison}
 \end{figure}
 
-Fig.~\ref{fig:tde_fit_comparison} shows \textbf{two exemplary TDE fits}; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section \ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand --- whatever it actually is, as the object has no spectroscopic classification except for `AGN', it is clearly not a TDE. The fit unsurprisingly cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
+Fig.~\ref{fig:tde_fit_comparison} shows \textbf{two exemplary TDE fits}; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section~\ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand --- whatever it actually is, as the object has no spectroscopic classification except for `AGN', it is clearly not a TDE. The fit unsurprisingly cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
 
 The successful fit for \textit{AT2019dsg} meanwhile results in the following values: A reduced $\chi^2$of $4.1$, a peak temperature of \SI{8700}{\K} which decays by \SI{78}{\K} per day for the following 138 days, an initial risetime of 21 days, and a characteristic light curve decay time of 216 days.
 
