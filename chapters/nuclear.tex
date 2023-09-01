@@ -360,7 +360,7 @@ To counter the fact that almost no AGN were present in the BTS sample, forced ph
 \subsection{Creating a less biased Training Sample}
 It was not fully possible to control the number of noisified child light curves: There were cases of low-flux objects of which all noisified children failed the signal-to-noise cut. In total, the following number of objects were processed during the training sample noisification:
 \begin{description}
-    \item[SNe Ia] The BTS contained 8694 SNe Ia, from which 11077 nosified children were created,~i.e. 2.7 children per original light curve on average. The total number of light curves (original ones plus children) was 11924.
+    \item[SNe Ia] The BTS contained 3230 SNe Ia, from which 8694 nosified children were created,~i.e. 2.7 children per original light curve on average. The total number of light curves (original ones plus children) was 11924.
     \item[Other types of SNe] 1075 supernovae of not-Ia type were available in the BTS. With an average of 10.6 children per light curve this amounted to 11420 noisified children and 12495 light curves in total.
     \item[AGN] 1893 AGN were originally present. 7177 children were created (3.8 per parent), resulting in 9079 light curves.
     \item[TDE] Starting with 66 TDE, 13097 children were creating with a large number of children per light curve (198). This amounted to 13163 light curves in total.
@@ -430,7 +430,7 @@ Unfortunately, the temperature and temperature change do not seem to play a majo
 \subsubsection{Confusion Matrices}
 To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing noisified light curve children, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
 
-\subsubsection{Test without Noisified Children}
+\subsubsection{Test without Noisified Light Curves}
 The results from only allowing `real' light curves (i.e.~parent light curves) can be seen in Fig.~\ref{fig:confusion_nonoise}.
 
 \begin{figure}[htb]
@@ -451,10 +451,44 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
         \centering
         \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_False_normaliz_true.pdf}
     \end{subfigure}
-    \caption[Confusion matrices]{Confusion matrices of the test set predictions, \textbf{excluding noisified light curves}. For each figure, the row corresponds to the true type, and the column to the predicted type of object. The figure on the top left shows the total numbers, while the figure on the top right shows percentage. The bottom left matrix shows prediction-normalized values, while the bottom right matrix shows truth-normalized values.}
+    \caption[Confusion matrices without noisification]{Confusion matrices of the test set predictions, \textbf{excluding} noisified light curves. For each figure, the row corresponds to the true type, and the column to the predicted type of object. The matrix on the top left shows the total numbers, while all other matrices show percentage. The bottom left matrix shows prediction-normalized values, while the bottom right matrix shows truth-normalized values.}
     \labfig{confusion_nonoise}
 \end{figure}
 
+As one can see in the top right plot, when exluding noisified light curves, the test set is of course also heavily biased towards SNe Ia like the training set, and only 20 TDes are present.
+
+The bottom left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \textcolor{red}{89\%} of all predicted TDE are actually TDE, the other \textcolor{red}{11\%} are AGN in truth. This corresponds to the false positive rate.\todo{check}
+
+The truth-normalized matrix (bottom right) shows the percentage of objects correctly classified. \textcolor{red}{85\%} of all TDE were correctly identified, but \textcolor{red}{10\%} were misclassified as non-Ia SNe, and \textcolor{red}{5\%} were wrongly identified as SNe Ia.
+
+The performance looks quite decent, especially
+
+\subsubsection{Test with Noisified Light Curves}
+The evalation above was repeated, but this time including noisified child light curves. The results can be seen in Fig.~\ref{fig:confusion_noise}.
+
+The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars).
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_True_normaliz_None.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_True_normaliz_all.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_True_normaliz_pred.pdf}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_50_noisified_val_True_normaliz_true.pdf}
+    \end{subfigure}
+    \caption[Confusion matrices with noisification]{Confusion matrices of the test set predictions, \textbf{including} noisified light curves. Top left: total numbers; top right: total percentages; bottom left: prediction-normalized; bottom right: truth-normalized.}
+    \labfig{confusion_noise}
+\end{figure}
 
 \section{Finding candidate TDEs}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
@@ -567,3 +601,16 @@ To estimate the individual selection power of the different cuts, these were als
 After establishing and verifying the visual cuts, everything is ready to use the visual cuts on the model predictions and investigate its performance further.
 
 \subsection{Running the Classifier}
+The full classification of the nuclear sample is shown in Fig.~\ref{classification_maghist_nocut}. Here, the plots on top only show \textbf{non-AGN hosts}, while the bottom plots show likely \textbf{AGN hosts}. This differentiation was again achieved by crossmatching the Milliquas catalog and using the \textit{WISE} colors (see Section~\ref{agn_rejection}).
+
+\begin{figure}[htpb]
+    \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut']_comb.pdf}
+    \caption[Classification without cuts]{Classifications of the \texttt{XGBoost} model. This figure shows the nuclear sample, binned in magnitude steps of $0.5$. There are no cuts applied. The classifications on the left side come from the community, i.e.~Fritz, the GROWTH Marshal or TNS. The plots on the right side show the \texttt{XGBoost} classifications. The top row shows non-AGN hosts, while the bottom row shows likely AGN hosts.}
+    \labfig{classification_maghist_nocut}
+\end{figure}
+
+\begin{figure}[htpb]
+    \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes']_comb.pdf}
+    \caption[Classification with all visual cuts]{Classifications of the \texttt{XGBoost} model, this time with all the visual cuts applied. Left side: community classifications, i.e. from~Fritz, the GROWTH Marshal or TNS; right side: \texttt{XGBoost} classifications. Top row: non-AGN hosts; bottom row: likely AGN hosts.}
+    \labfig{classification_maghist_nocut}
+\end{figure}
