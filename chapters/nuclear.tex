@@ -497,7 +497,7 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
   \labfig{confusion_noise}
 \end{figure}
 
-Nevertheless, the evaluation without noisified child light curves is probably more meaningful, as 
+Nevertheless, the evaluation without noisified child light curves is probably more meaningful, as \todo{why}
 
 \section{Finding candidate TDEs}\label{visual_cuts}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
@@ -631,7 +631,15 @@ Looking at the AGN part of the nuclear sample (bottom right plot), one can notic
 
 To obtain a purer (but of course less complete) TDE sample, the visual cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, \textbf{26 TDE candidates could be added} to the already known and established TDEs.
 
-Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE can all but one (\textit{ZTF18acryjql}) be ruled out. This was almost always possible based on light curve features alone, highlighting potentially \textbf{weak performance of the classifier}.
+Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE can all but one (\textit{ZTF18acryjql}) be ruled out. This was almost always possible based on light curve features alone, highlighting \textbf{potentially weak performance of the classifier}.
+
+\subsection{Conclusions}
+The performance of the classifier yields somewhat mixed results.
+
+\begin{description}
+  \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{ZTF21aanubdr}~\sidenote{\url{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree does not bother. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
+  \item[Obvious misclassifications] asdf
+\end{description}
 
 \section{Selection by Dust Echo}\label{dustecho_sel}
 A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this,
