@@ -111,7 +111,7 @@ To be sensitive to early and late-time light curve evolution, forced photometry 
 \subsection{Infrared Data}
 Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
 
-Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically binned the single exposures of each epoch, spaced in half-year intervals.
+Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically crossmatched the ZTF transient position to the \textit{WISE} light curve repository, downloaded the raw photometry for each source and binned the single source exposures of each epoch, spaced in half-year intervals.
 
 Most sources did have infrared counterparts. To obtain a selection of likely dust-echo candidates, an \texttt{AMPEL} package was used, namely \texttt{T2DustEchoEval}, which analyzed the infrared light curves with a Bayesian block algorithm to find periods of flaring activity compared to a baseline (see also Section~\ref{bayesian_blocks} for a discussion of the algorithm utilized for ZTF optical data).
 
@@ -505,14 +505,14 @@ Besides a full classification of the nuclear sample, another purpose of the clas
 The traditional method of selecting TDE candidates is comprised of a sequence of \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). One way of increasing the purity of the machine-learning selected TDE is by defining such a set of visual cuts by studying the BTS sample, and applying the very same cuts to the nuclear sample.
 %  To get a handle on the results of the machine learning classification and \textbf{evaluate the discriminatory power} of the features in an independent way, a similar approach was chosen here.
 
-To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in training the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
+To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in the training of the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
 
 \subsection{Visual Cuts: Different Cut Stages}
 An overview over the sample after subsequent application of these cuts, as well as the TDE selection efficiency and purity can be seen in Figure~\ref{fig:bts_scatter}. These were the stages (the numbers in brackets correspond to the individual plots, with (1a) showing the sample without cuts):
 
 \begin{description}
-  \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, it somehow still contains objects which can be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
-  \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needs to be enforced by requiring a maximum core distance of 0.4 arcseconds.
+  \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, the BTS sample still contained objects which could be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
+  \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needed to be enforced by requiring a maximum core distance of 0.4 arcseconds.
   \item[\texttt{sgscore} cut (3a)] Only transients with an \texttt{sgscore} $<0.3$ were allowed in this cut stage.
   \item[SNIa diagonal cut (3b)] The transient had to be to the right side of a diagonal cut in the rise decay time plane, described by $3.55 - 2.29 \tau$ (with $\tau$ being the decay time and everything in $\log~\text{day}$).
   \item[Temperature cut (4a)] The temperature was required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$. Furthermore, the daily temperature change $\Delta T$ was required to lie between $\SI{-100}{\K\per\deh} < \Delta T < \SI{150}{\K\per\deh}$ (left).
