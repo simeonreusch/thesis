@@ -186,15 +186,18 @@ The prior on the time of peak, here dubbed $t_0$, was inferred from a peak findi
 
 \begin{table}[h]
   \begin{center}
-    \begin{tabular}{c|c|c|c}
-      Param.               & Description        & Prior    & Bounds                              \\
+    \begin{tabular}{c c c c}
       \hline
-      $t_\text{peak}$      & Peak time          & $t_0$    & $t­_0 \pm 30$ days                  \\
-      $\log T_\text{peak}$ & Peak temperature   & 4 K      & [3.5, 5]~\unit{\K}                  \\
-      $\log \sigma$        & Gaussian rise time & 1.6 days & [0,5] days                          \\
-      $\log \tau$          & Exp. decay time    & 2.3 days & [0,5] days                          \\
-      $\Delta T$           & Temp. change / day & 0        & $T_\text{peak} \pm 15000$ K (total) \\
-      $t_\text{cutoff}$    & End of temp. evol. & 300      & [100, 1200] days $+t_0$
+      \textbf{Param.}      & \textbf{Description} & \textbf{Prior} & \textbf{Bounds}                     \\
+      \hline
+      \hline
+      $t_\text{peak}$      & Peak time            & $t_0$          & $t­_0 \pm 30$ days                  \\
+      $\log T_\text{peak}$ & Peak temperature     & 4 K            & [3.5, 5]~\unit{\K}                  \\
+      $\log \sigma$        & Gaussian rise time   & 1.6 days       & [0,5] days                          \\
+      $\log \tau$          & Exp. decay time      & 2.3 days       & [0,5] days                          \\
+      $\Delta T$           & Temp. change / day   & 0              & $T_\text{peak} \pm 15000$ K (total) \\
+      $t_\text{cutoff}$    & End of temp. evol.   & 300            & [100, 1200] days $+t_0$             \\
+      \hline
     \end{tabular}
   \end{center}
   \caption[TDE Fit priors]{Priors for the TDE fit.}\label{tab:tde_fit_priors}
@@ -381,7 +384,7 @@ In a regular \textbf{decision tree}, a set of iterative binary decisions (hence 
 \subsection{Hyperparameter Search}
 As is usual with such algorithms, there is a number of \textbf{hyperparameters} which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees which are not the first one, and \texttt{n\_estimators} controls the number of trees.
 
-These hyperparameters can be tuned by running a \textbf{grid search} in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameters combinations for 5000 times. This was chosen as a compromise between computational feasibility and optimizing the parameter set. The grid employed as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}\todo{chosen values bold in appendix}.
+These hyperparameters can be tuned by running a \textbf{grid search} in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameters combinations for 5000 times. This was chosen as a compromise between computational feasibility and optimizing the parameter set. The grid employed as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}.
 
 \subsection{Training Procedure}
 After obtaining a classified training sample (BTS light curves, see Section~\ref{bts}), AGN and TDE light curves were added (Section~\ref{addsources}) and the sample was augmented and enlarged by noisification (Section~\ref{noisification}). After this, the full training sample was fit with SALT2~(Section~\ref{salt}) and a TDE model (Section\ref{tde_model}), as well as analyzed with a bayesian block algorithm (Section~\ref{bayesian_blocks}) to extract features.
@@ -459,18 +462,18 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
   \labfig{confusion_nonoise}
 \end{figure}
 
-As one can see in the top right plot, when exluding noisified light curves, the test set is of course also heavily biased towards SNe Ia like the training set, and only 20 TDes are present.
+As one can see in the top right plot, when exluding noisified light curves, the test set is naturally heavily biased towards SNe Ia as well (like the training set), and only 16 TDEs are present.
 
-The bottom left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, the other \SI{10}{\percent} are CCSNe in truth. This corresponds to the false positive rate.\todo{check}
+The bottom left matrix shows the \textbf{prediction-normalized} values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, the other \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} are the false positive rate.
 
-The truth-normalized matrix (bottom right) shows the percentage of objects thruthfully belonging to a class correctly classified as such. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars.
+The \textbf{truth-normalized} matrix (bottom right) shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent} correspond to the false negative rate for TDE classification.
 
-The performance looks quite decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification seems to work fairly well, with \SI{60}{\percent} of all TDEs identified by the classifier as such, of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample.\todo{add}
+The \textbf{performance looks quite decent, especially the false positive rate}: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the \textbf{TDE identification seems to work fairly well}, with \SI{60}{\percent} of all TDEs identified by the classifier as such, of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no easy fix to this problem.
 
 \subsubsection{Test with Noisified Light Curves}
-The evalation above was repeated, but this time including noisified child light curves. The results can be seen in Fig.~\ref{fig:confusion_noise}.
+The evalation above was repeated, but this time \textbf{including noisified child light curves}. The results can be seen in Fig.~\ref{fig:confusion_noise}.
 
-The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance seems to increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs, and \SI{79}{\percent} of all TDEs were identified as such.
+The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance does increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs (compared to \SI{90}{\percent} without noisified light curves in the test set), and \SI{79}{\percent} of all TDEs were identified as such (no noisified test: \SI{60}{\percent}).
 
 \begin{figure}[htb]
   \centering
@@ -493,6 +496,8 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
   \caption[Confusion matrices with noisification]{Confusion matrices of the test set predictions, \textbf{including} noisified light curves. Top left: total numbers; top right: total percentages; bottom left: prediction-normalized; bottom right: truth-normalized.}
   \labfig{confusion_noise}
 \end{figure}
+
+Nevertheless, the evaluation without noisified child light curves is probably more meaningful, as 
 
 \section{Finding candidate TDEs}\label{visual_cuts}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
@@ -530,15 +535,18 @@ The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:e
   \labfig{efficiency_purity}
 \end{figure}
 
-\subsubsection{Independent Cuts}
+\textbf{Independent Cuts}
+
 To estimate the individual selection power of the different cuts, these were also applied independently, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}. When using the ratio between purity gain and efficiency loss as a figure of merit, the \texttt{sgscore} cut is the best. When applied to the nuclear sample though, it will not improve things like here for the BTS sample, as the nuclear sample by construction already includes this cut. The next best ones are the core distance cut (also this is already incorporated in the nuclear sample), and the diagonal rise-decay time based SN Ia cut.  The \textit{WISE} color cut and the Milliquas cut have basically no effect, which is not surprising the heavy bias against AGN of the Bright Transient Survey. The $\chi^2$ and temperature cuts seem to work fine, while the rise-/decay-time based cut and the one flare requirement seem to underperform.
 
 \begin{table}
   \centering
   \def\arraystretch{1.2}
   \begin{tabular}{c c c c c c}
+    \hline
     \textbf{Parameter}         & \textbf{Purity} & \textbf{Efficiency} & \textbf{Purity}    & \textbf{Efficiency} & \textbf{Ratio} \\
                                & \textbf{(\%)}   & \textbf{(\%)}       & \textbf{gain (\%)} & \textbf{loss (\%)}  &                \\
+    \hline
     \hline
     \textbf{No cut}            & 1.6             & 100                 & 0                  & 0                   & ---            \\
     \textbf{Milliquas cut}     & 1.6             & 100                 & 1.8                & 0                   & ---            \\
@@ -550,6 +558,7 @@ To estimate the individual selection power of the different cuts, these were als
     \textbf{Rise-/Decay}       & 2.4             & 84.4                & 52.0               & 15.6                & 3.3            \\
     \textbf{$\chi^2$}          & 3.6             & 92.2                & 127.4              & 7.8                 & 16.3           \\
     \textbf{One flare}         & 2.2             & 82.8                & 43.7               & 17.2                & 2.5            \\
+    \hline
   \end{tabular}
   \caption[BTS visual cuts]{All cuts applied to the BTS to single out TDEs, applied individually. \textbf{Purity} is the fraction of TDE compared to all remaining objects after the cut, while \textbf{efficiency} is the percentage of TDEs retained by the cut. The \textbf{purity gain} and \textbf{efficiency loss} are computed with respect to no cuts applied, while the \textbf{ratio} serves as a figure of merit and simply is efficiency divided by purity.}
   \label{tab:visual_selection}

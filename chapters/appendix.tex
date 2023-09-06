@@ -48,6 +48,7 @@
     \emph{IC221216A} & $6.86^{+1.08}_{-2.06}$   & $10.43^{+1.54}_{-1.07}$  & 8.05                 & 5.68                 & \SI{41}{\percent}  & \cite{IC221216A1, IC221216A2}                         \\
     \emph{IC221223A} & $350.54^{+0.67}_{-0.67}$ & $34.71^{+0.67}_{-0.67}$  & 1.48                 & 0.97                 & \SI{79}{\percent}  & \cite{IC221223A1, IC221223A2}                         \\
     \emph{IC230112A} & $24.35^{+1.43}_{-1.71}$  & $0.90^{+0.63}_{-1.26}$   & 5.93                 & 5.57                 & \SI{28}{\percent}  & \cite{IC230112A1, IC230112A2}                         \\
+    \hline
   \end{tabular}
   \caption[Summary of the 34 neutrino alerts followed up by ZTF]{Summary of the 34 neutrino alerts followed up by ZTF until March 2023. \textit{\SI{90}{\percent} area} indicates the rectangular localization uncertainty region as reported by IceCube. \textit{ZTF obs} indicates the area observed at least twice by ZTF, within the reported \SI{90}{\percent} localization (accounting for chip gaps). \textit{Signalness} estimates the probability that the neutrino is of astrophysical origin, rather than caused by atmospheric background (see Section~\ref{ic_event_selection}). The total followed-up area (corrected for chip gaps) is \SI{205.02}{\square\deg}.}
   \label{tab:neutrino_alert_overview}
@@ -73,6 +74,7 @@
     59160        & 2020-11-07    & 3.00              & $ 209 \pm 9$           \\
     59160        & 2020-11-07    & 6.00              & $ 91 \pm 6$            \\
     59160        & 2020-11-07    & 10.00             & $ 39 \pm 5$            \\
+    \hline
   \end{tabular}
   \caption[AT2019fdr VLA measurements]{VLA measurements of AT2019fdr and the VLASS archival limit (first row). From~\cite{Reusch2022}.}
   \label{tab:at2019fdr_radio}
@@ -96,6 +98,7 @@
     UKIRT \textit{J}   & $18.18 $                                                \\
     \textit{WISE W1}   & $17.83^{+0.05}_{-0.05}$                                 \\
     \textit{WISE W2}   & $17.78^{+0.03}_{-0.05}$                                 \\
+    \hline
   \end{tabular}
   \caption[Archival AT2019fdr host measurements]{Archival measurements from \textit{GALEX}, SDSS, UKIRT (the isoMag value was given without error) and \textit{WISE}, used to construct the synthetic host model (see~\ref{synthetic_host_model}). From~\cite{Reusch2022}.}
   \label{tab:host_model_measurements}
@@ -118,6 +121,7 @@
     \texttt{reg\_lambda}        & [\textbf{1}, 1.5, 2, 3, 4.5]              \\
     \texttt{min\_child\_weight} & [\textbf{1}, 3, 5, 7]                     \\
     \texttt{n\_estimators}      & [100, 250, 500, \textbf{1000}]            \\
+    \hline
   \end{tabular}
   \caption[\texttt{XGBoost} hyperparameters]{\texttt{XGBoost} hyperparameter space searched and values used in the photometric classification of the nuclear sample. The value chosen for the training of the full model is shown in bold.}
   \label{tab:xgboost_grid_search}
@@ -232,6 +236,7 @@
     \textit{ZTF22aabimec}          & 0.210          & phot.          & Ic-SLSN                 & AT2022csn           & 18.5                       &                \\
     \textit{ZTF22aacgcwv}          & 0.072          & spec.          & TDE                     & AT2022dyt           & 19.7                       &                \\
     \textit{ZTF22aaddwbo}          & 0.145          & phot.          & TDE                     & AT2022gdw           & 19.0                       &                \\
+    \hline
   \end{tabular}
 \end{table*}
 

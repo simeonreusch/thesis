@@ -51,13 +51,16 @@ The sky region of AT2019 was visited four times by \textit{SRG} with a six-month
 \begin{table}
     \begin{center}
         \begin{tabular}{c c c c}
+            \hline
             \textbf{MJD} & \textbf{Date} & \textbf{Upper limit}              & \textbf{Energy flux}                                         \\
                          &               & (\unit{\erg\per\s\per\square\cm}) & (\unit{\erg\per\s\per\square\cm})                            \\
+            \hline
             \hline
             58922        & 2020--03--14  & \num{2.5e-14}                     & ---                                                          \\
             59105        & 2020--09--13  & \num{2.9e-14}                     & ---                                                          \\
             59284        & 2021--03--11  & ---                               & \num[parse-numbers = false]{6.2^{+2.7}_{-2.1}\times10^{-14}} \\
             59465        & 2021--09--08  & \num{5.3e-14}                     & ---                                                          \\
+            \hline
         \end{tabular}
     \end{center}
     \caption[\emph{AT2019fdr} \textit{SRG}/eROSITA detections \& upper limits]{\textit{SRG}/eROSITA upper limits and detection of \emph{AT2019fdr} in the \SIrange{0.3}{2.0}{\kilo\eV}-band. From~\cite{Reusch2022}.}\label{tab:at2019fdr_erosita}
@@ -178,13 +181,16 @@ The host model was subsequently subtracted from all measurements possibly contai
 \begin{table}
     \centering
     \begin{tabular}{c c c c  c}
+        \hline
         \textbf{MJD} & \textbf{Date} & \textbf{\textit{J}-band} & \textbf{\textit{H}-band} & \textbf{\textit{Ks}-band} \\
                      &               & (\SI{1.2}{\micro\m})     & (\SI{1.6}{\micro\m})     & (\SI{2.1}{\micro\m})      \\
+        \hline
         \hline
         59031        & 2020--07--01  & $19.06 \pm 0.50$         & $ 17.73 \pm 0.12$        & $17.13 \pm 0.26$          \\
         59121        & 2020--09--29  & $19.78 \pm 0.98$         & $ 17.76 \pm 0.12$        & $17.45 \pm 0.35$          \\
         59249        & 2021--02--04  & ---                      & $ 18.26 \pm 0.19$        & $17.81 \pm 0.48$          \\
         59362        & 2021--05--28  & ---                      & $ 18.42 \pm 0.22$        & $17.91 \pm 0.53$          \\
+        \hline
     \end{tabular}
     \caption[NIR magnitudes]{NIR AB magnitudes after subtracting the synthetic host model. Only systematic uncertainties are provided, as the photometric uncertainties should be negligible in comparison, at least in the \textit{J}- and \textit{H}-band. The flux of the third and fourth \textit{J}-band epochs after host-model subtraction was negative, which was counted as non-detection. From~\cite{Reusch2022}}\label{tab:p200_nir}
 \end{table}
@@ -217,14 +223,17 @@ We imported the measurements, averaged each the flux in each band per epoch, and
 
 \begin{table}
     \begin{center}
-        \begin{tabular}{c|c|c}
-            Parameter & Initial value & Bounds                          \\
+        \begin{tabular}{c c c}
             \hline
-            $A_V$     & $0.45$        & $[0, 2]$                        \\
-            $T_1$     & \SI{1730}{\K} & [\SI{7000}{\K}, \SI{50000}{\K}] \\
-            $T_2$     & \SI{1650}{\K} & [\SI{500}{\K}, \SI{2300}{\K}]   \\
-            $S_1$     & \num{2.3e23}  & [\num{1e20}, \num{1e27}]        \\
-            $S_2$     & \num{1e20}    & [\num{1e18}, \num{1e21}]
+            \textbf{Parameter} & \textbf{Initial value} & \textbf{Bounds}                 \\
+            \hline
+            \hline
+            $A_V$              & $0.45$                 & $[0, 2]$                        \\
+            $T_1$              & \SI{1730}{\K}          & [\SI{7000}{\K}, \SI{50000}{\K}] \\
+            $T_2$              & \SI{1650}{\K}          & [\SI{500}{\K}, \SI{2300}{\K}]   \\
+            $S_1$              & \num{2.3e23}           & [\num{1e20}, \num{1e27}]        \\
+            $S_2$              & \num{1e20}             & [\num{1e18}, \num{1e21}]        \\
+            \hline
         \end{tabular}
     \end{center}
     \caption[Double BB fit priors]{Priors for the double blackbody minimization. $A_V$ is the extinction parameter (only fitted in epoch 1 and fixed for epoch 2 and 3), $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}\label{tab:double_bb_priors}
@@ -264,8 +273,10 @@ We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+
     \renewcommand{\arraystretch}{1.3}
     \centering
     \begin{tabular}{c c  r  c  c}
+        \hline
         \textbf{Epoch} & \textbf{Band} & \textbf{Temp.}           & \textbf{Radius}                     & \textbf{Luminosity}                 \\
                        &               & (\unit{\K})              & (\unit{\cm})                        & (\unit{\erg\per\s})                 \\
+        \hline
         \hline
         \textbf{1}     & O+UV          & $ 13526^{+569}_{-574}$   & $ 7.8^{+0.4}_{-0.4} \times 10^{15}$ & $ 1.4^{+0.1}_{-0.1} \times 10^{45}$ \\
                        & IR            & $1505^{+421}_{-313}$     & $ 2.2^{+1.6}_{-1.4} \times 10^{17}$ & $1.7^{+2.2}_{-1.0} \times 10^{44}$  \\
@@ -275,6 +286,7 @@ We derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+
         \hline
         \textbf{3}     & O+UV          & $ 10230^{+2373}_{-1645}$ & $ 4.3^{+3.3}_{-1.0} \times 10^{15}$ & $ 1.5^{+1.2}_{-0.4} \times 10^{44}$ \\
                        & IR            & $2237^{+402}_{-462}$     & $ 1.0^{+0.6}_{-0.4} \times 10^{17}$ & $1.9^{+1.4}_{-0.5} \times 10^{44}$  \\
+        \hline
     \end{tabular}
     \caption[Blackbody best-fit values]{Blackbody best-fit values for three epochs (1--3).\ \textit{O+UV} denotes the blue blackbody in the optical/UV and \textit{IR} denotes the red infrared blackbody. The luminosity is given dereddened and in the source frame. The uncertainties are at 68\% confidence level. Note that the O+UV temperature and radius (and therefore the luminosity) in the third epoch are not well constrained, as no late-time UV measurements were available. The same holds true for the IR blackbody in the first and the last epoch, as only two data points were available.}\label{tab:double_bb}
 \end{table}
@@ -368,12 +380,14 @@ Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretat
 
 \begin{table*}[htp]
     \begin{center}
-        \begin{tabular}{c|c|c|c|c|c|c|c|c|c}
+        \begin{tabular}{c c c c c c c c c c}
+            \hline
             Name              & $M_\text{BH}<$              & $\text{H}_\beta<2000$     & FeII                      & [OIII]$/\text{H}_\beta$   & $\Delta g-r$                & UV                          & X-ray                         & \textit{W1}-\text{W2}     & Re-                       \\
                               & $10^8 M_\odot$              & \unit{\km\per\s}          &                           & $<3$                      & $\sim 0$ mag                &                             & \& $\Gamma$                   & $<0.7$ mag                & brighten                  \\
             \hline
             \emph{AT2019fdr}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$     & \cellcolor{green}\checkmark & \cellcolor{green}$\times$     & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
-            \emph{PS1--10adi} & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$
+            \emph{PS1--10adi} & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
+            \hline
         \end{tabular}
     \end{center}
     \caption[\emph{AT2019fdr}/\emph{PS1--10adi} classification matrix]{Classification matrix of \emph{AT2019fdr} and \emph{PS1--10adi} for comparison.\ \checkmark\ means the property is present, while $\times$ marks an absence.\ \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. Adapted from~\cite{Frederick2021}.}
@@ -456,8 +470,10 @@ Table~\ref{tab:comparison} shows a comparison of the relevant measurements and i
 \begin{table*}[htb]
     \centering
     \setlength{\tabcolsep}{12pt}
-    \begin{tabular}{c  c  c  c}
+    \begin{tabular}{l  c  c  c}
+        \hline
         \textbf{Property}          & \textbf{AT2019dsg}        & \textbf{AT2019fdr}      & \textbf{AT2019aalc}    \\
+        \hline
         \hline
         TDE                        & yes                       & strong candidate        & candidate              \\
         Peak bol. luminosity       & \SI{3.5e44}{\erg\per\s}   & \SI{1.3e45}{\erg\per\s} & ---                    \\
