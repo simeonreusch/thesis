@@ -109,9 +109,13 @@ This was followed by the live transfer all surviving alerts to another machine a
 To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section~\ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
 
 \subsection{Infrared Data}
-Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. This was achieved by using the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band.
+Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
 
-Most sources had infrared counterparts, sampled with a half-year cadence in both bands.
+Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically binned the single exposures of each epoch, spaced in half-year intervals.
+
+Most sources did have infrared counterparts. To obtain a selection of likely dust-echo candidates, an \texttt{AMPEL} package was used, namely \texttt{T2DustEchoEval}, which analyzed the infrared light curves with a Bayesian block algorithm to find periods of flaring activity compared to a baseline (see also Section~\ref{bayesian_blocks} for a discussion of the algorithm utilized for ZTF optical data).
+
+The significance of these flares was then calculated with a metric dubbed dust echo strength. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux; $F_\text{RMS}$ is the root-mean square of the baseline flux.
 
 \subsection{Catalog Matching}
 To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. These comprised:
@@ -129,7 +133,7 @@ To enrich the sample by information available on the transients, these were cros
 The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval.\todo{why is classification interesting? state that this will be the goal of the chapter}
 
 \section{Creating Features: Light Curve Fits}
-To classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated \textbf{TDE light curve model}, as well as a \textbf{supernova Ia model}. These features, appended by \textbf{additional features}, can serve as a base to classify the nuclear sample. Such a training task requires a truth on which to train on. The truth base chosen here was the BTS sample, which was augmented by creating copies of existing objects, as well as adding new, underrepresented transients. All those steps will be explained below.
+To photometrically classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated \textbf{TDE light curve model}, as well as a \textbf{supernova Ia model}. These features, appended by \textbf{additional features}, can serve as a base to classify the nuclear sample. Such a training task requires a truth on which to train on. The truth base chosen here was the BTS sample, which was augmented by creating copies of existing objects, as well as adding new, underrepresented transients. All those steps will be explained below.
 
 \subsection{Fitting a TDE Model}\label{tde_model}
 To model a TDE-like source evolution, a variation of the parametrization presented in~\cite{Velzen2021a} was used.
@@ -153,6 +157,12 @@ and $F(t)$ is the Gaussian rise pre-peak and exponential decay post peak:
 \end{equation}
 Here, $\sigma$ is the rise time of the transient, and $\tau$ is the decay time, both in days.
 
+\begin{marginfigure}
+  \includegraphics{nuclear/tde_bb_lumi_spread.pdf}
+  \caption[TDE blackbody luminosity spread]{TDE blackbody luminosity spread. Relevant is the y-axis here, showing the large spread in observed TDE luminosities; the TDEs shown are from the ZTF Phase I. From~\cite{Hammerstein2022}}
+  \labfig{bb_lumi_spread}
+\end{marginfigure}
+
 Lastly, $T(t)$ was allowed to change linearly during an interval after $t_\text{peak}$ until $t_\text{cutoff}$, marking the end of the linear temperature evolution:
 \begin{equation}
   T(t) = \begin{cases}
@@ -162,12 +172,6 @@ Lastly, $T(t)$ was allowed to change linearly during an interval after $t_\text{
   \end{cases}
 \end{equation}
 with $\Delta T$ being the coefficient of temperature change. Also, there was a check that required at least 10 datapoints within the interval 30 days prior to peak time and one year after that. If that check did not succeed, the fit was set to fail due to poor source sampling.
-
-\begin{marginfigure}
-  \includegraphics{nuclear/tde_bb_lumi_spread.pdf}
-  \caption[TDE blackbody luminosity spread]{TDE blackbody luminosity spread. Relevant is the y-axis here, showing the large spread in observed TDE luminosities; the TDEs shown are from the ZTF Phase I. From~\cite{Hammerstein2022}}
-  \labfig{bb_lumi_spread}
-\end{marginfigure}
 
 As a source luminosity can only be calculated when the redshift is known, and this was not true for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see Fig.~\ref{fig:bb_lumi_spread}), and only the shape of the light curve is relevant for the goodness of fit.\cite{Hammerstein2022}
 
@@ -236,7 +240,7 @@ The fits were performed with \texttt{SNCosmo}, which itself fit the light curve 
 \section{Creating Features: Optical Flare Analysis}\label{bayesian_blocks}
 Another feature which will later be used in the classification of transients are \textbf{simultaneous flares} across the well-sampled ZTF \textit{g}- and \textit{r}-bands. The number and timing of optical flares within different bands can then be used to differentiate between different types of transients.
 
-\subsection{Bayesian Block Algorithm}
+\subsection{Bayesian Block Algorithm}\label{bayesian_block}
 To determine time periods of heightened activity, a Bayesian block algorithm was employed. This was a version of a package developed at DESY, modified by the author to analyze optical ZTF light curves instead of infrared \textit{WISE} data.
 
 The Baysian Block algorithm is explained in~\sidecite{Scargle1998}; the implementation used here is integrated in the \texttt{astropy} package. The light curves are first smoothed by calculating the median and standard deviation within a 10 day rolling window. After that, only data points lying within $3 \sigma$ distance in magnitude space from the median are used. This gets rid of flux outliers, which are quite frequent for the forced photometry light curves of the nuclear sample.
@@ -262,13 +266,13 @@ As one of the goals is the machine-based classification of the nuclear sample, a
 \subsection{The Bright Transient Survey}\label{bts}
 The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
 
-This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
-
 \begin{marginfigure}
   \includegraphics{nuclear/BTS_full.pdf}
   \caption[BTS Composition]{Composition of the Bright Transient Survey sample used in this study. The classified part of the sample is heavily biased towards SNe Ia, AGN are vastly undersampled.}
   \labfig{bts_composition}
 \end{marginfigure}
+
+This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
 
 There are three potential issues that need to adressed though when using the BTS as starting point for a training sample:
 
@@ -490,7 +494,7 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
   \labfig{confusion_noise}
 \end{figure}
 
-\section{Finding candidate TDEs}
+\section{Finding candidate TDEs}\label{visual_cuts}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
 
 The traditional method of selecting TDE candidates is comprised of a sequence of \textbf{visual cuts} in the fit result parameter space (see e.g.~\cite{Velzen2019}). One way of increasing the purity of the machine-learning selected TDE is by defining such a set of visual cuts by studying the BTS sample, and applying the very same cuts to the nuclear sample.
@@ -600,7 +604,7 @@ To estimate the individual selection power of the different cuts, these were als
 After establishing and verifying the visual cuts, everything is ready to use the visual cuts on the model predictions and investigate its performance further.
 
 \subsection{Running the Classifier}
-The full classification of the nuclear sample is shown in Fig.~\ref{classification_maghist_nocut}. Here, the plots on top only show \textbf{non-AGN hosts}, while the bottom plots show likely \textbf{AGN hosts}. This differentiation was again achieved by crossmatching the Milliquas catalog and using the \textit{WISE} colors (see Section~\ref{agn_rejection}). The plots on the left show community classifications drawn from Fritz, the GROWTH Marshal and the TNS, while the right side plots display the \texttt{XGBoost} classifications.
+The full classification of the nuclear sample is shown in Fig.~\ref{fig:classification_maghist_nocut}. Here, the plots on top only show \textbf{non-AGN hosts}, while the bottom plots show likely \textbf{AGN hosts}. This differentiation was again achieved by crossmatching the Milliquas catalog and using the \textit{WISE} colors (see Section~\ref{agn_rejection}). The plots on the left show community classifications drawn from Fritz, the GROWTH Marshal and the TNS, while the right side plots display the \texttt{XGBoost} classifications.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut']_comb.pdf}
@@ -608,11 +612,17 @@ The full classification of the nuclear sample is shown in Fig.~\ref{classificati
   \labfig{classification_maghist_nocut}
 \end{figure}
 
-Looking at the AGN part of the nuclear sample (bottom right plot), one can notice that reassuringly the majority (\SI{83}{\percent}) was indeed classified as AGN by the decision tree. As it is much more likely to contain bona-fide transients, we will now focus on the non-AGN part of the nuclear sample (top right plot). At this stage, without further cuts on the sample, \texttt{XGBoost} classifies 3037 objects as SN Ia, 909 as CCSN, 566as AGN, 309 as stars, and 237 as TDE.
+Looking at the AGN part of the nuclear sample (bottom right plot), one can notice that reassuringly the majority (\SI{83}{\percent}) was indeed classified as AGN by the decision tree. As it is much more likely to contain bona-fide transients, we will now focus on the non-AGN part of the nuclear sample (top right plot). At this stage, without further cuts on the sample, \texttt{XGBoost} classified 3037 objects as SN Ia, 909 as CCSN, 566as AGN, 309 as stars, and 237 as TDE.
 
 \begin{figure}[htpb]
   \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes']_comb.pdf}
   \caption[Classification with all visual cuts]{Classifications of the \texttt{XGBoost} model, this time with all the visual cuts applied. Left side: community classifications, i.e. from~Fritz, the GROWTH Marshal or TNS; right side: \texttt{XGBoost} classifications. Top row: non-AGN hosts; bottom row: likely AGN hosts.}
-  \labfig{classification_maghist_nocut}
+  \labfig{classification_maghist_cut}
 \end{figure}
 
+To obtain a purer (but of course less complete) TDE sample, the visual cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, \textbf{26 TDE candidates could be added} to the already known and established TDEs.
+
+Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE can all but one (\textit{ZTF18acryjql}) be ruled out. This was almost always possible based on light curve features alone, highlighting potentially \textbf{weak performance of the classifier}.
+
+\section{Selection by Dust Echo}\label{dustecho_sel}
+A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this,

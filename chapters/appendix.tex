@@ -9,8 +9,10 @@
   \centering
   \small
   \begin{tabular}{l r r r r c c}
+    \hline
     \textbf{Event}   & \textbf{R.A. (J2000)}    & \textbf{Dec (J2000)}     & \textbf{90\% area}   & \textbf{ZTF obs}     & ~ \textbf{Signal-} & \textbf{Reference}                                    \\
                      & \textbf{(deg)}           & \textbf{(deg)}           & \textbf{(deg$^{2}$)} & \textbf{(deg$^{2}$)} & \textbf{ness}      &                                                       \\
+    \hline
     \hline
     \emph{IC190503A} & $120.28^{+0.57}_{-0.77}$ & $6.35^{+0.76}_{-0.70}$   & 1.94                 & 1.37                 & \SI{36}{\percent}  & \cite{IC190503A1, IC190503A2}                         \\
     \emph{IC190619A} & $343.26^{+4.08}_{-2.63}$ & $10.73^{+1.51}_{-2.61}$  & 27.21                & 21.57                & \SI{55}{\percent}  & \cite{IC190619A1, IC190619A2}                         \\
@@ -46,7 +48,6 @@
     \emph{IC221216A} & $6.86^{+1.08}_{-2.06}$   & $10.43^{+1.54}_{-1.07}$  & 8.05                 & 5.68                 & \SI{41}{\percent}  & \cite{IC221216A1, IC221216A2}                         \\
     \emph{IC221223A} & $350.54^{+0.67}_{-0.67}$ & $34.71^{+0.67}_{-0.67}$  & 1.48                 & 0.97                 & \SI{79}{\percent}  & \cite{IC221223A1, IC221223A2}                         \\
     \emph{IC230112A} & $24.35^{+1.43}_{-1.71}$  & $0.90^{+0.63}_{-1.26}$   & 5.93                 & 5.57                 & \SI{28}{\percent}  & \cite{IC230112A1, IC230112A2}                         \\
-    \hline
   \end{tabular}
   \caption[Summary of the 34 neutrino alerts followed up by ZTF]{Summary of the 34 neutrino alerts followed up by ZTF until March 2023. \textit{\SI{90}{\percent} area} indicates the rectangular localization uncertainty region as reported by IceCube. \textit{ZTF obs} indicates the area observed at least twice by ZTF, within the reported \SI{90}{\percent} localization (accounting for chip gaps). \textit{Signalness} estimates the probability that the neutrino is of astrophysical origin, rather than caused by atmospheric background (see Section~\ref{ic_event_selection}). The total followed-up area (corrected for chip gaps) is \SI{205.02}{\square\deg}.}
   \label{tab:neutrino_alert_overview}
@@ -56,8 +57,10 @@
   \centering
   \def\arraystretch{1.2}
   \begin{tabular}{c c  c  c}
+    \hline
     \textbf{MJD} & \textbf{Date} & \textbf{Band}     & \textbf{Flux density}  \\
                  &               & (\unit{\giga\Hz}) & (\unit{\micro\jansky}) \\
+    \hline
     \hline
     58032        & 2017-11-25    & 3.00              & $\leq 320 $            \\
     59033        & 2020-07-03    & 3.00              & $ 226 \pm 13$          \\
@@ -79,7 +82,9 @@
   \centering
   \def\arraystretch{1.5}
   \begin{tabular}{c c c}
+    \hline
     \textbf{Band}      & \textbf{$\lambda_\text{eff}$} & \textbf{AB magnitude}   \\
+    \hline
     \hline
     \textit{GALEX} FUV &                               & $22.32^{+0.07}_{-0.10}$ \\
     \textit{GALEX} NUV & $21.52^{+0.06}_{-0.10}$                                 \\
@@ -100,7 +105,9 @@
   \centering
   \def\arraystretch{1.5}
   \begin{tabular}{c c}
+    \hline
     \textbf{Parameter}          & \textbf{Grid values}                      \\
+    \hline
     \hline
     \texttt{learning\_rate}     & [\textbf{0.1}, 0.01, 0.001]               \\
     \texttt{gamma}              & [0.01, \textbf{0.1}, 0.3, 0.5, 1, 1.5, 2] \\
@@ -119,44 +126,46 @@
 \floatsetup[longtable]{margins=centering,LTcapwidth=table} % Add this line before the longtable to increase the caption width
 \begin{table*}
   \begin{tabular}{l  c  c  c   c  c  c}
-    \small
-    \textbf{Transient} & \textbf{z} & \textbf{z}    & \textbf{Community}      & \textbf{IAU name} & \textbf{Peak mag.}         & \textbf{Notes} \\
-                       &            & \textbf{type} & \textbf{classification} &                   & \textbf{(\textit{g}-band)} &                \\ \hline
-    ZTF17aaazdba       & 0.022      & spec.         & TDE                     & AT2019azh         & 15.3                       &                \\
-    ZTF18aakelin       & 0.071      & spec.         & TDE                     & AT2020ocn         & 19.5                       &                \\
-    ZTF18abtnfnq       & 0.131      & phot.         & ~                       & ~                 & 20.3                       &                \\
-    ZTF18abxftqm       & 0.108      & phot.         & TDE                     & AT2018hco         & 18.3                       &                \\
-    ZTF18acaqdaa       & 0.203      & spec.         & TDE                     & AT2018iih         & 18.3                       &                \\
-    ZTF18acbwomm       & 0.137      & phot.         & AGN                     & ~                 & 19.2                       &                \\
-    ZTF18accttxu       & ~          & ~             & ~                       & AT2018lyq         & 19.7                       &                \\
-    ZTF18accvmgs       & ~          & ~             & ~                       & AT2018ibg         & 19.9                       &                \\
-    ZTF18acetnxh       & 0.101      & phot.         & Blazar                  & AT2016fqa         & 18.6                       &                \\
-    ZTF18acqighv       & ~          & ~             & AGN                     & AT2019afh         & 19.3                       &                \\
-    ZTF18actaqdw       & ~          & ~             & TDE                     & AT2018lni         & 19.2                       &                \\
-    ZTF19aaeukyu       & ~          & ~             & ~                       & AT2021aatf        & 19.2                       &                \\
-    ZTF19aaniqrr       & ~          & ~             & transient               & AT2019cmw         & 18.5                       &                \\
-    ZTF19aanlttm       & ~          & ~             & ~                       & AT2019cyt         & 19.2                       &                \\
-    ZTF19aapreis       & ~          & ~             & TDE                     & AT2019dsg         & 17.8                       &                \\
-    ZTF19aaprhvf       & ~          & ~             & ~                       & AT2019ekr         & 19.1                       &                \\
-    ZTF19aayvxgy       & ~          & ~             & ~                       & ~                 & 19.7                       &                \\
-    ZTF19aaywayr       & ~          & ~             & ~                       & ~                 & 18.2                       &                \\
-    ZTF19aazlrsy       & ~          & ~             & AGN                     & AT2019hrg         & 19.2                       &                \\
-    ZTF19abhejal       & 0.200      & phot.         & TDE                     & AT2019mha         & 19.3                       &                \\
-    ZTF19abhhjcc       & 0.204      & phot.         & TDE                     & AT2019meg         & 19.2                       &                \\
-    ZTF19abicvxs       & ~          & ~             & ~                       & ~                 & 19.9                       &                \\
-    ZTF19ablizhi       & ~          & ~             & ~                       & ~                 & 19.8                       &                \\
-    ZTF19abqyosy       & 0.183      & phot.         & ~                       & ~                 & 19.8                       &                \\
-    ZTF19abrbskk       & ~          & ~             & transient               & AT2019pcl         & 18.8                       &                \\
-    ZTF19abzzuef       & ~          & ~             & ~                       & AT2019sez         & 19.5                       &                \\
-    ZTF19acanuza       & ~          & ~             & ~                       & ~                 & 19.5                       &                \\
-    ZTF19aclocml       & ~          & ~             & ~                       & ~                 & 19.7                       &                \\
-    ZTF19acspeuw       & 0.134      & phot.         & TDE                     & AT2019vcb         & 18.4                       &                \\
-    ZTF19acssksf       & ~          & ~             & AGN                     & AT2019uyn         & 19.1                       &                \\
-    ZTF20aabqihu       & 0.070      & phot.         & TDE                     & AT2020pj          & 18.7                       &                \\
-    ZTF20aavoumq       & 0.186      & phot.         & ~                       & ~                 & 19.5                       &                \\
-    ZTF20abbpxut       & 0.170      & phot.         & ~                       & AT2020kri         & 11.1                       &                \\
-    ZTF20abefeab       & 0.157      & phot.         & TDE                     & AT2020mbq         & 18.8                       &                \\
-    ZTF20abfcszi       & ~          & ~             & TDE                     & AT2020mot         & 18.2                       &                \\
+    \hline
+    \textbf{Transient}             & \textbf{z}     & \textbf{z}     & \textbf{Community}      & \textbf{IAU name}   & \textbf{Peak mag.}         & \textbf{Notes}                      \\
+                                   &                & \textbf{type}  & \textbf{classification} &                     & \textbf{(\textit{g}-band)} &                                     \\
+    \hline
+    \hline
+    \textit{ZTF17aaazdba}          & 0.022          & spec.          & TDE                     & AT2019azh           & 15.3                       &                                     \\
+    \textit{ZTF18aakelin}          & 0.071          & spec.          & TDE                     & AT2020ocn           & 19.5                       &                                     \\
+    \textbf{\textit{ZTF18abtnfnq}} & \textbf{0.131} & \textbf{phot.} & ~                       & ~                   & \textbf{20.3}              & \textbf{Large dust echo}            \\
+    \textit{ZTF18abxftqm}          & 0.108          & phot.          & TDE                     & AT2018hco           & 18.3                       &                                     \\
+    \textit{ZTF18acaqdaa}          & 0.203          & spec.          & TDE                     & AT2018iih           & 18.3                       &                                     \\
+    \textit{ZTF18acbwomm}          & 0.137          & phot.          & AGN                     & ~                   & 19.2                       &                                     \\
+    \textit{ZTF18accttxu}          & ~              & ~              & ~                       & AT2018lyq           & 19.7                       &                                     \\
+    \textbf{\textit{ZTF18accvmgs}} & ~              & ~              & ~                       & \textbf{AT2018ibg}  & \textbf{19.9      }        &                                     \\
+    \textit{ZTF18acetnxh}          & 0.101          & phot.          & Blazar                  & AT2016fqa           & 18.6                       &                                     \\
+    \textit{ZTF18acqighv}          & ~              & ~              & AGN                     & AT2019afh           & 19.3                       &                                     \\
+    \textit{ZTF18actaqdw}          & ~              & ~              & TDE                     & AT2018lni           & 19.2                       &                                     \\
+    \textbf{\textit{ZTF19aaeukyu}} & ~              & ~              & ~                       & \textbf{AT2021aatf} & \textbf{19.2}              &                                     \\
+    \textit{ZTF19aaniqrr}          & ~              & ~              & TDE                     & AT2019cmw           & 18.5                       &                                     \\
+    \textbf{\textit{ZTF19aanlttm}} & ~              & ~              & ~                       & \textbf{AT2019cyt}  & \textbf{19.2}              &                                     \\
+    \textit{ZTF19aapreis}          & ~              & ~              & TDE                     & AT2019dsg           & 17.8                       &                                     \\
+    \textbf{\textit{ZTF19aaprhvf}} & ~              & ~              & ~                       & \textbf{AT2019ekr}  & \textbf{19.1}              &                                     \\
+    \textbf{\textit{ZTF19aayvxgy}} & ~              & ~              & ~                       & ~                   & \textbf{19.7}              & \textbf{Few datapoints}             \\
+    \textit{ZTF19aaywayr}          & ~              & ~              & ~                       & ~                   & 18.2                       & Evolution too slow                  \\
+    \textbf{\textit{ZTF19aazlrsy}} & ~              & ~              & AGN                     & \textbf{AT2019hrg}  & \textbf{ 19.2}             & \textbf{Could also be AGN activity} \\
+    \textit{ZTF19abhejal}          & 0.200          & phot.          & TDE                     & AT2019mha           & 19.3                       &                                     \\
+    \textit{ZTF19abhhjcc}          & 0.204          & phot.          & TDE                     & AT2019meg           & 19.2                       &                                     \\
+    \textit{ZTF19abicvxs}          & ~              & ~              & ~                       & ~                   & 19.9                       &                                     \\
+    \textit{ZTF19ablizhi}          & ~              & ~              & ~                       & ~                   & 19.8                       &                                     \\
+    \textbf{\textit{ZTF19abqyosy}} & \textbf{0.183} & \textbf{phot.} & ~                       & ~                   & \textbf{19.8}              & \textbf{Large dust echo}            \\
+    \textbf{\textit{ZTF19abrbskk}} & \textbf{0.504} & \textbf{spec.} & ~                       & \textbf{AT2019pcl}  & \textbf{18.8}              & \textbf{Very bright}                \\
+    \textbf{\textit{ZTF19abzzuef}} & ~              & ~              & ~                       & \textbf{AT2019sez}  & \textbf{19.5}              &                                     \\
+    \textit{ZTF19acanuza}          & 0.167          & spec.          & AGN                     & ~                   & 19.5                       &                                     \\
+    \textbf{\textit{ZTF19aclocml}} & ~              & ~              & ~                       & ~                   & \textbf{19.7}              &                                     \\
+    \textit{ZTF19acspeuw}          & 0.134          & phot.          & TDE                     & AT2019vcb           & 18.4                       &                                     \\
+    \textbf{\textit{ZTF19acssksf}} & ~              & ~              & \textbf{ AGN?}          & \textbf{AT2019uyn}  & \textbf{19.1}              &                                     \\
+    \textit{ZTF20aabqihu}          & 0.070          & phot.          & TDE                     & AT2020pj            & 18.7                       &                                     \\
+    \textbf{\textit{ZTF20aavoumq}} & \textbf{0.186} & \textbf{phot.} & \textbf{AGN?}           & ~                   & \textbf{19.5}              &                                     \\
+    \textbf{\textit{ZTF20abbpxut}} & \textbf{0.18}  & \textbf{spec.} & \textbf{AGN?}           & \textbf{AT2020kri}  & \textbf{18.9}              &                                     \\
+    \textit{ZTF20abefeab}          & 0.157          & phot.          & TDE                     & AT2020mbq           & 18.8                       &                                     \\
+    \textit{ZTF20abfcszi}          & ~              & ~              & TDE                     & AT2020mot           & 18.2                       &                                     \\
   \end{tabular}
   \caption[Final TDE (candidates)]{Curated final list of TDE candidates as classified by \texttt{XGBoost}, appended with redshifts and community classifications from Fritz, the GROWTH Marshal and TNS. All objects previously unclassified and compatible with a TDE interpretation after visual inspection and manual cross checking are shown in bold (i.e.~the new candidates).}
   \label{tab:tde_candidates}
@@ -164,59 +173,65 @@
 
 \begin{table*}
   \begin{tabular}{l  c  c  c   c  c  c}
-    \textbf{Transient} & \textbf{z} & \textbf{z}    & \textbf{Community}      & \textbf{IAU name} & \textbf{Peak mag.}         & \textbf{Notes} \\
-                       &            & \textbf{type} & \textbf{classification} &                   & \textbf{(\textit{g}-band)} &                \\ \hline
-    ZTF20abjbkgq       & 0.349      & phot.         & AGN                     & AT2020qmx         & 19.4                       &                \\
-    ZTF20abjwvae       & 0.200      & phot.         & TDE                     & AT2020opy         & 18.9                       &                \\
-    ZTF20abkstjk       & ~          & ~             & ~                       & ~                 & 19.2                       &                \\
-    ZTF20abnorit       & 0.296      & phot.         & TDE                     & AT2020ysg         & 18.6                       &                \\
-    ZTF20abowque       & 0.333      & phot.         & TDE                     & AT2020qhs         & 18.9                       &                \\
-    ZTF20abqjebg       & 0.113      & phot.         & ~                       & ~                 & 19.3                       &                \\
-    ZTF20absxcuv       & ~          & ~             & ~                       & ~                 & 18.6                       &                \\
-    ZTF20acfxnyr       & 0.127      & phot.         & ~                       & ~                 & 19.8                       &                \\
-    ZTF20achpcvt       & 0.033      & spec.         & TDE                     & AT2020vwl         & 17.6                       &                \\
-    ZTF20achupkw       & 0.325      & phot.         & IIn                     & SN2020vws         & 19.2                       &                \\
-    ZTF20aclgfji       & 0.134      & spec.         & ~                       & AT2020ygl         & 19.3                       &                \\
-    ZTF20acllkua       & 0.241      & phot.         & ~                       & ~                 & 20.2                       &                \\
-    ZTF20acnznms       & 0.203      & phot.         & SLSN-II                 & SN2020yue         & 18.5                       &                \\
-    ZTF20acpmkls       & 0.072      & spec.         & ~                       & ~                 & 19.9                       &                \\
-    ZTF20acwytxn       & 0.319      & phot.         & TDE                     & AT2020acka        & 18.1                       &                \\
-    ZTF20acyydkh       & 0.127      & phot.         & TDE                     & AT2021ack         & 19.1                       &                \\
-    ZTF21aabgjcz       & ~          & ~             & TDE                     & AT2020aexc        & 19.2                       &                \\
-    ZTF21aabiipy       & 0.278      & phot.         & TDE                     & AT2021lo          & 19.2                       &                \\
-    ZTF21aaeoitd       & 0.151      & phot.         & TDE                     & AT2021jsg         & 19.5                       &                \\
-    ZTF21aakfqwq       & 0.117      & phot.         & TDE                     & AT2021crk         & 19.1                       &                \\
-    ZTF21aalydww       & 0.189      & phot.         & ~                       & ~                 & 19.4                       &                \\
-    ZTF21aanubdr       & ~          & ~             & ~                       & ~                 & 19.3                       &                \\
-    ZTF21aaqgbln       & ~          & ~             & ~                       & ~                 & 19.5                       &                \\
-    ZTF21aaxtlvc       & 0.161      & phot.         & ~                       & AT2021ldl         & 19.6                       &                \\
-    ZTF21aaxtpty       & 0.126      & phot.         & ~                       & AT2021kqp         & 19.1                       &                \\
-    ZTF21aaxxyha       & 0.166      & spec.         & ~                       & AT2021kuk         & 19.3                       &                \\
-    ZTF21aazenvp       & 0.213      & phot.         & ~                       & AT2021ovg         & 20.0                       &                \\
-    ZTF21aazewul       & ~          & ~             & ~                       & AT2021uwm         & 19.3                       &                \\
-    ZTF21abcgnqn       & 0.047      & spec.         & TDE                     & AT2021nwa         & 18.4                       &                \\
-    ZTF21abjrysr       & ~          & ~             & TDE                     & AT2021sdu         & 11.6                       &                \\
-    ZTF21abkqvdo       & 0.096      & phot.         & ~                       & AT2021swi         & 18.8                       &                \\
-    ZTF21abqhkjd       & 0.131      & phot.         & TDE                     & AT2021uqv         & 18.9                       &                \\
-    ZTF21absltzp       & 0.086      & phot.         & ~                       & AT2021vvw         & 19.3                       &                \\
-    ZTF21acafvhf       & ~          & ~             & TDE                     & AT2021yte         & 18.7                       &                \\
-    ZTF21acdsrxc       & 0.081      & spec.         & ~                       & ~                 & 19.2                       &                \\
-    ZTF21achnqdo       & ~          & ~             & ~                       & AT2021aczv        & 19.9                       &                \\
+    \hline
+    \textbf{Transient}             & \textbf{z}     & \textbf{z}     & \textbf{Community}      & \textbf{IAU name}  & \textbf{Peak mag.}         & \textbf{Notes}       \\
+                                   &                & \textbf{type}  & \textbf{classification} &                    & \textbf{(\textit{g}-band)} &                      \\
+    \hline
+    \hline
+    \textit{ZTF20abjbkgq}          & 0.349          & phot.          & AGN                     & AT2020qmx          & 19.4                       &                      \\
+    \textit{ZTF20abjwvae}          & 0.200          & phot.          & TDE                     & AT2020opy          & 18.9                       &                      \\
+    \textbf{\textit{ZTF20abkstjk}} & ~              & ~              & ~                       & ~                  & \textbf{19.2}              &                      \\
+    \textit{ZTF20abnorit}          & 0.296          & phot.          & TDE                     & AT2020ysg          & 18.6                       &                      \\
+    \textit{ZTF20abowque}          & 0.333          & phot.          & TDE                     & AT2020qhs          & 18.9                       &                      \\
+    \textbf{\textit{ZTF20abqjebg}} & \textbf{0.113} & \textbf{phot.} & ~                       & ~                  & \textbf{19.3}              &                      \\
+    \textit{ZTF20absxcuv}          & ~              & ~              & ~                       & ~                  & 18.6                       &                      \\
+    \textbf{\textit{ZTF20acfxnyr}} & \textbf{0.127} & \textbf{phot.} & ~                       & ~                  & \textbf{19.8}              &                      \\
+    \textit{ZTF20achpcvt}          & 0.033          & spec.          & TDE                     & AT2020vwl          & 17.6                       &                      \\
+    \textit{ZTF20achupkw}          & 0.325          & phot.          & IIn                     & SN2020vws          & 19.2                       &                      \\
+    \textbf{\textit{ZTF20aclgfji}} & \textbf{0.134} & \textbf{spec.} & ~                       & \textbf{AT2020ygl} & \textbf{19.3}              &                      \\
+    \textit{ZTF20acllkua}          & 0.241          & phot.          & ~                       & ~                  & 20.2                       & Evolving too fast    \\
+    \textit{ZTF20acnznms}          & 0.203          & phot.          & SLSN-II                 & SN2020yue          & 18.5                       &                      \\
+    \textbf{\textit{ZTF20acpmkls}} & \textbf{0.072} & \textbf{spec.} & ~                       & ~                  & \textbf{19.9}              &                      \\
+    \textit{ZTF20acwytxn}          & 0.319          & phot.          & TDE                     & AT2020acka         & 18.1                       &                      \\
+    \textit{ZTF20acyydkh}          & 0.127          & phot.          & TDE                     & AT2021ack          & 19.1                       &                      \\
+    \textit{ZTF21aabgjcz}          & ~              & ~              & TDE                     & AT2020aexc         & 19.2                       &                      \\
+    \textit{ZTF21aabiipy}          & 0.278          & phot.          & TDE                     & AT2021lo           & 19.2                       &                      \\
+    \textit{ZTF21aaeoitd}          & 0.151          & phot.          & TDE                     & AT2021jsg          & 19.5                       &                      \\
+    \textit{ZTF21aakfqwq}          & 0.117          & phot.          & TDE                     & AT2021crk          & 19.1                       &                      \\
+    \textit{ZTF21aalydww}          & 0.189          & phot.          & ~                       & ~                  & 19.4                       &                      \\
+    \textbf{\textit{ZTF21aanubdr}} & ~              & ~              & ~                       & ~                  & \textbf{19.3}              & \textbf{Little data} \\
+    \textit{ZTF21aaqgbln}          & ~              & ~              & ~                       & ~                  & 19.5                       &                      \\
+    \textbf{\textit{ZTF21aaxtlvc}} & \textbf{0.161} & \textbf{phot.} & ~                       & \textbf{AT2021ldl} & \textbf{19.6 }             &                      \\
+    \textbf{\textit{ZTF21aaxtpty}} & \textbf{0.126} & \textbf{phot.} & ~                       & \textbf{AT2021kqp} & \textbf{19.1}              &                      \\
+    \textit{ZTF21aaxxyha}          & 0.166          & spec.          & ~                       & AT2021kuk          & 19.3                       &                      \\
+    \textbf{\textit{ZTF21aazenvp}} & \textbf{0.213} & \textbf{phot.} & ~                       & \textbf{AT2021ovg} & \textbf{20.0}              &                      \\
+    \textit{ZTF21aazewul}          & ~              & ~              & ~                       & AT2021uwm          & 19.3                       &                      \\
+    \textit{ZTF21abcgnqn}          & 0.047          & spec.          & TDE                     & AT2021nwa          & 18.4                       &                      \\
+    \textit{ZTF21abjrysr}          & ~              & ~              & TDE                     & AT2021sdu          & 11.6                       &                      \\
+    \textbf{\textit{ZTF21abkqvdo}} & \textbf{0.096} & \textbf{phot.} & ~                       & \textbf{AT2021swi} & \textbf{18.8}              &                      \\
+    \textit{ZTF21abqhkjd}          & 0.131          & phot.          & TDE                     & AT2021uqv          & 18.9                       &                      \\
+    \textit{ZTF21absltzp}          & 0.086          & phot.          & ~                       & AT2021vvw          & 19.3                       &                      \\
+    \textit{ZTF21acafvhf}          & ~              & ~              & TDE                     & AT2021yte          & 18.7                       &                      \\
+    \textit{ZTF21acdsrxc}          & 0.081          & spec.          & ~                       & ~                  & 19.2                       &                      \\
+    \textit{ZTF21achnqdo}          & ~              & ~              & ~                       & AT2021aczv         & 19.9                       &                      \\
   \end{tabular}
 \end{table*}
 
 \begin{table*}[t!]
-  \begin{tabular}{l | c | c | c | c | c }
-    \textbf{Transient} & \textbf{z} & \textbf{z}    & \textbf{Community}      & \textbf{IAU name} & \textbf{Peak mag.}         \\
-                       &            & \textbf{type} & \textbf{classification} &                   & \textbf{(\textit{g}-band)} \\ \hline
-    ZTF21acojhgu       & 0.290      & phot.         & ~                       & AT2021aees        & 18.7                       \\
-    ZTF22aaabovl       & 0.137      & phot.         & TDE                     & AT2022aee         & 18.3                       \\
-    ZTF22aaabqko       & 0.087      & phot.         & ~                       & AT2022emf         & 19.7                       \\
-    ZTF22aaaedas       & 0.186      & phot.         & TDE                     & AT2022rz          & 18.9                       \\
-    ZTF22aaahtqz       & 0.038      & spec.         & TDE                     & AT2022bdw         & 17.4                       \\
-    ZTF22aabimec       & 0.210      & phot.         & Ic-SLSN                 & AT2022csn         & 18.5                       \\
-    ZTF22aacgcwv       & 0.072      & spec.         & TDE                     & AT2022dyt         & 19.7                       \\
-    ZTF22aaddwbo       & 0.145      & phot.         & TDE                     & AT2022gdw         & 19.0                       \\
+  \begin{tabular}{l  c  c  c  c  c  c}
+    \hline
+    \textbf{Transient}             & \textbf{z}     & \textbf{z}     & \textbf{Community}      & \textbf{IAU name}   & \textbf{Peak mag.}         & \textbf{Notes} \\
+                                   &                & \textbf{type}  & \textbf{classification} &                     & \textbf{(\textit{g}-band)} &                \\
+    \hline
+    \hline
+    \textbf{\textit{ZTF21acojhgu}} & \textbf{0.290} & \textbf{phot.} & ~                       & \textbf{AT2021aees} & \textbf{18.7}              &                \\
+    \textit{ZTF22aaabovl}          & 0.137          & phot.          & TDE                     & AT2022aee           & 18.3                       &                \\
+    \textbf{\textit{ZTF22aaabqko}} & \textbf{0.087} & \textbf{phot.} & ~                       & \textbf{AT2022emf}  & \textbf{19.7}              &                \\
+    \textit{ZTF22aaaedas}          & 0.186          & phot.          & TDE                     & AT2022rz            & 18.9                       &                \\
+    \textit{ZTF22aaahtqz}          & 0.038          & spec.          & TDE                     & AT2022bdw           & 17.4                       &                \\
+    \textit{ZTF22aabimec}          & 0.210          & phot.          & Ic-SLSN                 & AT2022csn           & 18.5                       &                \\
+    \textit{ZTF22aacgcwv}          & 0.072          & spec.          & TDE                     & AT2022dyt           & 19.7                       &                \\
+    \textit{ZTF22aaddwbo}          & 0.145          & phot.          & TDE                     & AT2022gdw           & 19.0                       &                \\
   \end{tabular}
 \end{table*}
 
