@@ -108,14 +108,14 @@ This was followed by the live transfer all surviving alerts to another machine a
 \subsection{Forced photometry}
 To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section~\ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
 
-\subsection{Infrared Data}
-Motivated by the strong dust echo detected for AT2019dsg, AT2019fdr and AT2019aalc, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
+\subsection{Infrared Data}\label{irdata}
+Motivated by the strong dust echo detected for \textit{AT2019dsg}, \textit{AT2019fdr} and \textit{AT2019aalc}, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
 
 Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically crossmatched the ZTF transient position to the \textit{WISE} light curve repository, downloaded the raw photometry for each source and binned the single source exposures of each epoch, spaced in half-year intervals.
 
-Most sources did have infrared counterparts. To obtain a selection of likely dust-echo candidates, an \texttt{AMPEL} package was used, namely \texttt{T2DustEchoEval}, which analyzed the infrared light curves with a Bayesian block algorithm to find periods of flaring activity compared to a baseline (see also Section~\ref{bayesian_blocks} for a discussion of the algorithm utilized for ZTF optical data).
+\textbf{Most sources did have infrared counterparts}. To obtain a selection of likely \textbf{dust-echo candidates}, an \texttt{AMPEL} package was used, namely \texttt{T2DustEchoEval}, to analyze the infrared light curves with a Bayesian block algorithm in order to identify periods of flaring activity compared to a baseline; see also Section~\ref{bayesian_blocks} for a discussion of the same algorithm utilized for ZTF optical data.
 
-The significance of these flares was then calculated with a metric dubbed dust echo strength. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux; $F_\text{RMS}$ is the root-mean square of the baseline flux.
+The significance of these flares was then calculated with a metric dubbed \textbf{dust echo strength}. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux; $F_\text{RMS}$ is the root-mean square of the baseline flux.
 
 \subsection{Catalog Matching}
 To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. These comprised:
@@ -257,7 +257,7 @@ For this, each region with increased flux compared to a baseline in the \textit{
 
 \begin{figure}
   \includegraphics[width=1\textwidth]{nuclear/bayesian_blocks.pdf}
-  \caption[Bayesian blocks]{\textbf{Top}: Bayesian Blocks identified for \textit{AT2018jbv}. There is one block both in \textit{g}- and \textit{r}-band, which overlaps. This is a strong indicator that the transient is a one-time flare, stemming from e.g.~a supernova or a TDE (the transient is in fact a TDE), in contrast to stochastic AGN variability. \textit{Bottom}: Bayesian Blocks for ZTF18aaiceki, showing AGN activity. This is correctly captured by a large number of overlapping regions.}
+  \caption[Bayesian blocks]{\textbf{Top}: Bayesian Blocks identified for \textit{AT2018jbv}. There is one block both in \textit{g}- and \textit{r}-band, which overlaps. This is a strong indicator that the transient is a one-time flare, stemming from e.g.~a supernova or a TDE (the transient is in fact a TDE), in contrast to stochastic AGN variability. \textit{Bottom}: Bayesian Blocks for \textit{ZTF18aaiceki}, showing AGN activity. This is correctly captured by a large number of overlapping regions.}
   \labfig{bayesian_blocks}
 \end{figure}
 
@@ -266,14 +266,14 @@ One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_bl
 \section{Training Sample}
 As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
 
-\subsection{The Bright Transient Survey}\label{bts}
-The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
-
 \begin{marginfigure}
   \includegraphics{nuclear/BTS_full.pdf}
   \caption[BTS Composition]{Composition of the Bright Transient Survey sample used in this study. The classified part of the sample is heavily biased towards SNe Ia, AGN are vastly undersampled.}
   \labfig{bts_composition}
 \end{marginfigure}
+
+\subsection{The Bright Transient Survey}\label{bts}
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
 
 This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
 
@@ -525,8 +525,7 @@ An overview over the sample after subsequent application of these cuts, as well 
 Before all cuts, only requiring the TDE model fit to succeed, the sample consists of 4094 transients, of which 64 are TDEs. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
 
 \subsubsection{All Cuts Combined}
-The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection efficiency of \SI{48.4}{\percent}, i.e.~roughly half of the TDE survive all cuts. These numbers are somewhat promising, as objects lying within the final selection \textbf{have a 4 in 5 chance of correctly being identified as TDE}, while only sacrificing half the TDE population. Of course, there is always a trade-off between efficiency and purity, and a program designated to maximizing the number of TDEs discovered might accept a lower purity.
-
+The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection efficiency of \SI{48.4}{\percent}, i.e.~roughly half of the TDE survive all cuts.
 The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:efficiency_purity}.
 
 \begin{figure}[htpb]
@@ -535,8 +534,9 @@ The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:e
   \labfig{efficiency_purity}
 \end{figure}
 
-\textbf{Independent Cuts}
+These numbers are somewhat promising, as objects lying within the final selection \textbf{have a 4 in 5 chance of correctly being identified as TDE}, while only sacrificing half the TDE population. Of course, there is always a trade-off between efficiency and purity, and a program designated to maximizing the number of TDEs discovered might accept a lower purity.
 
+\subsubsection{Independent Cuts}
 To estimate the individual selection power of the different cuts, these were also applied independently, i.e.~without any other cuts. The results of these individual cuts can be seen in Table~\ref{tab:visual_selection}. When using the ratio between purity gain and efficiency loss as a figure of merit, the \texttt{sgscore} cut is the best. When applied to the nuclear sample though, it will not improve things like here for the BTS sample, as the nuclear sample by construction already includes this cut. The next best ones are the core distance cut (also this is already incorporated in the nuclear sample), and the diagonal rise-decay time based SN Ia cut.  The \textit{WISE} color cut and the Milliquas cut have basically no effect, which is not surprising the heavy bias against AGN of the Bright Transient Survey. The $\chi^2$ and temperature cuts seem to work fine, while the rise-/decay-time based cut and the one flare requirement seem to underperform.
 
 \begin{table}
@@ -564,7 +564,7 @@ To estimate the individual selection power of the different cuts, these were als
   \label{tab:visual_selection}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
   \centering
   \begin{subfigure}[b]{0.49\textwidth}
     \centering
@@ -633,13 +633,39 @@ To obtain a purer (but of course less complete) TDE sample, the visual cuts esta
 
 Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE can all but one (\textit{ZTF18acryjql}) be ruled out. This was almost always possible based on light curve features alone, highlighting \textbf{potentially weak performance of the classifier}.
 
+\subsection{Inspection of Objects Classified as TDE}
+One pitfall in evaluating the classifier performance is the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage --- this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
+
+
+
 \subsection{Conclusions}
-The performance of the classifier yields somewhat mixed results.
+The performance of the classifier yielded somewhat mixed results.
 
 \begin{description}
   \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{ZTF21aanubdr}~\sidenote{\url{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree does not bother. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
-  \item[Obvious misclassifications] asdf
+  \item[Misclassifications] asdf
 \end{description}
 
 \section{Selection by Dust Echo}\label{dustecho_sel}
-A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this,
+A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this, all transients with a \texttt{T2DustEchoEval} result (see Section~\ref{irdata}) suggesting the existence of an infrared flare occuring simultaneous to or after the optical peak were visually inspected.
+
+\subsection{Inspection Tool}
+To aid in the visual inspection of light curves, the author created a web-based frontend to interactively view the light curves of the nuclear sample, especially the ones showing an infrared flare qualifying for a dust echo. This tool, still accessible under \url{https://ztfnuclear.simeonreusch.com}, was written in Python. It is based on the \texttt{Flask}\sidenote{\url{flask.palletsprojects.com}} web framework, and operated behind an \texttt{nginx} web server also serving a reverse proxy on a virtual private server.
+
+Fig.~\ref{fig:ztfnuclear_frontend} shows a screenshot of the frontend. This was designed to display the transient light curve, results from the crossmatching, a redshift if one were found, as well as links to object pages on the GROWTH Marshal, Fritz and TNS. Lastly, it has the possibility to leave comments (this is why a login system was created) and to rate the transient as `interesting', `maybe interesting', and `boring'.
+
+\begin{figure}[htpb]
+  \includegraphics[width=1\textwidth]{nuclear/ztfnuclear_frontend.png}
+  \caption[Frontend for the nuclear sample]{The frontend for inspecting and reviewing the nuclear sample. It shows an exemplary page for \textit{ZTF18acgqweq}, including a light curve, a comment and a rating as `Interesting'. The fit results of the TDE and the SALT2 fit are displayed as well, plus potential redshift matches (none in this case).}
+  \labfig{ztfnuclear_frontend}
+\end{figure}
+
+\subsection{Creating a Gold Sample}
+To create a sample of dust echo transients that look promising, multiple users review all transients with a \texttt{T2DustEchoEval} score of 1, designed to select likely real infrared flares compatible with a dust echo. A dust echo evaluation score of 1 selects infrared flares that have reliable baseline in both bands before the flare, and the flare is evolving reasonably fast (rise time $<1000$ days, fade time $<5000$ days).
+
+The review was performed using the web frontend, and each user rated the transients as either `interesting', `maybe interesting' or `boring'. The final selection comprises transients that were rated as `interesting' by at least two users.
+
+An overview table of the 34 transients that met this criterion can be seen in the Appendix in Table~\ref{tab:dustecho_selection}.
+
+\subsection{TDE and Accretion Flare Candidates}
+Among this final selection, \xx high-quality TDE or accretion flare candidates that showed a strong dust echo. The majority of these were missed by previous analyses.
