@@ -417,7 +417,7 @@ One pitfall needs to be avoided: The model might learn features of a noisified t
 We are now ready to see how the model performs. This is done by first investigating the feature importance, and then by evaluating the confusion matrices.
 
 \subsubsection{Feature Importance}
-As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks decent. There is not one dominating feature, which would be indicative of the classifier finding a loop hole regarding the actual task. There are also no features that do not influence the classification at all.
+As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks decent. \textbf{The feature importance is distributed fairly equally}, as there is not one dominating feature. This would be indicative of the classifier finding a loop hole regarding the actual task. There are also no features that do not influence the classification at all.
 
 \begin{figure}[htpb]
   \includegraphics[width=0.6\textwidth]{nuclear/confusion/feature_importance_niter_5000_nsample_2000.pdf}
@@ -425,9 +425,11 @@ As one can see in Fig.~\ref{fig:feature_importance}, the feature importance look
   \labfig{feature_importance}
 \end{figure}
 
-The two most important features are the TDE fit rise- and decay time, followed by the SALT2 fit $x_1$ parameter\todo{not true}, which encodes the stretch of the light curve. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+The two most important features are the number of flares identified by the Bayesian block algorithm, as well as the core distance. This is not surprising, as the former is a good predictor for AGN behavior, and the latter might help in differentiating between AGN/TDEs and supernovae and stars.
 
-Unfortunately, the temperature and temperature change do not seem to play a major role. This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs (see e.g.~\cite{Velzen2021a}). As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
+Also important are the TDE fit rise- and decay time and the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. On equal footing are the peak magnitude and the \texttt{sgscore}. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+
+Interestingly, the temperature change does not seem to play a major role, and also the peak temperature is less important as one would expect from previous studies (e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs. As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}\label{confusion_matrices}
 To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing noisified light curve children, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
