@@ -164,13 +164,14 @@ The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\j
 \end{figure}
 
 \subsection{Synthetic Host Model}\label{synthetic_host_model}
-As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g.\ the case for ZTF), we constructed a \textbf{synthetic model} of the emission from the host galaxy.
+\todo{Explain the fit a bit more with the figure values}
+As not all measurements from the various instruments had the luxury of readily available reference images for easy extraction of transient light (as is e.g.\ the case for ZTF), we constructed a \textbf{synthetic model} of the emission from the host galaxy.\todo{state that its not 3D (like not morphological)}
 
 This was done by fitting a galaxy model as described in~\sidecite{Velzen2020}, using different archival measurements: To measure the UV flux, we used images from the Galaxy Evolution Explorer (\textit{GALEX})~\sidecite{Martin2005}. The \texttt{gPhoton}~\sidecite{Million2016} package with an aperture of \SI{4}{\arcsecond} was used for flux extraction.
 
 To measure the optical flux, we employed the model magnitudes from SDSS. These are computed either from a de Vaucouleurs galaxy profile, or an exponential galaxy profile (the model mag uses the better of the two fits)\sidenote{See \url{https://www.sdss4.org/dr12/algorithms/magnitudes/mag_model} for details.}.
 
-We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS)~\sidecite{Lawrence2007}. Then, the \texttt{prospector} toolkit~\sidecite{Johnson2021} was used to sample synthetic galaxy models built by Flexible Stellar Population Synthesis (\texttt{FSPS})~\sidecite{Conroy2010}, written in Fortran and employed via the Python wrapper \texttt{python-fsps}~\sidecite{ForemanMackey2014}.
+We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS)~\sidecite{Lawrence2007}. Then, the \texttt{prospector} toolkit~\sidecite{Johnson2021} was used to sample synthetic galaxy models built by Flexible Stellar Population Synthesis (\texttt{FSPS})~\sidecite{Conroy2010}, written in Fortran and employed via the Python wrapper \texttt{python-fsps}~\sidecite{ForemanMackey2014}.\todo{reference table 5}
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{at2019fdr/host_model.pdf}
@@ -208,7 +209,7 @@ First, I isolated \textbf{three regions of interest}. These comprised (1) the 20
 As the light curve does not significantly change during those epochs, I used the mean flux values for each observed bands as input for the fitting procedure.
 
 \subsection{Fit Models}\label{fitmodels}
-As stated above, I tried a variety of models:
+As stated above, I tried a variety of models:\todo{gradually increased the model complexity}
 
 \begin{description}
     \item[Unbroken power law] A single, unbroken power law with the power law index as free parameter
@@ -221,7 +222,7 @@ All fits were performed with the \texttt{lmfit}~\sidecite{Newville2021} Python p
 
 To account for \textbf{host extinction}, I used the \texttt{extinction}~\sidecite{Barbary2016} Python package, namely the Calzetti attenuation law~\sidecite{Calzetti2000} contained therein. I fixed the extinction $R_V$ at $3.1$ and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. I decided on using epoch 1 to determine $A_V$, as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
 
-I imported the measurements, averaged each the flux in each band per epoch, and passed them to the minimizer (the fit priors are shown in Table~\ref{tab:double_bb_priors}).
+I imported the measurements, averaged the flux in each band per epoch, and passed them to the minimizer (the fit priors are shown in Table~\ref{tab:double_bb_priors}).
 
 \begin{table}
     \begin{center}
@@ -332,9 +333,9 @@ Furthermore, all epochs showed the \textbf{expected linear correlation} between 
 \section{Dust Echo Model}\label{dust_echo}
 As one can see in the light curve of \emph{AT2019fdr} (see Fig.~\ref{fig:at2019fdr_light_curve}), the emission in all infrared bands (\textit{WISE} and P200) is \textbf{delayed with respect to the optical signal}. Furthermore, the infrared emission is well approximated by a blackbody, as was shown in the last section.
 
-I interpret this infrared emission as a \textbf{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy~\sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a safe distance, at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
+I interpret this infrared emission\todo{why?} as a \textbf{dust echo}. In this model, the X-ray to optical light from the flare is reprocessed by dust. This dust is usually located in a torus around the supermassive black hole (SMBH) at the center of the host galaxy~\sidecite{Velzen2016}. The high luminosity of the flare causes the dust in the vicinity of the black hole to evaporate, up to a safe distance, at which the incident flux heats the dust, but not above its sublimation temperature at around \SI{1850}{\K}.
 
-Outside the sublimation radius, the grain temperature is coupled to the incident radiation, as it cools rapidly ($10^{-4} a_{0.1}^-1T_{1850}^{-5}$ s, which equals to \SI{0.1}{\milli\s} for a grain size of \SI{0.1}{\micro\m} at \SI{1850}{\K}).
+Outside the sublimation radius, the grain temperature is coupled to the incident radiation, as it cools rapidly ($10^{-4} a_{0.1}^-1T_{1850}^{-5}$\todo{check} s, which equals to \SI{0.1}{\milli\s} for a grain size of \SI{0.1}{\micro\m} at \SI{1850}{\K}).
 
 The infrared light curve produced this way can be approximated as follows according to~\cite{Velzen2016}:
 
@@ -347,7 +348,7 @@ where $L(t)$ is the light curve of an isotropic flare,  $\Psi(\tau)$ is the resp
     L_\text{IR} = \int d\tau L (t-\tau) ~\Pi (\tau)
 \end{equation}
 
-The delay induced by light travel time can thus be approximated by \textbf{convolving the optical light curve with a box function} of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
+The delay induced by light travel time can thus be approximated by \textbf{convolving the optical light curve with a box function} of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.\todo{what is $\Pi$}
 
 This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared and reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ --- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
 
@@ -355,7 +356,7 @@ To calculate $R_0$, I used the ZTF \textit{g}-band light curve, as it had the be
 
 Following this procedure, I obtained a best-fit light travel time of 193 days, which translated to $R_0=\SI{0.16}{\parsec}$. The best fit parameters can be seen in Fig.~\ref{fig:at2019fdr_dust_model_chisq}.
 
-To crosscheck this result, I used the fact that according to~\cite{Velzen2016}, the radius of this dust shell can be approximated as
+To crosscheck this result, I used the fact that according to~\cite{Velzen2016}, the radius of this dust shell can be approximated as\todo{and from this the curve in fig. 1.13 results}
 \begin{equation}
     R= \bigg(\frac{L_{45}}{a_{0.1}^2 T_{1850}^{5.8}} \bigg)^{1/2} \text{pc}
 \end{equation}
@@ -369,9 +370,9 @@ where $L_{45}$ is the flare's luminosity integrated over all wavelengths where t
 
 When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) with a temperature of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yielded a sublimation radius of \SI{0.2}{\parsec}, which is in \textbf{good agreement} with the best-fit value of \SI{0.16}{\parsec}.
 
-To obtain the \textbf{covering factor}, i.e.\ the fraction of the shell around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).
+To obtain the \textbf{covering factor}, i.e.\ the fraction of the shell\todo{torus?} around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).\todo{does this imply 100 percent efficiency?}
 
-I used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
+I used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm}\todo{source} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
 \section{Classification}
 As stated at the beginning of this chapter, \emph{AT2019fdr} was initially classified as a SLSN IIn, but a subsequent paper classified \emph{AT2019fdr} as TDE~\cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
@@ -395,11 +396,11 @@ Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretat
     \label{tab:at2019fdr_classification_matrix}
 \end{table*}
 
-In the case of \emph{AT2019fdr}, the host galaxy black hole mass lies below the Hills mass ($\lesssim 10^8 M_\odot$), it was persistently detected in UV around the peak, but initally not in X-ray wavelengths, its \textit{WISE} \textit{W1}-\textit{W2} color was below $0.7~\text{mag}$, and it showed no signs of rebrightening at the time of publication.
+In the case of \emph{AT2019fdr}, the host galaxy black hole mass lies below the Hills mass ($\lesssim 10^8 M_\odot$), it was persistently detected in UV around the peak, but initally not in X-ray wavelengths, its \textit{WISE} \textit{W1}-\textit{W2} color was below $0.7~\text{mag}$, and it showed no signs of rebrightening at the time of publication.\todo{maybe add a clear cut TDE to this}
 
 On the other hand, its narrow H$_\beta$ emission feature and its [OIII]/H$_\beta$ flux ratio, the strong FeII complex and the transients lack of cooling rather stipulated a flare of the underlying NLSy1 host.
 
-To conclude: \textbf{A thin majority of features observed in \emph{AT2019fdr} were `TDE-like'}. Also, it resembled \emph{PS1--10adi}, a bright transient discovered by PS1 on August 1, 2010~\sidecite{Kankare2017}, which has been classified as a TDE embedded in an AGN~\sidecite{Jiang2019}. For these reasons, the transient was ultimately classified as TDE. Following the subclassification scheme proposed in~\sidecite{Velzen2021a}, it is a H-only TDE, with the FeII complex most likely stemming from the NLSy1 host galaxy.
+To conclude: At this point in time, a thin majority of features observed in \emph{AT2019fdr} were `TDE-like'. Also, it resembled \emph{PS1--10adi}, a bright transient discovered by PS1 on August 1, 2010~\sidecite{Kankare2017}, which has been classified as a TDE embedded in an AGN~\sidecite{Jiang2019}. For these reasons, the transient was ultimately classified as TDE. Following the subclassification scheme proposed in~\sidecite{Velzen2021a}, it is a H-only TDE, with the FeII complex most likely stemming from the NLSy1 host galaxy.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{at2019fdr/at2019fdr_lc_rebrightening.pdf}
@@ -414,7 +415,7 @@ Interestingly, also \emph{PS1--10adi} showed late-stage rebrightening~\cite{Jian
 It remains an open question if the long-lasting rebrightening of \emph{AT2019fdr} can be explained by such an outflow. One could also hypothesize that a perturbation in the accretion disk, triggered by the TDE, is responsible for the increased optical flux (see e.g.~\sidecite{Ricci2022}).
 
 \subsection{Additional Evidence}
-As already discussed in Section~\ref{x_ray_obs}, \emph{AT2019fdr} was detected by \textit{SRG}/eROSITA on the first visit with an unusually soft thermal spectrum of \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}. As AGN X-ray spectra are \textbf{rarely soft}~\sidecite{Saxton2020}, this can be \textbf{counted as evidence in favor of the TDE interpration}.
+As already discussed in Section~\ref{x_ray_obs}, \emph{AT2019fdr} was detected by \textit{SRG}/eROSITA on the first visit with an unusually soft thermal spectrum of \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}. As AGN X-ray spectra are \textbf{rarely soft}~\sidecite{Saxton2020}, this can be \textbf{counted as evidence in favor of the TDE interpration}.\todo{maybe make title of section stronger}
 
 NLSy1 galaxies in general exhibit softer spectra, the temperature of \emph{AT2019fdr} was atypically low also in this context: It was lower than all NLSy1 temperatures in~\sidecite{Leighly1999} and~\sidecite{Vaughan1999}. Additionally, SLSNe rarely emit X-ray radiation. Only the first SLSN ever detected, SCP 06F6~\sidecite{Barbary2008}, possibly showed an X-ray flux exceeding \emph{AT2019fdr}'s luminosity~\sidecite{Gaensicke2009}.
 
@@ -449,11 +450,15 @@ To obtain the probability of finding two neutrinos coincident by chance, I calcu
 \end{equation}
 where the sum is the cumulative distribution function of the Poisson distribution. Using a right-tailed normal distribution, $p(2)=\num{3.4e-4}$ translates to $\SI{3.4}{\sigma}$ (\SI{1.94}{\sigma} for a single association).
 
+
+\section{Dust-echo TDEs as Neutrino Sources?}\label{at2019aalc}
+\todo{check if intro here still fits}
 I have so far detailed the data reduction for \emph{AT2019fdr}, established that it likely was a TDE --- albeit an unusual one --- modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to \emph{AT2019fdr} is quite improbable.
 
+
+\subsection{Adding a Third Event: \textit{AT2019aalc}}
 During the work on \textit{AT2019fdr}, another candidate emerged as a potential high-energy neutrino counterpart, also accompanied by a dust echo. This will be presented in the next Section (\ref{at2019aalc}).
 
-\section{Adding a Third Event: \textit{AT2019aalc}}\label{at2019aalc}
 As both high-energy neutrino associated TDEs had prominent dust echoes, this prompted a search for other optical flares accompanied by a strong dust echo and in coincidence with high-energy neutrinos.
 
 \subsection{Event Details}
