@@ -118,7 +118,7 @@ Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker
 The significance of these flares was then calculated with a metric dubbed \textbf{dust echo strength}. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux; $F_\text{RMS}$ is the root-mean square of the baseline flux.
 
 \subsection{Catalog Matching}
-To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. These comprised:
+To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval. The crossmatches were either used to extract training features (e.g.~\textit{textit{WISE}} colors) or evaluate the quality of the trained models (e.g.~Marshal/Fritz or TNS). In detail, these crossmatches comprised:
 
 \begin{description}
   \item[Spectroscopic Redshifts] To obtain \textbf{spectroscopic redshifts}, the \texttt{AMPEL} module \texttt{T2DigestRedshifts} was employed. This queries the following services: A local database of the spectroscopic redshifts contained in the NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}}, spectroscopic redshifts from SDSS, and finally spectroscopic redshifts from the Galaxy List for the Advanced Detector Era (GLADE)~\sidecite{Dalya2018} v2.3.
@@ -129,8 +129,6 @@ To enrich the sample by information available on the transients, these were cros
   \item[CRTS DR1] The Catalina Real-time Transient Survey Catalog contains cataclysmic variables which were crossmatched against to reduce contamination by foreground stars.
   \item[SDSS] The Sloan Digital Sky Survey was also used to crossmatch against foreground stars.
 \end{description}
-
-The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval.\todo{why is classification interesting? state that this will be the goal of the chapter}
 
 \section{Creating Features: Light Curve Fits}
 To photometrically classify the transients, the following strategy was employed: \textbf{Fit all transients} with a dedicated \textbf{TDE light curve model}, as well as a \textbf{supernova Ia model}. These features, appended by \textbf{additional features}, can serve as a base to classify the nuclear sample. Such a training task requires a truth on which to train on. The truth base chosen here was the BTS sample, which was augmented by creating copies of existing objects, as well as adding new, underrepresented transients. All those steps will be explained below.
@@ -434,7 +432,7 @@ The two most important features are the TDE fit rise- and decay time, followed b
 
 Unfortunately, the temperature and temperature change do not seem to play a major role. This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs (see e.g.~\cite{Velzen2021a}). As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
-\subsubsection{Confusion Matrices}
+\subsubsection{Confusion Matrices}\label{confusion_matrices}
 To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing noisified light curve children, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
 
 \subsubsection{Test without Noisified Light Curves}
@@ -497,7 +495,8 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
   \labfig{confusion_noise}
 \end{figure}
 
-Nevertheless, the evaluation without noisified child light curves is probably more meaningful, as \todo{why}
+% Nevertheless, both the evaluation without and with noisified child light curves carry meaning. The latter is less affected by small sample statistics, while the former 
+%  probably more meaningful, as \todo{why}
 
 \section{Finding candidate TDEs}\label{visual_cuts}
 Besides a full classification of the nuclear sample, another purpose of the classifier was to obtain a \textbf{selection of candidate TDE with high purity}.
@@ -631,19 +630,20 @@ Looking at the AGN part of the nuclear sample (bottom right plot), one can notic
 
 To obtain a purer (but of course less complete) TDE sample, the visual cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, \textbf{26 TDE candidates could be added} to the already known and established TDEs.
 
-Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE can all but one (\textit{ZTF18acryjql}) be ruled out. This was almost always possible based on light curve features alone, highlighting \textbf{potentially weak performance of the classifier}.
+Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE ruled out all but one (\textit{ZTF18acryjql}) transient. This was almost always possible based on light curve features alone, highlighting \textbf{potentially lacking performance of the classifier}.
 
-\subsection{Inspection of Objects Classified as TDE}
+\subsection{Inspection of Objects Classified as TDE}\label{all_tde_inspection}
 One pitfall in evaluating the classifier performance is the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage --- this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
 
-
+\todo{do exactly that}
 
 \subsection{Conclusions}
-The performance of the classifier yielded somewhat mixed results.
+The performance of the classifier yielded somewhat mixed results. There was a number of problems identified that need to be addressed when improving the classification quality:
 
 \begin{description}
-  \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{ZTF21aanubdr}~\sidenote{\url{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree does not bother. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
-  \item[Misclassifications] asdf
+  \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{ZTF21aanubdr}~\sidenote{\url{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree had no adequate way of reacting to that fact. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
+  \item[Misclassifications] There were examples where visual inspection allowed for easy and straightforward classification --- especially in the case of stochastic AGN variability --- but the classifier struggled to identify the AGN-nature of the transient. This highlights that there might still be room for improvement, i.e.~further features that humans easily grasp and which could be exploited for automatic classification. The `exactly 1 coincident flare' feature was apparently not sufficient for this task, and neither was the the high $\chi^2$ of the TDE and SALT2 fits.
+  \item[Effectiveness of Noisification] The TDE classification performance of the classifier when applied to the nuclear sample was investigated (see Section~\ref{all_tde_inspection}). The results were worse than the confusion matrices of the test sample (see Section~\ref{confusion_matrices}) suggested: \xx of 201 objects classified as TDE and not seen by the classifier during training are most likely something else, a much higher false-positive rate than the test sample suggested (\xx). This means that the noisification procedure alone was not able to fully capture the transition from the BTS sample to the nuclear sample.
 \end{description}
 
 \section{Selection by Dust Echo}\label{dustecho_sel}
