@@ -103,7 +103,7 @@ From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 ye
   \labfig{nuclear_decision}
 \end{figure}
 
-As one can see, the vast majority of alerts were rejected based on them being either too faint, likely being bogus, or likely being stars. The majority of alerts already get filtered by the initial SQL query. The SQL-based filtering was also the most efficient one, so the author made sure that the amount of filtering at that stage (on the archive server) was maximized.
+As one can see, the vast majority of alerts were rejected based on them being either too faint, likely being bogus, or likely being stars. The majority of alerts already get filtered by the initial SQL query. The SQL-based filtering was also the most efficient one, so I ensured that the amount of filtering at that stage (on the archive server) was maximized.
 
 This was followed by the live transfer all surviving alerts to another machine and processing of the subsequent filtering stages. In total, the filtering process took roughly 5 weeks.
 
@@ -353,7 +353,7 @@ Additionally to the \textit{WISE} color selection, the Milliquas~\cite{Milliquas
 As we were interested in maximizing the purity of the sample in terms of AGN, i.e.~rejecting all likely AGN. Therefore, all objects that had a match in the Milliquas catalog --- no matter the likelihood of the match being an AGN --- were rejected.
 
 \subsection{Adding non-BTS Sources}\label{addsources}
-As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not accessible to the author, the BTS underperformed significantly in terms of TDE detection rate.
+As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not clear to me, the BTS underperformed significantly in terms of TDE detection rate.
 
 To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
 
@@ -654,7 +654,7 @@ The performance of the classifier yielded somewhat mixed results. There was a nu
 A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this, all transients with a \texttt{T2DustEchoEval} result (see Section~\ref{irdata}) suggesting the existence of an infrared flare occuring simultaneous to or after the optical peak were visually inspected.
 
 \subsection{Inspection Tool}
-To aid in the visual inspection of light curves, the author created a web-based frontend to interactively view the light curves of the nuclear sample, especially the ones showing an infrared flare qualifying for a dust echo. This tool, still accessible under \url{https://ztfnuclear.simeonreusch.com}, was written in Python. It is based on the \texttt{Flask}\sidenote{\url{flask.palletsprojects.com}} web framework, and operated behind an \texttt{nginx} web server also serving a reverse proxy on a virtual private server.
+To aid in the visual inspection of light curves, I created a web-based frontend to interactively view the light curves of the nuclear sample, especially the ones showing an infrared flare qualifying for a dust echo. This tool, still accessible under \url{https://ztfnuclear.simeonreusch.com}, was written in Python. It is based on the \texttt{Flask}\sidenote{\url{flask.palletsprojects.com}} web framework, and operated behind an \texttt{nginx} web server also serving a reverse proxy on a virtual private server.
 
 Fig.~\ref{fig:ztfnuclear_frontend} shows a screenshot of the frontend. This was designed to display the transient light curve, results from the crossmatching, a redshift if one were found, as well as links to object pages on the GROWTH Marshal, Fritz and TNS. Lastly, it has the possibility to leave comments (this is why a login system was created) and to rate the transient as `interesting', `maybe interesting', and `boring'.
 
