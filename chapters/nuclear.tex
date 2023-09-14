@@ -639,24 +639,27 @@ Unfortunately, visual inspection of the 24 events within AGN hosts that were ide
 
 \subsection{Inspection of Objects Classified as TDE}\label{all_tde_inspection}
 One pitfall in evaluating the classifier performance is the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage --- this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
-\todo{work in progress}
 
-\subsection{Conclusions}
+This was done for the non-AGN part of the sample (see top right histogram in Fig.~\ref{fig:classification_maghist_nocut}). Of the 237 objects classified as TDE, 29 were already seen by the classifier during the training stage and were therefore excluded, leaving 208 transients. These were then visually inspected, and rated by the following scheme: `Correct' meant that the transient looked like a plausible TDE, and no contrary evidence --- like a classification based on a spectrum --- existed. `Possible' meant that either the light curve looked ambiguous, or little data was present, but a clear misclassification could be excluded. Finally, `wrong' was reserved for transients where the visual inspection rendered the TDE-classification unlikely, as e.g.~stochastic AGN variability was present, or the TDE fit result looked unsatisfying (for example, unphysically fast rise and fade timescales).
+
+Of the 208 transients thus analyzed, 79 had a correct classification, for 28 a TDE nature was possible, and 101 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a \textbf{false positive rate of \SI{48.5}{\percent} resulted}. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{62}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{90}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}).
+
+\subsection{Conclusions for Photometric Classification}
 The performance of the classifier yielded somewhat mixed results. There was a number of problems identified that need to be addressed when improving the classification quality:
 
 \begin{description}
-  \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{ZTF21aanubdr}~\sidenote{\url{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree had no adequate way of reacting to that fact. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
-  \item[Misclassifications] There were examples where visual inspection allowed for easy and straightforward classification --- especially in the case of stochastic AGN variability --- but the classifier struggled to identify the AGN-nature of the transient. This highlights that there might still be room for improvement, i.e.~further features that humans easily grasp and which could be exploited for automatic classification. The `exactly 1 coincident flare' feature was apparently not sufficient for this task, and neither was the the high $\chi^2$ of the TDE and SALT2 fits.
-  \item[Effectiveness of Augmentation] The TDE classification performance of the classifier when applied to the nuclear sample was investigated (see Section~\ref{all_tde_inspection}). The results were worse than the confusion matrices of the test sample (see Section~\ref{confusion_matrices}) suggested: \xx of 201 objects classified as TDE and not seen by the classifier during training are most likely something else, a much higher false-positive rate than the test sample suggested (\xx). This means that the augmentation by creating redshifted and noisified copies was not able to fully capture the transition from the BTS sample to the nuclear sample.
+  \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}{ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree had no adequate way of reacting to that fact. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
+  \item[Misclassifications] There were examples where visual inspection allowed for easy and straightforward classification --- especially in the case of stochastic AGN variability --- but the classifier struggled to identify the AGN-nature of the transient. This highlights that there might still be room for improvement, i.e.~further features that humans easily grasp and which could be exploited for automatic classification. The `exactly 1 coincident flare' feature was apparently not sufficient for this task, and neither was a high $\chi^2$ of the TDE and SALT2 fits.
+  \item[Effectiveness of Augmentation] The TDE classification performance of the classifier when applied to the nuclear sample was investigated in Section~\ref{all_tde_inspection}. The results were worse than the confusion matrices of the test sample (see Section~\ref{confusion_matrices}) suggested: At least 101 of 208 objects classified as TDE and not seen by the classifier during training are most likely something else, a much higher false-positive rate (\SI{48.5}{\percent}) than the test sample suggested. This means that the augmentation by creating redshifted and noisified copies was not able to fully capture the transition from the BTS sample to the nuclear sample.
 \end{description}
 
 \section{Selection by Dust Echo}\label{dustecho_sel}
 A final avenue of obtaining interesting, hitherto missed nuclear transients was a selection based on their infrared dust echo. For this, all transients with a \texttt{T2DustEchoEval} result (see Section~\ref{irdata}) suggesting the existence of an infrared flare occuring simultaneous to or after the optical peak were visually inspected.
 
 \subsection{Inspection Tool}
-To aid in the visual inspection of light curves, I created a web-based frontend to interactively view the light curves of the nuclear sample, especially the ones showing an infrared flare qualifying for a dust echo. This tool, still accessible under \url{https://ztfnuclear.simeonreusch.com}, was written in Python. It is based on the \texttt{Flask}\sidenote{\url{flask.palletsprojects.com}} web framework, and operated behind an \texttt{nginx} web server also serving a reverse proxy on a virtual private server.
+To aid in the visual inspection of light curves, I created a web-based frontend to interactively view the light curves of the nuclear sample, especially the ones showing an infrared flare qualifying for a dust echo. This tool, accessible under \url{https://ztfnuclear.simeonreusch.com}, was written in Python. It is based on the \texttt{Flask}\sidenote{\url{flask.palletsprojects.com}} web framework, and operated behind an \texttt{nginx} web server also serving a reverse proxy on a virtual private server.
 
-Fig.~\ref{fig:ztfnuclear_frontend} shows a screenshot of the frontend. This was designed to display the transient light curve, results from the crossmatching, a redshift if one were found, as well as links to object pages on the GROWTH Marshal, Fritz and TNS. Lastly, it has the possibility to leave comments (this is why a login system was created) and to rate the transient as `interesting', `maybe interesting', and `boring'.
+Fig.~\ref{fig:ztfnuclear_frontend} shows a screenshot of the frontend. This was designed to display the transient light curve, results from the crossmatching, a redshift if one were found, as well as links to object pages on the GROWTH Marshal, Fritz and TNS. Lastly, it offered the functionality to leave comments (this is why a login system was created) and to rate the transient as `interesting', `maybe interesting', and `boring'.
 
 \begin{figure}[htpb]
   \includegraphics[width=1\textwidth]{nuclear/ztfnuclear_frontend.png}
@@ -688,17 +691,23 @@ Two exemplary light curves are shown in Fig.\ref{fig:two_dustecho_examples}, one
     \centering
     \includegraphics[width=1\textwidth]{nuclear/ZTF20abgxlut.pdf}
   \end{subfigure}
-  \caption[Two exemplary light curves from the dust echo selection]{Two exemplary light curves from the dust echo section. Top: TDE candidate \textit{ZTF18abtnfnq}. Bottom: Accretion flare candidate \textit{ZTF18abtnfnq}. Both have spectacular dust echoes. On the top, the delay between optical and infrared peak is roughly 400 days, while on the bottom it is about 180 days.}
+  \caption[Two exemplary light curves from the dust echo selection]{Two exemplary light curves from the dust echo section. Top: TDE candidate \textit{ZTF18abtnfnq}. Bottom: Accretion flare candidate \textit{AT2020oio}. Both have spectacular dust echoes. On the top, the delay between optical and infrared peak is roughly 400 days, while on the bottom it is about 180 days.}
   \labfig{two_dustecho_examples}
 \end{figure}
 
 \section{Conclusion}
+This study of the nuclear sample showed that there at least 26
 
 % Prelim. study of the sample shows that there are at least xx more likely TDEs and dust echo, ongoing work on multiple levels
 
 % a) slightly more involved theoretical model study
 % b) realtime pipeline conversion maybe possible
 % c) realtime application of the wise / lsst dust detection capabilities?
+
+One important question remaining concerns the differentiation between clear-cut TDE and such events that are somewhat ambiguous. These are in general more energetic, longer lived and occur in active galaxies. These are exemplified in Fig.~\ref{fig:two_dustecho_examples}, where \textit{ZTF18abtnfnq} is a classical TDE candidate, and \textit{ZTF20abgxlut} is more luminous, longer lived and situated in an AGN. One could hypothesize that both populations do in fact form the ends of a continuum, together constituting the class of `accretion flares'.
+
+Furthermore, a real-time application of the pipeline might be possible.
+
 
 % is the accretion stuff vs. agn just a continuum?
 
