@@ -633,9 +633,11 @@ Looking at the AGN part of the nuclear sample (bottom right plot), one can notic
   \labfig{classification_maghist_cut}
 \end{figure}
 
-To obtain a purer (but of course less complete) TDE sample, the visual cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, \textbf{25 TDE candidates could be added} to the already known and spectroscopically classified TDEs.
+To obtain a purer (but of course less complete) TDE sample, the visual cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from \textbf{non-AGN hosts} classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, \textbf{26 TDE candidates could be added} to the already known and spectroscopically classified TDEs. These were:
 
-Unfortunately, visual inspection of the 24 events within AGN hosts that were identified as TDE ruled out all but one (\textit{ZTF18acryjql}) transient. This was almost always possible based on light curve features alone, highlighting \textbf{potentially lacking performance of the classifier}.
+\textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF18abtnfnq}{ZTF18abtnfnq}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF18accvmgs}{AT2018ibg}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aaeukyu}{AT2021aatf}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aanlttm}{AT2019cyt}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aaprhvf}{AT2019ekr}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aayvxgy}{AT2019hrg}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aazlrsy}{ZTF19aazlrsy}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19abqyosy}{ZTF19abqyosy}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19abrbskk}{AT2019pcl}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19abzzuef}{AT2019sez}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aclocml}{ZTF19aclocml}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19acssksf}{AT2019uyn}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aavoumq}{ZTF20aavoumq}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abbpxut}{AT2020kri}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abkstjk}{ZTF20abkstjk}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abqjebg}{ZTF20abqjebg}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20acfxnyr}{ZTF20acfxnyr}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aclgfji}{AT2020ygl}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20acpmkls}{ZTF20acpmkls}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}{ZTF21aanubdr}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aaxtlvc}{AT2021ldl}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aaxtpty}{AT2021kqp}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aazenvp}{AT2021ovg}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21abkqvdo}{AT2021swi}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21acojhgu}{AT2021aees}}, and \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF22aaabqko}{AT2022emf}}.
+
+The 24 objects classified as TDEs that \textbf{were lying in AGN hosts} were also evaluated. Unfortunately, visual inspection of these events ruled out all but one (\textit{ZTF18acryjql}) transient. This was almost always possible based on light curve features alone, highlighting \textbf{potentially lacking performance of the classifier}. On the bright side, it shows that the AGN rejection seems to work, as significantly less events (24 vs 79 for the non-AGN hosts) were initially classified as TDEs at that stage.
 
 \subsection{Inspection of Objects Classified as TDE}\label{all_tde_inspection}
 One pitfall in evaluating the classifier performance is the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage --- this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
@@ -670,9 +672,7 @@ Fig.~\ref{fig:ztfnuclear_frontend} shows a screenshot of the frontend. This was 
 \subsection{Creating a Gold Sample}
 To create a sample of dust echo transients that look promising, multiple users review all transients with a \texttt{T2DustEchoEval} score of 1, designed to select likely real infrared flares compatible with a dust echo. A dust echo evaluation score of 1 selects infrared flares that have reliable baseline in both bands before the flare, and the flare is evolving reasonably fast (rise time $<1000$ days, fade time $<5000$ days).
 
-The review was performed using the web frontend, and each user rated the transients as either `interesting', `maybe interesting' or `boring'. The final selection comprises transients that were rated as `interesting' by at least two users.
-
-An overview table of the 37 transients that met this criterion can be seen in the Appendix in Table~\ref{tab:dustecho_selection}.
+The review was performed using the web frontend, and each user rated the transients as either `interesting', `maybe interesting' or `boring'. The final selection comprises transients that were rated as `interesting' by at least two users. An overview table of the 37 transients that met this criterion can be seen in the Appendix in Table~\ref{tab:dustecho_selection}.
 
 \subsection{New TDE and Accretion Flare Candidates}
 Among this final selection were 16 candidate TDEs that showed a strong dust echo, and which were not published so far. These comprise:
@@ -696,7 +696,7 @@ Two exemplary light curves are shown in Fig.\ref{fig:two_dustecho_examples}, one
 \end{figure}
 
 \section{Conclusion}
-Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm on the one side, and looking for promising dust-echoes on the other side yielded \textbf{in total 38 new candidates}.
+Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm aided by visual cuts on the one side, and vetting promising dust-echo sources on the other side yielded \textbf{in total 39 new candidates}.
 
 % Prelim. study of the sample shows that there are at least xx more likely TDEs and dust echo, ongoing work on multiple levels
 
@@ -704,9 +704,9 @@ Extracting previously unknown TDE candidates from the nuclear sample by using a 
 % b) realtime pipeline conversion maybe possible
 % c) realtime application of the wise / lsst dust detection capabilities?
 
-One important question remaining concerns the differentiation between clear-cut TDE and such events that are somewhat ambiguous. These are in general more energetic, longer lived and occur in active galaxies. These are exemplified in Fig.~\ref{fig:two_dustecho_examples}, where \textit{ZTF18abtnfnq} is a classical TDE candidate, and \textit{ZTF20abgxlut} is more luminous, longer lived and situated in an AGN. One could hypothesize that both populations do in fact form the ends of a continuum, together constituting the class of `accretion flares'.
+One important remaining question concerns the differentiation between clear-cut TDEs and those events that are somewhat ambiguous. The latter are in general more energetic, longer lived and occur in active galaxies. These are exemplified in Fig.~\ref{fig:two_dustecho_examples}, where \textit{ZTF18abtnfnq} is a classical TDE candidate, and \textit{ZTF20abgxlut} is more luminous, longer lived and situated in an AGN. One could hypothesize that both populations do in fact form the ends of a continuum, together constituting the class of `accretion flares'.
 
-Furthermore, a real-time application of the pipeline might be possible.
+Furthermore, a real-time application of the classifier might be a promising avenue. Of course, such an application will have to deal with a significantly reduced amount of data,
 
 
 % is the accretion stuff vs. agn just a continuum?
