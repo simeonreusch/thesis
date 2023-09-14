@@ -299,6 +299,12 @@ I derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0
 \subsection{Uncertainty Estimate}
 As the fit routine was not able to generate stable covariance matrices in all epochs, the I \textbf{estimated the uncertainties manually}.
 
+\begin{marginfigure}
+    \includegraphics{at2019fdr/at2019fdr_bb_chisq.pdf}
+    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
+    \labfig{bb_chisq}
+\end{marginfigure}
+
 For each epoch and fit parameter, this was done by letting all parameters vary except for the parameter of interest. I then varied this parameter around the best-fit value, and the resulting $\chi^2$ was evaluated. Following this, I approximated the $\chi^2$ distribution with a polynomial, and calculated the the \SI{68}{\percent} confidence level --- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
 From the fit parameter uncertainties calculated as such, I obtained uncertainties on the radius and the luminosities via Gaussian error propagation.
@@ -320,12 +326,6 @@ From the fit parameter uncertainties calculated as such, I obtained uncertaintie
 \end{figure}
 
 As can be seen in Table~\ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As these values were in tension with the dust-echo model discussed below\sidenote{See Section~\ref{dust_echo}.}, we investigated this behavior.
-
-\begin{marginfigure}
-    \includegraphics{at2019fdr/at2019fdr_bb_chisq.pdf}
-    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
-    \labfig{bb_chisq}
-\end{marginfigure}
 
 The most likely reason for the higher temperature in epoch 3 is that the infrared blackbody was \textbf{less constrained in that epoch}, as there were no \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. In Fig.~\ref{fig:at2019fdr_contour_all}, one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}.
 
@@ -378,7 +378,7 @@ where $L_{45}$ is the flare's luminosity integrated over all wavelengths where t
 
 When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) with a temperature of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yielded a sublimation radius of \SI{0.2}{\parsec}, which is in \textbf{good agreement} with the best-fit value of \SI{0.16}{\parsec}.
 
-To obtain the \textbf{covering factor}, i.e.\ the fraction of the shell\todo{maybe discuss: why not a torus?} around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, which was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).\todo{does this imply 100 percent efficiency?}
+To obtain the \textbf{covering factor}, i.e.\ the fraction of the shell\todo{maybe discuss: why not a torus?} around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, assuming a \SI{100}{\percent} efficiency in the absorption-reemission process. This value was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).
 
 I used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm}\todo{source} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100~\sidecite{Leroy2011}, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
@@ -397,6 +397,9 @@ Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretat
             \hline
             \emph{AT2019fdr}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$     & \cellcolor{green}\checkmark & \cellcolor{green}$\times$     & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
             \emph{PS1--10adi} & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
+            \hline
+            \hline
+            \emph{AT2019dsg}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$     & \cellcolor{green}\checkmark & \cellcolor{green}$\times$     & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
             \hline
         \end{tabular}
     \end{center}
