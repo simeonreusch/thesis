@@ -644,7 +644,7 @@ One pitfall in evaluating the classifier performance is the fact that \SI{70}{\p
 
 This was done for the non-AGN part of the sample (see top right histogram in Fig.~\ref{fig:classification_maghist_nocut}). Of the 237 objects classified as TDE, 29 were already seen by the classifier during the training stage and were therefore excluded, leaving 208 transients. These were then visually inspected, and rated by the following scheme: `Correct' meant that the transient looked like a plausible TDE, and no contrary evidence --- like a classification based on a spectrum --- existed. `Possible' meant that either the light curve looked ambiguous, or little data was present, but a clear misclassification could be excluded. Finally, `wrong' was reserved for transients where the visual inspection rendered the TDE-classification unlikely, as e.g.~stochastic AGN variability was present, or the TDE fit result looked unsatisfying (for example, unphysically fast rise and fade timescales).
 
-Of the 208 transients thus analyzed, 79 had a correct classification, for 28 a TDE nature was possible, and 101 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a \textbf{false positive rate of \SI{48.5}{\percent} resulted}. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{62}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{90}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}).
+Of the 208 transients thus analyzed, 79 had a correct classification, for 28 a TDE nature was possible, and 101 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a \textbf{false positive rate of \SI{48.5}{\percent} resulted}. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{62}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{90}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}). This get alleviated a bit by the fact that TDEs which were present during the training phase were excluded -- so the `real' performance might as well be better. One can safely assume that roughly half of the transients classified as TDE are in fact TDEs.
 
 \subsection{Conclusions for Photometric Classification}
 The performance of the classifier yielded somewhat mixed results. There was a number of problems identified that need to be addressed when improving the classification quality:
@@ -674,12 +674,12 @@ To create a sample of dust echo transients that look promising, multiple users r
 
 The review was performed using the web frontend, and each user rated the transients as either `interesting', `maybe interesting' or `boring'. The final selection comprises transients that were rated as `interesting' by at least two users. An overview table of the 37 transients that met this criterion can be seen in the Appendix in Table~\ref{tab:dustecho_selection}.
 
-\subsection{New TDE and Accretion Flare Candidates}
+\subsection{New TDE Candidates}
 Among this final selection were 16 candidate TDEs that showed a strong dust echo, and which were not published so far. These comprise:
 
 \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF18abnwufa}{ZTF18abnwufa}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF18abtnfnq}{ZTF18abtnfnq}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF19aamsgro}{AT2019cyq}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aaidhtp}{ZTF20aaidhtp}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aaostow}{ZTF20aaostow}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aaoxtxi}{AT2020ima}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20aauvhab}{AT2020hip}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abgxlut}{AT2020oio}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abhrmri}{AT2020nnc}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20ablvwmh}{AT2020xtj}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20abxtsgg}{ZTF20abxtsgg}}, \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF20acyxxfo}{AT2020aetz}} and \textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aaekxxf}{AT2021esn}}.
 
-Two exemplary light curves are shown in Fig.\ref{fig:two_dustecho_examples}, one candidate TDE (\textit{ZTF18abtnfnq}), and one candidate accretion flare similar to \textit{AT2019fdr}: \textit{AT2020oio}.
+These are included in Table~\ref{tab:dustecho_selection} and are displayed in bold there. Two exemplary light curves are shown in Fig.\ref{fig:two_dustecho_examples}, one bona-fide candidate TDE (\textit{ZTF18abtnfnq}), and one more ambiguous accretion flare similar to \textit{AT2019fdr}: \textit{AT2020oio}.
 
 \begin{figure}[htbp]
   \centering
@@ -695,8 +695,10 @@ Two exemplary light curves are shown in Fig.\ref{fig:two_dustecho_examples}, one
   \labfig{two_dustecho_examples}
 \end{figure}
 
+
+
 \section{Conclusion}
-Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm aided by visual cuts on the one side, and vetting promising dust-echo sources on the other side yielded \textbf{in total 39 new candidates}. This highlighted that even dedicated programs are missing some candidates. If conservatively assuming that about half of the candidates are in fact TDEs (in contrast to AGN activity and SNe), the luminosity function of TDEs will need to be adjusted. This is not exactly straightforward to do, as all the transients are over by now and the window of opportunity to classify them spectroscopically has closed.
+Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm aided by visual cuts on the one side, and vetting promising dust-echo sources on the other side yielded \textbf{in total 39 new candidates}. This highlighted that even dedicated programs are missing some candidates. If assuming that about half of the candidates are in fact TDEs (in contrast to AGN activity and SNe, see Section~\ref{all_tde_inspection} for a justification of that number), the luminosity function of TDEs will need to be adjusted. This is not exactly straightforward to do, as all the transients are over by now and the window of opportunity to classify them spectroscopically has closed.
 
 % Prelim. study of the sample shows that there are at least xx more likely TDEs and dust echo, ongoing work on multiple levels
 
