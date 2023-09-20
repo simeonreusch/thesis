@@ -107,7 +107,7 @@ The GCN parsing is done akin to \texttt{planobs} (see Section~\ref{planobs}). Af
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute}. Note that this needs to be reflected in the observation planning.\ \texttt{planobs} (see Section~\ref{planobs}) takes care of that.
     \item[\texttt{sgscore}] The transient must have an \texttt{sgscore} $<0.8$, which means a low probability of being a star.
     \item[Maximum distance to PS1] As noted in Section~\ref{ztf_alerts}, the \texttt{sgscore} star-galaxy classifier is trained on data from PS1. To ensure correct association of the \texttt{sgscore} value which is based on the closest PS1 source, we require the source to be closer than \SI{1}{\degree}. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
-    \item[Gaia star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the Gaia survey.
+    \item[\textit{Gaia} star veto] Vetoes the source if the probability of it being a star is high, based on parameters from the \textit{Gaia} survey.
 \end{description}
 The vast majority of alerts do not pass these filters, significantly reducing the human effort needed in candidate vetting.
 \begin{marginfigure}
@@ -119,7 +119,7 @@ The vast majority of alerts do not pass these filters, significantly reducing th
 All surviving candidates are then spatially crossmatched to a set of catalogs. These are:
 \begin{description}
     \item[CRTS] A catalog derived from the Catalina Realtime-Transient Survey (CRTS)~\sidecite{Drake2009}, the Catalina Surveys Periodic Variable Star Catalog~\sidecite{Drake2014}, is queried to check if the source is a \textbf{variable star}.
-    \item[Gaia] Gaia Data Release 2 (Gaia DR2)~\sidecite{Brown2018} is also used to crossmatch with known stars.
+    \item[Gaia] \textit{Gaia} Data Release 2 (\textit{Gaia} DR2)~\sidecite{Brown2018} is also used to crossmatch with known stars.
     \item[MILLIQUAS] The Million Quasar Catalog (MILLIQUAS)~\sidecite{Milliquas} contains 1.4 million quasi-stellar object (QSO) candidates. Crossmatching is done to see if the source candidate is most likely associated to an \textbf{AGN}.
     \item[NED] The NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}} hosts information on 1.7 billion objects, compiled from various surveys and catalogs. Almost 9 million of those have a \textbf{spectroscopic redshift}.
     \item[SDSS] Data Release 10 (DR10)~\sidecite{Ahn2014} of SDSS is used to check if the object is flagged as potential star.
