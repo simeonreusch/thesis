@@ -43,12 +43,14 @@ The details of the \textit{Fermi} LAT analysis were published in~\sidecite{Velze
 No gamma-ray sources were detected significantly (\SI{\geq5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2)~\sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this time window within the energy bin of \SIrange{0.1}{800}{\giga\eV} is \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of \emph{AT2019fdr}, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\gamma}$, with a spectral index $\gamma=2$~\cite{Velzen2021}.
 
 \subsection{X-ray Observations}\label{x_ray_obs}
-The sky region of AT2019 was visited four times by \textit{SRG} with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit one year later the source was detected, which can be counted as evidence for \textbf{temporal evolution in X-ray wavelengths}. All measurements and the upper limits and detections derived from these are displayed in Fig.~\ref{fig:at2019fdr_light_curve} and listed in Table~\ref{tab:at2019fdr_erosita}.
+
 \begin{marginfigure}
     \includegraphics{at2019fdr/SRG.jpeg}
     \caption[The \textit{SRG} satellite]{The \textit{SRG} satellite. The eROSITA instrument aboard \textit{SRG} was put into hibernation following the Russian invasion of Ukraine in February 2022. Image credit: Roskosmos.}
     \labfig{srg_satellite}
 \end{marginfigure}
+
+The sky region of AT2019 was visited four times by \textit{SRG} with a six-month cadence. The first visit was March 13--14, 2020. Only on the third visit one year later the source was detected, which can be counted as evidence for \textbf{temporal evolution in X-ray wavelengths}. All measurements and the upper limits and detections derived from these are displayed in Fig.~\ref{fig:at2019fdr_light_curve} and listed in Table~\ref{tab:at2019fdr_erosita}.
 
 \begin{table}
     \begin{center}
@@ -80,7 +82,7 @@ The equivalent neutral hydrogen column density had a best-fit value of $\text{NH
 
 As noted above, \textit{Swift} XRT had already observed \emph{AT2019fdr} 14 times prior to the neutrino arrival~\cite{Frederick2021}. We requested a prompt ToO observation after the source emerged as a neutrino candidate, which was carried out on June 7, 2020 with a \SI{2000}{\s} exposure.
 
-The data was reduced with the publicly available \texttt{Swift XRT data products generator}~\sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool~\sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used~\cite{Reusch2022}.
+The data was reduced with the publicly available \texttt{\textit{Swift} XRT data products generator}~\sidecite{Centre2020} in the energy range of \SIrange{0.3}{10}{\kilo\eV}. As all 14 observations prior to the neutrino arrival were non-detections, those were binned (total exposure: \SI{20700}{\s}) to compute a \SI{3}{\sigma} energy flux upper limit of \SI{1.4e-13}{\erg\per\s\per\square\cm}. The upper flux limit for the post-neutrino observation was \SI{4.7e-12}{\erg\per\s\per\square\cm}. To convert photon counts to to energy flux, I employed the \texttt{HEASARC WebPIMMS} tool~\sidecite{Arida2020}. The blackbody temperature was set to the \SI{56}{\eV} measured by \textit{SRG}/eROSITA, and the best-fit neutral hydrogen column density from the same measurement was used~\cite{Reusch2022}.
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/swift.png}
@@ -380,7 +382,7 @@ When inserting the infrared blackbody temperature from the second epoch (as it i
 
 To obtain the \textbf{covering factor}, i.e.\ the fraction of the shell\todo{maybe discuss: why not a torus?} around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, assuming a \SI{100}{\percent} efficiency in the absorption-reemission process. This value was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).
 
-I used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm}\todo{source} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100~\sidecite{Leroy2011}, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
+I used this covering factor and the radius of the dust shell to \textbf{determine the dust mass}. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm}~\sidecite{Mann2000} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100~\sidecite{Leroy2011}, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
 \section{Classification}
 As stated at the beginning of this chapter, \emph{AT2019fdr} was initially classified as a SLSN IIn, but a subsequent paper classified \emph{AT2019fdr} as TDE~\cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
