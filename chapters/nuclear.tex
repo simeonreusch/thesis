@@ -612,7 +612,7 @@ One pitfall in evaluating the classifier performance is the fact that \SI{70}{\p
 
 This was done for the non-AGN part of the sample (see top right histogram in Fig.~\ref{fig:classification_maghist_nocut}). Of the 237 objects classified as TDE, 29 were already seen by the classifier during the training stage and were therefore excluded, leaving 208 transients. These were then visually inspected, and rated by the following scheme: `Correct' meant that the transient looked like a plausible TDE, and no contrary evidence --- like a classification based on a spectrum --- existed. `Possible' meant that either the light curve looked ambiguous, or the TDE fit result looked unsatisfying (for example, unphysically fast rise and fade timescales), but a clear misclassification could be excluded. Finally, `wrong' was reserved for transients where the visual inspection rendered the TDE-classification unlikely, as e.g.~stochastic AGN variability was present.
 
-The exact rejection reasons for judging classifications as `wrong' were: Misclassification based on an available spectrum, issues with the light curve quality, the existence of multiple recurring flares within the light curve, the existence of only one flare, but paired with a variable baseline suggestive of AGN variability, and finally not a clear flare, but only slightly elevated flux above a variable baseline. A break down of all analyzed transients regarding these rejection reasons can be seen in Table~\ref{tab:rejection_statistics}.
+The exact rejection reasons for judging classifications as `wrong' were: Misclassification based on an available spectrum, issues with the light curve quality, the existence of multiple recurring flares within the light curve, the existence of only one flare, but paired with a variable baseline suggestive of AGN variability, and finally not a clear flare, but only slightly elevated flux above a variable baseline. A break down of all analyzed transients regarding these rejection reasons can be seen in Table~\ref{tab:rejection_statistics}. An example for each category in Table~\ref{tab:rejection_statistics} is shown in Fig.~\ref{fig:rejection_examples}.
 
 \begin{table}
   \centering
@@ -630,6 +630,24 @@ The exact rejection reasons for judging classifications as `wrong' were: Misclas
   \label{tab:rejection_statistics}
 \end{table}
 
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[htb]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{nuclear/rejection/ZTF21acqjtyn.pdf}
+  \end{subfigure}
+  \begin{subfigure}[htb]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{nuclear/rejection/ZTF19acccreo.pdf}
+  \end{subfigure}
+  \begin{subfigure}[htb]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{nuclear/rejection/ZTF21aalydww.pdf}
+  \end{subfigure}
+  \begin{subfigure}[htb]{0.48\textwidth}
+    \includegraphics[width=1\textwidth]{nuclear/rejection/ZTF18acskznb.pdf}
+  \end{subfigure}
+  \caption[Examples of visual AGN rejection]{Examples for the different categories of visual AGN rejection. Top left: Data quality issues. Top right: There are multiple flares, which the Bayesian block algorithm failed to detect. Bottom left: Only one clear flare, but signs of a variable baseline. Bottom right: No flare discernible.}
+  \labfig{rejection_examples}
+\end{figure}
+
 Of the 208 transients thus analyzed, 82 had a correct classification, for 33 a TDE nature was possible, and 93 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a false positive rate of \SI{44.7}{\percent} resulted. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{60.5}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{10}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}). This get alleviated a bit by the fact that TDEs which were present during the training phase were excluded -- so the `real' performance might as well be better. One can therefore safely assume that roughly half of the transients classified as TDE are in fact TDEs. All further calculations will be done with the assumption of a \SI{50}{\percent} false-positive rate.
 
 On the positive side: A lot of the clear misclassifications showed signs of AGN baseline variability. As can be seen in Table~\ref{tab:rejection_statistics}, 24 transients showed multiple flares, and 23 showed only slightly elevated flux above a variable baseline. It should be possible to develop a second classifier designed only to discern these features. If that would be possible, the false-positive rate could be reduced to roughly \SI{22}{\percent}.
@@ -640,7 +658,7 @@ The performance of the classifier yielded somewhat mixed results. There was a nu
 \begin{description}
   \item[Data quality] In some cases, inspection of transients classified as TDE showed a sparsely sampled light curve, e.g.~\textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF21aanubdr}{ZTF21aanubdr}}. A human would recognize that the sparse sampling allows only little conclusions to be drawn, while the decision tree had no adequate way of reacting to that fact. It would be beneficial to somehow infer from the data quality the range of conclusions that could possibly be drawn for a specific object.
   \item[Misclassifications] There were examples where visual inspection allowed for easy and straightforward classification --- especially in the case of stochastic AGN variability --- but the classifier struggled to identify the AGN-nature of the transient. This highlights that there might still be room for improvement, i.e.~further features that humans easily grasp and which could be exploited for automatic classification. The `exactly 1 coincident flare' feature was apparently not sufficient for this task, and neither was a high $\chi^2$ of the TDE and SALT2 fits. It should be possible to add another classifier designed just to identify periodic features typical for such stoachastic AGN behavior.
-  \item[Effectiveness of Augmentation] The TDE classification performance of the classifier when applied to the nuclear sample was investigated in Section~\ref{all_tde_inspection}. The results were worse than the confusion matrices of the test sample (see Section~\ref{confusion_matrices}) suggested: At least 101 of 208 objects classified as TDE and not seen by the classifier during training are most likely something else, a much higher false-positive rate (\SI{48.5}{\percent}) than the test sample suggested. This means that the augmentation by creating redshifted and noisified copies was not able to fully capture the transition from the BTS sample to the nuclear sample.
+  \item[Effectiveness of Augmentation] The TDE classification performance of the classifier when applied to the nuclear sample was investigated in Section~\ref{all_tde_inspection}. The results were worse than the confusion matrices of the test sample (see Section~\ref{confusion_matrices}) suggested: At least 101 of 208 objects classified as TDE and not seen by the classifier during training are most likely something else, a much higher false-positive rate (\SI{48.5}{\percent}) than the test sample suggested. This means that the augmentation by creating redshifted and noisified copies was not able to fully capture the transition from the BTS sample to the fainter nuclear sample.
 \end{description}
 
 \section{Selection by Dust Echo}\label{dustecho_sel}
@@ -704,9 +722,9 @@ To obtain a handle if these numbers are compatible with expection, I calculated 
 This is shown in Fig.~\ref{fig:detection_efficiency}, which displays the 66 known ZTF-detected TDEs (all of them fall into the time range of the nuclear sample) in blue. These are appended by the TDE candidates newly identified by this work (magenta), as well as the simulated flux-complete TDE sample (black dash-dotted line). This clearly shows that almost all candidates from this work could in fact be TDEs without violating the expected number of TDEs, especially in the two faintest magnitude bins. This figure also highlights that even if all the TDE candidates truly were TDEs, the sample would still be far from complete at the faint end. For example, in the 19--19.5 magnitude bin, only half the number of expected TDEs is detected.
 
 \section{Conclusion}\label{nuc_conclusion}
-Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm aided by 2D cuts on the one side, and vetting promising dust-echo sources on the other side yielded in total 41 new candidates. This highlights that even dedicated programs are missing some candidates. If assuming that about half of the candidates are in fact TDEs (in contrast to AGN activity and SNe, see Section~\ref{all_tde_inspection} for a justification of that number), the luminosity function of TDEs might need to be adjusted. This is not exactly straightforward to do, as all the transients are over by now and the window of opportunity to classify them spectroscopically has closed.
+Extracting previously unknown TDE candidates from the nuclear sample by using a trained algorithm aided by 2D cuts on the one side, and vetting promising dust-echo sources on the other side yielded in total 41 new candidates. This highlights that even dedicated programs are missing some candidates. If assuming that about half of the candidates are in fact TDEs (in contrast to AGN activity and SNe, see Section~\ref{all_tde_inspection} for a justification of that number), the luminosity function of TDEs might need to be adjusted. This is not exactly straightforward to do, as all the transients are over by now and the window of opportunity to classify them spectroscopically has closed. Nevertheless, the number of additional candidates and their magnitude distribution is in line with expectations when extrapolating from the ZTF-discovered TDEs in the 17.5--18.0 magnitude range.
 
-One key takeway from this study is that the contamination by AGN is the foremost problem in improving the quality of the photometric classifier.\todo{details}
+One key takeway from this study is that the contamination by AGN is the foremost problem in improving the quality of the photometric classifier. It seems that requiring exactly one coincident flare in two bands, and rejecting based on the $\chi^2$ of the two fits does not yield enough information, leaving a set of AGN misclassified as other transients. It therefore would be fruitful for future studies to add another classifier designed solely to reject stochastic AGN variability by identifying periodic behavior, e.g. based on Gaussian processes.
 
 \subsubsection{Outlook}
 
