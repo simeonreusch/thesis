@@ -380,7 +380,7 @@ where $L_{45}$ is the flare's luminosity integrated over all wavelengths where t
 
 When inserting the infrared blackbody temperature from the second epoch (as it is the best constrained one) with a temperature of \SI{1762}{\K}, using the default grain size and the peak optical luminosity of \SI{1.4e45}{\erg\s}, this equation yielded a sublimation radius of \SI{0.2}{\parsec}, which is in good agreement with the best-fit value of \SI{0.16}{\parsec}.
 
-To obtain the covering factor, i.e.\ the fraction of the shell\todo{maybe discuss: why not a torus?} around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, assuming a \SI{100}{\percent} efficiency in the absorption-reemission process. This value was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).
+To obtain the covering factor, i.e.\ the fraction of the shell around the transient that actually contained dust, I needed to derive the total bolometric energy of the dust echo. This was achieved by time-integrating the fitted dust echo light curve, scaled to the peak luminosity of \SI{4.3e44}{\erg\s}. This resulted in a dust echo bolometric energy of \SI{1.1e45}{\erg}. The ratio of the the dust echo bolometric energy to the optical/UV bolometric energy yielded a covering factor of 1/3, assuming a \SI{100}{\percent} efficiency in the absorption-reemission process. This value was unusually high (TDEs in quiescent galaxies usually have covering factors \SI{\sim1}{\percent}, see~\cite{Velzen2016}).
 
 I used this covering factor and the radius of the dust shell to determine the dust mass. Again assuming a grain size of \SI{0.1}{\micro\m}, spherical dust grains and a typical dust mass density of \SI{2.5}{\g\per\cm}~\sidecite{Mann2000} resulted in a mass of $0.017 ~\text{M}_\odot$ contributing to the echo. When assuming a typical mass-to-gas ratio of 1:100~\sidecite{Leroy2011}, this corresponds to $1.7 ~\text{M}_\odot$ in gas.
 
@@ -388,28 +388,28 @@ I used this covering factor and the radius of the dust shell to determine the du
 As stated at the beginning of this chapter, \emph{AT2019fdr} was initially classified as a SLSN IIn, but a subsequent paper classified \emph{AT2019fdr} as TDE~\cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
 
 \subsection{Original TDE Classification}
-Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that \emph{AT2019fdr} --- as all the 5 flares located in NLSy1 galaxies they studied --- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table~\ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely.\todo{table is not finished!}
+Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that \emph{AT2019fdr} --- as all the 5 flares located in NLSy1 galaxies they studied --- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table~\ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely. For comparison, \textit{AT2019dsg} is shown as an example of a bona fide TDE.
 
 \begin{table*}[htp]
     \begin{center}
         \begin{tabular}{c c c c c c c c c c}
             \hline
             Name              & $M_\text{BH}<$              & $\text{H}_\beta<2000$     & FeII                      & [OIII]$/\text{H}_\beta$   & $\Delta g-r$                & UV                          & X-ray                         & \textit{W1}-\text{W2}     & Re-                       \\
-                              & $10^8 M_\odot$              & \unit{\km\per\s}          &                           & $<3$                      & $\sim 0$ mag                &                             & \& $\Gamma$                   & $<0.7$ mag                & brighten                  \\
+                              & $10^8 M_\odot$              & \unit{\km\per\s}          &                           & $<3$                      & $\sim 0$ mag                &                             & \& $\Gamma$                   & $>0.7$ mag                & brighten                  \\
             \hline
             \emph{AT2019fdr}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$     & \cellcolor{green}\checkmark & \cellcolor{green}$\times$     & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
             \emph{PS1--10adi} & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
             \hline
             \hline
-            \emph{AT2019dsg}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}\checkmark & \cellcolor{red}$\times$     & \cellcolor{green}\checkmark & \cellcolor{green}$\times$     & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
+            \emph{AT2019dsg}  & \cellcolor{green}\checkmark & \cellcolor{red}\checkmark & \cellcolor{green}$\times$ & \cellcolor{red}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}\checkmark & \cellcolor{green}(\checkmark) & \cellcolor{green}$\times$ & \cellcolor{green}$\times$ \\
             \hline
         \end{tabular}
     \end{center}
-    \caption[\emph{AT2019fdr}/\emph{PS1--10adi} classification matrix]{Classification matrix of \emph{AT2019fdr} and \emph{PS1--10adi} for comparison.\ \checkmark\ means the property is present, while $\times$ marks an absence.\ \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. Adapted from~\cite{Frederick2021}.}
+    \caption[\emph{AT2019fdr}/\emph{PS1--10adi} classification matrix]{Classification matrix of \emph{AT2019fdr} and ambiguous transient \emph{PS1--10adi} for comparison, as well as bona fide TDE \textit{AT2019dsg}.\ \checkmark\ means the property is present, while $\times$ marks an absence.\ \textcolor{green}{Green} means that the presence or absence favors a TDE interpretation, while \textcolor{red}{red} is evidence for an AGN flare interpretation. (\checkmark) means the presence of soft X-rays. Adapted from~\cite{Frederick2021}.}
     \label{tab:at2019fdr_classification_matrix}
 \end{table*}
 
-In the case of \emph{AT2019fdr}, the host galaxy black hole mass lies below the Hills mass ($\lesssim 10^8 M_\odot$), it was persistently detected in UV around the peak, but initally not in X-ray wavelengths, its \textit{WISE} \textit{W1}-\textit{W2} color was below $0.7~\text{mag}$, and it showed no signs of rebrightening at the time of publication.\todo{maybe add a clear cut TDE to this}
+In the case of \emph{AT2019fdr}, the host galaxy black hole mass lies below the Hills mass ($\lesssim 10^8 M_\odot$), it was persistently detected in UV around the peak, but initally not in X-ray wavelengths, its \textit{WISE} \textit{W1}-\textit{W2} color was below $0.7~\text{mag}$, and it showed no signs of rebrightening at the time of publication.
 
 On the other hand, its narrow H$_\beta$ emission feature and its [OIII]/H$_\beta$ flux ratio, the strong FeII complex and the transients lack of cooling rather stipulated a flare of the underlying NLSy1 host.
 
