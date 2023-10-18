@@ -388,23 +388,23 @@ The set of features used for training was the following:
 
 \begin{description}
   \item[Peak magnitude] This is the peak observed magnitude (in any filter). The value was scaled accordingly for the noisified and redshifted child light curves:
-        \begin{subequations}
-          \begin{eqnarray}
-            m_\text{child} &=& m_\text{parent} - \mu­_\text{parent} + \mu_\text{child}~~\text{and}\\
-            \mu &=& 5(\log_{10}D_L(z)+1),
-          \end{eqnarray}
-        \end{subequations}
-        where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
+    \begin{subequations}
+      \begin{eqnarray}
+        m_\text{child} &=& m_\text{parent} - \mu­_\text{parent} + \mu_\text{child}~~\text{and}\\
+        \mu &=& 5(\log_{10}D_L(z)+1),
+      \end{eqnarray}
+    \end{subequations}
+    where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
   \item[SALT2 Fit Results] This included SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
   \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked on this parameter. The results also included the $\chi^2$ and degrees of freedom.
   \item[Overlapping blocks] The number of overlapping regions, extracted with the bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
   \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were also added.
   \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), is included as a proxy for host galaxy photometry and morphology.
   \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves will change with respect to their parents, this value was recalculated for all children. This was done according to
-        \begin{equation}
-          \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
-        \end{equation}
-        where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
+    \begin{equation}
+      \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
+    \end{equation}
+    where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
 
 \section{Evaluating the Model}
@@ -436,19 +436,11 @@ Interestingly, the temperature change does not seem to play a major role, and al
 \subsubsection{Confusion Matrices}\label{confusion_matrices}
 To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing child light curves created by the augmentation process, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
 
-\subsubsection{Test without Noisified Light Curves}
+\subsubsection{Test without Augmented Light Curves}
 The results from only allowing `real' light curves (i.e.~parent light curves) can be seen in Fig.~\ref{fig:confusion_nonoise}.
 
 \begin{figure}[htb]
   \centering
-  \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-    \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_False_normaliz_None.pdf}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-    \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_False_normaliz_all.pdf}
-  \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_False_normaliz_pred.pdf}
@@ -457,33 +449,25 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
     \centering
     \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_False_normaliz_true.pdf}
   \end{subfigure}
-  \caption[Confusion matrices without augmentation]{Confusion matrices of the test set predictions, excluding noisified light curves. For each figure, the row corresponds to the true type, and the column to the predicted type of object. The matrix on the top left shows the total numbers, while all other matrices show percentage. The bottom left matrix shows prediction-normalized values, while the bottom right matrix shows truth-normalized values.}
+  \caption[Confusion matrices without augmentation]{Confusion matrices of the test set predictions, excluding child light curves from the augmentation process. For each figure, the row corresponds to the true type, and the column to the predicted type of object. The matrix on the left shows prediction-normalized values, while the matrix on the right shows truth-normalized values. Absolute numbers are included below the percentages.}
   \labfig{confusion_nonoise}
 \end{figure}
 
-As one can see in the top right plot, when exluding noisified light curves, the test set is naturally heavily biased towards SNe Ia as well (like the training set), and only 16 TDEs are present.
+As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:fig:confusion_nonoise} show that the test set is naturally heavily biased towards SNe Ia as well (like the training set), and only 15 TDEs are present.
 
-The bottom left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, the other \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} are the false positive rate.
+The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, the other \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} are the false positive rate.
 
-The truth-normalized matrix (bottom right) shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent} correspond to the false negative rate for TDE classification.
+The truth-normalized matrix on the right shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent} correspond to the false negative rate for TDE classification.
 
-The performance looks quite decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification seems to work fairly well, with \SI{60}{\percent} of all TDEs identified by the classifier as such, of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no easy fix to this problem.
+The performance looks quite decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification works fairly well, with \SI{60}{\percent} of all TDEs identified by the classifier as such, of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no straightforward fix for this problem.
 
-\subsubsection{Test with Noisified Light Curves}
+\subsubsection{Test with Augmented Light Curves}
 The evalation above was repeated, but this time including child light curves from the augmentation process. The results can be seen in Fig.~\ref{fig:confusion_noise}.
 
-The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance does increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs (compared to \SI{90}{\percent} without noisified light curves in the test set), and \SI{79}{\percent} of all TDEs were identified as such (no noisified test: \SI{60}{\percent}).
+The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance does increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs (compared to \SI{90}{\percent} without augmentation in the test set), and \SI{79}{\percent} of all TDEs were identified as such (with augmentation: \SI{60}{\percent}).
 
 \begin{figure}[htb]
   \centering
-  \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-    \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_True_normaliz_None.pdf}
-  \end{subfigure}
-  \begin{subfigure}[b]{0.49\textwidth}
-    \centering
-    \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_True_normaliz_all.pdf}
-  \end{subfigure}
   \begin{subfigure}[b]{0.49\textwidth}
     \centering
     \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_True_normaliz_pred.pdf}
@@ -492,7 +476,7 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
     \centering
     \includegraphics[width=1\textwidth]{nuclear/confusion/results_seed_10_n_iter_5000_noisified_val_True_normaliz_true.pdf}
   \end{subfigure}
-  \caption[Confusion matrices with augmentation]{Confusion matrices of the test set predictions, including noisified light curves. Top left: total numbers; top right: total percentages; bottom left: prediction-normalized; bottom right: truth-normalized.}
+  \caption[Confusion matrices with augmentation]{Confusion matrices of the test set predictions, including child light curves from the augmentation process. Left: prediction-normalized; right: truth-normalized.}
   \labfig{confusion_noise}
 \end{figure}
 
