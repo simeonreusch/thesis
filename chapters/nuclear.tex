@@ -408,22 +408,21 @@ The set of features used for training was the following:
 \end{description}
 
 \section{Evaluating the Model}
-A large fraction of the nuclear sample was unclassified --- this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: \SI{30}{\percent} of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
+A large fraction of the nuclear sample was unclassified --- this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A certain fraction (here: \SI{30}{\percent}) of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
 
-\subsection{Strict Separation of Training and Test}
-One pitfall needs to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
+One pitfall needed to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
 
 \subsection{Performance}
 We are now ready to see how the model performs. This is done by first investigating the feature importance, and then by evaluating the confusion matrices.
 
 \subsubsection{Feature Importance}
-Feature importance can be used to decide on the usability of certain features, i.e. if they actually contribute to the final classification in a meaningful way. In this case, it is calculated by using a `gain' metric. This calculates the average improvement in loss when adding that feature to a tree during training, splitting one branch into two, which could result in more accurate predictions than the original branch.
+Feature importance can be used to decide on the usability of certain features, i.e. if they actually contribute to the final classification in a meaningful way. In this case, it is calculated by using a `gain' metric. In this metric, one calculates the average improvement in loss when adding that feature to a tree during training, splitting one branch into two, which could result in more accurate predictions than the original branch.
 
-As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks decent. The feature importance is distributed fairly equally, as there is not one dominating feature. This would be indicative of the classifier finding a loop hole regarding the actual task. There are also no features that do not influence the classification at all.
+As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks well behaved. The feature importance is distributed fairly equally, as there is not one dominating feature. A dominant feature would raise concerns, as it could be indicative of the classifier finding a loop hole regarding the actual task. Also, there are no features present that do not influence the classification at all.
 
 \begin{figure}[htpb]
   \includegraphics[width=0.6\textwidth]{nuclear/confusion/feature_importance_niter_5000_nsample_2000.pdf}
-  \caption[Feature importance]{Feature importance for the classifier when trained with the augmented BTS sample.}
+  \caption[Feature importance]{Feature importance for the classifier when trained with the augmented BTS sample. The relative contribution of each feature to the model is shown in percent, with all individual features adding up to \SI{100}{\percent}.}
   \labfig{feature_importance}
 \end{figure}
 
@@ -431,10 +430,10 @@ The two most important features are the number of flares identified by the Bayes
 
 Also important are the TDE fit rise- and decay time, as well as the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. On equal footing are the peak magnitude and the \texttt{sgscore}. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
 
-Interestingly, the temperature change does not seem to play a major role, and also the peak temperature is less important as one would expect from previous studies (e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that (missing) light curve color evolution is a good predictor for TDEs. As the blackbody temperature and temperature change should in principle encode color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
+Interestingly, the temperature change does not seem to play a major role, and also the peak temperature is less important as one would expect from previous studies (see e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that a \textit{g}-\textit{r} color close to 0, as well as the absence of light curve color evolution are good predictors for TDEs. As the blackbody temperature and temperature change should in principle encode color and color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}\label{confusion_matrices}
-To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing child light curves created by the augmentation process, or only parent light curves. There was no reason to favor one over the other, so both evaluations were done.
+To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing child light curves created by the augmentation process, or only parent light curves. There was no reason to favor one over the other, so both evaluations were performed.
 
 \subsubsection{Test without Augmented Light Curves}
 The results from only allowing `real' light curves (i.e.~parent light curves) can be seen in Fig.~\ref{fig:confusion_nonoise}.
@@ -453,18 +452,18 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
   \labfig{confusion_nonoise}
 \end{figure}
 
-As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:fig:confusion_nonoise} show that the test set is naturally heavily biased towards SNe Ia as well (like the training set), and only 15 TDEs are present.
+As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:confusion_nonoise} show that the test set -- like the training set -- is heavily biased towards SNe Ia, and only 15 TDEs are present.
 
-The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, the other \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} are the false positive rate.
+The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, while the remaining \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} constitute the false positive rate.
 
-The truth-normalized matrix on the right shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent} correspond to the false negative rate for TDE classification.
+The truth-normalized matrix on the right shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent}, corresponds to the false negative rate for TDE classification.
 
-The performance looks quite decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification works fairly well, with \SI{60}{\percent} of all TDEs identified by the classifier as such, of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no straightforward fix for this problem.
+The performance looks decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification works fairly well: \SI{60}{\percent} of all TDEs were identified by the classifier as such, and of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no straightforward fix for this problem.
 
 \subsubsection{Test with Augmented Light Curves}
 The evalation above was repeated, but this time including child light curves from the augmentation process. The results can be seen in Fig.~\ref{fig:confusion_noise}.
 
-The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance does increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs (compared to \SI{90}{\percent} without augmentation in the test set), and \SI{79}{\percent} of all TDEs were identified as such (with augmentation: \SI{60}{\percent}).
+The sample looks more balanced due to the inclusion of more noisified child light curves for underrepresented classes (except stars). As one would expect, the overall performance does increase when compared to the test set without child light curves: \SI{97}{\percent} of all predicted TDEs were in fact TDEs (compared to \SI{90}{\percent} without augmentation in the test set), and \SI{79}{\percent} of all TDEs were identified as such (without augmentation: \SI{60}{\percent}).
 
 \begin{figure}[htb]
   \centering
@@ -488,10 +487,10 @@ The sample looks more balanced due to the inclusion of more noisified child ligh
 The traditional method of selecting TDE candidates is comprised of a sequence of two-dimensional cuts in the fit result parameter space (see e.g.~\cite{Velzen2019}). One way of increasing the purity of the machine-learning selected TDE is by defining such a set of 2D cuts by studying the BTS sample, and applying the very same cuts to the nuclear sample.
 %  To get a handle on the results of the machine learning classification and evaluate the discriminatory power of the features in an independent way, a similar approach was chosen here.
 
-To do this, the classified part of the BTS sample with additional TDEs added was evaluated with exactly the same features as used in the training of the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs (maximizing efficiency), while rejecting as many non-TDE as possible (maximizing purity).
+To do this, the classified part of the BTS sample enriched by additional TDEs was evaluated with exactly the same features as used in the training of the classifier model. The goal was to look for a set of cuts in the fit parameter space that would retain a high number of TDEs, while rejecting as many non-TDE as possible.
 
-\subsection{Visual Cuts: Different Cut Stages}
-An overview over the sample after subsequent application of these cuts, as well as the TDE selection efficiency and purity can be seen in Figure~\ref{fig:bts_scatter}. These were the stages (the numbers in brackets correspond to the individual plots, with (1a) showing the sample without cuts):
+\subsection{2D Cuts: Different Cut Stages}
+An overview over the sample after subsequent application of these two-dimensional cuts, as well as the TDE selection purity\sidenote{Purity describes how many of the selected objects are in fact TDEs. This metric is also known as `precision' in ML literature} and completeness\sidenote{Completes details how many of the initial TDEs survive the cuts; also known as `recall' in the ML literature.} can be seen in Figure~\ref{fig:bts_scatter}. These were the stages (the numbers in brackets correspond to the individual plots, with (1a) showing the sample without cuts):
 
 \begin{description}
   \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, the BTS sample still contained objects which could be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
@@ -505,19 +504,19 @@ An overview over the sample after subsequent application of these cuts, as well 
 \end{description}
 
 \subsection{Visual Cuts: Evaluate the Cuts}
-Before all cuts, only requiring the TDE model fit to succeed, the sample consists of 4094 transients, of which 64 are TDEs. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection efficiency of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
+Before all cuts, only requiring the TDE model fit to succeed, the sample consists of 4094 transients, of which 64 are TDEs. This corresponded to an initial purity of \SI{1.6}{\percent} and a selection completeness of \SI{100}{\percent} (all TDEs are of course retained before any cuts).
 
 \subsubsection{All Cuts Combined}
-The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection efficiency of \SI{48.4}{\percent}, i.e.~roughly half of the TDE survive all cuts.
-The efficiency and purity with subsequent cut stages is shown in Fig.~\ref{fig:efficiency_purity}.
+The final selection consisted of 39 transients, of which 31 were TDE. This translates to a purity of \SI{79.5}{\percent}, with a selection completeness of \SI{48.4}{\percent}, i.e.~roughly half of the TDE survive all cuts.
+The purity and completeness with subsequent cut stages are shown in Fig.~\ref{fig:completeness_purity}.
 
 \begin{figure}[htpb]
-  \includegraphics[width=1\textwidth]{nuclear/efficiency_purity.pdf}
-  \caption[Visual TDE selection]{Efficiency (green line) and purity (magenta, dash-dot) of the visual TDE selection. The cut stages are shown on the x-axis, with each new cut added on top of all previous cuts.}
-  \labfig{efficiency_purity}
+  \includegraphics[width=1\textwidth]{nuclear/completeness_purity.pdf}
+  \caption[Visual TDE selection]{Completeness (green line) and purity (magenta, dash-dot) of the visual TDE selection. The cut stages are shown on the x-axis, with each new cut added on top of all previous cuts.}
+  \labfig{completeness_purity}
 \end{figure}
 
-These numbers are somewhat promising, as objects lying within the final selection have a 4 in 5 chance of correctly being identified as TDE, while only sacrificing half the TDE population. Of course, there is always a trade-off between efficiency and purity, and a program designated to maximizing the number of TDEs discovered might accept a lower purity.
+These numbers are somewhat promising, as objects lying within the final selection have a 4 in 5 chance of correctly being identified as TDE, while only sacrificing half of the TDE population. Of course, there is always a trade-off between completeness and purity; i.e. a program designed to discover TDEs might need to accept a lower purity.
 
 \begin{figure}[htbp]
   \centering
