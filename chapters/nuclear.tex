@@ -1,7 +1,7 @@
 \setchapterimage[7cm]{nuclear/nuclear_sample_cutouts.png}
 \chapter{The Nuclear Sample}\label{nucsam}
 \labch{nuclear}
-Motivated\marginnote{Cutouts of several transients in the nuclear sample, as seen in the ZTF \textit{g}-band near optical peak.} by the three neutrinos coincident with accretion phenomena in the cores of active galaxies, I created a systematic sample of nuclear transients in the ZTF footprint. No such sample existed, as AGN studies are usually interested in long-term variability of galaxies, while transient studies are normally excluding phenomena too close to galaxy cores as contaminants. Such a systematic sample of partially unclassified transient phenomena might provide additional insights into the physics of galactic nuclei.
+Motivated\marginnote{Cutouts of several transients in the nuclear sample, as seen in the ZTF \textit{g}-band near optical peak.} by the three neutrinos coincident with accretion phenomena occuring in galactic nuclei, I created a systematic sample of nuclear transients in the ZTF footprint. No such sample existed yet, as AGN studies are usually interested in long-term variability of galaxies, while transient studies normally exclude phenomena too close to galactic cores as contaminants. Such a systematic sample of partially unclassified transient phenomena might provide additional insights into the physics of galactic nuclei.
 
 Furthermore, with the advent of a deep high-cadence sky surveys in the form of the Legacy Survey of Space and Time (LSST, hosted by the Vera C. Rubin Observatory)~\sidecite{Ivezic2019} in the near future, photometric identification of transients will be crucial.
 
@@ -16,9 +16,9 @@ The nuclear sample was created with \texttt{AMPEL} (see Section~\ref{ampel}), us
 
 \subsection{\texttt{AMPEL} Nuclear Filter}\label{nuclear_filter}
 
-This filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to evaluate each and every alert issued by ZTF.
+This filter is used primarily by the ZTF TDE working group to scan for transient activity that is compatible with an emerging TDE~\cite{Velzen2021a}. In the rerun, it was slightly modified, and used to re-evaluate each and every alert issued by ZTF.
 
-The logic behind the filtering process can be explained as follows: It selects events with a minimum of photometric quality, ensured by minimum requirements on the number of detections and the brightness. The event at least once needs to pass as `real' (opposed to bogus), and the host needs a high probability of passing as galaxy, not star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e.~happen close to the core of their host galaxy.
+The logic behind the filtering process can be explained as follows: The filter selects events with decent photometric quality, ensured by requirements on the number of detections and their brightness. The event at least once needs to be judged as beging `real' (opposed to bogus), and the host needs a high probability of being a galaxy, not a star. Furthermore, \textit{Gaia} is consulted to veto against stars, and the events need to be nuclear, i.e.~happen close to the core of their host galaxy.
 
 \begin{marginfigure}
   \includegraphics{nuclear/sgscore.pdf}
@@ -26,15 +26,15 @@ The logic behind the filtering process can be explained as follows: It selects e
   \labfig{sgscore}
 \end{marginfigure}
 
-The criteria used were:
+The criteria used in this study were as follows:
 \begin{description}
-  \item[\texttt{sgscore}] As detailed in Section~\ref{ztf_image_subtraction}, \texttt{sgscore} is a machine-learning based star-galaxy score for PS1 objects (low values: galaxy, high values: stars). The transient must at least once have an \texttt{sgsscore} < 0.3 to pass the filter.
-  \item[Number of detections] At least 3 detections in both ZTF \textit{g}- and \textit{r}-band are required.
-  \item[Galactic cut] The object must be separated by at least \SI{5}{\degree} from the galactic plane to avoid contamination by foreground stars.
-  \item[PS1 photometry] To avoid crowded areas, transients where more than 100 objects in the vicinity have a counterpart in PS1 are removed.
-  \item[Brightness] At least one alert datapoint of the transient must be brighter than 20 mag.
-  \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises vastly better results~\sidecite{Duev2019}. Older alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold. For these reasons and to maximize consistency, we restricted ourselves to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as we also required the transient to have a PS1 counterpart. Figure~\ref{fig:rbvsdrb} shows a comparison of the False Negative Rate (FNR) of \texttt{rbscore} vs. \texttt{drbscore}. At the chosen threshold of $0.3$, the FNR for both algorithms is a the percent level.
-  \item[Core distance] For all objects that made it this far, their angular distance to the core was computed. To make this more robust, three different distance metrics were computed. The mean distance to the PS1 source in the reference images, the median distance to that, and lastly, a weighted distance. The latter was computed according to~\sidecite{Velzen2019} and accounts for the fact that the RMS of the angular core distance scales linearly with magnitude. $\sigma_\text{dist}$ = $0.24 + 0.04(m-20)$, where $m$ is the difference photometry magnitude. This stage accepts all transients for which at least one of the three angular distances lies below 0.5 arcseconds.
+  \item[\texttt{sgscore}] As detailed in Section~\ref{ztf_image_subtraction}, \texttt{sgscore} is a machine-learning based star-galaxy score for PS1 objects (low values: galaxy, high values: stars). The transient at least once needed to have an \texttt{sgsscore} < 0.3 to pass the filter.
+  \item[Number of detections] At least 3 detections in both ZTF \textit{g}- and \textit{r}-band were required.
+  \item[Proximity to galactic plane] The object had to be separated by at least \SI{5}{\degree} from the galactic plane to avoid contamination by foreground stars.
+  \item[PS1 photometry] To avoid crowded areas, transients for which more than 100 objects in the vicinity had a counterpart in PS1 were removed.
+  \item[Brightness] At least one alert datapoint of the transient had to be brighter than 20 mag.
+  \item[\texttt{rbscore}] The real-bogus score separating erroneous detections (low values) from real ones (high values, see Section~\ref{ztf_alerts}) must be larger than 0.3. Note that for more recent data, also \texttt{deep real bogus} is available, which promises considerably better results~\sidecite{Duev2019}. Unfortunately, alerts from 2018 or 2019 do not contain this information, and there is no direct translation from an \texttt{rbscore} threshold to a \texttt{drbscore} threshold or re-analysis of the older alerts avilable. For these reasons and to maximize consistency, I restricted myself to using only the older \texttt{rbscore}. The quite loose cut of 0.3 does not entail overly large contamination, as I also required the transient to have a PS1 counterpart. Figure~\ref{fig:rbvsdrb} shows a comparison of the False Negative Rate (FNR) of \texttt{rbscore} vs. \texttt{drbscore}. At the chosen threshold of $0.3$, the FNR for both algorithms lies at the percent level.
+  \item[Core distance] For all objects that made it this far, their angular distance to the core was computed. To make this more robust, three different distance metrics were employed: The mean distance to the PS1 source in the reference images, the median distance to that, and lastly, a weighted distance. The latter was computed according to~\sidecite{Velzen2019} and accounts for the fact that the RMS of the angular core distance scales linearly with magnitude. $\sigma_\text{dist}$ = $0.24 + 0.04(m-20)$, where $m$ is the difference photometry magnitude. This stage accepted all transients for which at least one of the three angular distances lay below 0.5 arcseconds.
 \end{description}
 
 \begin{figure}[htpb]
@@ -43,10 +43,10 @@ The criteria used were:
   \labfig{rbvsdrb}
 \end{figure}
 
-This filter was then applied to all ZTF alerts issued between 1 April, 2018 and 30 April, 2022, comprising over 4 years of data in total.
+This filter was applied to all ZTF alerts issued between 1 April, 2018 and 30 April, 2022, comprising over 4 years of data in total.
 
 \subsection{Rejection Statistics}
-From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 years, ultimately 11687 nuclear transients were selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom. In total, \SI{0.2}{\percent} of alerts issued by ZTF were accepted by the filter.
+From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 years, ultimately 11,687 nuclear transients were selected. The survival rates during the filtering process are shown in Fig.~\ref{fig:nuclear_decision}, with the complete alert stream on top, different thematically grouped rejection stages in between and the final accepted alerts on the bottom. In total, \SI{0.2}{\percent} of alerts issued by ZTF were accepted by the filter.
 
 \begin{figure}[h!]
   \begin{tikzpicture}[node distance=1.4cm]
@@ -55,23 +55,23 @@ From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 ye
     \node (expl1) [explain, font=\small, align=left, left of=dec1, xshift=-1.8cm] {$<20$ mag\\\texttt{rbscore} $>0.3$\\PS1 dist $<0.5$ arcsec\\$\geq 3$ detections};
     \node (disc1) [discard, font=\small, right of=dec1, xshift=2.48cm] {Discard alerts};
     \node (dec1a) [decision, font=\small, align=center, below of=dec1] {Transient\\already accepted?};
-    \node (keep1) [keep, font=\small, below of=dec1a] {Keep 81,387,053 alerts};
+    \node (keep1) [keep, font=\small, below of=dec1a] {Retain 81,387,053 alerts};
     \node (dec2) [decision, font=\small, align=center, below of=keep1] {\texttt{sgscore}\\veto};
     \node (expl2) [explain, font=\small, align=left, left of=dec2, xshift=-2.2cm] {\texttt{sgscore} $\leq0.3$};
     \node (disc2) [discard, font=\small, right of=dec2, xshift=2.44cm,align=center] {Discard\\81,204,804\\alerts};
-    \node (keep2) [keep, font=\small, below of=dec2] {Keep 182,080 alerts};
+    \node (keep2) [keep, font=\small, below of=dec2] {Retain 182,080 alerts};
     \node (dec3) [decision, font=\small, align=center, below of=keep2] {PS1\\veto};
     \node (expl3) [explain, font=\small, align=left, left of=dec3, xshift=-1.5cm] {PS1 source faint enough\\good PS1 photometry};
     \node (disc3) [discard, font=\small, right of=dec3, xshift=2.5cm, align=center] {Discard\\20,331 alerts};
-    \node (keep3) [keep, font=\small, below of=dec3] {Keep 161,749 alerts};
+    \node (keep3) [keep, font=\small, below of=dec3] {Retain 161,749 alerts};
     \node (dec4) [decision, font=\small, align=center, below of=keep3] {Photometry\\veto};
     \node (expl4) [explain, font=\small, align=left, left of=dec4, xshift=-1.5cm] {$<20$ mag\\$\geq$ 3 detections\\flux increase $>2.5$ mag};
     \node (disc4) [discard, font=\small, right of=dec4, xshift=2.5cm, align=center] {Discard\\68,985 alerts};
-    \node (keep4) [keep, font=\small, below of=dec4] {Keep 92,764 alerts};
+    \node (keep4) [keep, font=\small, below of=dec4] {Retain 92,764 alerts};
     \node (dec5) [decision, font=\small, align=center, below of=keep4] {Position\\veto};
     \node (expl5) [explain, font=\small, align=left, left of=dec5, xshift=-1.5cm] {$>5$ deg from gal. plane\\not potential mover};
     \node (disc5) [discard, font=\small, right of=dec5, xshift=2.5cm, align=center] {Discard\\38,600 alerts};
-    \node (keep5) [keep, font=\small, below of=dec5] {Keep 54,164 alerts};
+    \node (keep5) [keep, font=\small, below of=dec5] {Retain 54,164 alerts};
     \node (dec6) [decision, font=\small, align=center, below of=keep5] {\textit{Gaia}\\veto};
     \node (expl6) [explain, font=\small, align=left, left of=dec6, xshift=-1.5cm] {No match to \textit{Gaia} star\\$\leq30$ \textit{Gaia} stars close by};
     \node (disc6) [discard, font=\small, right of=dec6, xshift=2.5cm, align=center] {Discard\\42,477 alerts};
@@ -103,52 +103,52 @@ From a total sample of $\sim 350$ Million alerts issued by ZTF during these 4 ye
   \labfig{nuclear_decision}
 \end{figure}
 
-As one can see, the vast majority of alerts were rejected based on them being either too faint, likely being bogus, or likely being stars. The majority of alerts already get filtered by the initial SQL query. The SQL-based filtering was also the most efficient one, so I ensured that the amount of filtering at that stage (on the archive server) was maximized.
+As one can see, the vast majority of alerts were rejected based on them being either too faint, likely being bogus, or likely being stars. The majority of alerts already got filtered out by the initial SQL query. The SQL-based filtering was also the most efficient one, so I ensured that the amount of filtering at that stage (on the archive server) was maximized.
 
-This was followed by the live transfer all surviving alerts to another machine and processing of the subsequent filtering stages. In total, the filtering process took roughly 5 weeks.
+This was followed by the live transfer of all surviving alerts to another machine and processing of the subsequent filtering stages. In total, the filtering process took roughly 5 weeks.
 
 \subsection{Forced photometry}
-To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11687 transients making the final cut. This was again done with \texttt{fpbot}, see Section~\ref{fpbot} for details. The process proved cumbersome due to the enormous data volume (several hunders of GB) that was required to be transferred from IPAC and stored in batches due to computing center restrictions.
+To be sensitive to early and late-time light curve evolution, forced photometry was acquired for all 11,687 transients making the final cut. This was again done with \texttt{fpbot}, see Section~\ref{fpbot} for details. The process proved somewhat cumbersome due to the enormous data volume (several hundreds of GB) that was required to be transferred from IPAC and stored and processed in batches due to computing center restrictions.
 
 \subsection{Infrared Data}\label{irdata}
-Motivated by the strong dust echo detected for \textit{AT2019dsg}, \textit{AT2019fdr} and \textit{AT2019aalc}, the optical forced photometry dataset was completed with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
+Motivated by the strong dust echo detected for \textit{AT2019dsg}, \textit{AT2019fdr} and \textit{AT2019aalc}, the optical forced photometry dataset was complemented with infrared light curves from the \textit{WISE} mission. These were obtained to serve in a selection of interesting transients based on their infrared dust echo, see Section~\ref{dustecho_sel}.
 
-Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically crossmatched the ZTF transient position to the \textit{WISE} light curve repository, downloaded the raw photometry for each source and binned the single source exposures of each epoch, spaced in half-year intervals.
+Data retrieval was performed with the \texttt{timewise} package~\sidecite{Necker2023a} to download all datapoints available for each source location in the \textit{W1}- and \textit{W2}-band. The tool automatically crossmatched the ZTF transient position to the \textit{WISE} light curve repository, downloaded the photometry for each source and binned the single source exposures of each epoch, spaced in half-year intervals.
 
-Most sources did have infrared counterparts. To obtain a selection of likely dust-echo candidates, an \texttt{AMPEL} package was used, namely \texttt{T2DustEchoEval}, to analyze the infrared light curves with a Bayesian block algorithm in order to identify periods of flaring activity compared to a baseline; see also Section~\ref{bayesian_blocks} for a discussion of the same algorithm utilized for ZTF optical data.
+Most sources did have infrared counterparts. To obtain a selection of likely dust-echo candidates, two \texttt{AMPEL} packages (\texttt{T2BayesianBlocks} and \texttt{T2DustEchoEval}) were used to analyze the infrared light curves with a Bayesian block algorithm in order to identify periods of flaring activity compared to a baseline; see also Section~\ref{bayesian_blocks} for a discussion of the same algorithm utilized for ZTF optical data.
 
-The significance of these flares was then calculated with a metric dubbed `dust echo strength'. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux; $F_\text{RMS}$ is the root-mean square of the baseline flux.
+The significance of these flares was then calculated with a metric dubbed `dust echo strength'. This was defined in~\cite{Velzen2021} as $\Delta F_\text{IR}/F_\text{RMS}$, where $\Delta F_\text{IR}$ is the difference between the flaring period flux and the baseline flux, while $F_\text{RMS}$ is the root mean square of the baseline flux.
 
 \subsection{Catalog Matching}
-To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval. The crossmatches were either used to extract training features (e.g.~\textit{textit{WISE}} colors) or evaluate the quality of the trained models (e.g.~Marshal/Fritz or TNS). In detail, these crossmatches comprised:
+To enrich the sample by information available on the transients, these were crossmatched to a variety of catalogs and services. The results of the crossmatches were stored locally in a \texttt{MongoDB} database for ease of retrieval. The crossmatches were either used to extract training features (e.g.~\textit{WISE} colors) or evaluate the quality of the trained models (e.g.~GROWTH Marshal, Fritz or TNS). In detail, these crossmatches comprised:
 
 \begin{description}
   \item[Spectroscopic Redshifts] To obtain spectroscopic redshifts, the \texttt{AMPEL} module \texttt{T2DigestRedshifts} was employed. This queries the following services: A local database of the spectroscopic redshifts contained in the NASA/IPAC Extragalactic Database (NED)\sidenote{\url{https://ned.ipac.caltech.edu}}, spectroscopic redshifts from SDSS, and finally spectroscopic redshifts from the Galaxy List for the Advanced Detector Era (GLADE)~\sidecite{Dalya2018} v2.3.
   \item[Photometric Redshifts] Additionally, \texttt{T2DigestRedshifts} also provided photometric redshifts from the Legacy Survey~\sidecite{Zhou2020}, the 2MASS Photometric Redshift Catalog~\sidecite{Bilicki2013}, and photometric redshifts from the PS1 Source Types and Redshifts with Machine learning (PS1-STRM) catalog~\sidecite{Beck2020} as well as GLADE.
-  \item[Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. It provided a web interface to upload spectroscopy, discuss photometry and add classifications and redshift. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal, but greater modularity and API support. Both services were queried for transient classifications and redshifts.
+  \item[GROWTH Marshal/Fritz] During ZTF Phase I, the GROWTH Marshal~\sidecite{Kasliwal2019} served as a community hub to gather information on single transients. It provided a web interface to upload spectroscopy, discuss photometry and add classifications and redshift. This service has been replaced by Fritz~\sidecite{Coughlin2023} with the same design goal, but greater modularity and API support. Both services were queried for transient classifications and redshifts.
   \item[TNS] The Transient Name Server (see Section~\ref{catmatch}) was also used to obtain classifications and redshifts of known transients.
-  \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors. This was used in AGN rejection, see Section~\ref{agn_rejection}.
+  \item[AllWISE] Additionally to the \textit{WISE} light curves, archival data from the first part of the \textit{WISE} mission was obtained. This dataset had the advantage of providing two additional bands reaching into the far infrared (\textit{W3} and \textit{W4}), both of which were deactivated after the nominal mission end of \textit{WISE} due to lack of coolant. These allowed for the calculation of more colors, which were used in AGN rejection, see Section~\ref{agn_rejection}.
   \item[CRTS DR1] The Catalina Real-time Transient Survey Catalog contains cataclysmic variables which were crossmatched against to reduce contamination by foreground stars.
   \item[SDSS] The Sloan Digital Sky Survey was also used to crossmatch against foreground stars.
 \end{description}
 
 \section{Creating Features: Light Curve Fits}
-To photometrically classify the transients, the following strategy was employed: Fit all transients with a dedicated TDE light curve model, as well as a supernova Ia model. These features, appended by additional features, can serve as a base to classify the nuclear sample. Such a training task requires a truth on which to train on. The truth base chosen here was the BTS sample, which was augmented by creating copies of existing objects, as well as adding new, underrepresented transients. All those steps will be explained below.
+To photometrically classify the transients, the following strategy was employed: Fit all transients with a dedicated TDE light curve model, as well as a supernova Ia model. The features extracted from these fits, appended by additional ones, served as a base to classify the nuclear sample. Such a training task required a truth on which to train on. The truth base chosen here was the BTS sample, which was augmented by creating copies of existing objects, as well as adding new, underrepresented transients. All those steps will be explained below.
 
 \subsection{Fitting a TDE Model}\label{tde_model}
 To model a TDE-like source evolution, a variation of the parametrization presented in~\cite{Velzen2021a} was used.
 
 \subsubsection{TDE Parametrization}
-The basic  idea is to fit the light curve evolution with a Gaussian rise and exponential decay of a blackbody, which can also linearly change in temperature over a certain amount of time. The luminosity evolution is then given by
+The basic  idea is to fit the light curve evolution with a Gaussian rise and exponential decay of a blackbody, which is also allowed to linearly change its temperature for a number of days. The luminosity evolution is then given by
 
 \begin{equation}
   L(t,\lambda) = \frac{T_\text{peak}^4}{T(t)^4} B_\lambda F(t),
 \end{equation}
-where $\lambda$ is the evaluated wavelength, $T_\text{peak}$ is the blackbody temperature at peak, $T(t)$ is its temperature at time $t$ and $B(t)_\lambda$ is the spectral radiance of the blackbody
+where $\lambda$ is the evaluated wavelength, $T_\text{peak}$ is the blackbody temperature at peak, $T(t)$ is its temperature at time $t$ and $B(t)_\lambda$ is the spectral radiance of the blackbody. $B(t)_\lambda$ is given by
 \begin{equation}
   B(t)_\lambda = \frac{2 c h}{\lambda^5} \frac{1}{\exp(\frac{hc}{\lambda k_B T(t)})-1},
 \end{equation}
-and $F(t)$ is the Gaussian rise pre-peak and exponential decay post peak:
+and $F(t)$ is the Gaussian rise pre-peak and exponential decay post peak, given by
 \begin{equation}
   F(t) = \begin{cases}
     \exp[-(t-t_\text{peak})^2/2\sigma^2] & \text{if } t\leq t_\text{peak} \\
@@ -165,18 +165,18 @@ Lastly, $T(t)$ was allowed to change linearly during an interval after $t_\text{
     T_\text{cutoff}                  & \text{otherwise},
   \end{cases}
 \end{equation}
-with $\Delta T$ being the coefficient of temperature change. Also, there was a check that required at least 10 datapoints within the interval 30 days prior to peak time and one year after that. If that check did not succeed, the fit was set to fail due to poor source sampling.
+with $\Delta T$ being the coefficient of temperature change. Also, there was a check that required at least 10 datapoints within the time interval 30 days prior to peak time and one year after that. If that check did not succeed, the fit was set to fail due to poor source sampling.
 
-As a source luminosity can only be calculated when the redshift is known, and this was not true for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see e.g.~\cite{Hammerstein2022}), and only the shape of the light curve is relevant for the goodness of fit.\cite{Hammerstein2022}
+As a source luminosity can only be calculated when the redshift is known, and this was not the case for a majority of the nuclear transients, an arbitrary amplitude was used instead. This does not affect the results in any meaningful way, as TDEs can differ in brightness by at least two orders of magnitude (see e.g.~\cite{Hammerstein2022}), and only the shape of the light curve is relevant for the goodness of fit\cite{Hammerstein2022}.
 
-This model has been realized as an instantiation of an \texttt{SNCosmo} source model, as this package has the advantage of built in filter profiles, that allowed the correct evaluation of the blackbody flux as seen through the ZTF filters. To save computing time, the fit algorithm used was not a Markov-Chain Monte Carlo as in~\cite{Velzen2021a}, but \texttt{iminuit/MIGRAD}.
+This model has been realized as an instantiation of an \texttt{SNCosmo} source model, as this package had the advantage of built-in filter profiles which allowed the correct evaluation of the blackbody flux as seen through the ZTF bandpass filters. To make the fit procedure computationally feasible, the algorithm used was not a Markov-Chain Monte Carlo as in~\cite{Velzen2021a}, but \texttt{iminuit/MIGRAD}.
 
-To account for Milky Way dust extinction along the line of sight, the infrared dust maps by Schlegel, Finkbeiner y \& Davis were used~\sidecite{Schlegel1998}, as provided by the \texttt{sfdmap}\sidenote{\url{https://github.com/kbarbary/sfdmap}} Python package.
+To account for Milky Way dust extinction along the line of sight, the infrared dust maps by Schlegel, Finkbeiner \& Davis were used~\sidecite{Schlegel1998}, as provided by the \texttt{sfdmap}\sidenote{\url{https://github.com/kbarbary/sfdmap}} Python package.
 
 \subsubsection{TDE Fit Priors}
 To constrain the fits and mitigate runaway, fit priors were used, partly taken from~\cite{Velzen2021a}. These are shown in Table~\ref{tab:tde_fit_priors}.
 
-The prior on the time of peak, here dubbed $t_0$, was inferred from a peak finding algorithm that identified the highest flux point in each band (given it had a signal-to-noise ratio of $>3$) after smoothing the light curve with a rolling window, calculating the median flux within a widow width of 10 days.
+The prior on the time of peak, here dubbed $t_0$, was inferred from a peak-finding algorithm that identified the highest flux point in each band (given it had a signal-to-noise ratio of $>3$) after smoothing the light curve with a rolling window, calculating the median flux within a window of 10 days.
 
 \begin{table}[h]
   \begin{center}
@@ -197,9 +197,9 @@ The prior on the time of peak, here dubbed $t_0$, was inferred from a peak findi
   \caption[TDE Fit priors]{Priors for the TDE fit.}\label{tab:tde_fit_priors}
 \end{table}
 
-As the blackbody fits were not constrained by UV data, in some cases temperature runaway occured when allowing all fit parameters to vary freely within their bounds. This can be explained as follows: A decrease in brightness over time can be either be achieved by exponential decay or by an increase in temperature. The latter gradually moves the blackbody spectrum outside the ZTF bands, which then translates to decreasing brightness. As such excessive temperature changes are most likely unphysical, the daily temperature change $\Delta T$ was limited to an integrated maximum change of $T_\text{peak} \pm \SI{1.5e4}{\K}$.
+As the blackbody fits were not constrained by UV data, in some cases a temperature runaway occured when allowing all fit parameters to vary freely within their bounds. This can be explained as follows: A decrease in brightness over time can either be achieved by exponential decay or by an increase in temperature. The latter gradually moves the blackbody spectrum outside the ZTF bands, which then translates to a decrease in brightness. As such excessive temperature changes are most likely unphysical, the daily temperature change $\Delta T$ was limited to an integrated maximum change of $T_\text{peak} \pm \SI{1.5e4}{\K}$.
 
-Another measure to mitigate the issue was to perform the fits as a two-stage process: First, the temperature evolution was disabled, i.e. $\Delta aT$ was set to $0$ and $t_\text{cutoff}$ was removed as parameter, with the blackbody only having one temperature for the duration of the light curve, $T_\text{peak}$. The best-fit values for $t_\text{peak}$, $\log T­­_\text{peak}$, $\log \sigma$ and $\log \tau$ obtained in this first stage were then used as fit priors for stage 2. This procedure solved the temperature runaway in almost all cases.
+Another measure to mitigate the issue was to perform the fits as a two-stage process: First, the temperature evolution was neglected, i.e. $\Delta T$ was set to $0$ and $t_\text{cutoff}$ was removed as parameter, with the blackbody only having one temperature for the duration of the light curve, $T_\text{peak}$. The best-fit values for $t_\text{peak}$, $\log T_\text{peak}$, $\log \sigma$ and $\log \tau$ obtained in this first stage were then used as fit priors for stage 2. This procedure solved the temperature runaway in almost all cases.
 
 \begin{figure}[htb]
   \centering
@@ -215,40 +215,39 @@ Another measure to mitigate the issue was to perform the fits as a two-stage pro
   \labfig{tde_fit_comparison}
 \end{figure}
 
-Fig.~\ref{fig:tde_fit_comparison} shows two exemplary TDE fits; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section~\ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand --- whatever it actually is, as the object has no spectroscopic classification except for `AGN', it is clearly not a TDE. The fit unsurprisingly cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
+Fig.~\ref{fig:tde_fit_comparison} shows two exemplary TDE fits; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section~\ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand -- whatever it actually is (the object has no spectroscopic classification) -- is clearly not a TDE. The fit cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
 
 The successful fit for \textit{AT2019dsg} meanwhile results in the following values: A reduced $\chi^2$of $4.1$, a peak temperature of \SI{8700}{\K} which decays by \SI{78}{\K} per day for the following 138 days, an initial risetime of 21 days, and a characteristic light curve decay time of 216 days.
 
-This object nevertheless highlights a restriction: The available optical to infrared data from ZTF does not constrain blackbodies well. When including additional UV data for \textit{AT2019dsg} near light curve maximum, the inferred blackbody temperature is \SI{4e4}{\K}, significantly higher\todo{how is this compatible with the small errors?}. This is not a failure of the fit procedure, but driven by the high UV flux (which can be seen in Fig.~\ref{fig:at2019dsg_lc}).
+This object nevertheless highlights a restriction: The available optical to infrared data from ZTF does not constrain blackbodies well. When including additional UV data for \textit{AT2019dsg} near light curve maximum, the inferred blackbody temperature is \SI{4e4}{\K}, significantly higher. This is not a failure of the fit procedure, but driven by the high UV flux pushing the blackbody to shorter wavelengths (the additional UV data can be seen in Fig.~\ref{fig:at2019dsg_lc}).
 
 \subsection{Fitting a SN Ia Model}\label{salt}
-As SNe Ia are a prominent contaminant for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it is crucial to identify them. To achieve this goal, all light curves were additionally subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} light curve model.
+As SNe Ia are a prominent contaminant for bona fide nuclear events (i.e.~such events that can only occur in the centers of galaxies), it was crucial to identify them. To achieve this goal, all light curves were additionally subjected to a fit using the tried and tested Spectral Adaptive Lightcurve Template (SALT2)~\sidecite{Guy2007} SN Ia light curve model.
 
-SALT2 assumes the light curve is indeed a supernova Ia and applies empirical corrections to the light curve color and stretch (i.e.~the width of the light curve). This is achieved by matching templates generated by a set of well-sampled Ia light curves and spectra of varying distance. The resulting color and stretch correction parameters, as well as the peak brightness and the reduced $\chi^2$ were saved and will later be used as features in training a machine learning model.
+SALT2 assumes that the light curve is indeed a supernova Ia and applies empirical corrections to the light curve color and stretch (i.e.~the width of the light curve). This is achieved by matching templates generated by a set of well-sampled Ia light curves and spectra of varying distance. The resulting color and stretch correction parameters, as well as the peak brightness and the reduced $\chi^2$ were saved and will later be used as features in training the classifier.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{nuclear/salt.pdf}
-  \caption[SALT2 Fit]{Examplary SALT2 fit output. The three panels show three ZTF bands. Time 0 is the fitted peak of the assumed SN Ia; and as one can see the transient in question is fairly well approximated by SN Ia light curve, with a reduced  $\chi^2=2.67$. The transient is in a fact a spectroscopically classified supernova Ia.}
+  \caption[SALT2 Fit]{Examplary SALT2 fit output. The three panels show three ZTF bands of \textit{AT2019dzzo}, a spectroscopically confirmed SN Ia. Time 0 is the fitted peak of the assumed SN Ia; and as one can see the transient in question is fairly well approximated by SN Ia light curve, with a reduced  $\chi^2=2.67$.}
   \labfig{salt2}
 \end{figure}
 
-The fits were performed with \texttt{SNCosmo}, which itself fit the light curve using \texttt{iminuit/MIGRAD}.
+The fits were performed with \texttt{SNCosmo}, which itself fits the light curves using \texttt{iminuit/MIGRAD}.
 
 \section{Creating Features: Optical Flare Analysis}\label{bayesian_blocks}
-Another feature which will later be used in the classification of transients are simultaneous flares across the well-sampled ZTF \textit{g}- and \textit{r}-bands. The number and timing of optical flares within different bands can then be used to differentiate between different types of transients.
+Another feature which will later be used in the classification of transients were simultaneous flares across the well-sampled ZTF \textit{g}- and \textit{r}-bands. The number and timing of optical flares within different bands can then be used to differentiate between different types of transients.
 
 \subsection{Bayesian Block Algorithm}\label{bayesian_block}
 To determine time periods of heightened activity, a Bayesian block algorithm was employed. This was a version of a package developed at DESY, modified by the author to analyze optical ZTF light curves instead of infrared \textit{WISE} data.
 
-The Baysian Block algorithm is explained in~\sidecite{Scargle1998,Scargle2013}; the implementation used here is integrated in the \texttt{astropy} package. The light curves are first smoothed by calculating the median and standard deviation within a 10 day rolling window. After that, only data points lying within $3 \sigma$ distance in magnitude space from the median are used. This gets rid of flux outliers, which are quite frequent for the forced photometry light curves of the nuclear sample.
+The Baysian block algorithm is explained in~\sidecite{Scargle1998,Scargle2013}; the implementation used here is integrated in the \texttt{astropy} package. The light curves were first smoothed by calculating the median and standard deviation within a 10 day rolling window. After that, only data points lying within $3 \sigma$ distance in magnitude space from the median were used. This got rid of flux outliers, which were quite frequent for the forced photometry light curves of the nuclear sample.
 
-The Bayesian Block algorithm uses a prior on the number of blocks $N_\text{blocks}$, which is computed as $P(N_\text{blocks})= P_0 \gamma^{N_\text{blocks}} $, where $P_0$ is a normalization dependent on the number of datapoints $N$.
-For this analysis, the prior was computed with a slope $\gamma$ of $\gamma = N ^{-10/\ln{10}} $, with $N$ being the number of datapoints in the smoothed single-band light curve. The slope $\gamma$ was determined empirically to yield robust results. It is a compromise between sensitivity to flux changes and detecting too many blocks, each too small to be meaningful.
+The Bayesian block algorithm uses a prior on the number of blocks $N_\text{blocks}$, which is computed as $P(N_\text{blocks})= P_0 \gamma^{N_\text{blocks}} $, where $P_0$ is a normalization dependent on the number of datapoints $N$. For this analysis, the prior was computed with a slope $\gamma$ of $\gamma = N ^{-10/\ln{10}} $, with $N$ being the number of datapoints in the smoothed single-band light curve. The slope $\gamma$ was determined empirically to yield robust results. It was a compromise between sensitivity to flux changes and detecting too many blocks, each too small to be meaningful.
 
 \subsection{Block Coincidence}
-As they are much better sampled than the \textit{i}-band, the \textit{g}- and \textit{r}-band are used to check for blocks temporally coincident in both bands.
+As they were much better sampled than the \textit{i}-band, the \textit{g}- and \textit{r}-band were used to check for blocks temporally coincident in both bands.
 
-For this, each region with increased flux compared to a baseline in the \textit{g}-band is checked to see if there is a corresponding \textit{r}-band block with increased flux overlapping in time.
+For this, each region with increased flux compared to a baseline in the \textit{g}-band was checked to see if there was a corresponding \textit{r}-band block with increased flux overlapping in time.
 
 \begin{figure}
   \includegraphics[width=1\textwidth]{nuclear/bayesian_blocks.pdf}
@@ -388,23 +387,23 @@ The set of features used for training was the following:
 
 \begin{description}
   \item[Peak magnitude] This is the peak observed magnitude (in any filter). The value was scaled accordingly for the noisified and redshifted child light curves:
-    \begin{subequations}
-      \begin{eqnarray}
-        m_\text{child} &=& m_\text{parent} - \mu­_\text{parent} + \mu_\text{child}~~\text{and}\\
-        \mu &=& 5(\log_{10}D_L(z)+1),
-      \end{eqnarray}
-    \end{subequations}
-    where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
+        \begin{subequations}
+          \begin{eqnarray}
+            m_\text{child} &=& m_\text{parent} - \mu­_\text{parent} + \mu_\text{child}~~\text{and}\\
+            \mu &=& 5(\log_{10}D_L(z)+1),
+          \end{eqnarray}
+        \end{subequations}
+        where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
   \item[SALT2 Fit Results] This included SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
   \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked on this parameter. The results also included the $\chi^2$ and degrees of freedom.
   \item[Overlapping blocks] The number of overlapping regions, extracted with the bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
   \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were also added.
   \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), is included as a proxy for host galaxy photometry and morphology.
   \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves will change with respect to their parents, this value was recalculated for all children. This was done according to
-    \begin{equation}
-      \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
-    \end{equation}
-    where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
+        \begin{equation}
+          \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
+        \end{equation}
+        where $\theta$ is the angular core distance of the child or parent light curve, $D_L$ is the luminosity distance and $z$ is the respective redshift.
 \end{description}
 
 \section{Evaluating the Model}
