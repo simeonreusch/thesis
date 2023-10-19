@@ -258,7 +258,7 @@ For this, each region with increased flux compared to a baseline in the \textit{
 One can see two examples of such overlapping blocks in Fig.~\ref{fig:bayesian_blocks}, which shows the result of the Bayesian Block algorithm for \textit{AT2018jbv} and \textit{ZTF18aaiceki}. Both are transients from the nuclear sample, the first one being a TDE, the second an AGN displaying stochastic variability.
 
 \section{Training Sample}
-As one of the goals is the machine-based classification of the nuclear sample, a training sample that most closely resembles the target sample --- the nuclear sample --- in brightness.
+As one of the goals was the classification of the nuclear sample, a training sample that most closely resembled the target sample in brightness needed to be chosen.
 
 \begin{marginfigure}
   \includegraphics{nuclear/BTS_full.pdf}
@@ -267,36 +267,36 @@ As one of the goals is the machine-based classification of the nuclear sample, a
 \end{marginfigure}
 
 \subsection{The Bright Transient Survey}\label{bts}
-The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even pushes further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
+The natural starting point for the creation of a training sample was the so-called ZTF Bright Transient Survey (BTS)\sidenote{\url{https://sites.astro.caltech.edu/ztf/bts/bts.php}}, see~\cite{Fremling2020,Perley2020} for details. The basic goal of the survey was the spectroscopic classification of all ZTF-detected transients brighter than 18.5 mag in either the \textit{g}- or \textit{r}-band. It even managed to push further, achieving a spectroscopic completeness of \SI{75}{\percent} at 19 mag (\SI{93}{\percent} at the nominal cutoff of 18.5 mag)~\cite{Perley2020}.
 
-This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous results. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients so far (August 2023).
+This was achieved by utilizing the fully robotic SED machine for quick classification, and employing other spectroscopic resources for ambiguous spectra. BTS is the largest spectroscopic supernova survey ever conducted, with over 8000 classified transients as of August 2023.
 
-There are three potential issues that need to adressed though when using the BTS as starting point for a training sample:
+There were three potential issues that needed to adressed though when using the BTS as starting point for a training sample:
 
 \begin{description}
-  \item[Brightness bias] The BTS restriction to objects usually brighter than 18.5 mag means that the majority of the BTS sample will be brighter than the nuclear sample with its magnitude cut of 20.
-  \item[Class imbalance] The BTS is heavily skewed towards supernovae. Also, because SNe Ia are brighter, the majority of the SNe contained in a flux-limited sample like the BTS will be of Type Ia~\cite{Perley2020}. Almost \SI{70}{\percent} of all classified BTS transients are SNe Ia.
-  \item[Anti-AGN bias] To reduce contamination stemming from AGN variability, the BTS vetoes transient host galaxies that likely harbor an AGN. This is achieved by crossmatching candidate sources to known AGN, based on \textit{WISE} color cuts, or by rejecting sources with previous variability most likely hinting at AGN activity. As the nuclear sample will contain
+  \item[Brightness bias] The BTS restriction to objects usually brighter than 18.5 mag means that the majority of the BTS sample is brighter than the nuclear sample with its magnitude cut of 20.
+  \item[Class imbalance] The BTS is heavily skewed towards supernovae. Also, because SNe Ia are brighter, the majority of the SNe contained in a flux-limited sample like the BTS are of type Ia~\cite{Perley2020}, with \SI{70}{\percent} of all classified BTS transients being SNe Ia. This results in a class imbalance of the training sample.
+  \item[Anti-AGN bias] To reduce contamination stemming from AGN variability, the BTS vetoes transient host galaxies that likely harbor an AGN. This is achieved by crossmatching candidate sources to known AGN, based on \textit{WISE} color cuts, or by rejecting sources with previous variability most likely hinting at AGN activity. This poses a problem: As the nuclear sample will contain a large number of AGN, this also results in a class imbalance.
 \end{description}
 
-These issues need to be solved somehow. Two procedures will be described below: Augmentation by creating fainter copies addresses the brightness bias and partially the class imbalance, while either rejecting likely AGN within the nuclear sample or expanding the training set with known AGN deals with the anti-AGN bias.
+These issues needed to be solved somehow. Two procedures to do that will be described below: Augmentation by creating fainter copies addressed the brightness bias and partially the class imbalance, while rejecting likely AGN within the nuclear sample and expanding the training set with known AGN were both employed to deal with the anti-AGN bias.
 
-\subsection{Augmentation: Enhancing the training set}\label{noisification}
-One promising strategy is to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
+\subsection{Augmentation: Enhancing the Training Set}\label{noisification}
+One promising strategy was to multiply the number of light curves available by simulating observations of the same object at higher redshifts.
 
-The method of augmentation employed here was developed by A. Townsend, with significant contribution by the author. The procedure was implemented as Python package~\sidecite{Reusch2023c} and works as follows:
+The method of augmentation employed here was developed by A. Townsend and the author. The procedure was implemented as Python package~\sidecite{Reusch2023c} and worked as follows:
 
 \subsubsection{Draw new redshift}
-Obtain a transient light curve (from now on: parent light curve) and parent redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift). Draw a new redshift $z_\text{child}$ for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
+A transient light curve (from now on: parent light curve) was obtained, as was its redshift $z_\text{parent}$ (all classified BTS transients have a spectroscopic redshift). A new redshift $z_\text{child}$ was drawn for the child light curve (i.e. the noisified copy) from a cubic redshift distribution ranging from $z­_\text{parent}$ to $z_\text{parent}+0.1$.
 
 \subsubsection{Scale and scatter the flux}
-After this, the parent flux was redrawn from a normal distribution centered around each parent flux value, scaled by its error. This was done to account for the fact that flux measurements are expected to scatter around their true value with their error, thereby simulating a `new' measurement. After this, the re-drawn flux measurements were rescaled with the new redshift $z_\text{child}$. The flux $F$ scales according to $D_L=\frac{L}{4 \pi F}$ i.e.~with the square of the luminosity distance (see Section~\ref{fitmodels}). Therefore, one can determine a flux scaling factor $a$ according to
+After this, the parent flux was redrawn from a normal distribution centered around each parent flux value, scaled by its error. This was done to account for the fact that flux measurements are expected to scatter around their true value with their error, thereby simulating a `new' measurement which is more noisy due to the increased distance. After this, the re-drawn flux measurements were rescaled with the new redshift $z_\text{child}$. The flux $F$ scales according to $D_L=\frac{L}{4 \pi F}$ i.e.~with the square of the luminosity distance (see Section~\ref{fitmodels}). Therefore, one can determine a flux scaling factor $a$ according to
 \begin{equation}
   a = \frac{D_L(z_\text{parent})^2}{D_L(z_\text{child})^2}.
 \end{equation}
 With this scaling factor, the child lightcurve flux is simply $f_\text{child} = a f_\text{parent}$.
 
-The flux error gets scaled accordingly, but with two additional empirical constant coefficients $e_f$ and $e_b$ determined by fitting the flux error as a function of flux. This procedure showed that the error $F_\text{err}$ deviates from the expected $\sqrt{F}$ behavior, but can be well approximated by $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. The error as a function of flux, as well as the different approximations are shown in Fig.~\ref{fig:ztf_error_dist}. The factors $e_f$ and $e_b$ were determined as $e_f = 0.54$ and $e_b = 5.37$.
+The flux error got scaled accordingly, but with two additional empirical constant coefficients $e_f$ and $e_b$ determined by fitting the flux error as a function of flux. This procedure showed that the error $F_\text{err}$ deviates from the expected $\sqrt{F}$ behavior, but can be well approximated by $F_\text{err} = \sqrt{F + e_f^2\times F + e_b^2}$. The error as a function of flux, as well as the different approximations are shown in Fig.~\ref{fig:ztf_error_dist}. The factors $e_f$ and $e_b$ were determined as $e_f = 0.54$ and $e_b = 5.37$.
 
 \begin{marginfigure}
   \includegraphics{nuclear/ztf_error_dist.pdf}
@@ -305,18 +305,18 @@ The flux error gets scaled accordingly, but with two additional empirical consta
 \end{marginfigure}
 
 \subsubsection{Apply K-Correction}
-If an \texttt{SNCosmo} model for the transient type did exist, K-correction was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
+If an \texttt{SNCosmo} model for the transient type existed, a K-correction was applied. This procedure accounts for the fact that by arbitrarily redshifting the light curve of an object, the spectrum will also be redshifted. Due to this, the ZTF bandpasses will register different parts of the spectrum, which leads to a different observed flux (see~\sidecite{Hogg2002} for an introduction).
 
-\subsubsection{Scatter observations}
-As a last step, the created light curve is sampled with a default retention fraction of 0.9, i.e.~\SI{10}{\percent} of data points are randomly dropped. Additionally, the observation times are slightly randomized to avoid creating regularities a machine-learning algorithm could pick up. This is achieved by scattering the observation dates around their original values, with a $\sigma$ of $0.03$ days.
+\subsubsection{Scatter and subsample observations}
+As a last step, the newly created light curve was sampled with a default retention fraction of 0.9, i.e.~\SI{10}{\percent} of data points were dropped randomly. Additionally, the observation times were slightly randomized to avoid creating regularities a machine-learning algorithm could pick up. This was achieved by scattering the observation dates around their original values, with a $\sigma$ of $0.03$ days.
 
 \subsubsection{Reject faint light curves}
-Finally, for each generated light curve, at least 5 datapoints were required to lie above a detection threshold of $5 \sigma$. If that requirement was not met, the light curve was discarded. This was implemented to mimic the nuclear filter (see Section~\ref{nuclear_filter}), which reacts to alerts issued by ZTF. Only datapoints with a signal-to-noise ratio of $>5$ warrant an alert, so the noisified light curves need at least some datapoints above that threshold. The minimal number of detections for the noisified light curves is a bit higher compared to the nuclear filter (5 vs. 3) to account for the fact that forced photometry is slightly more sensitive than the PSF photometry used in the alerts.
+Finally, for each generated light curve, at least 5 datapoints were required to lie above a detection threshold of $5 \sigma$. If that requirement was not met, the light curve was discarded. This was implemented to mimic the nuclear filter (see Section~\ref{nuclear_filter}), which reacts to alerts issued by ZTF. Only datapoints with a signal-to-noise ratio of $>5$ warrant an alert, so the noisified light curves needed at least some datapoints above that threshold. The minimal number of detections for the noisified light curves was a bit higher compared to the nuclear filter (5 vs. 3) to account for the fact that forced photometry is slightly more sensitive than the PSF photometry used in the alerts.
 
 \subsubsection{Sample dynamically}
-Depending on the number of light curves for a specific class, the number of desired child light curves per parent light curve was determined to yield a noisified training set with balanced classes. For example, only 3 children per SN Ia light curve were generated, but up to 14 children per light curve of all other types of supernovae. The only exception were variable stars: For these, the redshift $\approx 0$ and could not be varied, so no children were generated.
+Depending on the number of light curves for a specific class, the number of desired child light curves per parent light curve was determined to yield an augmented training set with balanced classes. For example, only 3 children per SN Ia light curve were generated, but up to 14 children per light curve of all other types of supernovae. The only exception were variable stars: For these, the redshift $\approx 0$ and could not be varied, so no children were generated.
 
-The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}. It shows the light curve of a SN Ia, \textit{SN2019qym}, detected with a redshift of $z=0.02$. The original light curve can be seen, as well as a child light curve at higher redshift ($z=0.09$). Note the increase errors (the original object was very bright, so only one datapoint in the \textit{g}-band at 35 days after peak has visible error bars), the slighty different modified observation dates and the random removal of datapoints.
+The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}. It shows the light curve of a SN Ia, \textit{SN2019qym}, detected with a redshift of $z=0.02$. The original light curve can be seen, as well as a child light curve at higher redshift ($z=0.09$). Note the increased errors (the original object was very bright, so only one datapoint in the \textit{g}-band at 35 days after peak has visible error bars), the slighty different modified observation dates and the random removal of datapoints.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{nuclear/noisify_ZTF19acapeun.pdf}
@@ -324,21 +324,21 @@ The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}
   \labfig{noisify_example}
 \end{figure}
 
-\subsection{AGN Rejection}\label{agn_rejection}
-To match the anti AGN-bias within the BTS, in principle two methods are available: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification.
+To match the anti-AGN bias within the BTS sample, in principle two methods are viable: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification. To maximize performance, a combination of both approaches was chosen here, and each will be detailed in the next paragraphs.
 
-The latter approach was chosen here, so only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \text{WISE}-colors and matches to the Milliquas catalog.
+\subsection{AGN Rejection}\label{agn_rejection}
+Only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \textit{WISE}-colors and matches to the Milliquas catalog.
 
 \subsubsection{\textit{WISE} color selection}\label{wise_color_cut}
-The cuts applied were taken from~\cite{Hviding2022}. The authors evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color-color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
+The cuts applied were taken from~\cite{Hviding2022}. The authors of that study evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color-color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
 \begin{subequations}
   \begin{eqnarray}
     1.734 < (\textit{W2}-\textit{W3}) < 3.916 \\
     (\textit{W1}-\textit{W2}) > 0.0771 (\textit{W2}-\textit{W3}) + 0.319 \\
-    (\textit{W1}-\textit{W2}) > 0.261 (\textit{W2}-\textit{W3}) - 0.260.
+    (\textit{W1}-\textit{W2}) > 0.261 (\textit{W2}-\textit{W3}) - 0.260,
   \end{eqnarray}
 \end{subequations}
-All objects lying within this box (dot-dot-dashed contours in Fig.~\ref{fig:agn_box}) were rejected as likely AGN.
+with $W1$, $W2$ and $W3$ being the \textit{WISE} Vega magnitudes in the respective bands. All objects lying within this box (dot-dot-dashed contours in Fig.~\ref{fig:agn_box}) were rejected as likely AGN.
 
 \begin{figure}[htpb]
   \includegraphics[width=0.8\textwidth]{nuclear/agn_box.pdf}
@@ -347,41 +347,39 @@ All objects lying within this box (dot-dot-dashed contours in Fig.~\ref{fig:agn_
 \end{figure}
 
 \subsubsection{Milliquas matching}\label{milliquas_cut}
-Additionally to the \textit{WISE} color selection, the Milliquas~\cite{Milliquas} catalog~\sidenote{\url{https://quasars.org/milliquas.htm}} was also used to identify likely AGN. This catalog was also used in the regular high-energy neutrino follow up (see Section~\ref{catmatch}). It contains over 900,000 Type I AGN, roughly 50,000 Type II AGN and again as many quasar candidates.
+Additionally to the \textit{WISE} color selection, the Milliquas~\cite{Milliquas} catalog\sidenote{\url{https://quasars.org/milliquas.htm}} was also used to identify likely AGN. This catalog was also used in the regular high-energy neutrino follow up (see Section~\ref{catmatch}). It contains over 900,000 Type I AGN, roughly 50,000 Type II AGN and again as many quasar candidates.
 
-As we were interested in maximizing the purity of the sample in terms of AGN, i.e.~rejecting all likely AGN. Therefore, all objects that had a match in the Milliquas catalog --- no matter the likelihood of the match being an AGN --- were rejected.
+I was interested in maximizing the purity of the sample in terms of AGN, i.e.~rejecting all likely AGN. Therefore, all objects that had a match in the Milliquas catalog were rejected, regardless of their respective likelihood of the match being an AGN.
 
 \subsection{Adding non-BTS Sources}\label{addsources}
-As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not clear to me, the BTS underperformed significantly in terms of TDE detection rate.
+To counter the fact that almost no AGN were present in the BTS sample, forced photometry for an additional 1772 AGN light curves was acquired. This was done by crossmatching sources from a recent AGN study including redshifts~\sidecite{Mechbal2023} with ZTF alerts in a cone with a radius of 3 arcsec. All matched AGN with redshifts available for creating noisified copies were subsequently added to the training sample.
 
-To augment the training sample, all published ZTF-detected TDEs were also included. In total, these amounted to 65 events.
-
-To counter the fact that almost no AGN were present in the BTS sample, forced photometry for an additional 1772 AGN light curves was acquired. This was done by crossmatching sources from a recent AGN study including redshifts~\sidecite{Mechbal2023} with ZTF alerts in a cone with a radius of 3 arcsec.
+As one of the desired features of the trained classifier was its ability to correctly identify TDEs, it was necessary to incrase the number of TDEs in the training sample. For reasons not clear to me, the BTS underperformed significantly in terms of TDE detection rate. To maximize the number of TDEs in the training sample, all published ZTF-detected TDEs were included, resulting in a total number of 66 TDEs available for training the classifier.
 
 \subsection{Creating a less biased Training Sample}
 It was not fully possible to control the number of child light curves: There were cases of low-flux objects of which all children failed the signal-to-noise cut. In total, the following number of objects were processed during the training sample augmentation:
 \begin{description}
-  \item[SNe Ia] The BTS contained 3230 SNe Ia, from which 8694 nosified children were created,~i.e. 2.7 children per original light curve on average. The total number of light curves (original ones plus children) was 11924.
-  \item[Core-collapse SNe] 1075 CCSNe were available in the BTS. With an average of 10.6 children per light curve this amounted to 11420 children and 12495 light curves in total.
+  \item[SNe Ia] The BTS sample contained 3230 SNe Ia, from which 8694 nosified children were created,~i.e. 2.7 children per original light curve on average. The total number of light curves (original ones plus children) was 11924.
+  \item[Core-collapse SNe] 1075 CCSNe were available in the BTS sample. With an average of 10.6 children per light curve this amounted to 11,420 children and 12,495 light curves in total.
   \item[AGN] 1893 AGN were originally present. 7177 children were created (3.8 per parent), resulting in 9079 light curves.
-  \item[TDE] Starting with 66 TDE, 13097 children were creating with a large number of children per light curve (198). This amounted to 13163 light curves in total.
+  \item[TDE] Starting with 66 TDE, 13,097 children were creating with a large number of children per light curve (198). This amounted to 13,163 light curves in total.
   \item[Stars] As already stated above, stars were not noisified due to their redshift being practically 0. Therefore, only the 525 parent light curves were used, rendering stars the most underrepresented class within the training sample.
 \end{description}
-Overall, the final training sample contained 47186 light curves, generated from 6789 initial light curves. On average, $~\sim 6$ child light curves were creates from each parent.
+Overall, the final training sample contained 47,186 light curves, generated from 6789 initial light curves. On average, $~\sim 6$ child light curves were created from each parent.
 
-\section{Training the Model}
-In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data.
+\section{Training the Classifier}
+In recent years \texttt{XGBoost}\sidenote{\url{https://xgboost.ai}}~\sidecite{Chen2016}, an optimized gradient-boosted decision tree algorithm (this will be explained below), has performed well when classifying structured data; for this reason, it was chosen here.
 
 \subsection{Boosted Decision Trees}
-In a regular decision tree, a set of iterative binary decisions (hence `tree') are employed to decide on the classification of an object. Ensemble methods build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (random forest) or by working in sequence. The latter method qualifies boosted decision trees, meaning that decision trees are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the (weighted) sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the algorithm is called gradient boosting. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
+In a regular decision tree, a set of iterative binary decisions (hence `tree') are employed to decide on the classification of an object. Ensemble methods build upon this concept by either working in parallel by creating multiple decision trees with random subsets of features (random forest) or by working in sequence. The latter method qualifies boosted decision trees, meaning that decision trees are generated and evaluated in sequence. The residual squared errors from the first tree are fed into the second tree, and so on. The final classification then is the (weighted) sum of all individual tree's classifications. This method can be generalized to differentiable loss functions in general. If one uses the negative gradient of the squared error loss function instead of the squared error itself, the method is called gradient boosting. \texttt{XGBoost} is one variant of such a gradient boosting algorithm.
 
 \subsection{Hyperparameter Search}
-As is usual with such algorithms, there is a number of hyperparameters which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees which are not the first one, and \texttt{n\_estimators} controls the number of trees.
+As is usually the case with such algorithms, there is a number of hyperparameters which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees other than the initial tree, and \texttt{n\_estimators} controls the number of trees.
 
-These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameters combinations for 5000 times. This was chosen as a compromise between computational feasibility and optimizing the parameter set. The grid employed as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}.
+These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameter combinations for 5000 times. This value was chosen as a compromise between computational feasibility and better sampling of the parameter search space. The grid employed here, as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}.
 
 \subsection{Training Procedure}
-After obtaining a classified training sample (BTS light curves, see Section~\ref{bts}), AGN and TDE light curves were added (Section~\ref{addsources}) and the sample was augmented and enlarged by creating redshifted and noisified copies (Section~\ref{noisification}). After this, the full training sample was fit with SALT2~(Section~\ref{salt}) and a TDE model (Section\ref{tde_model}), as well as analyzed with a bayesian block algorithm (Section~\ref{bayesian_blocks}) to extract features.
+After obtaining a classified training sample (BTS light curves, see Section~\ref{bts}), AGN and TDE light curves were added (Section~\ref{addsources}) and the sample was augmented and enlarged by creating redshifted and noisified copies (Section~\ref{noisification}). After this, the full training sample was fit with SALT2~(Section~\ref{salt}) and a TDE model (Section~\ref{tde_model}), as well as analyzed with a bayesian block algorithm (Section~\ref{bayesian_blocks}) to extract features.
 
 The set of features used for training was the following:
 
@@ -394,12 +392,12 @@ The set of features used for training was the following:
           \end{eqnarray}
         \end{subequations}
         where $m$ is the parent or child magnitude, $\mu$ is the distance modulus, and $D_L$ is the luminosity distance for redshift $z$.
-  \item[SALT2 Fit Results] This included SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
-  \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked on this parameter. The results also included the $\chi^2$ and degrees of freedom.
-  \item[Overlapping blocks] The number of overlapping regions, extracted with the bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
-  \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were also added.
-  \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), is included as a proxy for host galaxy photometry and morphology.
-  \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves will change with respect to their parents, this value was recalculated for all children. This was done according to
+  \item[SALT2 Fit Results] This included the SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
+  \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked up on this parameter. The results used also included the $\chi^2$ and the degrees of freedom.
+  \item[Overlapping blocks] The number of overlapping regions, extracted with the Bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
+  \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were  added.
+  \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), was included as a proxy for host galaxy photometry and morphology.
+  \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves changed with respect to their parents, this value was recalculated for all children. This was done according to
         \begin{equation}
           \theta_\text{child} = \theta_\text{parent} \frac{D_L(z_\text{parent})}{D_L(z_\text{child})} \frac{(1+z_\text{child})^2}{(1+z_\text{parent})^2},
         \end{equation}
@@ -407,7 +405,7 @@ The set of features used for training was the following:
 \end{description}
 
 \section{Evaluating the Model}
-A large fraction of the nuclear sample was unclassified --- this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A certain fraction (here: \SI{30}{\percent}) of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
+A large fraction of the nuclear sample was unclassified -- this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A certain fraction (here: \SI{30}{\percent}) of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
 
 One pitfall needed to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
 
@@ -415,9 +413,9 @@ One pitfall needed to be avoided: The model might learn features of a noisified 
 We are now ready to see how the model performs. This is done by first investigating the feature importance, and then by evaluating the confusion matrices.
 
 \subsubsection{Feature Importance}
-Feature importance can be used to decide on the usability of certain features, i.e. if they actually contribute to the final classification in a meaningful way. In this case, it is calculated by using a `gain' metric. In this metric, one calculates the average improvement in loss when adding that feature to a tree during training, splitting one branch into two, which could result in more accurate predictions than the original branch.
+Feature importance can be used to decide on the usability of certain features, i.e. if they actually contribute to the final classification in a meaningful way. In this study, it was calculated by using a `gain' metric. In this metric, one calculates the average improvement in loss when adding that feature to a tree during training, splitting one branch into two, which could result in more accurate predictions than the original branch.
 
-As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks well behaved. The feature importance is distributed fairly equally, as there is not one dominating feature. A dominant feature would raise concerns, as it could be indicative of the classifier finding a loop hole regarding the actual task. Also, there are no features present that do not influence the classification at all.
+As one can see in Fig.~\ref{fig:feature_importance}, the feature importance looks well behaved. The feature importance was distributed fairly equally, as there was not one dominating feature. A dominant feature would raise concerns, as it could be indicative of the classifier finding a loop hole regarding the actual task. Also, there were no features present that did not influence the classification at all.
 
 \begin{figure}[htpb]
   \includegraphics[width=0.6\textwidth]{nuclear/confusion/feature_importance_niter_5000_nsample_2000.pdf}
@@ -425,11 +423,11 @@ As one can see in Fig.~\ref{fig:feature_importance}, the feature importance look
   \labfig{feature_importance}
 \end{figure}
 
-The two most important features are the number of flares identified by the Bayesian block algorithm, as well as the core distance. This is not surprising, as the former is a good predictor for AGN behavior, and the latter might help in differentiating between AGN/TDEs and supernovae and stars.
+The two most important features were the number of flares identified by the Bayesian block algorithm, as well as the core distance. This is not surprising, as the former is a good predictor for AGN behavior, and the latter might help in differentiating between AGN/TDEs and supernovae and stars.
 
-Also important are the TDE fit rise- and decay time, as well as the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. On equal footing are the peak magnitude and the \texttt{sgscore}. The \textit{WISE} colors are also signficant, as the classifier probably captures the importance of \textit{WISE} colors for AGN classification.
+Also important were the TDE fit rise- and decay time, as well as the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. On equal footing were the peak magnitude and the \texttt{sgscore}. The \textit{WISE} colors were also signficant, as the classifier probably captured the importance of \textit{WISE} colors for AGN classification.
 
-Interestingly, the temperature change does not seem to play a major role, and also the peak temperature is less important as one would expect from previous studies (see e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that a \textit{g}-\textit{r} color close to 0, as well as the absence of light curve color evolution are good predictors for TDEs. As the blackbody temperature and temperature change should in principle encode color and color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
+Interestingly, the temperature change did not seem to play a major role, and also the peak temperature was less important as one would have expected from previous studies (see e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that a \textit{g}-\textit{r} color close to 0, as well as the absence of light curve color evolution are good predictors for TDEs. As the blackbody temperature and temperature change should in principle encode color and color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}\label{confusion_matrices}
 To see how the model performs with regards to the test set, one could either evaluate a version of the test set also containing child light curves created by the augmentation process, or only parent light curves. There was no reason to favor one over the other, so both evaluations were performed.
@@ -453,9 +451,9 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
 
 As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:confusion_nonoise} show that the test set -- like the training set -- is heavily biased towards SNe Ia, and only 15 TDEs are present.
 
-The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDE are actually TDE, while the remaining \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} constitute the false positive rate.
+The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example, \SI{90}{\percent} of all predicted TDEs are actually TDEs, while the remaining \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} constitute the false positive rate.
 
-The truth-normalized matrix on the right shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDE were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent}, corresponds to the false negative rate for TDE classification.
+The truth-normalized matrix on the right shows the percentage with which objects that in truth belong to a class are correctly identified as class members. \SI{60}{\percent} of all TDEs were correctly identified as TDE, but \SI{7}{\percent} were misclassified as AGN, \SI{13}{\percent} were wrongly identified as SNe Ia, \SI{13}{\percent} as CCSNe, and \SI{7}{\percent} as stars. The sum of all misclassifications, in this case \SI{40}{\percent}, corresponds to the false negative rate for TDE classification.
 
 The performance looks decent, especially the false positive rate: Except for CCSNe, all predictions capture the truth in \SI{\geq90}{\percent} of all cases. Also, the TDE identification works fairly well: \SI{60}{\percent} of all TDEs were identified by the classifier as such, and of the 10 objects predicted to be TDEs, only 1 was not a TDE. The validity of this result is of course limited by the small number of TDEs in the test sample. As the number of available ZTF light curves of confirmed TDEs is only in the double digits, there is no straightforward fix for this problem.
 
