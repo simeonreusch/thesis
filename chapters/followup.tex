@@ -152,7 +152,7 @@ The possibility to extract flux prior to the first alert detection makes forced 
 \subsection{The \texttt{fpbot} Pipeline}
 \begin{marginfigure}
     \includegraphics{fu/fpbot_slack_border.pdf}
-    \caption[\texttt{fpbot} Slack bot interaction]{Sample interaction with the \texttt{fpbot} Slack bot, obtaining forced photometry for ZTF20abydkrl.}
+    \caption[\texttt{fpbot} Slack bot interaction]{Sample interaction with the \texttt{fpbot} Slack bot, obtaining forced photometry for \textit{ZTF20abydkrl}.}
     \labfig{fpbot_slackbot}
 \end{marginfigure}
 \texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interface, or within a dedicated Slack channel to serve the broader community.
@@ -209,7 +209,7 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time 
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
-    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out \emph{SN2020lls} as candidate source. Figure by the author, from~\cite{Stein2023a}.}
+    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out \emph{SN2020lls} as candidate source. Figure by the author, see~\cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
 \end{figure}
 As can be seen, the fit estimates the explosion time (black line) at 6 days earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out \emph{SN2020lls} as source of \emph{IC200530A}.
@@ -219,16 +219,14 @@ A second source candidate that was also coincident with \emph{IC200530A}, was \e
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
-    \caption[\emph{SN2020lam} spectrum]{Spectrum of \emph{SN2020lam} taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the IIP type supernova \emph{SN2005cs} is shown on top in red. Balmer lines are shown with black dotted lines. Figure by the author, see also~\cite{Stein2023a}.}
+    \caption[\emph{SN2020lam} spectrum]{Spectrum of \emph{SN2020lam} taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the IIP type supernova \emph{SN2005cs} is shown on top in red. Balmer lines are shown with black dotted lines. Figure by the author, see ~\cite{Stein2023a}.}
     \labfig{ZTF20abbpkpa_not_spectrum}
 \end{figure}
 
 The lightcurve and the best-fit template show that the neutrino was detected close to the peak of the supernova, a Type IIP. The viable production mechanism in this case is CSM-interaction (see Section~\ref{interacting_sne}). As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and thereby ruled out \emph{SN2020lam} as a source candidate.
 
 \subsection{\emph{AT2020ybb}: Unclassified}
-\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}).
-
-\emph{AT2020ybb} was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
+\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}). The transient was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
 
 We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig.~\ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum did not allow a robust classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.
 

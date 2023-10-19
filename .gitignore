@@ -18,6 +18,7 @@ literature/theory/handbook_of_sne.pdf
 *.cb
 *.cb2
 .*.lb
+.stignore
 
 ## Intermediate documents:
 *.dvi
