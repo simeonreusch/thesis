@@ -123,11 +123,11 @@ All WIRC measurements were reduced using a custom pipeline (see~\sidecite{De2020
 
 As another galaxy lies close to \emph{AT2019fdr}'s host galaxy (angular separation: \SI{7}{\arcsec}), I performed a manual flux extraction with \texttt{GALFIT}~\sidecite{Peng2002}. This two-dimensional fitting algorithm allows to define different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types.
 
-To improve photometric accuracy, I first derived the point spread function\sidenote{See Section~\ref{psfphot}} of individual stacked images with \texttt{photutils}~\sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy}~\sidecite{PriceWhelan2022}. All stars within the surrounding of \emph{AT2019fdr} were selected for this. From this selection, I visually selected a subset of stars neither too dim nor too bright to serve as reference stars (see Fig.~\ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, I calculated the PSF of the image.
+To improve photometric accuracy, I first derived the point spread function\sidenote{See Section~\ref{psfphot}} of individual stacked images with \texttt{photutils}~\sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy}~\sidecite{PriceWhelan2022}. All stars within the surrounding of \emph{AT2019fdr} were selected for this. From this selection, I visually selected a subset of stars neither too dim nor too bright (see Fig.~\ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, I calculated the PSF of the image.
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/P200_third_epoch_H_stargrid.pdf}
-    \caption[P200 \textit{H}-band reference star selection]{Reference star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, they were rejected. All stars included in the PSF extraction are marked with a red rectangle (star 0, 6 and 7). One can also see that during this epoch, observing conditions were not ideal, resulting in horizontally elongated images of the stars.}
+    \caption[P200 \textit{H}-band star selection]{Star selection to fit the PSF of the stacked P200/WIRC \textit{H}-band image from Februar 2, 2021. Each cutout comprises $80\times80$ pixels. As can be seen, some of the stars have neighboring stars. As this can hamper a clean extraction of the PSF, such stars were rejected. All stars included in the PSF extraction are marked with a red rectangle (star 0, 6 and 7). One can also see that during this epoch observing conditions were not ideal, resulting in horizontally elongated images of the stars.}
     \labfig{at2019fdr_nir_starselection}
 \end{figure*}
 
@@ -139,11 +139,11 @@ I retrieved the stars with \texttt{DAOStarFinder}, while I used \texttt{EPSFBuil
     \labfig{at2019fdr_nir_teststar}
 \end{figure}
 
-I then ingested the resulting PSF into \texttt{GALFIT}. Two Sérsic  profiles describing the galaxy flux as a function of the distance to the galaxy core were then defined\sidenote{For details, see e.g.~\cite{Graham2005}.}, centered on the host and the neighboring galaxy location. Additionally, I used a point source with variable position. These were then fit together, resulting in flux values for the host galaxy, the neighboring galaxy and the transient.
+I then ingested the resulting PSF into \texttt{GALFIT}. Two Sérsic  profiles describing the galaxy flux as a function of the distance to the galaxy core were then defined\sidenote{For details, see e.g.~\cite{Graham2005}.}, centered on the host and the neighboring galaxy location. Additionally, I used a point source with variable position to account for the transient flux. These three sources were then fit together, resulting in flux values for the host galaxy, the neighboring galaxy and the transient.
 
-I fixed all parameters except for the point source flux after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values. This can be explained by differing observing conditions at different epochs. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. I took the difference in the transient flux (when using epoch 1 as reference epoch, and when using epoch 4 as such) as systematic uncertainty on the extracted transient flux~\cite{Reusch2022}.
+I fixed all parameters except for the point source flux after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values. This can be explained by differing observing conditions at different epochs. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. I used the difference in the resulting transient flux (when using epoch 1 as reference epoch on the one hand, and when using epoch 4 as such on the other hand) as systematic uncertainty on the extracted transient flux~\cite{Reusch2022}.
 
-As there was no image without transient flux available, I added the point source and the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section~\ref{synthetic_host_model}.}. The model-subtracted AB magnitudes calculated by this procedure are shown in Table~\ref{tab:p200_nir}.
+As there was no image without transient flux available, I added the point source flux to the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section~\ref{synthetic_host_model}.}. The model-subtracted AB magnitudes derived by this procedure are shown in Table~\ref{tab:p200_nir}.
 
 \subsection{\textit{WISE} Detections}
 
@@ -155,7 +155,9 @@ As there was no image without transient flux available, I added the point source
 
 Additionally to the ground-based NIR observations with P200, images from the mid-infrared (MIR) \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}).\ \textit{WISE} has cadence of 6 months, and the available images comprised 13 observational epochs prior to the detection of \emph{AT2019fdr}, as well as 3 epochs during the transient's life.
 
-As the MIR photometry---like the NIR photometry---suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE}~\sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot}~\sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot}~\cite{Stetson1987} algorithms.
+\pagebreak
+
+As the \textit{WISE} MIR photometry---like the NIR photometry detailed above---suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE}~\sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot}~\sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot}~\cite{Stetson1987} package.
 
 The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\jansky}, which was significantly smaller than the peak difference flux, measured at \SI{0.9}{\milli\jansky}. A robust baseline can therefore be constructed from the pre-flare \textit{WISE} detections.
 
@@ -170,9 +172,13 @@ As not all measurements from the various instruments had the luxury of readily a
 
 The fit procedure is described in~\sidecite{Velzen2020}; we used archival measurements from different sources: To measure the UV flux, we used images from the Galaxy Evolution Explorer (\textit{GALEX})~\sidecite{Martin2005}. The \texttt{gPhoton}~\sidecite{Million2016} package with an aperture of \SI{4}{\arcsec} was used for flux extraction.
 
-To measure the optical flux, we employed the model magnitudes from SDSS. These are computed either from a de Vaucouleurs galaxy profile, or an exponential galaxy profile (the model mag uses the better of the two fits)\sidenote{See \url{https://www.sdss4.org/dr12/algorithms/magnitudes/mag_model} for details.}.
+To measure the optical flux, we employed the model magnitudes from SDSS. These are computed either from a de Vaucouleurs galaxy profile, or an exponential galaxy profile, with \texttt{mag\_model} using the better of the two fits (see \url{https://www.sdss4.org/dr12/algorithms/magnitudes/mag_model} for details).
 
-We also included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS)~\sidecite{Lawrence2007}. Then, the \texttt{prospector} toolkit~\sidecite{Johnson2021} was used to sample synthetic galaxy models built by Flexible Stellar Population Synthesis (\texttt{FSPS})~\sidecite{Conroy2010}, written in Fortran and employed via the Python wrapper \texttt{python-fsps}~\sidecite{ForemanMackey2014}.
+Lastly, we included the baseline \textit{WISE} datapoints detailed above, as well as an archival infrared measurement from the UKIRT Infrared Deep Sky Survey (UKIDSS)~\sidecite{Lawrence2007}.
+
+\pagebreak
+
+After gathering archival flux measurements from these sources, the \texttt{prospector} toolkit~\sidecite{Johnson2021} was used to sample synthetic galaxy models built by Flexible Stellar Population Synthesis (\texttt{FSPS})~\sidecite{Conroy2010}. This package is written in Fortran and was employed via the Python wrapper \texttt{python-fsps}~\sidecite{ForemanMackey2014}.
 
 The archival values used in constructing the synthetic host model can be found in the Appendix in Table~\ref{tab:host_model_measurements}.
 
@@ -204,21 +210,21 @@ I subsequently subtracted the host model from all measurements possibly containi
 \section{SED Blackbody Modeling}
 After compiling and reducing the individual light curve measurements, a physical model motivating the detected light needed to be applied.
 
-To explain the SED, I experimented with different models, comprising a single blackbody, a power law, a broken power law\sidenote{I.e.\ a power law with a break at a certain wavelength where the spectral index suddenly changes.} and two blackbodies. The double blackbody model matched the observations best. In the following, the derivation of this model and the energy output of the system derived from this will be detailed, including a discussion of dust extinction.
+To explain the SED, I employed different models: A power law, a single blackbody, a broken power law\sidenote{I.e.\ a power law with a break at a certain wavelength where the spectral index changes.} and lastly a double blackbody model. In the following, the derivation of this model and the energy output of the system described by it will be detailed, including a discussion of dust extinction.
 
 \subsection{Fit Epochs}
-First, I isolated three regions of interest. These comprised (1) the 20 days between August 5 and 25, 2019, as this windows covers the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch (2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covers one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch (3) covered January 1 to February 26, 2021 (51 days) and contains another P200 NIR observation.
+For the fit I isolated three regions of interest. These comprised (1) the 20 days between August 5 and 25, 2019, as this windows covered the optical peak of the light curve, as well as the first \textit{WISE} measurement. The second, longer epoch (2) ranged from June 6 to October 8, 2020 (124 days), shortly after the neutrino detection. It covered one \textit{WISE} measurement epoch and two P200 NIR observations. The last epoch (3) covered January 1 to February 26, 2021 (51 days) and contained another P200 NIR observation.
 
-As the light curve does not significantly change during those epochs, I used the mean flux values for each observed bands as input for the fitting procedure.
+As the light curve did not significantly change within those epochs, I used the mean flux values for each observed bands as input for the fitting procedure.
 
 \subsection{Fit Models}\label{fitmodels}
 As stated above, I tried a variety of models of increasing complexity. The least complex model that captured the measurements reasonably well was a double blackbody model. These models were, with increasing number of free parameters:
 
 \begin{description}
     \item[Unbroken power law] A single, unbroken power law with the power law index as free parameter.
-    \item[Single blackbody] A single unmodified blackbody was then explored. This can be described by two parameters, the blackbody radius and it temperature.
-    \item[Broken power law] I also tried a broken power law, with the two spectral indices and the wavelength of the break as free parameters.
-    \item[Double blackbody] Finally, two unmodified blackbodies were employed, resulting in four free parameters ($2 \times$ temperature, $2 \times$ radius).
+    \item[Single blackbody] This model is described by two parameters, the blackbody radius and its temperature.
+    \item[Broken power law] The two spectral indices and the wavelength of the break are the free parameters here.
+    \item[Double blackbody] Two unmodified blackbodies, resulting in four free parameters ($2 \times$ temperature, $2 \times$ radius).
 \end{description}
 
 All fits were performed with the \texttt{lmfit}~\sidecite{Newville2021} Python package, which implements the Levenberg-Marquardt algorithm for solving non-linear least-squares problems.
@@ -251,7 +257,7 @@ The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{
     \text{Scale} = d_L^2 / (r^2 \pi)
 \end{equation}
 
-where $r$ is the blackbody radius and $d_L$ is the \textit{luminosity distance}, calculated with the redshift $z=0.2666$ and assuming a standard cosmology. The luminosity distance is a measure for how far away something `looks'. If the luminosity $L$ is the total amount of energy isotropically radiated by an object per unit time, it is related to the flux $F$ measured at luminosity distance $d_L$ via this relation, describing an expanding sphere of light:
+where $r$ is the blackbody radius and $d_L$ is the luminosity distance, calculated with the redshift $z=0.2666$ and assuming a standard cosmology. The luminosity distance is a measure for how far away something `looks'. If the luminosity $L$ is the total amount of energy isotropically radiated by an object per unit time, it is related to the flux $F$ measured at luminosity distance $d_L$ via this relation, describing an expanding sphere of light:
 
 \begin{equation}
     d_L = \sqrt{L/4\pi F}
@@ -263,11 +269,11 @@ The luminosity distance is equal to the proper distance (as in the amount of spa
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/at2019fdr_lightcurve_and_sed.pdf}
-    \caption[\emph{AT2019fdr} light and SED]{Light curve and SED of \emph{AT2019fdr}. The three panels on the top show the double blackbody fits for the three epochs marked in gray. On the bottom, the ZTF \textit{g}- and \textit{WISE W1}-band light curve is shown, as well as the modeled dust echo emission. Figure by the author, from~\cite{Reusch2022}.}
+    \caption[\emph{AT2019fdr} light and SED]{Light curve and SED of \emph{AT2019fdr}. The three panels on the top show the double blackbody fits for the three epochs marked in light gray. On the bottom, the ZTF \textit{g}- and \textit{WISE W1}-band light curve is shown (green circles and gray pentagons), as well as the modeled dust echo emission (black dsh-dotted line). Figure by the author, from~\cite{Reusch2022}.}
     \labfig{at2019fdr_lightcurve_and_sed}
 \end{figure*}
 
-In each iteration of the minization proceess, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the two blackbody spectra were added.
+In each iteration of the minization process, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the flux of the two blackbody spectra was added.
 
 To extract the flux as observed in each band, I used \texttt{SNCosmo} to evaluate all bands given their transmission function. For this I ised the integrated bandpass library of \texttt{SNCosmo}. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service~\sidecite{Rodrigo2020}. This was the case for \textit{Swift}, P200 and \textit{WISE}.
 
