@@ -215,7 +215,7 @@ Another measure to mitigate the issue was to perform the fits as a two-stage pro
   \labfig{tde_fit_comparison}
 \end{figure}
 
-Fig.~\ref{fig:tde_fit_comparison} shows two exemplary TDE fits; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section~\ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand -- whatever it actually is (the object has no spectroscopic classification) -- is clearly not a TDE. The fit cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
+Fig.~\ref{fig:tde_fit_comparison} shows two exemplary TDE fits; one for an object of unknown nature (\textit{AT2021njj}) on the left and one for a confirmed TDE (\textit{AT2019dsg}, see Section~\ref{at2019dsg}) on the right. As one can see, the fit captures the light curve evolution of the TDE fairly well, including the change in color due to the changing blackbody temperature.~\textit{AT2021njj} on the other hand---whatever it actually is (the object has no spectroscopic classification)---is clearly not a TDE. The fit cannot account for the periodic nature of the object, resulting in a reduced $\chi^2$ of $26.3$.
 
 The successful fit for \textit{AT2019dsg} meanwhile results in the following values: A reduced $\chi^2$of $4.1$, a peak temperature of \SI{8700}{\K} which decays by \SI{78}{\K} per day for the following 138 days, an initial risetime of 21 days, and a characteristic light curve decay time of 216 days.
 
@@ -330,7 +330,7 @@ To match the anti-AGN bias within the BTS sample, in principle two methods are v
 Only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \textit{WISE}-colors and matches to the Milliquas catalog.
 
 \subsubsection{\textit{WISE} color selection}\label{wise_color_cut}
-The cuts applied were taken from~\cite{Hviding2022}. The authors of that study evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color-color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
+The cuts applied were taken from~\cite{Hviding2022}. The authors of that study evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color--color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
 \begin{subequations}
   \begin{eqnarray}
     1.734 < (\textit{W2}-\textit{W3}) < 3.916 \\
@@ -342,7 +342,7 @@ with $W1$, $W2$ and $W3$ being the \textit{WISE} Vega magnitudes in the respecti
 
 \begin{figure}[htpb]
   \includegraphics[width=0.8\textwidth]{nuclear/agn_box.pdf}
-  \caption[Infrared AGN selection]{AGN Selection based on infrared \textit{WISE} colors. It shows the \textit{W2}-\textit{W3} vs. \textit{W1}-\textit{W1} color; the fraction of spectroscopically classified AGN is encoded in datapoint color. The dot-dot-dashed box is the one used to flag likely AGN. Adapted from~\cite{Hviding2022}.}
+  \caption[Infrared AGN selection]{AGN Selection based on infrared \textit{WISE} colors. It shows the $W2-W3$ vs. $W1-W2$ color; the fraction of spectroscopically classified AGN is encoded in datapoint color. The dot-dot-dashed box is the one used to flag likely AGN. Adapted from~\cite{Hviding2022}.}
   \labfig{agn_box}
 \end{figure}
 
@@ -376,7 +376,7 @@ In a regular decision tree, a set of iterative binary decisions (hence `tree') a
 \subsection{Hyperparameter Search}
 As is usually the case with such algorithms, there is a number of hyperparameters which determine how \texttt{XGBoost} behaves. \texttt{max\_depth} for example avoids overfitting by restricting the size of individual decision trees, the \texttt{learning\_rate} scales down the results by trees other than the initial tree, and \texttt{n\_estimators} controls the number of trees.
 
-These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameter combinations for 5000 times. This value was chosen as a compromise between computational feasibility and better sampling of the parameter search space. The grid employed here, as well as the chosen hyperparameters are shown in the appendix in Table~\ref{tab:xgboost_grid_search}.
+These hyperparameters can be tuned by running a grid search in the parameter space, each time training with a small subset of the full data to speed up the process. The parameters yielding the best result are then used when training the full model with the complete training set. In this work, the best values for 9 hyperparameters were searched by randomly drawing from a grid of parameter combinations for 5000 times. This value was chosen as a compromise between computational feasibility and better sampling of the parameter search space. The grid employed here, as well as the chosen hyperparameters are shown in the Appendix in Table~\ref{tab:xgboost_grid_search}.
 
 \subsection{Training Procedure}
 After obtaining a classified training sample (BTS light curves, see Section~\ref{bts}), AGN and TDE light curves were added (Section~\ref{addsources}) and the sample was augmented and enlarged by creating redshifted and noisified copies (Section~\ref{noisification}). After this, the full training sample was fit with SALT2~(Section~\ref{salt}) and a TDE model (Section~\ref{tde_model}), as well as analyzed with a bayesian block algorithm (Section~\ref{bayesian_blocks}) to extract features.
@@ -395,7 +395,7 @@ The set of features used for training was the following:
   \item[SALT2 Fit Results] This included the SALT2 fit parameters $x_0$, $x_1$ and $c$, as well as the reduced $\chi^2$, the non-reduced $\chi^2$ and the degrees of freedom.
   \item[TDE Fit Results] The best-fit TDE Model parameters were also included. These were the rise- and decay times, the peak temperature, the temperature change and the amplitude. The temperature change cutoff time was not included, as the model never picked up on this parameter. The results used also included the $\chi^2$ and the degrees of freedom.
   \item[Overlapping blocks] The number of overlapping regions, extracted with the Bayesian block analysis, was also included to allow identification of non-repeating flares (in contrast to stochastic AGN behavior).
-  \item[\textit{WISE} colors] To identify likely AGN, the \textit{WISE} \textit{W1}-\textit{W2} and \textit{W2}-\textit{W3} colors of the parent host were  added.
+  \item[\textit{WISE} colors] To identify likely AGN, the $W1-W2$ and $W2-W3$ colors of the parent host were  added.
   \item[\texttt{sgscore}] The \texttt{sgscore} of the parent light curve, based on machine learning with PS1 photometry (see Section~\ref{ztf_image_subtraction}), was included as a proxy for host galaxy photometry and morphology.
   \item[Core distance] The median core distance was also included. To account for the fact that the core distance of the redshifted child light curves changed with respect to their parents, this value was recalculated for all children. This was done according to
         \begin{equation}
@@ -405,7 +405,7 @@ The set of features used for training was the following:
 \end{description}
 
 \section{Evaluating the Model}
-A large fraction of the nuclear sample was unclassified -- this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A certain fraction (here: \SI{30}{\percent}) of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
+A large fraction of the nuclear sample was unclassified---this is why a classifier was needed in the first place. Therefore, evaluating the classifier's performance needed to happen with a part of the BTS training set. This was done in the usual way: A certain fraction (here: \SI{30}{\percent}) of the training set was kept aside, never to be seen by the classifier beforehand. Such a sample is called a test set.
 
 One pitfall needed to be avoided: The model might learn features of a noisified test light curve by having already seen its parent or one of its siblings in the training process, thereby cheating. To deal with this, the parent light curve and all of its children were always kept together: If e.g.~one child light curve was part of the training set, so were its parent and all its siblings.
 
@@ -427,7 +427,7 @@ The two most important features were the number of flares identified by the Baye
 
 Also important were the TDE fit rise- and decay time, as well as the SALT2 fit $x_1$ parameter, which encodes the stretch of the light curve. On equal footing were the peak magnitude and the \texttt{sgscore}. The \textit{WISE} colors were also signficant, as the classifier probably captured the importance of \textit{WISE} colors for AGN classification.
 
-Interestingly, the temperature change did not seem to play a major role, and also the peak temperature was less important as one would have expected from previous studies (see e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that a \textit{g}-\textit{r} color close to 0, as well as the absence of light curve color evolution are good predictors for TDEs. As the blackbody temperature and temperature change should in principle encode color and color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
+Interestingly, the temperature change did not seem to play a major role, and also the peak temperature was less important as one would have expected from previous studies (see e.g.~\cite{Velzen2021a}). This is indicative of the TDE model fit not capturing all physically present information. It has been shown that a $g-r$ color close to 0, as well as the absence of light curve color evolution are good predictors for TDEs. As the blackbody temperature and temperature change should in principle encode color and color evolution, it is somewhat surprising that these two features do not mirror the importance of color information.
 
 \subsubsection{Confusion Matrices}\label{confusion_matrices}
 To see how the model performs with regards to the test set, one can either evaluate a version of the test set also containing child light curves created by the augmentation process, or evaluate only using light curves. There was no reason to favor one method over the other, so both evaluations were performed.
@@ -449,7 +449,7 @@ The results from only allowing `real' light curves (i.e.~parent light curves) ca
   \labfig{confusion_nonoise}
 \end{figure}
 
-As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:confusion_nonoise} show that the test set -- like the training set -- is heavily biased towards SNe Ia, and only 15 TDEs are present.
+As one can see, the absolute numbers displayed in brackets in Fig.~\ref{fig:confusion_nonoise} show that the test set---like the training set---is heavily biased towards SNe Ia, and only 15 TDEs are present.
 
 The left matrix shows the prediction-normalized values: Each number is the percentage of the predicted classifications actually belonging to the predicted class. For example the purity\sidenote{Purity describes how many of the selected objects are in fact TDEs. This metric is also known as `precision' in ML literature} of the TDE selection is \SI{90}{\percent}, meaning 9 out of 10 predicted TDEs are actually TDEs, while the remaining \SI{10}{\percent} are CCSNe in truth. In short, these \SI{10}{\percent} constitute the false positive rate.
 
@@ -488,7 +488,7 @@ An overview over the sample after subsequent application of these two-dimensiona
 
 \begin{description}
   \item[AGN Veto (1b, 2a)] Although the BTS is already biased against AGN, the BTS sample still contained objects which could be ruled out as likely AGN by crossmatching to Milliquas (1b) and selecting based on \textit{WISE} colors (2a), see Section~\ref{agn_rejection}.
-  \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, this needed to be enforced by requiring a maximum core distance of 0.4 arcseconds.
+  \item[Core distance (2b)] As the BTS is not selecting nuclear transients per se, nuclearity needed to be enforced by requiring a maximum core distance of 0.4 arcseconds.
   \item[\texttt{sgscore} cut (3a)] Only transients with an \texttt{sgscore} $<0.3$ were allowed at this cut stage.
   \item[SNIa diagonal cut (3b)] The transient had to be to the right side of a diagonal cut in the rise decay time plane, described by $3.55 - 2.29 \tau$ (with $\tau$ being the decay time, all values in $\log~\text{day}$).
   \item[Temperature cut (4a)] The temperature was required to lie between $\log \SI{3.9}{\K}$ and $\log\SI{4.4}{\K}$. Furthermore, the daily temperature change $\Delta T$ was required to lie between $\SI{-100}{\K\per\deh} < \Delta T < \SI{150}{\K\per\deh}$ (left).
@@ -510,7 +510,7 @@ The purity and completeness with subsequent cut stages are shown in Fig.~\ref{fi
   \labfig{completeness_purity}
 \end{figure}
 
-These numbers are somewhat promising, as objects lying within the final selection have a 4 in 5 chance of correctly being identified as TDE, while only sacrificing half of the TDE population. Of course, there is always a trade-off between completeness and purity; i.e. a program designed to discover TDEs early on might need to accept a lower purity.
+These numbers were somewhat promising, as objects lying within the final selection had a 4 in 5 chance of correctly being identified as TDE while only sacrificing half of the TDE population. Of course, there is always a trade-off between completeness and purity; i.e. a program designed to discover TDEs early on might need to accept a lower purity.
 
 \begin{figure}[htbp]
   \centering
@@ -561,10 +561,10 @@ These numbers are somewhat promising, as objects lying within the final selectio
 After establishing and verifying the 2D cuts, everything is ready to use them on the model predictions and investigate its performance further.
 
 \section{A Photometric TDE sample}
-As we know obtained a trained classifier and a set of 2D cuts optimized for isolating TDE candidates, the next step is to classify the nuclear sample with the trained model, and subject it to the very same cuts.
+As we know obtained a trained classifier and a set of 2D cuts optimized for isolating TDE candidates, the next step was to classify the nuclear sample with the trained model, and subject it to the very same cuts.
 
 \subsection{Running the Classifier}\label{classifier_res}
-The full classification of the nuclear sample is shown in Fig.~\ref{fig:classification_maghist_nocut}. Here, the plots on top only show non-AGN hosts, while the bottom plots show likely AGN hosts. This differentiation was again achieved by crossmatching to the Milliquas catalog and using the \textit{WISE} colors (see Section~\ref{agn_rejection}). The plots on the left show community classifications drawn from Fritz, the GROWTH Marshal and the TNS, while the right side plots display the \texttt{XGBoost} classifications.
+The full classification of the nuclear sample is shown in Fig.~\ref{fig:classification_maghist_nocut}. Here, the plots on top only show non-AGN hosts, while the bottom plots show likely AGN hosts. This differentiation was again achieved by crossmatching to the Milliquas catalog and selecting based on \textit{WISE} colors (see Section~\ref{agn_rejection}). The plots on the left show community classifications drawn from Fritz, the GROWTH Marshal and the TNS, while the right side plots display the \texttt{XGBoost} classifications.
 
 \begin{figure}[H]
   \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut']_comb.pdf}
@@ -572,7 +572,7 @@ The full classification of the nuclear sample is shown in Fig.~\ref{fig:classifi
   \labfig{classification_maghist_nocut}
 \end{figure}
 
-Looking at the \texttt{XGBoost} classifications of the AGN part of the nuclear sample (bottom right plot), one can notice that reassuringly the majority (\SI{83}{\percent}) was indeed classified as AGN by the decision tree. As it is much more likely to contain bona-fide transients, we will now focus on the non-AGN part of the nuclear sample (top right plot). At this stage, without further cuts on the sample, \texttt{XGBoost} classified 3037 objects as SN Ia, 909 as CCSN, 566 as AGN, 309 as stars, and 237 as TDE.
+Looking at the \texttt{XGBoost} classifications of the AGN part of the nuclear sample (bottom right plot), one can notice that---reassuringly---the majority (\SI{83}{\percent}) was indeed classified as AGN by the decision tree. As the non-AGN part of the nuclear sample is much more likely to contain bona-fide transients, we will now focus on this selection (top right plot). At this stage, without further cuts on the sample, \texttt{XGBoost} classified 3037 objects as SNe Ia, 909 as CCSNe, 566 as AGNs, 309 as stars, and 237 as TDEs.
 
 \begin{figure}[htpb]
   \includegraphics[width=1\textwidth]{nuclear/maghist/maghist_['nocut', 'coredist', 'sgscore', 'snia', 'temp', 'risedecay', 'chisq', 'bayes']_comb.pdf}
@@ -580,14 +580,14 @@ Looking at the \texttt{XGBoost} classifications of the AGN part of the nuclear s
   \labfig{classification_maghist_cut}
 \end{figure}
 
-To obtain a purer (but of course less complete) TDE sample, the 2D cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, 27 new TDE candidates could be added to the already known and spectroscopically classified TDEs. An overview of the candidates is in Table~\ref{tab:tde_candidates} in the Appendix.
+To obtain a purer (but of course less complete) TDE sample, the 2D cuts established in Section~\ref{visual_cuts} were applied. The classification of nuclear sample after application of these cuts can be seen in Fig.~\ref{fig:classification_maghist_cut}. The full list of all 79 transients from non-AGN hosts classified as TDE, including new and already known ones can be found in the Appendix, see Table~\ref{tab:tde_candidates}. In total, 27 new TDE candidates could be added to the list of already known and spectroscopically classified TDEs. An overview of the candidates is shown in Table~\ref{tab:tde_candidates} in the Appendix.
 
-The 24 objects classified as TDEs that were lying in AGN hosts were also evaluated. Unfortunately, visual inspection of these events ruled out all but one (\textit{ZTF18acryjql}) transient. This was almost always possible based on light curve features alone, highlighting potentially lacking performance of the classifier. On the bright side, it shows that the AGN rejection seems to work, as significantly less events (24 vs. 79 for the non-AGN hosts) were initially classified as TDEs at that stage.
+The 24 objects classified as TDEs that were lying in AGN hosts (Fig.~\ref{fig:classification_maghist_cut}, bottom right plot) were also evaluated. Unfortunately, visual inspection of these events ruled out all but one (\textit{\href{https://ztfnuclear.simeonreusch.com/transient/ZTF18acryjql}{AT2018ktr}}) transient. Visually rejecting the transients was almost always possible based on light curve features alone. This highlights potentially lacking performance of the classifier. On the bright side, this selection shows that the AGN rejection seems to work, as significantly less events (24 vs. 79 for the non-AGN hosts) were initially classified as TDEs at that stage.
 
 \subsection{Inspection of Objects Classified as TDE}\label{all_tde_inspection}
-One pitfall in evaluating the classifier performance is the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage --- this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
+One pitfall in evaluating the classifier performance comes from the fact that \SI{70}{\percent} of all TDEs were already seen by the classifier in the training stage---this was neccessitated by the fact that there were not many to begin with. Therefore, a visual inspection of all objects classified as TDE that were not already known as TDEs during the training stage was performed.
 
-This was done for the non-AGN part of the sample (see top right histogram in Fig.~\ref{fig:classification_maghist_nocut}). Of the 237 objects classified as TDE, 29 were already seen by the classifier during the training stage and were therefore excluded, leaving 208 transients. These were then visually inspected, and rated by the following scheme: `Correct' meant that the transient looked like a plausible TDE, and no contrary evidence --- like a classification based on a spectrum --- existed. `Possible' meant that either the light curve looked ambiguous, or the TDE fit result looked unsatisfying (for example, unphysically fast rise and fade timescales), but a clear misclassification could be excluded. Finally, `wrong' was reserved for transients where the visual inspection rendered the TDE-classification unlikely, as e.g.~stochastic AGN variability was present.
+This was done for the non-AGN part of the sample (see top right histogram in Fig.~\ref{fig:classification_maghist_nocut}). Of the 237 objects classified as TDE, 29 were already seen by the classifier during the training stage and were therefore excluded, leaving 208 transients. These were then visually inspected, and rated by the following scheme: `Correct' meant that the transient looked like a plausible TDE, and no contrary evidence---like a classification based on a spectrum---existed. `Possible' meant that either the light curve looked ambiguous, or the TDE fit result looked unsatisfying (for example, unphysically fast rise and fade timescales), but a clear misclassification could be excluded. Finally, `wrong' was reserved for transients where the visual inspection rendered the TDE-classification unlikely, as e.g.~stochastic AGN variability was present.
 
 The exact rejection reasons for judging classifications as `wrong' were: Misclassification based on an available spectrum, issues with the light curve quality, the existence of multiple recurring flares within the light curve, the existence of only one flare, but paired with a variable baseline suggestive of AGN variability, and finally not a clear flare, but only slightly elevated flux above a variable baseline. A break down of all analyzed transients regarding these rejection reasons can be seen in Table~\ref{tab:rejection_statistics}. An example for each category in Table~\ref{tab:rejection_statistics} is shown in Fig.~\ref{fig:rejection_examples}.
 
@@ -625,7 +625,7 @@ The exact rejection reasons for judging classifications as `wrong' were: Misclas
   \labfig{rejection_examples}
 \end{figure}
 
-Of the 208 transients thus analyzed, 82 had a correct classification, for 33 a TDE nature was possible, and 93 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a false positive rate of \SI{44.7}{\percent} resulted. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{60.5}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{10}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}). This get alleviated a bit by the fact that TDEs which were present during the training phase were excluded -- so the `real' performance might as well be better. One can therefore safely assume that roughly half of the transients classified as TDE are in fact TDEs. All further calculations will be done with the assumption of a \SI{50}{\percent} false-positive rate.
+Of the 208 transients thus analyzed, 82 had a correct classification, for 33 a TDE nature was possible, and 93 were rated as wrong, i.e. misclassifications. When one generously rates both `correct' and `possible' as correct classification, a false positive rate of \SI{44.7}{\percent} resulted. If one is more conservative and counts `possible' as misclassification, a false positive rate of \SI{60.5}{\percent} ensues. In any case, this marks a sharp drop compared to the \SI{10}{\percent} false-positive rate for the augmented BTS test sample (see Section~\ref{confusion_matrices}). This get alleviated a bit by the fact that TDEs which were present during the training phase were excluded---so the `real' performance might as well be better. One can therefore safely assume that roughly half of the transients classified as TDE are in fact TDEs. All further calculations will be done with the assumption of a \SI{50}{\percent} false-positive rate.
 
 On the bright side: A lot of the clear misclassifications showed signs of AGN baseline variability. As can be seen in Table~\ref{tab:rejection_statistics}, 24 transients showed multiple flares, and 23 showed only slightly elevated flux above a variable baseline. It should be possible to develop a second classifier designed only to discern these features. If that would be possible, the false-positive rate could be reduced to roughly \SI{22}{\percent}.
 
@@ -648,7 +648,7 @@ Fig.~\ref{fig:ztfnuclear_frontend} shows the frontend. It was designed to displa
 
 \begin{figure}[htb]
   \includegraphics[width=1\textwidth]{nuclear/ztfnuclear_frontend.png}
-  \caption[Frontend for the nuclear sample]{The frontend for inspecting and reviewing the nuclear sample. It shows an exemplary page for \textit{ZTF18acgqweq}, including a light curve, a comment and a rating as `Interesting'. The fit results of the TDE and the SALT2 fit are displayed as well, plus potential redshift matches (none in this case).}
+  \caption[Frontend for the nuclear sample]{The frontend for inspecting and reviewing the nuclear sample. It shows an exemplary page for \textit{ZTF19abqyosy}, including a light curve, a comment and a rating as `Interesting'. The fit results of the TDE and the SALT2 fit are displayed as well, plus potential redshift matches (none in this case).}
   \labfig{ztfnuclear_frontend}
 \end{figure}
 

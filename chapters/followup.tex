@@ -5,7 +5,7 @@ After\marginnote{Left: The IceCube detector (Image credit: IceCube). Center: Mou
 
 IceCube sends out \num{\sim2.2} astrophysical high-energy neutrino alerts on average per month\sidenote{See Section~\ref{ic_alerts}}, mostly originating in the northern sky. Due to its large FoV, its location in the northern hemisphere and its completely robotic operation, ZTF is the ideal follow-up instrument for these alerts. It allows to cover the typically reported IceCube localization regions with only one pointing of the telescope.
 
-The follow-up procedure can be outlined as follows: An IceCube alert is received. If the alert meets our alert quality criteria, we do an observability check. If the sky region is accessible to ZTF, we observe. After observations, we filter candidates, followed by visual inspection. Lastly, we acquire forced photometry and --- if needed --- trigger additional follow-up.
+The follow-up procedure can be outlined as follows: An IceCube alert is received. If the alert meets our alert quality criteria, we do an observability check. If the sky region is accessible to ZTF, we observe. After observations, we filter candidates, followed by visual inspection. Lastly, we acquire forced photometry and---if needed---trigger additional follow-up.
 
 \section{Source Classes}
 Given the limit observational time at our disposal, we are only sensitive to a subset of possible high-energy neutrino source classes. For a complete overview, see Section~\ref{he_neutrino_astronomy}. These are:
@@ -126,7 +126,7 @@ All surviving candidates are then spatially crossmatched to a set of catalogs. T
     \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} is the repository of astrophysical transients and contains over 100k objects, both classified and unclassified. It is queried to check if the candidate source is a known and possibly classified transient.
     \item[WISE] Color information from the Wide-Infrared Survey Explorer (\textit{WISE}) Mission~\sidecite{Wright2010} can be used to identify likely AGN, as these predominantly occupy a small section of the WISE color-color diagram (see e.g.~\sidecite{Hviding2022} for this).
 \end{description}
-None of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source --- for example, an existing classification on TNS as a certain type of supernova.
+None of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source---for example, an existing classification on TNS as a certain type of supernova.
 
 \begin{figure}[h!]
     \includegraphics{fu/nuztf_IC220624A.pdf}
@@ -289,7 +289,7 @@ In~\cite{Stein2021}, the evolving radio signal was interpreted as the signature 
     \labfig{at2019dsg_dustecho}
 \end{figure}
 
-Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE}~\sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution --- this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
+Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE}~\sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution---this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
 
 The chance coincidence to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This suggests that Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube.
 
@@ -311,5 +311,5 @@ Roughly half of the transients were classified as AGN Variability, i.e.\ stochas
 
 This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide transients, totalling 21 classified candidates.
 
-Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only the two TDEs were identified as source candidates; these will be detailed subsequently. The remaining non-Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or --- in the case of the SN Ic --- the explosion predated the neutrino detection significantly\sidenote{See Section~\ref{SN2020lls}}.
+Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only the two TDEs were identified as source candidates; these will be detailed subsequently. The remaining non-Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or---in the case of the SN Ic---the explosion predated the neutrino detection significantly\sidenote{See Section~\ref{SN2020lls}}.
 

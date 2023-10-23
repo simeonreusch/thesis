@@ -72,7 +72,7 @@ The sky region of AT2019 was visited four times by \textit{SRG} with a six-month
 
 The single detection from March 11, 2021 revealed a very soft thermal spectrum. As can be seen in Fig.~\ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of \emph{AT2019fdr} one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far~\sidecite{Sazonov2021}.
 
-The equivalent neutral hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. This is a measure of the amount of neutral hydrogen atoms along the line of sight to the source. That value is consistent --- within errors --- with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low~\cite{Reusch2022}.
+The equivalent neutral hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. This is a measure of the amount of neutral hydrogen atoms along the line of sight to the source. That value is consistent---within errors---with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There is some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound is still fairly low~\cite{Reusch2022}.
 
 \begin{figure}[htb]
     \includegraphics[width=0.8\textwidth]{at2019fdr/erosita_fit.pdf}
@@ -155,7 +155,7 @@ As there was no image without transient flux available, I added the point source
 
 Additionally to the ground-based NIR observations with P200, images from the mid-infrared (MIR) \textit{WISE} satellite were obtained in the \textit{W1}- and \textit{W2}-band (\SI{3.4}{\micro\m} and \SI{4.6}{\micro\m}).\ \textit{WISE} has cadence of 6 months, and the available images comprised 13 observational epochs prior to the detection of \emph{AT2019fdr}, as well as 3 epochs during the transient's life.
 
-As the MIR photometry --- like the NIR photometry --- suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE}~\sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot}~\sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot}~\cite{Stetson1987} algorithms.
+As the MIR photometry---like the NIR photometry---suffered from blending with the nearby galaxy, forced PSF photometry was used on the co-added images (done with \texttt{ICORE}~\sidecite{Masci2013}) of each observational epoch. The package employed for this was \texttt{PythonPhot}~\sidecite{Jones2015}, a Python adaptation of the \texttt{DaoPhot}~\cite{Stetson1987} algorithms.
 
 The root mean square (RMS) of the pre-flare datapoints was only \SI{18}{\micro\jansky}, which was significantly smaller than the peak difference flux, measured at \SI{0.9}{\milli\jansky}. A robust baseline can therefore be constructed from the pre-flare \textit{WISE} detections.
 
@@ -307,7 +307,7 @@ As the fit routine was not able to generate stable covariance matrices in all ep
     \labfig{bb_chisq}
 \end{marginfigure}
 
-For each epoch and fit parameter, this was done by letting all parameters vary except for the parameter of interest. I then varied this parameter around the best-fit value, and the resulting $\chi^2$ was evaluated. Following this, I approximated the $\chi^2$ distribution with a polynomial, and calculated the the \SI{68}{\percent} confidence level --- the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
+For each epoch and fit parameter, this was done by letting all parameters vary except for the parameter of interest. I then varied this parameter around the best-fit value, and the resulting $\chi^2$ was evaluated. Following this, I approximated the $\chi^2$ distribution with a polynomial, and calculated the the \SI{68}{\percent} confidence level---the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
 From the fit parameter uncertainties calculated as such, I obtained uncertainties on the radius and the luminosities via Gaussian error propagation.
 
@@ -360,7 +360,7 @@ where $\Pi$ is the rectangular function:
 \end{equation}
 The delay induced by light travel time can thus be approximated by convolving the optical light curve with a rectangular function of width $2\times\Delta_{t_c}$, where $t_c$ is the light travel time from the transient to the surrounding dust sphere.
 
-This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared and reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$ --- first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
+This can be understood if one looks at the geometry of the system. After a delay of $\Delta_{t_c}$, light from the flare reaches the inner edge of the sphere that survives the incident radiation, directly along our line of sight. Here it gets re-emitted in the infrared and reaches us with that initial delay of $cR_0$. Re-emitted light from the side of the system takes even longer. Lastly, re-emitted light from the back of the system reaches us with a delay of $3\times cR_0$---first the flare light needs to travel one radius away from us, and then the re-emitted light needs to cross the whole system (twice $R_0$) towards us.
 
 To calculate $R_0$, I used the ZTF \textit{g}-band light curve, as it had the best sampling. I then convolved this light curve with the box function, where the width of the box function in days was left as free parameter. The initial delay with respect to the optical light curve was then half the size of the box function. The second free parameter was a dimensionless amplitude used to scale the optical light curve to match the amplitude of the \textit{WISE} datapoints.
 
@@ -388,7 +388,7 @@ I used this covering factor and the radius of the dust shell to determine the du
 As stated at the beginning of this chapter, \emph{AT2019fdr} was initially classified as a SLSN IIn, but a subsequent paper classified \emph{AT2019fdr} as TDE~\cite{Frederick2021}. In this section I will present their reasoning, as well as further evidence we brought forward in favor of this hypothesis, but also some data weakening this interpretation.
 
 \subsection{Original TDE Classification}
-Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that \emph{AT2019fdr} --- as all the 5 flares located in NLSy1 galaxies they studied --- could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table~\ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely. For comparison, \textit{AT2019dsg} is shown as an example of a bona fide TDE.
+Frederick et al.~\cite{Frederick2021} outright rejected the SLSN IIn interpretation, but discussed that \emph{AT2019fdr}---as all the 5 flares located in NLSy1 galaxies they studied---could either be an AGN flare or a TDE. They based their classifications on a set of criteria, detailed in Table~\ref{tab:at2019fdr_classification_matrix}. The green cells in the table show that the feature being present (\checkmark) or absent ($\times$) makes a TDE interpretation more likely, while red color means that a flare origin is more likely. For comparison, \textit{AT2019dsg} is shown as an example of a bona fide TDE.
 
 \begin{table*}[htp]
     \begin{center}
@@ -447,7 +447,7 @@ As only candidates with brightness comparable to or higher than \emph{AT2019fdr}
 
 Lastly, I excluded those transients from the sample of 25 transients which were spectroscopically classified as supernovae, or were ruled out as short-timescale AGN variability by visual inspection. I also excluded candidates which displayed no consistent color or color evolution post peak, or which had a non-smooth light curve evolution post peak. This left a final sample of 12 transients.
 
-I then calculated the effective source density $\rho_\text{eff}$ --- i.e.\ the density of sources per \unit{\square\deg} of sky in the survey footprint at any given time --- as follows:
+I then calculated the effective source density $\rho_\text{eff}$---i.e.\ the density of sources per \unit{\square\deg} of sky in the survey footprint at any given time---as follows:
 
 \begin{equation}
     \rho_\text{eff} = (N_\text{flare} \times \Delta t_\text{flare}) / (A_\text{ZTF}  \times \Delta t_\text{search})
@@ -456,7 +456,7 @@ where $N_\text{flare}$ is the total number of comparable sources (including \emp
 
 Now an expectation value for the number of neutrinos coincident with two sources can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$. Employing a Poisson distribution, the probability of finding two sources by chance was $p(2)=\num{3.4e-4}$, while finding one source only had a p-value of $p(1)=\num{2.6e-2}$~\cite{Reusch2022}.
 
-To obtain the probability of finding two neutrinos coincident by chance, I calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1 --- which leaves the probability of observing two or more coincidences:
+To obtain the probability of finding two neutrinos coincident by chance, I calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1---which leaves the probability of observing two or more coincidences:
 
 \begin{equation}
     p(2) = 1 - \sum_{k=0}^1 \frac{e^{-\mu}\mu^k}{k!}
@@ -465,7 +465,7 @@ where the sum is the cumulative distribution function of the Poisson distributio
 
 
 \section{Dust-Echo TDEs as Neutrino Sources?}\label{at2019aalc}
-I have so far detailed the data reduction for \emph{AT2019fdr}, established that it likely was a TDE --- albeit an unusual one --- modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to \emph{AT2019fdr} is quite improbable.
+I have so far detailed the data reduction for \emph{AT2019fdr}, established that it likely was a TDE---albeit an unusual one---modeled its SED and the dust echo we discovered, calculated its energy output and showed that a chance coincidence of two high-energy neutrinos with sources comparable to \emph{AT2019fdr} is quite improbable.
 
 \subsection{Adding a Third Event: \textit{AT2019aalc}}
 During the work on \textit{AT2019fdr}, another candidate emerged as a potential high-energy neutrino counterpart, also accompanied by a dust echo. This section is dedicated to that event, \textit{AT2019aalc}.
