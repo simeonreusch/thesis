@@ -70,7 +70,7 @@ The sky region of AT2019 was visited four times by \textit{SRG} with a six-month
     \caption[\emph{AT2019fdr} \textit{SRG}/eROSITA detections \& upper limits]{\textit{SRG}/eROSITA upper limits and detection of \emph{AT2019fdr} in the \SIrange{0.3}{2.0}{\kilo\eV}-band. From~\cite{Reusch2022}.}\label{tab:at2019fdr_erosita}
 \end{table}
 
-The single detection from March 11, 2021 revealed a very soft thermal spectrum. As can be seen in Fig.~\ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of \emph{AT2019fdr} one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far~\sidecite{Sazonov2021}.
+The single detection from March 11, 2021 revealed a very soft thermal spectrum. As can be seen in Fig.~\ref{fig:erosita_fit}, the best-fit blackbody temperature was \SI[parse-numbers = false]{56^{+32}_{-26}}{\eV}, with the errors being \SI{68}{\percent} for one parameter of interest~\sidecite[7pt]{Sazonov2021}. In the source rest frame, this measurement corresponds to a temperature of \SI[parse-numbers = false]{71^{+41}_{-33}}{\eV}. This renders the X-ray spectrum of \emph{AT2019fdr} one of the softest spectra of the TDEs discovered by \textit{SRG}/eROSITA so far.
 
 The equivalent neutral hydrogen column density had a best-fit value of $\text{NH}=\SI[parse-numbers = false]{1.47^{+2.80}_{-1.25}\times10^{21}}{\per\square\cm}$. This value is a measure of the amount of neutral hydrogen atoms along the line of sight to the source. Within the errors it was consistent with the galactic value of $\text{NH}_\text{Gal} = \SI{0.40e21}{\per\square\cm}$. There was some degeneracy between the neutral hydrogen column density and the inferred blackbody temperature; this is usual for soft sources. However, with $T_\text{bb}=\SI{131}{\eV}$ at the \SI{95}{\percent} confidence level, the temperature upper bound was still fairly low~\cite{Reusch2022}.
 
@@ -91,7 +91,7 @@ The data was reduced with the publicly available \texttt{\textit{Swift} XRT data
 \end{marginfigure}
 
 \subsection{Optical/UV Observations}
-I processed the ZTF optical observations with \texttt{fpbot} (see Section~\ref{fpbot}). The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise ratio with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \num{3} arcsec, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of~\sidecite{Breeveld2011} to convert the measured magnitudes to the AB system\sidenote{See Section~\ref{magnitudes}}. I corrected the extracted and converted magnitudes by subtracting the synthetic host model described in Section~\ref{synthetic_host_model}~\cite{Reusch2022}.
+I processed the ZTF optical observations with \texttt{fpbot} (see Section~\ref{fpbot}). The science-ready \textit{Swift} data was retrieved from the \textit{Swift} archive\sidenote{\url{https://www.swift.ac.uk/swift_portal}}. All exposures of individual epochs were co-added, and filtered to boost the signal-to-noise ratio with \texttt{uvotsim}, contained in \texttt{HEAsoft}\sidenote{\url{https://heasarc.gsfc.nasa.gov/docs/software/heasoft}}. The brightness of the transient was measured using \texttt{uvotsource} of the same package. The aperture used was \num{3} arcsec, with a far bigger radius used for the background level extraction. We calibrated the photometry with files made available by September 2020 and employed the methods of~\sidecite{Breeveld2011} to convert the measured magnitudes to the AB system (see Section~\ref{magnitudes}). I corrected the extracted and converted magnitudes by subtracting the synthetic host model described in Section~\ref{synthetic_host_model}~\cite{Reusch2022}.
 
 As the extraction of the infrared measurements was more involved due to the presence of host galaxy blending, this will be detailed in Section~\ref{nir_reductions} below.
 
@@ -463,10 +463,10 @@ where $N_\text{flare}$ is the total number of comparable sources (including \emp
 
 Now an expectation value for the number of neutrinos coincident with two sources (\textit{AT2019dsg} and \textit{AT2019fdr}) can be calculated as $\mu=\rho_\text{eff}\times A_\text{IC}$, where $A_\text{IC}$ is the summed \SI{90}{\percent} uncertainty area of the alert neutrinos we followed up. This was \SI{154.33}{\square\deg} at that time, which resulted in $\mu=0.026$. Employing a Poisson distribution, the probability of finding two sources by chance was $p(2)=\num{3.4e-4}$, while finding one source only had a p-value of $p(1)=\num{2.6e-2}$~\cite{Reusch2022}.
 
-To obtain the probability of finding two neutrinos coincident by chance, I calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1---which leaves the probability of observing two or more coincidences:
+To obtain the probability of finding two neutrinos coincident by chance, I calculated the probability of observing 0 and 1 coincidences, and subtracted these from 1---this yields the probability of observing two or more coincidences:
 
 \begin{equation}
-    p(2) = 1 - \sum_{k=0}^1 \frac{e^{-\mu}\mu^k}{k!}
+    p(2) = 1 - \sum_{k=0}^1 \frac{e^{-\mu}\mu^k}{k!},
 \end{equation}
 where the sum is the cumulative distribution function of the Poisson distribution. Using a right-tailed normal distribution, $p(2)=\num{3.4e-4}$ translates to $\SI{3.4}{\sigma}$ (\SI{1.94}{\sigma} for a single association).
 
@@ -477,56 +477,56 @@ I have so far detailed the data reduction for \emph{AT2019fdr}, established that
 \subsection{Adding a Third Event: \textit{AT2019aalc}}
 During the work on \textit{AT2019fdr}, another candidate emerged as a potential high-energy neutrino counterpart, also accompanied by a dust echo. This section is dedicated to that event, \textit{AT2019aalc}.
 
-As both high-energy neutrino associated TDEs had prominent dust echoes, this prompted a search for other optical flares accompanied by a strong dust echo and in coincidence with high-energy neutrinos. That study found a third candidate counterpart that so far was missed as its sky location was inaccessible to ZTF at the time of neutrino detection due to its proximity to the sun.
+As both high-energy neutrino associated TDEs had prominent dust echoes, this prompted a search for other optical flares accompanied by a strong dust echo and in coincidence with high-energy neutrinos~\cite{Velzen2021}. That study found a third candidate counterpart that so far was missed as its sky location was inaccessible to ZTF at the time of neutrino detection due to its proximity to the sun.
 
 \subsection{Event Details}
-\textit{AT2019aalc} is the possible counterpart to neutrino \textit{IC191119A}~\cite{Velzen2021}. It featured the largest dust echo luminosity of all three transients, while the dust echo strength as defined in~\cite{Velzen2021} is a bit lower due to pre-flare variability.
+\textit{AT2019aalc} is the possible counterpart to neutrino \textit{IC191119A}~\cite{Velzen2021}. It featured the largest dust echo luminosity of all three transients, while the dust echo strength as defined in~\cite{Velzen2021} was a bit lower due to pre-flare variability.
 
-In contrast to \textit{AT2019dsg} and \textit{AT2019fdr}, much less is known about \textit{AT2019aalc}. Early scanning discarded it as probable AGN activity (which it still could be), and was not studied further until it emerged as neutrino counterpart candidate many months later (the neutrino itself arrived about 5 months after optical peak). For this reason, no UV measurements or spectra were taken. This is why the classification as a TDE is a much more tentative one, but nevertheless compatible with the light curve.
+In contrast to \textit{AT2019dsg} and \textit{AT2019fdr}, much less is known about \textit{AT2019aalc}. Early scanning discarded it as probable AGN activity (which it still could be), and it was not studied further until it emerged as neutrino counterpart candidate many months later (the neutrino itself arrived about 5 months after optical peak). For this reason, no UV measurements or spectra were taken. This is why the classification as a TDE is a much more tentative one, but nevertheless compatible with the light curve.
 
-\textit{AT2019aalc}'s peak \textit{g}-band luminosity was comparable to \textit{AT2019fdr} and it was also detected by \textit{SRG}/eROSITA on one visit. Like \textit{AT2019fdr} and \textit{AT2019dsg}, it displayed a soft thermal spectrum with a blackbody temperature of \SI{172\pm10}{\eV}; this counts as evidence favoring a TDE interpretation. Also, there was an archival radio detection by VLASS.
+\textit{AT2019aalc}'s peak \textit{g}-band luminosity was comparable to \textit{AT2019fdr} and it was also detected by \textit{SRG}/eROSITA during one visit. Like \textit{AT2019fdr} and \textit{AT2019dsg}, it displayed a soft thermal spectrum with a blackbody temperature of $172^{+10}_{-10}$ eV; this counts as evidence favoring a TDE interpretation. Also, there was an archival radio detection by VLASS.
 
-The chance coincidence of finding three such dust-echo events in spatial and temporal coincidence with a high-energy neutrino was found to be $3.7\sigma$. The soft X-ray was not part of the initial selection criteria, but emerged ex post.
+The chance coincidence of finding three such dust-echo events in spatial and temporal coincidence with a high-energy neutrino was found to be $3.7\sigma$. The soft X-ray detections were not part of the initial selection criteria, but rather emerged ex post.
 
 \pagebreak
 
 \subsection{Comparing the Candidate Counterparts}
-Table~\ref{tab:comparison} shows a comparison of the relevant measurements and inferred quantities of the three events. One commonality is that the neutrino was significantly delayed with respect to the optical peak, by about 5--10 months. All were detected in X-rays with a low temperature, and all were accompanied by a prominent dust echo. There have been attempts to draw conclusions from these facts.
+Table~\ref{tab:comparison} shows a comparison of the relevant measurements and inferred quantities of the three events. One commonality is that the neutrino was significantly delayed with respect to the optical peak, by about 5--10 months. All transients were detected in X-ray wavelengths with a low temperature, and all were accompanied by a prominent dust echo. There have been attempts to draw conclusions from these facts.
 
 \begin{table*}[htb]
     \centering
     \setlength{\tabcolsep}{12pt}
     \begin{tabular}{l  c  c  c}
         \hline
-        \textbf{Property}          & \textbf{AT2019dsg}        & \textbf{AT2019fdr}      & \textbf{AT2019aalc}    \\
+        \textbf{Property}          & \textbf{\textit{AT2019dsg}} & \textbf{\textit{AT2019fdr}} & \textbf{\textit{AT2019aalc}} \\
         \hline
         \hline
-        TDE                        & yes                       & strong candidate        & candidate              \\
-        Peak bol. luminosity       & \SI{3.5e44}{\erg\per\s}   & \SI{1.3e45}{\erg\per\s} & ---                    \\
-        SMBH Mass                  & $10^{6}-10^{6.7} M_\odot$ & $10^{7.55} M_\odot$     & $10^{7.2} M_\odot$     \\
-        Radio                      & evolving                  & not evolving            & archival det.          \\
-        UV                         & very bright               & bright                  & ---                    \\
-        X-ray                      & early, soft spectrum      & late, soft spectrum     & soft spectrum          \\
-        Dust echo strength         & $92.2$                    & $39.2$                  & $15.7$                 \\
-        $\nu$ delay                & $\sim 5$ months           & $\sim 10$ months        & $\sim5$ months         \\
-        $\nu$ production           & possible                  & possible                & possible               \\
-        $\nu$ energy               & \SI{217}{\tera\eV}        & \SI{82}{\tera\eV}       & \SI{176}{\tera\eV}     \\
-        $\nu$ 90\% uncertainty box & \SI{25.5}{\square\deg}    & \SI{25.2}{\square\deg}  & \SI{61.2}{\square\deg} \\
-        $\nu$ signalness           & 0.59                      & 0.59                    & 0.45                   \\
+        TDE                        & yes                         & strong candidate            & candidate                    \\
+        Peak bol. luminosity       & \SI{3.5e44}{\erg\per\s}     & \SI{1.3e45}{\erg\per\s}     & ---                          \\
+        SMBH Mass                  & $10^{6}-10^{6.7} M_\odot$   & $10^{7.55} M_\odot$         & $10^{7.2} M_\odot$           \\
+        Radio                      & evolving                    & not evolving                & archival det.                \\
+        UV                         & very bright                 & bright                      & ---                          \\
+        X-ray                      & early, soft spectrum        & late, soft spectrum         & soft spectrum                \\
+        Dust echo strength         & $92.2$                      & $39.2$                      & $15.7$                       \\
+        $\nu$ delay                & $\sim 5$ months             & $\sim 10$ months            & $\sim5$ months               \\
+        $\nu$ production           & possible                    & possible                    & possible                     \\
+        $\nu$ energy               & \SI{217}{\tera\eV}          & \SI{82}{\tera\eV}           & \SI{176}{\tera\eV}           \\
+        $\nu$ 90\% uncertainty box & \SI{25.5}{\square\deg}      & \SI{25.2}{\square\deg}      & \SI{61.2}{\square\deg}       \\
+        $\nu$ signalness           & 0.59                        & 0.59                        & 0.45                         \\
         \hline
     \end{tabular}
-    \caption[Comparison of all counterpart candidates]{Comparing the multi-messenger properties of the candidate TDEs coincident with high-energy neutrinos. The dust echo strength was defined as $\Delta F/F_{\text{RMS}}$ (flux increase after optical/UV peak vs.~the root mean square of the pre-flare flux); \textit{$\nu$ production} means that models exist showing that the source might be capable of producing a neutrino with the respective detected energy; for $\nu$ signalness see Definition~\ref{signalness_def}. `---' denotes insufficient modeling or missing data. Table is adapted from~\cite{Reusch2023d}.}
+    \caption[Comparison of all counterpart candidates]{Comparing the multi-messenger properties of the candidate TDEs coincident with high-energy neutrinos. The dust echo strength was defined as $\Delta F/F_{\text{RMS}}$ (flux increase after optical/UV peak vs.~the root mean square of the pre-flare flux); `$\nu$ production' means that models exist showing that the source might be capable of producing a neutrino with the respective detected energy; for `$\nu$ signalness' see Definition~\ref{signalness_def}. `---' denotes insufficient modeling or missing data. Table by the author, adapted from~\cite{Reusch2023d}.}
     \label{tab:comparison}
 \end{table*}
 
 \begin{figure*}[htb]
     \includegraphics[]{AT2019fdr/comparison.pdf}
-    \caption[All candidate counterparts in comparison]{All three candidate counterpart TDEs with ZTF optical light curve and \textit{WISE} detections, showing the relative strength of the dust echo. The neutrino arrival times are shown as dotted vertical lines. Figures adapted from~\cite{Velzen2021}.}
+    \caption[All candidate counterparts in comparison]{All three candidate counterpart TDEs with ZTF optical light curve and \textit{WISE} detections, showing the relative strength of the dust echo. The neutrino arrival times are shown as black dotted vertical lines. Figure adapted from~\cite{Velzen2021}.}
     \labfig{dust_echo_comparison}
 \end{figure*}
 
-The observed delay might either be a statistical effect, or it could carry physical meaning. In~\cite{Velzen2021} this was explained by the assumption that the debris first needs to circularize before the first neutrinos are produced. In~\sidecite{Winter2023} the observed time delay of the neutrino was combined with the fact that the dust echo was peaking around neutrino detection time for all three transients, as one can see in Figure~\ref{fig:dust_echo_comparison}.
+The observed delay might either be a statistical effect, or it could carry physical meaning. In~\cite{Velzen2021} it was explained by the assumption that the debris first has to circularize before the first neutrinos can be produced. In~\sidecite{Winter2023} the observed time delay of the neutrino was combined with the fact that the dust echo was peaking around the neutrino detection time for all three transients, as one can see in Figure~\ref{fig:dust_echo_comparison}.
 
-One of the models presented makes use of that, as the photons from the dust echo serve as targets for the protons accelerated within the source. Therefore, the neutrino delay arises naturally from the delay of the infrared emission. The energies involved in this model would make TDEs interesting candidates for the production of Ultra-High Energy Cosmic Rays (UHECR). The downside of this model is that it requires very high proton energies.
+One of the models presented in~\cite{Winter2023} makes use of that fact, as the photons from the dust echo serve as targets for the protons accelerated within the source. Therefore, the neutrino delay arises naturally from the delay of the infrared emission. The energies involved in this model would make TDEs interesting candidates for the production of Ultra-High Energy Cosmic Rays (UHECR). The downside of this model is that it requires very high proton energies.
 
 A companion model swaps the infrared target photons for X-ray photons, as all three sources showed signs of soft X-ray emission. That model can also explain the time delay, which arises from the confinment of moderate energy protons in this case. The observed neutrino energies are explained better here, but the observed neutrino delay is described less well in comparison to the IR model. Lastly, a third model uses optical/UV target photons (as was done in~\cite{Velzen2021}). This yields the highest neutrino production efficiency, but does not explain the observed time delay of the neutrino.
