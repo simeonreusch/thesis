@@ -13,7 +13,7 @@ In a paper describing the sample of such flares detected during ZTF Phase I, a T
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/at2019fdr_light_curve_flux.pdf}
-    \caption[\emph{AT2019fdr} light curve]{Light curve of \emph{AT2019fdr}. The arrival time of \emph{IC200530A} is marked with a red dotted line. It comprises host-subtracted measurements from \textit{WISE}, P200/WIRC, ZTF and \textit{Swift}/UVOT. Also shown are measurements without host subtraction from \textit{SRG}/eROSITA, as well as upper limits from \textit{Swift}/XRT and \textit{Fermi}/LAT. The left y axis shows $\nu F_\nu$, where $F_\nu$ is the spectral flux density at frequency $\nu$; the right y axis shows $\nu L_\nu$ with $L_\nu$ being the luminosity at frequency $\nu$. Figure by the author, from~\cite{Reusch2022}.}
+    \caption[\emph{AT2019fdr} light curve]{Light curve of \emph{AT2019fdr}. The arrival time of \emph{IC200530A} is marked with a red dotted line. It comprises host-subtracted measurements from \textit{WISE}, P200/WIRC, ZTF and \textit{Swift}/UVOT. Also shown are measurements without host subtraction from \textit{SRG}/eROSITA, as well as upper limits from \textit{Swift}/XRT and \textit{Fermi}/LAT. The left y-axis shows $\nu F_\nu$, where $F_\nu$ is the spectral flux density at frequency $\nu$; the right y-axis shows $\nu L_\nu$ with $L_\nu$ being the luminosity at frequency $\nu$. Figure by the author, from~\cite{Reusch2022}.}
     \labfig{at2019fdr_light_curve}
 \end{figure*}
 
@@ -40,7 +40,7 @@ All detections and upper limits except for the radio data are shown in Fig.~\ref
 
 The details of the \textit{Fermi}/LAT analysis were published in~\sidecite{Velzen2021}. The one year time window analyzed for \emph{AT2019fdr} spanned from the first optical detection of the source on May 3, 2019, until the arrival of the neutrino on May 30, 2020.
 
-No gamma-ray sources were detected significantly (\SI{\geq5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2)~\sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} CL upper limit derived for this timeframe within the energy bin of \SIrange{0.1}{800}{\giga\eV} was \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of \emph{AT2019fdr}, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\gamma}$, with a spectral index $\gamma=2$~\cite{Velzen2021}.
+No gamma-ray sources were detected significantly (\SI{\geq5}{\sigma}), neither new sources nor previously known sources from the 10 year \textit{Fermi} LAT Fourth Source Catalog (4FGL-DR2)~\sidecite{Abdollahi2020,Ballet2020}. The \SI{95}{\percent} confidence level (CL) upper limit derived for this timeframe within the energy bin of \SIrange{0.1}{800}{\giga\eV} was \SI{1e-12}{\erg\per\s\per\square\cm}. This upper limit was calculated by testing a point-source hypothesis at the location of \emph{AT2019fdr}, assuming a power-law spectrum of the form $\text{d}N/\text{d}E \propto E^{-\gamma}$, with a spectral index $\gamma=2$~\cite{Velzen2021}.
 
 \subsection{X-ray Observations}\label{x_ray_obs}
 
@@ -229,7 +229,7 @@ As stated above, I tried a variety of models of increasing complexity. The least
 
 All fits were performed with the \texttt{lmfit}~\sidecite{Newville2021} Python package, which implements the Levenberg-Marquardt algorithm for solving non-linear least-squares problems.
 
-To account for host extinction, I used the \texttt{extinction}~\sidecite{Barbary2016} Python package, namely the Calzetti attenuation law~\sidecite{Calzetti2000} contained therein. I fixed the extinction $R_V$ at $3.1$ and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. I decided on using epoch 1 to determine $A_V$, as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
+To account for host extinction, I used the \texttt{extinction}~\sidecite{Barbary2016} Python package, namely the Calzetti attenuation law~\sidecite{Calzetti2000} contained therein. I fixed the extinction $R_V$ at 3.1, the value typical for the Milky Way~\sidecite{Schultz1975} and left $A_V$ free in epoch 1. The best-fit value of $A_V=0.45^{+0.14}_{-0.14}$ was fixed in epoch 2 and 3. I decided on using epoch 1 to determine $A_V$ as it provided the best optical and UV coverage of the three epochs. For the double blackbody model, this procedure ultimately resulted in 5 (4) free parameters in epoch 1 (2 and 3).
 
 I imported the measurements, averaged the flux in each band per epoch, and passed them to the minimizer (the fit priors are shown in Table~\ref{tab:double_bb_priors}).
 
@@ -251,7 +251,7 @@ I imported the measurements, averaged the flux in each band per epoch, and passe
     \caption[Double BB fit priors]{Priors for the double blackbody minimization. $A_V$ is the extinction parameter (only fitted in epoch 1 and fixed for epoch 2 and 3), $T_1$ and $T_2$ are the temperatures of the two blackbodies, while $S_1$ and $S_2$ are the `Scale' parameters (which can be converted into radii.)}\label{tab:double_bb_priors}
 \end{table}
 
-The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{astropy.modeling.models.BackbBody}}. As this model works with a \textit{scale} parameter\sidenote{This \texttt{astropy} terminology is slightly confusing, as the scale has units of spectral radiance (\unit{\erg\per\s\per\square\cm\per\Hz\per\steradian}).} instead of a blackbody radius, this needs to be converted via
+The model for the blackbodies was provided by \texttt{astropy}\sidenote{\texttt{astropy.modeling.models.BackbBody}}. As this model works with a \textit{scale} parameter\sidenote{This \texttt{astropy} terminology is slightly confusing, as the scale has units of spectral radiance (\unit{\erg\per\s\per\square\cm\per\Hz\per\steradian}).} instead of a blackbody radius, this needed to be converted via
 
 \begin{equation}
     \text{Scale} = d_L^2 / (r^2 \pi)
@@ -269,15 +269,15 @@ The luminosity distance is equal to the proper distance (as in the amount of spa
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/at2019fdr_lightcurve_and_sed.pdf}
-    \caption[\emph{AT2019fdr} light and SED]{Light curve and SED of \emph{AT2019fdr}. The three panels on the top show the double blackbody fits for the three epochs marked in light gray. On the bottom, the ZTF \textit{g}- and \textit{WISE W1}-band light curve is shown (green circles and gray pentagons), as well as the modeled dust echo emission (black dsh-dotted line). Figure by the author, from~\cite{Reusch2022}.}
+    \caption[\emph{AT2019fdr} light and SED]{Light curve and SED of \emph{AT2019fdr}. The three panels on the top show the double blackbody fits for the three epochs marked in light gray. On the bottom, the ZTF \textit{g}- and \textit{WISE W1}-band light curve is shown (green circles and gray pentagons), as well as the modeled dust echo emission (black dsh-dotted line). The left y-axes show $\nu F_\nu$ (where $F_\nu$ is the spectral flux density at frequency $\nu$), and the right y-axes display $\nu L_\nu$ (with $L_\nu$ being the luminosity at frequency $\nu$). Figure by the author, from~\cite{Reusch2022}.}
     \labfig{at2019fdr_lightcurve_and_sed}
 \end{figure*}
 
-In each iteration of the minization process, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the flux of the two blackbody spectra was added.
+In each iteration of the minimization process, the spectrum of both blackbodies constructed as such were then reddened, and redshifted. After this, the flux of the two blackbody spectra was added up.
 
 To extract the flux as observed in each band, I used \texttt{SNCosmo} to evaluate all bands given their transmission function. For this I ised the integrated bandpass library of \texttt{SNCosmo}. Bandpasses that were not shipped with the package were added manually from the SVO Filter Profile Service~\sidecite{Rodrigo2020}. This was the case for \textit{Swift}, P200 and \textit{WISE}.
 
-The best fit values from all three epochs, as well as their uncertainties (\SI{68}{\percent} uncertainty level) can be seen in Table~\ref{tab:double_bb}. The best-fit temperatures result in a blue blackbody peaking in optical/UV wavelengths, and a red blackbody peaking in the infrared.
+The best fit values from all three epochs, as well as their uncertainties at the \SI{68}{\percent} confidence level can be seen in Table~\ref{tab:double_bb}. The best-fit temperatures resulted in a `blue' blackbody peaking in optical/UV wavelengths, and a `red' blackbody peaking in the infrared.
 
 I derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0.1}_{-0.1}\times10^{45}}{\erg\per\s}$. By integrating this component over time by scaling it with the shape of the ZTF \textit{g}-band light curve, I obtained a total bolometric luminosity of $E_\text{bol} = \SI{3.4e52}{\erg}$. I did not add the infrared blackbody, as dust absorption was already accounted for by fitting for dust extinction. This pushed \emph{AT2019fdr} to the class of brightest transients ever detected. Its inferred bolometric energy was almost twice as high as that of ASASSN-15lh, which was one of most luminous transients ever reported~\sidecite{Dong2016} and which was suggested to be a TDE~\sidecite{Leloudas2016}.
 
@@ -300,7 +300,7 @@ I derived an optical/UV peak luminosity of $L=\SI[parse-numbers = false]{1.4^{+0
                        & IR            & $2237^{+402}_{-462}$     & $ 1.0^{+0.6}_{-0.4} \times 10^{17}$ & $1.9^{+1.4}_{-0.5} \times 10^{44}$  \\
         \hline
     \end{tabular}
-    \caption[Blackbody best-fit values]{Blackbody best-fit values for three epochs (1--3).\ \textit{O+UV} denotes the blue blackbody in the optical/UV and \textit{IR} denotes the red infrared blackbody. The luminosity is given dereddened and in the source frame. The uncertainties are at 68\% confidence level. Note that the O+UV temperature and radius (and therefore the luminosity) in the third epoch are not well constrained, as no late-time UV measurements were available. The same holds true for the IR blackbody in the first and the last epoch, as only two data points were available.}\label{tab:double_bb}
+    \caption[Blackbody best-fit values]{Blackbody best-fit values for three epochs (1--3).\ \textit{O+UV} denotes the `blue' blackbody in the optical/UV and \textit{IR} denotes the `red' infrared blackbody. The luminosity is given dereddened and in the source frame. The uncertainties are at the 68\% confidence level. Note that the O+UV temperature and radius (and therefore the luminosity) in the third epoch are not well constrained, as no late-time UV measurements were available. The same holds true for the IR blackbody in the first and the last epoch, as only two data points were available.}\label{tab:double_bb}
 \end{table}
 
 
@@ -309,11 +309,11 @@ As the fit routine was not able to generate stable covariance matrices in all ep
 
 \begin{marginfigure}
     \includegraphics{at2019fdr/at2019fdr_bb_chisq.pdf}
-    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (`blue') blackbody during epoch 2 is estimated. The blue points show the \SI{68}{\percent} confidence level.}
+    \caption[Uncertainty estimation for double BB fit]{Uncertainty estimation for the double blackbody fits. Here, the uncertainty of the temperature $T_1$ of the hot (blue) blackbody during epoch 2 is estimated. The red datapoints mark the \SI{68}{\percent} confidence level.}
     \labfig{bb_chisq}
 \end{marginfigure}
 
-For each epoch and fit parameter, this was done by letting all parameters vary except for the parameter of interest. I then varied this parameter around the best-fit value, and the resulting $\chi^2$ was evaluated. Following this, I approximated the $\chi^2$ distribution with a polynomial, and calculated the the \SI{68}{\percent} confidence level---the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
+For each epoch and fit parameter, this was done by letting all parameters vary except for the parameter of interest. I then varied this parameter around the best-fit value, and the resulting $\chi^2$ was evaluated. Following this, I approximated the $\chi^2$ distribution with a polynomial, and calculated the \SI{68}{\percent} confidence level---the two parameter values with $\chi^2 - \chi^2_\text{min} = 1$ confine the \SI{68}{\percent} confidence level.
 
 From the fit parameter uncertainties calculated as such, I obtained uncertainties on the radius and the luminosities via Gaussian error propagation.
 
@@ -333,7 +333,7 @@ From the fit parameter uncertainties calculated as such, I obtained uncertaintie
     \caption[\emph{AT2019fdr} temperature fit]{\SI{90}{\percent} CL contours for the infrared blackbody temperature fits, once including the \textit{WISE} data in all epochs, once removing them in epoch 2. The contours of epoch 2 move to a region of higher temperatures comparable to epoch 3 when the \textit{WISE} datapoints are removed. This shows that they are pushing the temperature down.}\label{fig:at2019fdr_contour}
 \end{figure}
 
-As can be seen in Table~\ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As these values were in tension with the dust-echo model discussed below\sidenote{See Section~\ref{dust_echo}.}, we investigated this behavior.
+As can be seen in Table~\ref{tab:double_bb}, the third epoch saw a temperature rise in the infrared blackbody. As these values were in tension with the dust-echo model discussed in the next Section~\ref{dust_echo}, I investigated this behavior.
 
 The most likely reason for the higher temperature in epoch 3 is that the infrared blackbody was less constrained in that epoch, as there were no \textit{WISE} measurements available, and the P200 \textit{J}-band extraction resulted in a non-detection. In Fig.~\ref{fig:at2019fdr_contour_all}, one can see that all three epochs were compatible within their \SI{90}{\percent} confidence level with a blackbody temperature of \SI{1850}{\K}.
 
