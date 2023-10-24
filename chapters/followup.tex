@@ -190,7 +190,7 @@ Additionally, the follow-up performance over time is displayed in Fig.~\ref{fig:
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/follow_up_summary.pdf}
-    \caption[Follow-up performance over time]{Follow-up performance over time. The alerts we did follow-up on are shown in green, while poorly localized alerts not meetin our quality cuts are shown in yellow, and all other rejection reasons are shown in gray.}
+    \caption[Follow-up performance over time]{Follow-up performance over time, shown in half-year bins. The alerts we did follow up on are shown in green, while poorly localized alerts not meeting our quality cuts are shown in yellow, alerts not followed up due to telescope downtime are shown in red, and alerts rejected for other reasons are shown in gray.}
     \labfig{follow_up_summary}
 \end{figure}
 
@@ -198,43 +198,44 @@ Additionally, the follow-up performance over time is displayed in Fig.~\ref{fig:
 A full overview over the first 24 follow-up campaigns can be found in~\sidecite{Stein2023a}. In the following, those sources will be highlighted to which I contributed either by requesting spectroscopic observations, reducing spectra or vetting candidates.
 
 \subsection{\emph{SN2020lls}: Type Ic Supernova}\label{SN2020lls}
-SN2020lls was identified in coincidence with high-energy neutrino \emph{IC200530A}~\sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including \emph{SN2020lls}~\sidecite{IC200530A2, IC200530A4}.
+\textit{SN2020lls} was identified in coincidence with high-energy neutrino \emph{IC200530A}~\sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including \emph{SN2020lls}~\sidecite{IC200530A2, IC200530A4}.
 
 We took a spectrum of \emph{SN2020lls} with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code~\sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a Type Ic supernova at redshift $z=0.041$, 14 days post peak. The spectrum and the template are shown in Fig.~\ref{fig:ZTF20abdnpdo_spectrum}.
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_not_spectrum.pdf}
-    \caption[SN2020lls spectrum]{Spectrum of SN2020lls taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the Ic type supernova \emph{SN1994l} is shown on top in red. Figure by the author, see also~\cite{Stein2023a}.}
+    \caption[SN2020lls spectrum]{Spectrum of \textit{SN2020lls} taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the Ic type supernova \emph{SN1994l} is shown on top in red. Figure by the author, see also~\cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_spectrum}
 \end{figure}
 SNe Ic are possible emitters of neutrino, but only shortly after explosion time (see Section~\ref{ccsne}). We therefore used the Modular Open Source Fitter for Transients (\texttt{MOSFiT})~\sidecite{Guillochon2018} to fit the light curve. The light curve, including an early forced photometry detection in the \textit{i}-band, can be seen in Fig.~\ref{fig:ZTF20abdnpdo_mosfit}.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
-    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrains the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This rules out \emph{SN2020lls} as candidate source. Figure by the author, see~\cite{Stein2023a}.}
+    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrained the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This ruled out \emph{SN2020lls} as candidate source. Figure by the author, see~\cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
 \end{figure}
+
 As can be seen, the fit estimates the explosion time (black line) at 6 days earlier then the neutrino arrival time (blue dotted line). This allowed us to rule out \emph{SN2020lls} as source of \emph{IC200530A}.
 
 \subsection{\emph{SN2020lam}: Type IIP SN without CSM-interaction}\label{SN2020lam}
-A second source candidate that was also coincident with \emph{IC200530A}, was \emph{SN2020lam}~\sidecite{IC200530A3} with a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO}~\sidecite{Harutyunyan2008} identified the source as a supernova of type IIP (see Fig.~\ref{fig:ZTF20abbpkpa_not_spectrum}).
+A second source candidate---also coincident with \emph{IC200530A}---was \emph{SN2020lam}~\sidecite{IC200530A3}, displaying a supernova-like light curve. To obtain a classification, we took a spectrum with NOT/ALFOSC on June 6, 2020. Template fitting with \texttt{SNID} and \texttt{GELATO}~\sidecite{Harutyunyan2008} identified the source as a Type IIP supernova (see Fig.~\ref{fig:ZTF20abbpkpa_not_spectrum}).
 
 \begin{figure}[h!]
     \includegraphics[width=1\textwidth]{fu/ZTF20abbpkpa_not_spectrum.pdf}
-    \caption[\emph{SN2020lam} spectrum]{Spectrum of \emph{SN2020lam} taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the IIP type supernova \emph{SN2005cs} is shown on top in red. Balmer lines are shown with black dotted lines. Figure by the author, see ~\cite{Stein2023a}.}
+    \caption[\emph{SN2020lam} spectrum]{Spectrum of \emph{SN2020lam} taken with NOT/ALFOSC. The smoothed spectrum is shown in blue on the bottom, while the template spectrum of the IIP type supernova \emph{SN2005cs} is shown on top in red. Balmer lines are marked with black dotted lines. Figure by the author, see ~\cite{Stein2023a}.}
     \labfig{ZTF20abbpkpa_not_spectrum}
 \end{figure}
 
-The lightcurve and the best-fit template show that the neutrino was detected close to the peak of the supernova, a Type IIP. The viable production mechanism in this case is CSM-interaction (see Section~\ref{interacting_sne}). As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and thereby ruled out \emph{SN2020lam} as a source candidate.
+The light curve and the best-fit template show that the neutrino was detected close to the peak of the supernova, a Type IIP. The viable production mechanism in this case is CSM-interaction (see Section~\ref{interacting_sne}). As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and consequently ruled out \emph{SN2020lam} as a source candidate.
 
 \subsection{\emph{AT2020ybb}: Unclassified}
-\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} (\SI{6.3}{\square\deg}). The transient was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
+\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} of it (\SI{6.3}{\square\deg}). The transient was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
 
 We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig.~\ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum did not allow a robust classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20acmxnpa_spectrum.pdf}
-    \caption[\emph{AT2020ybb} spectrum]{Spectrum of \emph{AT2020ybb} taken with GTC/OSIRIS. The telluric absorption regions are shown in gray, potential hydrogen and SII lines are shown in black and red. The resulting redshift is $z=0.087$; the spectrum allowed no source classification.}
+    \caption[\emph{AT2020ybb} spectrum]{Spectrum of \emph{AT2020ybb} taken with GTC/OSIRIS. The telluric absorption regions are shown in gray, potential hydrogen and SII lines are shown as black dotted and red dash-dotted lines. The resulting redshift is $z=0.087$; the spectrum allowed no source classification.}
     \labfig{ZTF20acmxnpa_spectrum}
 \end{figure}
 
@@ -247,71 +248,71 @@ The spectrum showed features typical for AGN, most importantly broad Balmer line
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF21abecljv_spectrum.pdf}
-    \caption[\emph{AT2020osi} spectrum]{Spectrum of \emph{AT2020osi}, taken with Keck/GMOS-N. The telluric absorption areas are shown in gray, and Balmer lines are shown as black dotted lines. The redshift is $z= 0.194$, and we classified the source as AGN.}
+    \caption[\emph{AT2020osi} spectrum]{Spectrum of \emph{AT2020osi}, taken with Keck/GMOS-N. The telluric absorption areas are shown in gray, and Balmer lines are shown as black dotted lines. The redshift is $z= 0.194$, and we classified the source as AGN activity.}
     \labfig{ZTF21abecljv_spectrum}
 \end{figure}
 
+\pagebreak
 
-\subsection{SN2022oyn: Type Ia Supernova}
+\subsection{\textit{SN2022oyn}: Type Ia Supernova}
 When following up \emph{IC220907A}~\sidecite{IC220907A1}, \emph{SN2022oyn} emerged as notable source candidate, as its light curve was consistent with a supernova about 40 days post peak~\sidecite{IC220907A2}.
 
-We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID} (see Fig.~\ref{fig:ZTF22aatwsqt_spectrum}), we classified the source as Type Ia supernova. It can therefore be ruled out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos (see Section~\ref{sne_ia}).
+We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with \texttt{SNID} (see Fig.~\ref{fig:ZTF22aatwsqt_spectrum}), we classified the source as Type Ia supernova. We therefore ruled it out as neutrino source, as SNe Ia are not predicted to emit high-energy neutrinos (see Section~\ref{sne_ia}).
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF22aatwsqt_spectrum.pdf}
-    \caption[\emph{SN2022oyn} spectrum]{Spectrum of \emph{SN2022oyn}, taken with Keck/LRIS. The best-fit \texttt{SNID}template (\emph{SN2005cf}), a SN Ia, is shown for comparison in red on top. The redshift inferred from the tempmlate match is $z=0.135$.}
+    \caption[\emph{SN2022oyn} spectrum]{Spectrum of \emph{SN2022oyn}, taken with Keck/LRIS. The best-fit \texttt{SNID}template (\emph{SN2005cf}), a SN Ia, is shown for comparison in red on top. The redshift inferred from the template match is $z=0.135$.}
     \labfig{ZTF22aatwsqt_spectrum}
 \end{figure}
 
 \subsection{TDE \emph{AT2019dsg}}\label{at2019dsg}
 I did not contribute to the analysis of the TDE \emph{AT2019dsg}, but as it is important in the context of the work on \emph{AT2019fdr} highlighted in the next Chapter (\ref{at2019fdr}), the most important findings will be presented in this section.
 
-\emph{AT2019dsg} was identified as a possible counterpart to \emph{IC191001A}, an alert with a \SI{90}{\percent} bounding rectangle of \SI{25.5}{\square\deg}, an estimated neutrino energy of \SI{217}{\tera\eV} and a signalness\sidenote{See Section~\ref{ic_event_selection}} of 0.59~\sidecite{IC191001A1, IC191001A2}.
+\emph{AT2019dsg} was identified as a possible counterpart to \emph{IC191001A}, an alert with a \SI{90}{\percent} bounding rectangle of \SI{25.5}{\square\deg}, an estimated neutrino energy of \SI{217}{\tera\eV} and a signalness (see Section~\ref{ic_event_selection}) of 0.59~\sidecite[-30pt]{IC191001A1, IC191001A2}.
 
-\emph{AT2019dsg} was already classified as TDE and was 6 months old at the time of neutrino arrival, peaking in the ZTF \textit{g}-band on May 3, 2019 (151 days prior to the neutrino). As a ZTF-detected TDE, it had already been observed by the Ultra-Violet/Optical Telescope (UVOT)~\sidecite{Roming2005} aboard NASA's \textit{Neil Gehrel's Swift Observatory} (\textit{Swift})~\sidecite{Gehrels2004}. These observations revealed bright UV emission, tracing the optical light curve of \emph{AT2019dsg} (see Fig.~\ref{fig:at2019dsg_lc}).
+\emph{AT2019dsg} had already been classified as TDE and was 6 months old at the time of neutrino arrival, peaking in the ZTF \textit{g}-band on May 3, 2019 (151 days prior to the neutrino). As a ZTF-detected TDE, it had already been observed by the Ultra-Violet/Optical Telescope (UVOT)~\sidecite{Roming2005} aboard NASA's \textit{Neil Gehrel's Swift Observatory} (\textit{Swift})~\sidecite{Gehrels2004}. These observations revealed bright UV emission, tracing the optical light curve of \emph{AT2019dsg} (see Fig.~\ref{fig:at2019dsg_lc}).
 
-The blackbody temperature that can be inferred from the optical/UV was measured at \SI[parse-numbers = false]{10^{4.6}}{\K}, which is a bit higher than typical for TDEs~\sidecite{Stein2021}. Together with the transient redshift of $z=0.0512$, a peak luminosity of \SI[parse-numbers = false]{10^{44.5}}{\erg\per\s} can be calculated, which renders \emph{AT2019dsg} one of the most luminous TDEs discovered so far.
-
+The blackbody temperature, inferred from the optical/UV datapoints, was measured at \SI[parse-numbers = false]{10^{4.6}}{\K}, which is a bit higher than typical for TDEs~\sidecite{Stein2021}. Together with the transient redshift of $z=0.0512$, a peak luminosity of \SI[parse-numbers = false]{10^{44.5}}{\erg\per\s} was calculated, which rendered \emph{AT2019dsg} one of the most luminous TDEs discovered so far.
 
 \begin{figure*}[htb]
     \includegraphics{fu/at0219dsg_lc.pdf}
-    \caption[AT2019dsg optical/UV light curve]{Optical and UV light curve of AT2019dsg. The neutrino arrival time of \textit{IC191001A} is marked with a black dotted line. From~\cite{Stein2021}}
+    \caption[AT2019dsg optical/UV light curve]{Optical (rotated red squares and green crosses) and UV (all other datapoints) light curve of AT2019dsg. The neutrino arrival time of \textit{IC191001A} is marked with a black dotted line. From~\cite{Stein2021}}
     \labfig{at2019dsg_lc}
 \end{figure*}
 
-Furthermore, \emph{AT2019dsg} was observed by the X-ray Telescope (XRT)~\sidecite{Burrows2005} aboard Swift, starting about 40 days after discovery. Observations reveiled a bright source that quickly faded to non-detection within the next 30 days~\cite{Stein2021}. Possible explanations for this are either cooling of the newly formed accretion disk, or some kind of obscuration along the line of sight. The X-ray detection of AT2019dsg is not uncommon: 9 of the 30 TDEs detected during Phase I of ZTF operations have been detected in X-rays~\sidecite{Hammerstein2022}.
+Furthermore, \emph{AT2019dsg} was observed by the X-ray Telescope (XRT)~\sidecite{Burrows2005} aboard \textit{Swift}, starting about 40 days after discovery. Observations revealed a bright source that quickly faded to non-detection within the next 30 days~\cite{Stein2021}. Possible explanations for this are either cooling of the newly formed accretion disk, or some kind of obscuration along the line of sight. The X-ray detection of AT2019dsg is not uncommon: 9 of the 30 TDEs detected during Phase I of ZTF operations have been detected in X-rays~\sidecite{Hammerstein2022}.
 
-More peculiar, \emph{AT2019dsg} has also been detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI)~\sidecite{Zwart2008,Hickish2018}, MeerKAT~\sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA)~\sidecite{Thompson1980} at several different epochs following the neutrino detection showed a radio signal with temporal evolution over the course of the next months.
+More peculiar, \emph{AT2019dsg} was also detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI)~\sidecite{Zwart2008,Hickish2018}, MeerKAT~\sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA)~\sidecite{Thompson1980} at several different epochs following the neutrino detection showed a radio signal that evolved over the course of the next months.
 
-In~\cite{Stein2021}, the evolving radio signal was interpreted as the signature of a mildly relativistic outflow launched by the TDE. This interpretation was later disputed:~\sidecite{Cendes2021} added later radio observations to the dataset and found the radio data more compatible with a non-relativistic outflow, excluding neutrino production.~\sidecite{Mohan2022} performed very-long-baseline interferometry (VLBI) and also concluded on a non-relativistic outflow as the origin of the radio emission, while emphasizing the compatibility of that scenario with high-energy neutrino production. Nonetheless, the observations confirm long-lived non-thermal emission from the transient.
+In~\cite{Stein2021} the evolving radio signal was interpreted as the signature of a mildly relativistic outflow launched by the TDE. This interpretation was later disputed:~\sidecite{Cendes2021} added later radio observations to the dataset and found the radio data more compatible with a non-relativistic outflow, excluding neutrino production.~\sidecite{Mohan2022} performed very-long-baseline interferometry (VLBI) and also concluded on a non-relativistic outflow as the origin of the radio emission, while emphasizing the compatibility of that scenario with high-energy neutrino production. Nonetheless, the observations confirm long-lived non-thermal emission from the transient.
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/at2019dsg_dustecho.pdf}
-    \caption[AT2019dsg infrared light curve]{AT2019dsg light curve with the \textit{WISE} infrared datapoints shown as bigger violet and magenta circles. From~\cite{Reusch2023b}.}
+    \caption[AT2019dsg infrared light curve]{AT2019dsg light curve with the \textit{WISE} infrared datapoints shown as bigger violet and magenta circles. The time of neutrino arrival is shown as black dotted line. From~\cite{Reusch2023b}.}
     \labfig{at2019dsg_dustecho}
 \end{figure}
 
-Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE}~\sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution---this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
+\pagebreak
 
-The chance coincidence to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This suggests that Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube.
+Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution---this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
 
-Lightning rarely strikes twice. So the case that we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate half a year later further strenghtened the case for a TDE-neutrino connection. The next Chapter~\ref{at2019fdr} is dedicated to that event.
+The chance coincidence to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This suggested that Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube.
+
+Lightning rarely strikes twice. So the fact that we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate half a year later further strenghtened the case for a TDE-neutrino connection. The next Chapter~\ref{at2019fdr} is dedicated to that event.
 
 \section{Classification Performance}\label{classification_performance}
 
 \begin{figure*}[htb]
     \includegraphics{fu/classification.pdf}
-    \caption[Follow-up classification overview]{Overview of the classification performance of the neutrino follow-up program as of March 2023. The figure on the left shows all transients, while the figure on the right only show the subclasses of the \textit{Transient} category.}
+    \caption[Follow-up classification overview]{Overview of the classification performance of the neutrino follow-up program as of March 2023. The figure on the left shows all transients, while the figure on the right shows only the subclasses of the \textit{Transient} category.}
     \labfig{classification_overview}
 \end{figure*}
 
 The classification for the 205 candidates selected by \texttt{nuztf} can be seen in Fig.~\ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS)~\sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (.e.g\ Milliquas or Gaia, see Section~\ref{catmatch}).
 
-
-
-Roughly half of the transients were classified as AGN Variability, i.e.\ stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. \SI{12}{\percent} (24) of the candidates were classified as stars, and hence ruled out as potential neutrino emitters. We classified \SI{9}{\percent} (18) of alerts as subtraction artifacts, as their difference images showed clear signs of erroneous subtractions\sidenote{See Section~\ref{ztf_image_subtraction}}. For \SI{20}{\percent} (41) of the candidates we were not able to obtain classifications.
+Roughly half of the transients were classified as AGN variability, i.e.\ stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. \SI{12}{\percent} (24) of the candidates were classified as stars, and hence ruled out as potential neutrino emitters. We classified \SI{9}{\percent} (18) of alerts as subtraction artifacts, as their difference images showed clear signs of erroneous subtractions\sidenote{See Section~\ref{ztf_image_subtraction}}. For \SI{20}{\percent} (41) of the candidates we were not able to obtain classifications.
 
 This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide transients, totalling 21 classified candidates.
 
-Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness\sidenote{As of April 2023, \SI{63}{\percent} of all classified transients in BTS were SNe Ia.}. Among the other transients, only the two TDEs were identified as source candidates; these will be detailed subsequently. The remaining non-Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or---in the case of the SN Ic---the explosion predated the neutrino detection significantly\sidenote{See Section~\ref{SN2020lls}}.
+Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness: As of April 2023, \SI{63}{\percent} of all classified transients in the BTS were SNe Ia. Among the other transients, only the two TDEs were identified as source candidates; these will be detailed subsequently. The remaining non-Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or---in the case of the SN Ic---the explosion predated the neutrino detection significantly (see Section~\ref{SN2020lls}).
 
