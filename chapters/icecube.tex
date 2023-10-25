@@ -124,21 +124,21 @@ In addition to the in-ice detector, IceCube has a surface air shower detector fo
 
 The IceTop surface array consists of $2\times81$ ice-filled Cherenkov tanks. These are placed in pairs on the same hexagonal grid as the DOM strings for the in-ice array. Each tank is equipped with two standard IceCube DOMs (see Section~\ref{DOM})~\cite{Abbasi2013} which are operated at two different gain levels to increase the dynamic range.
 
-Results from 3 years of IceTop data show good agreement between models describing the transition from galactic to extragalactic cosmic rays at energies above the knee. In these, the spectrum of lighter elements softens earlier towards higher energies compared to heavier elements. This is indeed reflected in the data~\sidecite{Aartsen2019}.
+Results from three years of IceTop data show good agreement between models describing the transition from galactic to extragalactic cosmic rays at energies above the knee. In these, the spectrum of lighter elements softens earlier towards higher energies compared to heavier elements. This is indeed reflected in the data~\sidecite{Aartsen2019}.
 
-Furthermore, IceTop can be used to increase the purity of a sample of astrophysical neutrinos by vetoing muon events that mostly stem from cosmic-ray induced air showers, as opposed to muons created by neutrino interactions~\sidecite{Amin2021} (more details on background rejection will follow in Section~\ref{background}).
+Furthermore, IceTop can be used to increase the purity astrophysical neutrino samples by vetoing muon events that mostly stem from cosmic-ray induced air showers, as opposed to muons created by neutrino interactions~\sidecite{Amin2021} (more details on background rejection will follow in Section~\ref{background}).
 
 \subsection{Data Acquisition}\label{data_acquisition}
 As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Laboratory on the surface via the twisted-pair cable data link. In the laboratory all DOM data is ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causality by temporal and sometimes spatial patterns. All hits for which common causality can be established form an `event'. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second})~\cite{Aartsen2017}.
 
-Satellite bandwidth is limited and costly. Therefore, further on-site software triggers reduce the data rate to \SI{15}{\percent} of the initial rate. These events are then transmitted via satellite to the IceCube data center at the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are transferred twice per year to Madison~\cite{Aartsen2017}.
+Satellite bandwidth is limited and costly. Therefore, further on-site software triggers reduce the data rate to \SI{15}{\percent} of the initial rate. These events are then transmitted via satellite to the IceCube data center at the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are moved twice per year to Madison~\cite{Aartsen2017}.
 
 \subsection{Time Synchronization}
 Precise timing information is crucial to reconstruct an event (see Section~\ref{reconstruction}). For this reason, all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed once per second, while data transfer is paused during the process (the calibration sequence takes $\lesssim$\SI{1.3}{\milli\second})~\sidecite{Abbasi2009}.
 
 IceCube ensures temporal synchronicity with an algorithm called Reciprocal Active Pulsing (\texttt{RAPcal}): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
 
-With these six pieces of information---the two transmit timestamps, the two receive timestamps and both waveforms---a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns}~\cite{Abbasi2009}.
+With these six pieces of information---the two transmit timestamps, the two receive timestamps and both waveforms---a transformation from the GPS-synchronized surface to the local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns}~\cite{Abbasi2009}.
 
 \section{Angular Reconstruction}\label{reconstruction}
 
@@ -153,12 +153,12 @@ With these six pieces of information---the two transmit timestamps, the two rece
     \labfig{ic_cascade}
 \end{marginfigure}
 
-The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. With this in mind, one can sort the events seen by the detector broadly into two categories: Well localized track events with poorly reconstructed energy, and cascade events with well-determined energy, but very imprecise origin.
+The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. With this in mind, one can sort the events seen by the detector broadly into two categories: Well-localized track events with poorly reconstructed energy, and cascade events with well-determined energy, but very imprecise origin.
 
 \subsection{Event Types}\label{ic_event_types}
 
 \begin{description}
-    \item[Track Events] (Fig.~\ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of muon neutrinos with the Antarctic glacial ice (see section~\ref{neutrinos_current}). The secondary muons leave tracks in the ice with a length on the order of kilometers. Muons with energies above \SI{\sim300}{\giga\eV} create tracks that exceed the detector length. In general, this allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon~\sidecite{Abbasi2022}. The drawback is a large energy uncertainty of $0.25 \log{E_\mu}$ for a muon of energy $E_\mu$~\sidecite{Aartsen2014a}, as parts of the high-energy muon tracks lie outside the instrumented volume~\sidecite{Aartsen2017a}.
+    \item[Track Events] (Fig.~\ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of muon neutrinos with the Antarctic glacial ice (see section~\ref{neutrinos_current}). The secondary muons leave tracks in the ice with a length on the order of kilometers. Muons with energies above \SI{\sim300}{\giga\eV} create tracks that exceed the detector length. In general, these allow for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon~\sidecite{Abbasi2022}. The drawback is the large energy uncertainty of $0.25 \log{E_\mu}$ for a muon of energy $E_\mu$~\sidecite{Aartsen2014a}, as parts of the high-energy muon tracks lie outside the instrumented volume~\sidecite{Aartsen2017a}.
 
     \item[Cascade Events] (Fig.~\ref{fig:ic_cascade}) on the other hand are initiated by the charged-current interactions of $\nu_e$ and $\nu_\tau$, as well as by neutral-current interactions from neutrinos of all flavors. They are usually relatively isotropic and contained within the detector, as typical track lengths are of $\mathcal{O}(\SI{10}{\meter})$. Their relative isotropicity only allows for poor angular resolution (\SIrange{10}{15}{\degree}), but comparably good energy reconstruction ($\frac{\delta E}{E} \approx \SI{15}{\percent}$)~\cite{Aartsen2017a}.
 \end{description}
@@ -177,15 +177,16 @@ This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_
 Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. The reconstruction consists in obtaining the set of unknown track parameters $\vec{a}$ that maximizes the likelihood $\mathcal{L}$ (or, for technical reasons, minimizes $-\log{\mathcal{L}}$).
 
 \subsection{Parametrization}
+
+To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we neglect stochastic photon losses, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector is visualized in Fig.~\ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$.
+
 \begin{figure}[htb]
     \includegraphics[width=0.6\textwidth]{ic/amanda_reco.pdf}
     \caption[Angular reconstruction in IceCube]{Parametrization for the angular muon reconstruction, describing the trajectory of a muon (red line) with energy $E_0$ that is in position $\vec{r_0}$ at time $t_0$, traveling towards direction $\vec{p}$. Cherenkov light from that muon is detected by a DOM at position $\vec{r_i}$ at distance $d$ to the trajectory with a light travel time $t_\text{geo}$. Adapted from~\cite{Ahrens2004}.}
     \labfig{ic_reco_cherenkov}
 \end{figure}
 
-To simplify matters, we assume that we are dealing with a muon with maximum allowed speed ($\beta=1$), traveling along a track of infinite length. Furthermore, we neglect stochastic photon losses, which are mainly caused by impurities within the Antarctic ice (see below). The set of parameters $\vec{a}$ needed to describe the physical situation in the detector is visualized in Fig.~\ref{fig:ic_reco_cherenkov}: $\vec{a}$ = ($t_0$, $E_0$, $\vec{r_0}$, $\vec{p}$). They describe the trajectory of a muon located at position $\vec{r_0}$ with energy $E_0$ at time $t_0$, and traveling in the direction $\vec{p}$.
-
-So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote{The zenith angle is the angle to a line vertical to the Earth, centered on the detector surface and pointing `southwards' (away from the Earth). An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels along the 90th Meridian from East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the `track hypothesis'.
+So we are dealing with one time parameter, one energy parameter and positional parameters in 5 dimensions, where the vertex position $\vec{r}_0$ can be expressed in (x,y,z) and the muon direction $\vec{p}$ is usually described by two angles, zenith and azimuth\sidenote[][-40pt]{The zenith angle is the angle to a line vertical to the Earth, centered on the detector surface and pointing `southwards' (away from the Earth). An azimuth angle of \SI{90}{\degree} describes a particle traveling from North (prime meridian pointing towards Greenwich) to South, while a particle with an azimuth angle of \SI{0}{\degree} travels along the 90th Meridian from East to West.}. In the context of IceCube muon reconstruction, this parameter set $\vec{a}$ is known as the `track hypothesis'.
 
 Now, a DOM in the detector at position $\vec{r}_i$ at a distance $d$ to the track can be hit by Cherenkov photons emitted by the muon traveling along the track with the Cherenkov angle $\theta_\text{C}$, arriving at an angle $\eta$ with respect to the PMT axis. Without scattering, the photon reaches the $\text{DOM}_i$ at the geometrical time $t_\text{geo}$, which can be expressed as
 
@@ -298,7 +299,11 @@ When searching for the sources of astrophysical neutrinos, there are two major s
           \end{figure}
 
     \item[Atmospheric Neutrinos] also stem from cosmic-ray induced air showers. These cannot be suppressed by directional cuts, creating an irreducible background: When atmospheric neutrinos cross the Earth and interact with the matter close to the detector, they can produce muons indistinguishable from muons created by `proper' cosmic neutrinos~\cite{Ahlers2018a}.
-
+          \begin{marginfigure}
+              \includegraphics{ic/ic_HESE_veto.pdf}
+              \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From~\cite{Aartsen2013}.}
+              \labfig{ic_hese_veto}
+          \end{marginfigure}
 \end{description}
 
 \subsection{Event Selection}\label{ic_event_selection}
@@ -307,12 +312,7 @@ Gold and Bronze alerts are drawn from three different selection schemes, origina
 
 \begin{description}
 
-    \item[HESE] are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected~\cite{Aartsen2013}. The sizes of those regions can be seen in Fig.~\ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter}~\cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different from those in the original paper cited above.
-          \begin{marginfigure}
-              \includegraphics{ic/ic_HESE_veto.pdf}
-              \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From~\cite{Aartsen2013}.}
-              \labfig{ic_hese_veto}
-          \end{marginfigure}
+    \item[HESE] are events that start within the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected~\cite{Aartsen2013}. The sizes of those regions can be seen in Fig.~\ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter}~\cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different from those in the original paper cited above.
 
     \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions~\cite{Abbasi2023}.
 
