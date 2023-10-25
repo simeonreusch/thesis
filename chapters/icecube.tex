@@ -36,7 +36,7 @@ Cherenkov radiation has a smooth spectrum, with a relative intensity roughly pro
 
 \section{Instrumentation}
 
-IceCube detects neutrinos by observing the optical and UV part of their secondary particle Cherenkov spectrum (see Section~\ref{cherenkov_radiation} above) with DOMs in the ice. To understand how this is done, one first needs to look at the working principe of a Photomultiplier Tube (PMT), the basic instrument within the DOMs.
+IceCube detects neutrinos by observing the optical and UV part of their secondary particle Cherenkov spectrum (see Section~\ref{cherenkov_radiation} above) with DOMs in the ice. To understand how this is done, one first needs to look at the working principle of a Photomultiplier Tube (PMT), the basic instrument within the DOMs.
 
 \subsection{Photomultiplier Tubes}
 PMTs are devices used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s~\sidecite{Iams1935}.
@@ -68,7 +68,7 @@ Because of data storage restrictions, the DOMs only record and digitize the phot
 
 To fully record the waveform after a hit, the signal needs to be stored in a buffer. This is realized with the delay board, which routes the analog PMT signal through a \SI{10}{\m} long, serpentine copper trace to delay it by \SI{75}{\ns}.
 
-When a hit is detected, the DOM sends a tag signal to the neighbor and next-to-nearest neighbor DOMs. When no neighbors detect a hit, the isolated hit only contains the timestamp, the amplitude and charge information extracted from the waveform. When at least two neighboring DOMs also detect a hit within \SI{0.25}{\micro\s}, a Local Coincidence (LC) is triggered. If the signal passes a threshold of 0.25 photoelectrons, the recorded waveforms are digitized and appended to the hits tagged as LC~\cite{Aartsen2017}.
+When a hit is detected, the DOM sends a tag signal to the neighbor and next-to-nearest neighbor DOMs. If no neighbors detect a hit, the isolated hit will only contain the timestamp, the amplitude and charge information extracted from the waveform. When at least two neighboring DOMs also detect a hit within \SI{0.25}{\micro\s}, a Local Coincidence (LC) is triggered. If the signal passes a threshold of 0.25 photoelectrons, the recorded waveforms are digitized and appended to the hits tagged as LC~\cite{Aartsen2017}.
 
 \begin{marginfigure}
     \includegraphics{ic/ic_DOM_connections.pdf}
@@ -80,7 +80,7 @@ The digitization of the PMT waveform is done with the Analog Transient Waveform 
 
 The DOMs are connected to the IceCube Laboratory (ICL) with twisted-pair copper cables. The power for the DOM is also transmitted with this cable. Two DOMs share one twisted-pair cable, and each DOM is also directly connected to its two neighbors on the same string. Fig.~\ref{fig:ic_dom_connections} shows the connection layout.
 
-The Flasher Board houses 12 LEDs operating at \SI{\sim400}{\nm} wavelength. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms~\cite{Aartsen2017}.
+The Flasher Board houses 12 LEDs operating at a wavelength of \SI{\sim400}{\nm}. These are used to verify the DOM timing response, to measure the DOM in-ice position, to determine the optical properties of the ice, and to verify the reconstruction algorithms~\cite{Aartsen2017}.
 
 \subsection{Detector Layout}
 In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs, with an average horizontal spacing between strings of \SI{125}{\meter}~\cite{Aartsen2017}.
@@ -101,24 +101,20 @@ One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center o
     \labfig{ic_top_down}
 \end{marginfigure}
 
-
-
-
 \subsection{Deployment}
-As one can imagine, embedding the DOMs within the ice was a highly non-trivial task. It required drilling 86 boreholes with a diameter\sidenote{The hole diameter was larger than the DOM diameter (\SI{35}{\cm}) to account for partial refreezing of the bore hole.} of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole was drilled every \SI{48}{\hour} on average\sidenote{Drill operation happened around the clock.}~\cite{Aartsen2017}. It took 7 drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig.~\ref{fig:ic_drill} shows the tower operations site directly above the bore hole~\sidecite{Benson2014}.
+
+As one can imagine, embedding the DOMs within the ice was a highly non-trivial task. It required drilling 86 boreholes with a diameter\sidenote{The hole diameter was larger than the DOM diameter (\SI{35}{\cm}) to account for partial refreezing of the borehole.} of roughly \SI{60}{\cm} and a length of \SI{2500}{\m}. This was achieved over several drilling campaigns with the Enhanced Hot Water Drill (EHWD) specifically built for this task. This drill had a total power of \SI{5}{\mega\W} and was able to drill with a maximum speed of \SI{2.2}{\meter\per\minute}. With these performance characteristics, one hole was drilled every \SI{48}{\hour} on average, with drill operations round the clock~\cite{Aartsen2017}. It took seven drilling seasons to deploy the final IceCube86 setup, from the Antarctic summers 2004/2005 to 2010/2011. Fig.~\ref{fig:ic_drill} shows the tower operations site directly above the borehole~\sidecite{Benson2014}.
 
 The water for drilling the holes was heated to \SI{88}{\celsius} with 35 water heaters working in parallel, each providing \SI{125}{\kilo\W} power. The average amount of fuel used per drill hole was \SI{27000}{\liter}~\cite{Benson2014}.
 
 \begin{figure}[hbtp]
     \includegraphics{ic/ic_drill.pdf}
-    \caption[IceCube enhanced hot water drill]{The hole drilling part of the IceCube Enhanded Hot Water Drill, excluding the hot, pressurized water supply. One can see the tower operations site (TOS) above the hole and the hoses providing hot water and returning cooled water from the bore hole to the generators in a closed loop. From~\cite{Benson2014}.}
+    \caption[IceCube enhanced hot water drill]{The hole drilling part of the IceCube Enhanced Hot Water Drill, excluding the supply for hot, pressurized water. One can see the tower operations site above the hole and the hoses providing hot water and returning cooled water from the borehole back to the generators in a closed loop. From~\cite{Benson2014}.}
     \labfig{ic_drill}
 \end{figure}
 
 \subsection{The IceTop Surface Array}
-In addition to the in-ice detector, IceCube has a surface air shower detector for cosmic-ray physics (see Section~\ref{cosmic_rays}), named IceTop.
-
-It was designed to study the cosmic-ray mass composition by correlating the energy it measures on the surface with the energy deposited by muons in the ice as measured by the in-ice detector~\sidecite{Abbasi2013}. The energy sensitivity range of IceTop is \SI{300}{\tera\eV} to \SI{1}{\exa\eV}~\sidecite{Aartsen2013a}.
+In addition to the in-ice detector, IceCube has a surface air shower detector for cosmic-ray physics (see Section~\ref{cosmic_rays}), named IceTop. It was designed to study the cosmic-ray mass composition by correlating the energy it measures on the surface with the energy deposited by muons in the ice as measured by the in-ice detector~\sidecite{Abbasi2013}. The energy sensitivity range of IceTop is \SI{300}{\tera\eV} to \SI{1}{\exa\eV}~\sidecite{Aartsen2013a}.
 
 \begin{marginfigure}
     \includegraphics{ic/ic_icetop.pdf}
@@ -130,17 +126,17 @@ The IceTop surface array consists of $2\times81$ ice-filled Cherenkov tanks. The
 
 Results from 3 years of IceTop data show good agreement between models describing the transition from galactic to extragalactic cosmic rays at energies above the knee. In these, the spectrum of lighter elements softens earlier towards higher energies compared to heavier elements. This is indeed reflected in the data~\sidecite{Aartsen2019}.
 
-Furthermore, IceTop can be used to increase the purity of a sample of astrophysical neutrinos by using it to veto muon events that mostly stem from cosmic-ray induced air showers, as opposed to muons created by neutrino interactions~\sidecite{Amin2021} (more details on background rejection will follow in Section~\ref{background}).
+Furthermore, IceTop can be used to increase the purity of a sample of astrophysical neutrinos by vetoing muon events that mostly stem from cosmic-ray induced air showers, as opposed to muons created by neutrino interactions~\sidecite{Amin2021} (more details on background rejection will follow in Section~\ref{background}).
 
 \subsection{Data Acquisition}\label{data_acquisition}
-As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Laboratory on the surface via the twisted-pair cable datalink, were all DOM data is ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causility by temporal and sometimes spatial patterns. All hits for which common causality can be established form an event. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second})~\cite{Aartsen2017}.
+As noted above, only for locally coincident hits in multiple detectors the full waveforms are digitized by the DOMs. These are then sent to the IceCube Laboratory on the surface via the twisted-pair cable data link. In the laboratory all DOM data is ingested into the data acquisition system (DAQ). Hits throughout the detector are investigated by the system to establish common causality by temporal and sometimes spatial patterns. All hits for which common causality can be established form an `event'. The rate of these events varies seasonally with the atmospheric muon flux, with a median event rate of \SI{2.7}{\kilo\Hz} and a total data rate of \SI{1}{\tera\byte\per\day} (roughly \SI{100}{\mega\bit\per\second})~\cite{Aartsen2017}.
 
-Satellite bandwidth is limited and costly. Therefore, further on-site software triggers reduce the data rate to \SI{15}{\percent} of the initial rate. These events are then transmitted via satellite to the IceCube data center at the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are transferred twice per year to Madison.
+Satellite bandwidth is limited and costly. Therefore, further on-site software triggers reduce the data rate to \SI{15}{\percent} of the initial rate. These events are then transmitted via satellite to the IceCube data center at the University of Wisconsin-Madison for further analysis. The full event stream is also written to redundant disks, which are transferred twice per year to Madison~\cite{Aartsen2017}.
 
 \subsection{Time Synchronization}
 Precise timing information is crucial to reconstruct an event (see Section~\ref{reconstruction}). For this reason, all DOMs need to be synced to a common clock. This is achieved by syncing the whole system to a Symmetricom ET6000 GPS receiver. The synchronization of individual DOMs is performed once per second, while data transfer is paused during the process (the calibration sequence takes $\lesssim$\SI{1.3}{\milli\second})~\sidecite{Abbasi2009}.
 
-IceCube ensures temporal synchronizity with an algorithm called Reciprocal Active Pulsing (\texttt{RAPcal}): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
+IceCube ensures temporal synchronicity with an algorithm called Reciprocal Active Pulsing (\texttt{RAPcal}): A bipolar pulse is initiated on the surface and sent to the DOM. The sender saves the local time when it sends the pulse and starts a timer. Upon reception down the string, the DOM also saves its current local time, saves the received pulse waveform, starts a timer, responds with a bipolar pulse of its own and stops the timer. Upon reception, the surface station stops its timer and requests the received pulse waveform and all timing information from the DOM.
 
 With these six pieces of information---the two transmit timestamps, the two receive timestamps and both waveforms---a transformation from the GPS-synchronized surface to local DOM time domain and vice versa can be calculated, with a precision of \SIrange{1}{2}{\ns}~\cite{Abbasi2009}.
 
@@ -169,7 +165,7 @@ The goal of IceCube reconstruction is twofold: Reconstructing the deposited neut
 As this thesis is concerned with the sources of high-energy astrophysical neutrinos and the angular resolution of track events allows for a better pointing accuracy compared to cascade events, the next section will focus on the angular reconstruction of the former.
 
 \subsection{Likelihood Approach}
-The main angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It employs a maximum-likelihood method~\sidecite{Ahrens2004}. This can be understood as follows: Given a set set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters $\vec{a}$ do maximize the probability of measuring the actually observed values $\vec{x}$?
+The main angular reconstruction algorithm for muon tracks used in IceCube is based on the work done for AMANDA. It employs a maximum-likelihood method~\sidecite{Ahrens2004}. This can be understood as follows: Given a set of unknown track parameters $\vec{a}$ and a set of experimentally determined values $\vec{x}$, what values of the unknown parameters $\vec{a}$ do maximize the probability of measuring the actually observed values $\vec{x}$?
 
 This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_i$ of $\vec{x}$ are independent, it can be expressed as
 
@@ -203,7 +199,7 @@ The scattering does primarily not loose light, but delays the photons. It is dom
 As the position of the DOM is known, $t_\text{res}$ is the most significant observable for each DOM,  We therefore simplify $x_i$ to $t_{\text{res},i}$ and express $\vec{a}$ as a function of the individual DOM parameters: $\vec{a}= (d_i,\eta_i,\ldots)$, where $\eta_i$ is the angle to the DOM PMT axis (see Fig.~\ref{fig:ic_reco_cherenkov}).
 
 
-\subsection{First (single) Photoelectron Fit}
+\subsection{First (Single) Photoelectron Fit}
 Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM\@. One simplification is to only regard the first photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called Single Photoelectron (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
@@ -238,7 +234,7 @@ where $\alpha=\frac{d_\text{eff}}{\lambda}$, $\beta=\frac{1}{\tau} + \frac{c_m}{
 
 \texttt{SplineMPE} uses a more sophisticated PDF, as the Gamma PDF above assumes an optically homogenous medium. This is not the case for Antarctic ice. For this reason, a fitted ice model derived from measurements with the Flasher Board\sidenote{See Section~\ref{DOM}.} is used.
 
-The basic idea is to create a large lookup table of simulated minimally ionizing muon tracks of infinite length with many different positions and orientations, i.e.\ high-dimensional histograms. A comprehensive look-up table of these simulations would be too storage intensive (hundreds of \unit{\giga\byte}), as well as numerically problematic due to empty bins or interpolation artifacts. To mitigate this, the histograms are normalized and interpolated with multi-dimensional basis splines~\sidecite{Whitehorn2013}. These splines then represent the photon arrival PDF dependent on the track vertex and orientation in the detector. They are defined by knots of fixed positions, so the PDF becomes
+The basic idea is to create a large lookup table of simulated minimally ionizing muon tracks of infinite length with many different positions and orientations, i.e.\ high-dimensional histograms. A comprehensive look-up table of these simulations would be too storage intensive (hundreds of \unit{\giga\byte}), as well as numerically problematic due to empty bins or interpolation artifacts. To mitigate this, the histograms are normalized and interpolated with multidimensional basis splines~\sidecite{Whitehorn2013}. These splines then represent the photon arrival PDF dependent on the track vertex and orientation in the detector. They are defined by knots of fixed positions, so the PDF becomes
 \begin{equation}
     p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
 \end{equation}
@@ -259,7 +255,7 @@ This reconstruction consists of a maximum likelihood scan covering the whole sky
 
 For this fixed direction, the likelihood of the deposited energy resulting from the best fit and the neutrino interaction vertex in the detector are then computed. Pixels near the likelihood maximum are then subdivided with a finer \texttt{HEALPix} resolution. This procedure ultimately results in a likelihood map of the sky, with increasing granularity towards the global maximum~\sidecite{Abbasi2023}.
 
-To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo resimulations from the high-energy neutrino event \emph{IC160427A} are used. For this event, Pan-STARRS found a possible counterpart, \emph{PS16cgx}\sidenote{Spectroscopic follow up reveiled that this event was either a SN Ic, which would be compatible with neutrino production, or---more likely---a SN Ia, which would exclude it as a neutrino source.}~\sidecite{Kankare2019}.
+To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo resimulations from the high-energy neutrino event \emph{IC160427A} are used. For this event, Pan-STARRS found a possible counterpart, \emph{PS16cgx}\sidenote{Spectroscopic follow up revealed that this event was either a SN Ic, which would be compatible with neutrino production, or---more likely---a SN Ia, which would exclude it as a neutrino source.}~\sidecite{Kankare2019}.
 
 In the resimulations, the systematic parameters of the Antarctic ice used to model photon propagation were varied. Additionally, the simulated direction and energies were varied, with cuts to ensure that the light deposition of the resimulations resembled the original event (\SI{\pm2}{\degree} in direction, \SI{\pm20}{\percent} in deposited charge).
 
@@ -309,7 +305,7 @@ Gold and Bronze alerts are drawn from three different selection schemes, origina
 
 \begin{description}
 
-    \item[HESE] are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected~\cite{Aartsen2013}. The sizes of those regions can be seen in Fig.~\ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter}~\cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different than those in the original paper cited above.
+    \item[HESE] are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected~\cite{Aartsen2013}. The sizes of those regions can be seen in Fig.~\ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter}~\cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different from those in the original paper cited above.
 
     \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions~\cite{Abbasi2023}.
 
@@ -319,7 +315,7 @@ Gold and Bronze alerts are drawn from three different selection schemes, origina
               \labfig{ic_hese_veto}
           \end{marginfigure}
 
-    \item[GFU] events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
+    \item[GFU] events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while events from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
 \end{description}
 
 The cuts from all three event pools are gauged to achieve two different average values of signalness, which is a proxy for the probability that the event is of astrophysical origin~\cite{Abbasi2023}. It is defined as
@@ -341,11 +337,11 @@ Each notice contains the discovery time, a unique event number, the reconstructe
     \labfig{ic_he_alert_overview}
 \end{marginfigure}
 
-Those informations are later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction (see Section~\ref{millipede}). The results of these reconstructions (i.e.\ the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular, and an updated GCN notice~\cite{Blaufuss2019}.
+This information is later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction (see Section~\ref{millipede}). The results of these reconstructions (i.e.\ the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular, and an updated GCN notice~\cite{Blaufuss2019}.
 
 As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the Gold and Bronze alert stream in June 2019, this amounts to 2.2 non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in~\cite{Blaufuss2019}.} (0.8 Gold alerts, 1.4 Bronze alerts). For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see~\cite{Abbasi2023}.
 
-If the event is most likely astrophysical and reasonably well pin-pointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical images from? The telescope used for this, the Zwicky Transient Facility, will be described in Chapter~\ref{ztf}.
+If the event is most likely astrophysical and reasonably well pinpointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical images from? The telescope used for this, the Zwicky Transient Facility, will be described in Chapter~\ref{ztf}.
 
 
 

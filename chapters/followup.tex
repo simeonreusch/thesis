@@ -13,7 +13,7 @@ Given the limit observational time at our disposal, we are only sensitive to a s
 \begin{description}
     \item[Optical AGN flares] As we are decidedly an optical and time-domain program, we restrict ourselves to AGN (including blazar) undergoing significant optical flaring activity around the time of neutrino detection.
     \item[CCSNe] We are sensitive to the subtypes of CCSNe that have been proposed as potential high-energy neutrino sources, i.e. CCSNe with signs of CSM interaction, and CCSNe that launch jets. This class is heavily contaminated by SNe Ia. Because of this, and because not all types of CCSNe are predicted to emit neutrinos, the exact type of CCSN needs to be determined with spectroscopic follow up (see Section~\ref{spec_resources}).
-    \item[Short and long GRBs] We are both sensitive to jets launched by CCSNe (long GRBs) and binary mergers (sGRB), given they are optically detectable. Both the emerging CCSN, as well as the rapidly fading red optical emission by sGRBs are good signatures to test, though the sGRB afterglow might evolve too quickly for us to catch it.
+    \item[Short and long GRBs] We are both sensitive to jets launched by CCSNe (long GRBs) and binary mergers (sGRB), given they are optically detectable. Both the emerging CCSN and the rapidly fading red optical emission by sGRBs are good signatures to test, though the sGRB afterglow might evolve too quickly for us to catch it.
     \item[TDEs] Lastly, we are also sensitive to TDEs. Due to the significant model uncertainties, we do not restrict ourselves in terms of how old the TDE must be at the time of neutrino detection, provided it is still active.
 \end{description}
 All other possible sources are not captured by this follow-up program, because they are either evolving too quickly (sGRBs might fall under this category), too faint, or the neutrino emission might not be correlated to optical emission.
@@ -25,7 +25,7 @@ In general, we only follow up if the reported bounding rectangle comprising the 
 
 \section{Observation Planning with \texttt{planobs}}\label{planobs}
 
-If an alert makes these cuts, one needs to check if observations with ZTF are feasible, and create an observation plan. As we are interested in the time evolution of potential source candidates, usually observations within a 10 day window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
+If an alert makes these cuts, one needs to check if observations with ZTF are feasible, and create an observation plan. As we are interested in the time evolution of potential source candidates, usually observations within a 10-day window are triggered. To obtain deep images during the first night, we first trigger \SI{300}{\second} exposures in the \textit{g}- and \textit{r}-band. These are followed by shallower \SI{30}{\second} observations in the \textit{g}-band during nights 2, 3, 5 and 7, and finally shallow observations in both \textit{g}- and \textit{r}-band during night 9.
 
 To reduce the potential for errors, the feasibility checks and creation of an observation schedule are done with the \texttt{planobs}~\sidecite{Reusch2023} tool, developed and maintained by the author to automate triggering follow-up observations as much as possible.
 
@@ -48,15 +48,15 @@ To obtain the positional and error information on the neutrino in question from 
 
 \begin{figure}[h!]
     \includegraphics{fu/planobs_airmass.pdf}
-    \caption[Observation plan]{Observation plot created by \texttt{planobs} for the follow-up of IceCube neutrino \textit{IC221223A}. The altitude and airmass of the alert region at Mt. Palomar are shown in blue. The red and green shaded regions are proposed observation windows in the \textit{r}- and \textit{r}-band. The red arrows show the airmass limit of 2.0, and the moon is displayed as yellow dotted curve. The gray shaded region marks night-time at the telescope site. All information automatically extracted from the GCN Circular are shown on top.}
+    \caption[Observation plan]{Observation plot created by \texttt{planobs} for the follow-up of IceCube neutrino \textit{IC221223A}. The altitude and airmass of the alert region at Mt. Palomar are shown in blue. The red and green shaded regions are proposed observation windows in the \textit{r}- and \textit{r}-band. The red arrows show the airmass limit of 2.0, and the moon is displayed as yellow dotted curve. The gray shaded region marks nighttime at the telescope site. All information automatically extracted from the GCN Circular are shown on top.}
     \labfig{planobs}
 \end{figure}
 
-An examplary observability plot is shown in Fig.~\ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
+An exemplary observability plot is shown in Fig.~\ref{fig:planobs}. The blue curve shows the altitude of the neutrino sky region above Mt. Palomar, and the red and green shaded regions mark the two proposed observation windows in the \textit{r}- and the \textit{g}-band.
 
 \begin{marginfigure}
     \includegraphics{fu/planobs_grid.pdf}
-    \caption[\texttt{planobs} ZTF grid]{The bounding rectangle of the \SI{90}{\percent} uncertainty area of \textit{IC221223A} overlayed onto the ZTF grid. The coverage does not equal \SI{100}{\percent} because chip gaps are taken into account.}
+    \caption[\texttt{planobs} ZTF grid]{The bounding rectangle of the \SI{90}{\percent} uncertainty area of \textit{IC221223A} overlaid onto the ZTF grid. The coverage does not equal \SI{100}{\percent} because chip gaps are taken into account.}
     \labfig{planobs_grid}
 \end{marginfigure}
 
@@ -74,7 +74,7 @@ to submit the observation request via a dedicated API to the ZTF telescope sched
 
 The next step in the pipeline is the selection of good candidates. ZTF typically serves on the order of 200,000 alerts per night. As only a fraction of these is relevant for the neutrino follow up, software is needed to cut down the number of alerts. This is precisely what \texttt{AMPEL}~\sidecite{Nordin2019} is doing, a streaming data analysis framework developed at Humboldt-University Berlin and DESY Zeuthen with contribution of the author.
 
-The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of the future Vera C. Rubin observatory~\sidecite{Ivezic2019} in mind, and was subsequently selected as one of 7 brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The full software stack is written in Python.
+The main design goals of \texttt{AMPEL} comprise scalability, modularity and provenance tracking. It was built with the data rate of the future Vera C. Rubin observatory~\sidecite{Ivezic2019} in mind, and was subsequently selected as one of seven brokers\sidenote{See \url{https://www.lsst.org/scientists/alert-brokers}.} for Rubin observatory. The full software stack is written in Python.
 
 \begin{figure}[h!]
     \includegraphics{fu/ampel_design.pdf}
@@ -86,14 +86,14 @@ Fig.~\ref{fig:ampel_design} shows the design and information flow of \texttt{AMP
 
 The first of several execution layers (`tiers') is the Filtering stage (Tier 0). Here, different filters can be implemented, reducing the large number of alerts by different criteria. These comprise e.g.\ \texttt{RealBogus} and \texttt{sgscore} (see Section~\ref{ztf_image_subtraction}), color evolution, host galaxy properties and the (non-) existence of a detection history. All alerts surviving the filtering stage are then stored in a \texttt{MongoDB}\sidenote{\url{https://mongodb.com}} database collection. Additionally, processing states are stored in another collection.
 
-A description of Tier 1 can be skipped here, as it serves mainly technical purposes (for details, see~\cite{Nordin2019}). The next relevant stage is the Light curve analysis stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting lightcurves with various models or photometrically classifying transients with machine learning methods~\cite{Nordin2019}.
+A description of Tier 1 can be skipped here, as it serves mainly technical purposes (for details, see~\cite{Nordin2019}). The next relevant stage is the Light curve analysis stage (Tier 2). Here, additional information on the transients are either obtained or generated. Possible steps are querying external catalogs for host galaxy or redshift information, fitting light curves with various models or photometrically classifying transients with machine learning methods~\cite{Nordin2019}.
 
 The last level, Tier 3, executes population analyses. These are schedulable actions, triggered on request or at pre-defined times (ranging from yearly data dumps, through daily updates to nearly real-time execution). A typical use case is the automated ranking of different transients for a specific science goal. An example is the daily posting of new supernova candidates to a Slack channel, ranked by how promising they are for spectroscopic follow up~\cite{Nordin2019}.
 
 To simplify matters significantly and to allow reprocessing as well as full replayability, all ZTF alerts received via the \texttt{Kafka} streams since June 2018 are also stored in an archival alert database hosted at DESY. The database is based on \texttt{Postgresql}\sidenote{\url{https://postgresql.org/}} and can be accessed via a web frontend and a REST API\sidenote{\url{https://ampel.zeuthen.desy.de/api/ztf/archive/v3/docs}}.
 
 \section{Candidate Filtering with \texttt{nuztf}}
-To streamline the neutrino follow-up process, \texttt{nuztf}~\sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with significant contribution by the author. It was written in Python, and relies heavily on \texttt{AMPEL} for filtering purposes (see the previous Section~\ref{ampel}). The main use case is the follow up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo-Kagra (LVK) gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow up campaign during the third observational campaign (O3) of the Ligo and Virgo interferometers~\cite{Kasliwal2020}.
+To streamline the neutrino follow-up process, \texttt{nuztf}~\sidecite{Stein2023} was created for filtering and inspecting candidate counterparts, with significant contribution by the author. It was written in Python, and relies heavily on \texttt{AMPEL} for filtering purposes (see the previous Section~\ref{ampel}). The main use case is the follow-up of high energy neutrinos, but it can also handle skymaps from LIGO-Virgo-Kagra (LVK) gravitational wave (GW) alerts or GRB skymaps, and was used in the ZTF follow-up campaign during the third observational campaign (O3) of the Ligo and Virgo interferometers~\cite{Kasliwal2020}.
 
 When run, \texttt{nuztf} executes the following steps: (1) It obtains the IceCube alert information from the GCN, (2) constructs a \texttt{HEALPix} map from the \SI{90}{\percent} uncertainty rectangle, (3) queries the \texttt{AMPEL} archive for all alerts within the uncertainty area \texttt{HEALPix} map\sidenote{Because the archive database contains \texttt{HEALPix} indices with different resolutions, this kind of query is much faster than a cone search.} in a given time range, (4) applies the \texttt{AMPEL} \texttt{DecentFilter}~\cite{Nordin2019} with custom parameters (see next paragraph), (5) crossmatches the surviving counterpart candidates to a list of catalogs, (6) pushes the candidates to \texttt{Fritz}\sidenote{\url{https://fritz.science}} and finally (7) creates an overview \texttt{pdf} file with details and a light curve for each candidate.
 
@@ -106,7 +106,7 @@ The GCN parsing is done akin to \texttt{planobs} (see Section~\ref{planobs}). Af
     \item[Detections] The candidate must have at least 2 detections, separated by at least \SI{15}{\minute}. Note that this needs to be reflected in the observation planning.\ \texttt{planobs} (see Section~\ref{planobs}) takes care of that.
     \item[\texttt{sgscore}] The transient must have an \texttt{sgscore} $<0.8$, which means a low probability of being a star.
     \item[Maximum distance to PS1] As noted in Section~\ref{ztf_alerts}, the \texttt{sgscore} star-galaxy classifier is trained on data from PS1. To ensure correct association of the \texttt{sgscore} value which is based on the closest PS1 source, we require the source to be closer than \SI{1}{\degree}. The veto is also ignored if 3 PS1 sources are closer than \SI{3}{\degree} and their \texttt{sgscore} lies between $0.4$ and $0.6$, as this hints at possible PS1 source confusion.
-    \item[\textit{Gaia} star veto] Vetoe the source if the probability of it being a star is high, based on parameters from the \textit{Gaia} survey.
+    \item[\textit{Gaia} star veto] Veto the source if the probability of it being a star is high, based on parameters from the \textit{Gaia} survey.
 \end{description}
 The vast majority of alerts do not pass these filters, which significantly reduces the human effort needed in manual candidate vetting.
 
@@ -126,19 +126,19 @@ All surviving candidates are then spatially crossmatched to a set of catalogs. T
     \item[TNS] The Transient Name Server (TNS)\sidenote{\url{https://wis-tns.org/}} is the repository of astrophysical transients and contains over 100,000 objects, both classified and unclassified. It is queried to check if the candidate source is a known and possibly classified transient.
     \item[WISE] Color information from the Wide-Infrared Survey Explorer (\textit{WISE}) Mission~\sidecite{Wright2010} can be used to identify likely AGN, as these predominantly occupy a small section of the WISE color-color diagram (see e.g.~\sidecite{Hviding2022} for this).
 \end{description}
-None of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of Milliquas (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source---for example, an existing classification on TNS as a certain type of supernova.
+None of those catalog matches serve as veto, but are rather appended to the final output. This can be motivated by the insecure classification of MILLIQUAS (QSOs) and SDSS (stars), which are partly derived from machine learning and therefore warrant human inspection. Also, some of the additional information can strengthen the case for a candidate source---for example, an existing classification on TNS as a certain type of supernova.
 
 \begin{figure}[h!]
     \includegraphics{fu/nuztf_IC220624A.pdf}
-    \caption[\texttt{nuztf} output]{Sample output from \texttt{nuztf} showing the light curve of ZTF21aauwmgr, a transient selected as potential source in the follow up of \textit{IC220624A}. The cutouts at the top show the science image, the reference image (template), the resulting difference image and a PS1 cutout of the same region. The bottom shows the transient light curve, as well as the position, the \texttt{RealBogus} score (\texttt{drb}) and the \texttt{sgscore}. On the top, crossmatching information is shown. Here, the source is a source discovered by SDSS and flagged as likely QSO in MILLIQUAS.}
+    \caption[\texttt{nuztf} output]{Sample output from \texttt{nuztf} showing the light curve of ZTF21aauwmgr, a transient selected as potential source in the follow-up of \textit{IC220624A}. The cutouts at the top show the science image, the reference image (template), the resulting difference image and a PS1 cutout of the same region. The bottom shows the transient light curve, as well as the position, the \texttt{RealBogus} score (\texttt{drb}) and the \texttt{sgscore}. On the top, crossmatching information is shown. Here, the source is a source discovered by SDSS and flagged as likely QSO in MILLIQUAS.}
     \labfig{nuztf_sample_output}
 \end{figure}
 
 Fig.~\ref{fig:nuztf_sample_output} shows a page from the final \texttt{pdf} file generated for neutrino \textit{IC220624A}, displaying candidate source \textit{ZTF21aauwmgr}. All information required for quickly deciding if the candidate warrants further scrutiny is displayed: Image cutouts of the science, reference and difference image are shown to allow identifying potential subtraction artifacts. The different ML scores (star-galaxy separation, \texttt{RealBogus}) are also displayed, as well as results from the catalog matching and of course the transient light curve.
 
-In addition to the \texttt{pdf}, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
+In addition to the PDF file, the draft of a GCN Circular is created, pre-filled with the observation times, the coverage and all final candidates to allow for quick distribution of promising sources. Also, all candidates passing the final round of filtering are pushed to the collaborative time-domain astronomy portal \texttt{Fritz} for bookkeeping and further discussion.
 
-The code can either be run locally, or through the interaction with a bot running on Slack. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of Icecube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview \texttt{pdf} and the GCN draft to Slack.
+The code can either be run locally, or through the interaction with a bot running on Slack. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of IceCube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview PDF and the GCN draft to Slack.
 
 \section{Forced Photometry with \texttt{fpbot}}\label{fpbot}
 The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot}~\sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
@@ -146,9 +146,9 @@ The last step in the pipeline is the acquisition of forced photometry. This is a
 \subsection{Forced Photometry Explained}
 The usual extraction of transient flux, as performed by the ZTF imaging pipeline (see section~\ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. When the flux detected at a position in the image exceeds that threshold, an alert is generated.
 
-If the position of the transient is known, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the lightcurve of a fading transient can be detected longer. This process is dubbed `forced photometry', as the known position is `forced' upon the flux extraction.
+If the position of the transient is known, as it has already generated some alerts, one can use this location to reprocess the difference images and extract flux at precisely this position. With this method, one can extract a signal that is fainter than the signal-to-noise threshold. In most cases, this means that the transient can be detected at a younger age than its earliest alert photometry detection, or that the tail of the light curve of a fading transient can be detected longer. This process is dubbed `forced photometry', as the known position is `forced' upon the flux extraction.
 
-The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g.\ a stripped-envelope supernova (these are compatible with high-energy neutrino production, see Section~\ref{ccsne}) shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see~.e.g\ Section~\ref{SN2020lls}).
+The possibility to extract flux prior to the first alert detection makes forced photometry especially useful to accept or reject some candidate neutrino sources: If e.g.\ a stripped-envelope supernova (these are compatible with high-energy neutrino production, see Section~\ref{ccsne}) shows an early forced photometry detection days prior to the neutrino arrival, the source can be rejected as candidate (see~e.g.\ Section~\ref{SN2020lls}).
 
 \subsection{The \texttt{fpbot} Pipeline}
 \begin{marginfigure}
@@ -157,13 +157,13 @@ The possibility to extract flux prior to the first alert detection makes forced 
     \labfig{fpbot_slackbot}
 \end{marginfigure}
 
-\texttt{fpbot} was written in Python by the author and provides a multi-threaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interface, or within a dedicated Slack channel to serve the broader community.
+\texttt{fpbot} was written in Python by the author and provides a multithreaded pipeline to obtain forced photometry extracted from ZTF difference images. It employs a \texttt{MongoDB} database to store the download and processing status for transients to avoid multiple downloads and unnecessary refits. Fitting requests can either be issued locally with a command-line interface, or within a dedicated Slack channel to serve the broader community.
 
 For each object that is processed, first the \texttt{AMPEL} archive is queried for alerts of this object. From these, the median sky location is computed independently for each band (\textit{g}, \textit{r} and \textit{i}), as the stable astrometric solution deviated from band to band when testing the pipeline.
 
 Difference image cutouts at the desired location as well as the PSF shape images are then downloaded from IPAC in parallel, maximizing throughput. After this stage, the \texttt{ztflc} package is used to measure the flux in the difference image cutout, given the median band location and the PSF image. This is done using the \texttt{iminuit} package~\sidecite{Dembinski2023}, running the least-square fit algorithm \texttt{MIGRAD}~\sidecite{James1975}.
 
-The fit results are stored as \texttt{csv} files and returned either via Slack channel or email. If another forced photometry request is issued for the same object again, only new epochs are downloaded and analysed to speed up the process. An instance of the service, hosted at DESY, is also used by the cosmology and supernova ZTF working groups.
+The fit results are stored as CSV files and returned either via Slack channel or email. If another forced photometry request is issued for the same object again, only new epochs are downloaded and analyzed to speed up the process. An instance of the service, hosted at DESY, is also used by the cosmology and supernova ZTF working groups.
 
 \section{Spectroscopic Resources}\label{spec_resources}
 To classify promising counterpart candidates, our group has successfully submitted proposals for spectroscopic resources during the run of the neutrino follow-up program. Several of these proposals were led by the author.
@@ -198,7 +198,7 @@ Additionally, the follow-up performance over time is displayed in Fig.~\ref{fig:
 A full overview over the first 24 follow-up campaigns can be found in~\sidecite{Stein2023a}. In the following, those sources will be highlighted to which I contributed either by requesting spectroscopic observations, reducing spectra or vetting candidates.
 
 \subsection{\emph{SN2020lls}: Type Ic Supernova}\label{SN2020lls}
-\textit{SN2020lls} was identified in coincidence with high-energy neutrino \emph{IC200530A}~\sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitiously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including \emph{SN2020lls}~\sidecite{IC200530A2, IC200530A4}.
+\textit{SN2020lls} was identified in coincidence with high-energy neutrino \emph{IC200530A}~\sidecite{IC200530A1}. \SI{87}{\percent} (\SI{22.05}{\square\deg}) of the \SI{90}{\percent} rectangular uncertainty area were serendipitously observed by ZTF roughly \SI{10}{\minute} after the neutrino detection. These observations were later appended by deep \SI{300}{\second} observations Three candidate sources were identified, including \emph{SN2020lls}~\sidecite{IC200530A2, IC200530A4}.
 
 We took a spectrum of \emph{SN2020lls} with NOT/ALFOSC on June 12, 2020 and used the Supernova Identification (\texttt{SNID}) code~\sidecite{Blondin2007} to fit spectra of different types supernovae to the spectrum. The best fit spectrum was a Type Ic supernova at redshift $z=0.041$, 14 days post peak. The spectrum and the template are shown in Fig.~\ref{fig:ZTF20abdnpdo_spectrum}.
 
@@ -211,7 +211,7 @@ SNe Ic are possible emitters of neutrino, but only shortly after explosion time 
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF20abdnpdo_mosfit.pdf}
-    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are are filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrained the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This ruled out \emph{SN2020lls} as candidate source. Figure by the author, see~\cite{Stein2023a}.}
+    \caption[\emph{SN2020lls} light curve fit]{Light curve of \emph{SN2020lls}. Detections are displayed as filled circles or squares, while upper limits are shown as triangles. The early forced photometry detection in the \textit{i}-band constrained the explosion time estimated by \texttt{MOSFiT} fairly well to a time days prior (black line) to the detection of the neutrino (blue dotted line). This ruled out \emph{SN2020lls} as candidate source. Figure by the author, see~\cite{Stein2023a}.}
     \labfig{ZTF20abdnpdo_mosfit}
 \end{figure}
 
@@ -229,7 +229,7 @@ A second source candidate---also coincident with \emph{IC200530A}---was \emph{SN
 The light curve and the best-fit template show that the neutrino was detected close to the peak of the supernova, a Type IIP. The viable production mechanism in this case is CSM-interaction (see Section~\ref{interacting_sne}). As the spectrum showed no narrow lines, we inferred that there is no sign of CSM interaction, and consequently ruled out \emph{SN2020lam} as a source candidate.
 
 \subsection{\emph{AT2020ybb}: Unclassified}
-\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} of it (\SI{6.3}{\square\deg}). The transient was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within Milliquas.
+\emph{AT2020ybb} was discovered when following up \emph{IC201021A}~\sidecite{IC201021A1}. Observations of the sky area started \SI{44}{\hour} after the neutrino detection and covered \SI{91}{\percent} of it (\SI{6.3}{\square\deg}). The transient was a promising candidate, as the light curve of the source was compatible with a supernova around peak~\sidecite{IC201021A2}. The other possibility was AGN activity, as the source was flagged as QSO with \SI{98}{\percent} probability within MILLIQUAS.
 
 We triggered GTC/OSIRIS and reduced the spectrum with \texttt{pyraf}. The spectrum is shown in Fig.~\ref{fig:ZTF20acmxnpa_spectrum}. Unfortunately, the spectrum did not allow a robust classification of the source, neither confirming nor rejecting the neutrino source hypothesis. If the line observed at \SI{7293}{\angstrom} is interpreted as SII, the resulting redshift is $z=0.087$.
 
@@ -261,7 +261,7 @@ We obtained a spectrum with Keck/LRIS on September 20, 2022. Based on a fit with
 
 \begin{figure}[htb]
     \includegraphics[width=1\textwidth]{fu/ZTF22aatwsqt_spectrum.pdf}
-    \caption[\emph{SN2022oyn} spectrum]{Spectrum of \emph{SN2022oyn}, taken with Keck/LRIS. The best-fit \texttt{SNID}template (\emph{SN2005cf}), a SN Ia, is shown for comparison in red on top. The redshift inferred from the template match is $z=0.135$.}
+    \caption[\emph{SN2022oyn} spectrum]{Spectrum of \emph{SN2022oyn}, taken with Keck/LRIS. The best-fit \texttt{SNID} template (\emph{SN2005cf}), a SN Ia, is shown for comparison in red on top. The redshift inferred from the template match is $z=0.135$.}
     \labfig{ZTF22aatwsqt_spectrum}
 \end{figure}
 
@@ -270,7 +270,7 @@ I did not contribute to the analysis of the TDE \emph{AT2019dsg}, but as it is i
 
 \emph{AT2019dsg} was identified as a possible counterpart to \emph{IC191001A}, an alert with a \SI{90}{\percent} bounding rectangle of \SI{25.5}{\square\deg}, an estimated neutrino energy of \SI{217}{\tera\eV} and a signalness (see Section~\ref{ic_event_selection}) of 0.59~\sidecite[-30pt]{IC191001A1, IC191001A2}.
 
-\emph{AT2019dsg} had already been classified as TDE and was 6 months old at the time of neutrino arrival, peaking in the ZTF \textit{g}-band on May 3, 2019 (151 days prior to the neutrino). As a ZTF-detected TDE, it had already been observed by the Ultra-Violet/Optical Telescope (UVOT)~\sidecite{Roming2005} aboard NASA's \textit{Neil Gehrel's Swift Observatory} (\textit{Swift})~\sidecite{Gehrels2004}. These observations revealed bright UV emission, tracing the optical light curve of \emph{AT2019dsg} (see Fig.~\ref{fig:at2019dsg_lc}).
+\emph{AT2019dsg} had already been classified as TDE and was 6 months old at the time of neutrino arrival, peaking in the ZTF \textit{g}-band on May 3, 2019 (151 days prior to the neutrino). As a ZTF-detected TDE, it had already been observed by the Ultra-Violet/Optical Telescope (UVOT)~\sidecite{Roming2005} aboard NASA's \textit{Neil Gehrels Swift Observatory} (\textit{Swift})~\sidecite{Gehrels2004}. These observations revealed bright UV emission, tracing the optical light curve of \emph{AT2019dsg} (see Fig.~\ref{fig:at2019dsg_lc}).
 
 The blackbody temperature, inferred from the optical/UV datapoints, was measured at \SI[parse-numbers = false]{10^{4.6}}{\K}, which is a bit higher than typical for TDEs~\sidecite{Stein2021}. Together with the transient redshift of $z=0.0512$, a peak luminosity of \SI[parse-numbers = false]{10^{44.5}}{\erg\per\s} was calculated, which rendered \emph{AT2019dsg} one of the most luminous TDEs discovered so far.
 
@@ -282,7 +282,7 @@ The blackbody temperature, inferred from the optical/UV datapoints, was measured
 
 Furthermore, \emph{AT2019dsg} was observed by the X-ray Telescope (XRT)~\sidecite{Burrows2005} aboard \textit{Swift}, starting about 40 days after discovery. Observations revealed a bright source that quickly faded to non-detection within the next 30 days~\cite{Stein2021}. Possible explanations for this are either cooling of the newly formed accretion disk, or some kind of obscuration along the line of sight. The X-ray detection of AT2019dsg is not uncommon: 9 of the 30 TDEs detected during Phase I of ZTF operations have been detected in X-rays~\sidecite{Hammerstein2022}.
 
-More peculiar, \emph{AT2019dsg} was also detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI)~\sidecite{Zwart2008,Hickish2018}, MeerKAT~\sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA)~\sidecite{Thompson1980} at several different epochs following the neutrino detection showed a radio signal that evolved over the course of the next months.
+More peculiar, \emph{AT2019dsg} was also detected in radio wavelengths. Observations by the Large Array of the Arcminute MicroKelvin Imager (AMI)~\sidecite{Zwart2008,Hickish2018}, MeerKAT~\sidecite{Jonas2018} and the Karl G. Jansky Very Large Array (VLA)~\sidecite{Thompson1980} at several epochs following the neutrino detection showed a radio signal that evolved over the course of the next months.
 
 In~\cite{Stein2021} the evolving radio signal was interpreted as the signature of a mildly relativistic outflow launched by the TDE. This interpretation was later disputed:~\sidecite{Cendes2021} added later radio observations to the dataset and found the radio data more compatible with a non-relativistic outflow, excluding neutrino production.~\sidecite{Mohan2022} performed very-long-baseline interferometry (VLBI) and also concluded on a non-relativistic outflow as the origin of the radio emission, while emphasizing the compatibility of that scenario with high-energy neutrino production. Nonetheless, the observations confirm long-lived non-thermal emission from the transient.
 
@@ -294,11 +294,11 @@ In~\cite{Stein2021} the evolving radio signal was interpreted as the signature o
 
 \pagebreak
 
-Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution---this can interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
+Lastly, a strong infrared signal was detected when evaluating \text{NEOWISE} \sidecite{Mainzer2011} data that was not yet published at the time the source paper was finalized. The two \textit{WISE} bands can be seen in Fig.~\ref{fig:at2019dsg_dustecho}. The infrared flare trails the optical evolution---this can be interpreted as a dust echo, where the optical to X-ray light is reprocessed by surrounding dust, re-emitting it at infrared wavelengths after a delay introduced by the light travel time. This will be discussed in detail in Section~\ref{dust_echo} in the context of \emph{AT2019fdr}, the second neutrino associated TDE.
 
 The chance coincidence to observe a high-energy neutrino in spatial and temporal coincidence with a radio-emitting TDE like \emph{AT2019dsg} was computed to be \SI{0.5}{\percent}, while the probability of finding one with a bolometric flux as high as \emph{AT2019dsg} was \SI{0.2}{\percent}~\cite{Stein2021}. This suggested that Tidal Disruption Events do in fact contribute to the flux of high-energies measured by IceCube.
 
-Lightning rarely strikes twice. So the fact that we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate half a year later further strenghtened the case for a TDE-neutrino connection. The next Chapter~\ref{at2019fdr} is dedicated to that event.
+Lightning rarely strikes twice. So the fact that we identified \emph{AT2019fdr} as the second likely neutrino-associated TDE candidate half a year later further strengthened the case for a TDE-neutrino connection. The next Chapter~\ref{at2019fdr} is dedicated to that event.
 
 \section{Classification Performance}\label{classification_performance}
 
@@ -308,11 +308,11 @@ Lightning rarely strikes twice. So the fact that we identified \emph{AT2019fdr} 
     \labfig{classification_overview}
 \end{figure*}
 
-The classification for the 205 candidates selected by \texttt{nuztf} can be seen in Fig.~\ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS)~\sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (.e.g\ Milliquas or Gaia, see Section~\ref{catmatch}).
+The classification for the 205 candidates selected by \texttt{nuztf} can be seen in Fig.~\ref{fig:classification_overview}. The vast majority of transients has some kind of classification. Some of these classifications stem from spectroscopic follow up performed by us. In some cases, promising candidates were already spectroscopically classified by the ZTF Bright Transient Survey (BTS)~\sidecite{Fremling2020,Perley2020}, which aims to classify every transient detected by ZTF brighter than 19 mag. The rest of the classifications stem from catalog matches (.e.g\ MILLIQUAS or \textit{Gaia} DR1, see Section~\ref{catmatch}).
 
 Roughly half of the transients were classified as AGN variability, i.e.\ stochastic AGN activity without a prominent optical flare visible around the time of neutrino detection. \SI{12}{\percent} (24) of the candidates were classified as stars, and hence ruled out as potential neutrino emitters. We classified \SI{9}{\percent} (18) of alerts as subtraction artifacts, as their difference images showed clear signs of erroneous subtractions\sidenote{See Section~\ref{ztf_image_subtraction}}. For \SI{20}{\percent} (41) of the candidates we were not able to obtain classifications.
 
-This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide transients, totalling 21 classified candidates.
+This leaves 5 candidates that were classified as AGN, but did show coincident optical flares, as well as 16 bona fide transients, totaling 21 classified candidates.
 
 Most of the classified candidates were SNe Ia. This is not surprising, as the majority of transients detected by ZTF are SNe Ia, due to their intrinsic brightness: As of April 2023, \SI{63}{\percent} of all classified transients in the BTS were SNe Ia. Among the other transients, only the two TDEs were identified as source candidates; these will be detailed subsequently. The remaining non-Ia supernovae could be ruled out as potential sources, as they either showed no sign of CSM interaction, or---in the case of the SN Ic---the explosion predated the neutrino detection significantly (see Section~\ref{SN2020lls}).
 

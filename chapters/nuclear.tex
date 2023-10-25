@@ -327,7 +327,7 @@ The results of all these steps are exemplified in Fig.~\ref{fig:noisify_example}
 To match the anti-AGN bias within the BTS sample, in principle two methods are viable: Increase the number of AGN in the training sample, or veto against AGN in the sample that needs classification. To maximize performance, a combination of both approaches was chosen here, and each will be detailed in the next paragraphs.
 
 \subsection{AGN Rejection}\label{agn_rejection}
-Only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \textit{WISE}-colors and matches to the Milliquas catalog.
+Only those nuclear transients that survived the AGN rejection were kept for classification. The AGN rejection was performed as a two-step process, based on \textit{WISE}-colors and matches to the MILLIQUAS catalog.
 
 \subsubsection{\textit{WISE} color selection}\label{wise_color_cut}
 The cuts applied were taken from~\cite{Hviding2022}. The authors of that study evaluated roughly half a million SDSS galaxies with matching \textit{WISE} infrared data, resulting in a region within the \textit{WISE} color--color diagram that robustly picks out AGN. The AGN `box' is defined as follows:
@@ -346,7 +346,7 @@ with $W1$, $W2$ and $W3$ being the \textit{WISE} Vega magnitudes in the respecti
   \labfig{agn_box}
 \end{figure}
 
-\subsubsection{Milliquas matching}\label{milliquas_cut}
+\subsubsection{MILLIQUAS matching}\label{milliquas_cut}
 Additionally to the \textit{WISE} color selection, the Milliquas~\cite{Milliquas} catalog\sidenote{\url{https://quasars.org/milliquas.htm}} was also used to identify likely AGN. This catalog was also used in the regular high-energy neutrino follow up (see Section~\ref{catmatch}). It contains over 900,000 Type I AGN, roughly 50,000 Type II AGN and again as many quasar candidates.
 
 I was interested in maximizing the purity of the sample in terms of AGN, i.e.~rejecting all likely AGN. Therefore, all objects that had a match in the Milliquas catalog were rejected, regardless of their respective likelihood of the match being an AGN.
