@@ -1,0 +1,4 @@
+{"rule":"MISSING_GENITIVE","sentence":"^\\QCherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenkov Cherenkov1934.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QTo understand how this is done, one first needs to look at the working principle of a Photomultiplier Tube (PMT), the basic instrument within the DOMs.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[PMT schematic]A photomultiplier tube.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe incident photon creates a photoelectron on the left, which gets multiplied at each dynode along the way to the anode on the left, creating an avalanche of electrons.\\E$"}
