@@ -26,7 +26,7 @@ If the particle has speed $v=\beta c_0$, the angle $\theta$ between the particle
     \cos{\theta} = \frac{\beta}{n}.
 \end{equation}
 
-If the medium is ice, to first order the refractive index $n$ is $\approx1.31$.\sidenote{This is of course rather crude. The $n$ of Antarctic glacial ice depends e.g.\ on depth; a fact we will come back to later when discussing directional reconstruction of high-energy neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$.
+If the medium is ice, to first order the refractive index $n$ is $\approx1.31$.\sidenote{This assumption is rather crude. The $n$ of Antarctic glacial ice depends e.g.\ on depth; a fact we will come back to later when discussing directional reconstruction of high-energy neutrinos.} A secondary muon traveling through the ice at $0.999\,c_0$ will therefore emit Cherenkov light at an angle of $\theta = \cos^{-1}{\big(\frac{0.999}{1.31}\big)} \approx \SI{40}{\degree}$.
 \begin{marginfigure}
     \includegraphics{ic/ic_cherenkov_spectrum.pdf}
     \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks around $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adapted from~\cite{Fulop1992}.}
@@ -142,10 +142,6 @@ With these six pieces of information---the two transmit timestamps, the two rece
 
 \section{Angular Reconstruction}\label{reconstruction}
 
-The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. With this in mind, one can sort the events seen by the detector broadly into two categories: Well localized track events with poorly reconstructed energy, and cascade events with well-determined energy, but very imprecise origin.
-
-\subsection{Event Types}\label{ic_event_types}
-
 \begin{marginfigure}
     \includegraphics{ic/ic_track.png}
     \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
@@ -156,6 +152,11 @@ The goal of IceCube reconstruction is twofold: Reconstructing the deposited neut
     \caption[Cascade event in IceCube]{Cascade event: The energy is fully contained in the detector, as the event is relatively isotropic. The angular uncertainty is quite large though. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_cascade}
 \end{marginfigure}
+
+The goal of IceCube reconstruction is twofold: Reconstructing the deposited neutrino energy, and reconstructing the neutrino arrival direction. With this in mind, one can sort the events seen by the detector broadly into two categories: Well localized track events with poorly reconstructed energy, and cascade events with well-determined energy, but very imprecise origin.
+
+\subsection{Event Types}\label{ic_event_types}
+
 \begin{description}
     \item[Track Events] (Fig.~\ref{fig:ic_track}) are produced by secondary muons resulting from the charged-current interaction of muon neutrinos with the Antarctic glacial ice (see section~\ref{neutrinos_current}). The secondary muons leave tracks in the ice with a length on the order of kilometers. Muons with energies above \SI{\sim300}{\giga\eV} create tracks that exceed the detector length. In general, this allows for a good angular resolution, ranging from \SI{1}{\degree} for a \SI{1}{\TeV} muon to \SI{0.3}{\degree} for a \SI{1}{\peta\eV} muon~\sidecite{Abbasi2022}. The drawback is a large energy uncertainty of $0.25 \log{E_\mu}$ for a muon of energy $E_\mu$~\sidecite{Aartsen2014a}, as parts of the high-energy muon tracks lie outside the instrumented volume~\sidecite{Aartsen2017a}.
 
@@ -239,15 +240,16 @@ The basic idea is to create a large lookup table of simulated minimally ionizing
     p(t_\text{res}) = \sum_{i=1}^{T-k-1} w_i B_{i,k}(t_\text{res},\vec{a}, \kappa).
 \end{equation}
 
+Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
+
+\subsection{\texttt{Millipede} Reconstruction}\label{millipede}
+
 \begin{marginfigure}
     \includegraphics[width=1\textwidth]{ic/ic_millipede_IC221124A.pdf}
     \caption[\texttt{Millipede} reconstruction of \emph{IC221124A}]{\texttt{Millipede} reconstruction of \emph{IC221124A}.}
     \labfig{ic_millipede}
 \end{marginfigure}
 
-Here $T$ is the total number of knot positions, $B$ is the $i$-th basis spline of order $k$, $\vec{a}$ again describes the track, and $\kappa$ denotes the parameters of the ice model.
-
-\subsection{\texttt{Millipede} Reconstruction}\label{millipede}
 
 High-energy neutrino events that pass the realtime alert selection criteria (see Section~\ref{ic_alert_program}) are subjected to a more sophisticated algorithm, which uses the information from all the detected photons. This algorithm is dubbed \texttt{Millipede}. Due to its high demand of computational resources it is only run for selected events at the IceCube data center in Madison.
 
@@ -255,7 +257,7 @@ This reconstruction consists of a maximum likelihood scan covering the whole sky
 
 For this fixed direction, the likelihood of the deposited energy resulting from the best fit and the neutrino interaction vertex in the detector are then computed. Pixels near the likelihood maximum are then subdivided with a finer \texttt{HEALPix} resolution. This procedure ultimately results in a likelihood map of the sky, with increasing granularity towards the global maximum~\sidecite{Abbasi2023}.
 
-To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo resimulations from the high-energy neutrino event \emph{IC160427A} are used. For this event, Pan-STARRS found a possible counterpart, \emph{PS16cgx}\sidenote{Spectroscopic follow up revealed that this event was either a SN Ic, which would be compatible with neutrino production, or---more likely---a SN Ia, which would exclude it as a neutrino source.}~\sidecite{Kankare2019}.
+To compute the \SI{50}{\percent} and \SI{90}{\percent} confidence level uncertainty contours, Monte Carlo resimulations from the high-energy neutrino event \emph{IC160427A} are used. For this event, Pan-STARRS found a possible counterpart, \emph{PS16cgx}\sidenote{Spectroscopic follow up revealed that this event was either an SN Ic, which would be compatible with neutrino production, or---more likely---an SN Ia, which would exclude it as a neutrino source.}~\sidecite{Kankare2019}.
 
 In the resimulations, the systematic parameters of the Antarctic ice used to model photon propagation were varied. Additionally, the simulated direction and energies were varied, with cuts to ensure that the light deposition of the resimulations resembled the original event (\SI{\pm2}{\degree} in direction, \SI{\pm20}{\percent} in deposited charge).
 
@@ -306,14 +308,13 @@ Gold and Bronze alerts are drawn from three different selection schemes, origina
 \begin{description}
 
     \item[HESE] are events that start \textit{within} the detector. This is guaranteed by using the outer regions of the detector as a veto region, in which (almost) no Cherenkov light must be detected~\cite{Aartsen2013}. The sizes of those regions can be seen in Fig.~\ref{fig:ic_hese_veto}. The majority of HESE events are cascade-type events and therefore not well suited for observational follow-up due to their poor angular reconstruction. Because of this drawback, additional cuts are applied: At least 6000 photoelectrons are required, and the reconstruction must favor a track interpretation of the event, and the reconstructed track length must be at least \SI{200}{\meter}~\cite{Abbasi2023}. Note that the selection criteria used in the Gold and Bronze HESE selection are slightly different from those in the original paper cited above.
-
-    \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions~\cite{Abbasi2023}.
-
           \begin{marginfigure}
               \includegraphics{ic/ic_HESE_veto.pdf}
               \caption[HESE veto regions]{High-energy starting events veto regions. The strings marked in blue in the top-down view at the top (A) show the location of the side view, displayed at the bottom (B). From~\cite{Aartsen2013}.}
               \labfig{ic_hese_veto}
           \end{marginfigure}
+
+    \item[EHE] aims at neutrino energies of \SIrange{0.5}{10}{\peta\eV}. To reject atmospheric background events, a two-dimensional cut depending on the reconstructed zenith angle and the log of detected photoelectrons is applied. Additionally, a $\chi^2$-based goodness-of-fit cut is applied to select track-like events with good reconstructions~\cite{Abbasi2023}.
 
     \item[GFU] events are selected based on a boosted decision tree trained to identify \textit{through-going} (as opposed to `starting') track events with astrophysical origin. Energy cuts are applied: Northern hemisphere events are selected based on their reconstructed muon energies, while events from the southern hemisphere are selected based on the total photoelectron charge deposited in the detector.
 \end{description}
