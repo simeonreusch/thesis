@@ -211,11 +211,11 @@ If high-energy neutrinos are produced in the processes responsible for the creat
     \labfig{uhecr_spectrum}
 \end{figure}
 
-Identifying the sources of UHECR remains a challenge. As the cosmic ray particles are charged, they are deflected by magnetic fields encountered on their way to Earth, obscuring their origin. What is known though is that their extremely high energies necessitate extreme environments in which they can be produced.
+Identifying the sources of UHECR remains a challenge. As the cosmic-ray particles are charged, they are deflected by magnetic fields encountered on their way to Earth, obscuring their origin. What is known though is that their extremely high energies necessitate extreme production environments.
 
 \begin{marginfigure}
     \includegraphics{theory/uhecr_hillas_criterion.pdf}
-    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays, as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from~\cite{Rieger2022}, original `Hillas plot' in~\cite{Hillas1984}.}
+    \caption[Hillas source distribution]{Possible sources for \SI{e20}{\eV} cosmic rays as a function of source radius $R$ and the magnetic field strength $B$ of the source. Adapted from~\cite{Rieger2022}, the original `Hillas plot' can be found in~\cite{Hillas1984}.}
     \labfig{uhecr_hillas_criterion}
 \end{marginfigure}
 
@@ -228,11 +228,7 @@ In the 1980s, Hillas proposed the requirement that the efficient acceleration of
 where $Z$ is the cosmic ray particle charge number, $B$ is the magnetic field strength of the source, and $R$ is the characteristic source dimension~\cite{Rieger2022}. Sources that match this criterion for the production of UHECR protons and iron nuclei with an energy of \SI{e20}{\eV} are shown in Fig.~\ref{fig:uhecr_hillas_criterion}. As one can see, a variety of extreme environments are possible sources of UHECR. As some of these also hot candidates for the production of high-energy neutrinos, it is instructive to look at the mechanisms involved.
 
 \subsection{Diffusive Shock Acceleration}\label{dsa}
-There are several acceleration mechanisms for UHECR. The most important of these processes, Diffusive Shock Acceleration (DSA), was introduced in the late 1970s. DSA is thought to occur in the presence of shocks that are present e.g.\ in core-collapse supernovae\sidenote{See Section~\ref{sne}}. Such shocks are formed when matter, for example in the form of a plasma, is moving with supersonic speed through a surrounding medium.
-
-To understand DSA, one has to differentiate between an upstream region in front of the moving shock front, and a downstream region behind the shock front.\sidenote{The majority of this section is owed to~\cite{Longair2011}.} Consider a shock front moving with a velocity $\vec{v_s}$ through a medium as seen in the observer's rest frame (red line in Fig.~\ref{fig:dsa}). If we switch to the rest frame of the shock front, it encounters the upstream medium as flowing towards it with speed $\vec{u_u}=-\vec{v_s}$. Downstream, behind the shock, the velocity of material $u_d$ will be lower: Mass conservation requires that $\rho_u u_u = \rho_d u_d$. In astrophysical shocks containing a fully ionized plasma, the compression ratio $R=\rho_d/\rho_u$ can be as high as 4~\sidecite{Longair2011}. Because $R=u_d/u_u$, the velocity of material downstream (behind the shock front) $u_d$ will then only be $1/4 u_u$.
-
-Now consider some test particles upstream, ahead of the shock front rushing towards it. In the rest frame of the upstream gas their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma (and Coulomb scattering can be neglected).
+There are several acceleration mechanisms for UHECR. The most important of these processes, Diffusive Shock Acceleration (DSA), was introduced in the late 1970s. DSA is thought to occur in the presence of shocks that are present e.g.\ in core-collapse supernovae (see Section~\ref{sne}). Such shocks are formed when matter, for example in the form of a plasma, is moving with supersonic speed through a surrounding medium.
 
 \begin{marginfigure}
     \includegraphics{theory/dsa.pdf}
@@ -240,23 +236,27 @@ Now consider some test particles upstream, ahead of the shock front rushing towa
     \labfig{dsa}
 \end{marginfigure}
 
+To understand DSA, one has to differentiate between an upstream region in front of the moving shock front, and a downstream region behind the shock front.\sidenote{The majority of this section is owed to~\cite{Longair2011}.} Consider a shock front moving with a velocity $\vec{v_s}$ through a medium as seen in the observer's rest frame (red line in Fig.~\ref{fig:dsa}). If we switch to the rest frame of the shock front, it encounters the upstream medium as flowing towards it with speed $\vec{u_u}=-\vec{v_s}$. Downstream, behind the shock, the velocity of material $u_d$ will be lower: Mass conservation requires that $\rho_u u_u = \rho_d u_d$. In astrophysical shocks containing a fully ionized plasma, the compression ratio $R=\rho_d/\rho_u$ can be as high as 4~\sidecite{Longair2011}. Because $R=u_u/u_d$, the velocity of material downstream (behind the shock front) $u_d$ will then only be $1/4 u_u$.
+
+Now consider some test particles upstream, ahead of the shock front rushing towards them. In the rest frame of the upstream gas their velocity distribution will be isotropic. Assume that the diffusion on both sides of the shock front is mediated via collisionless processes. This means that momentum and energy transfers between particles are mediated elastically by magnetic irregularities in the plasma, and Coulomb scattering can be neglected.
+
 When a test particle with initial velocity $v_1$ (blue arrow in Fig.~\ref{fig:dsa}) eventually crosses the shock front to the downstream region, it will see a plasma rushing towards it with speed $w=|u_u-u_d| = (1-0.25)~u_u$, which equals 3/4 of the shock front velocity $v_s$.
-
-In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{2}{3}\frac{w}{c}$ (see below). This energy gain results in a higher velocity $v_2$. After some time, the particle might cross the shock front again, this time into the upstream region. From the now isotropized particle's frame, the upstream region will again rush in with $0.75~v_s$, and the process repeats, resulting in another gain in energy, and a higher $v_3$~\sidecite{Urosevic2019}, with an average round-trip energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$
-
-We still need to motivate the net energy gain per crossing of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{2}{3}\frac{w}{c}$. This can be explained as follows: First, one needs to switch to the test particle frame, i.e.\ perform a Lorentz transformation. The energy of the test particle will be:
 
 \begin{marginfigure}
     \includegraphics{theory/dsa_mc.pdf}
-    \caption[DSA Monte Carlo]{Monte Carlo simulation of a test particle near the shock front. The particle position wildly varies (solid line), but its velocity $v_i$ (dotted line) increases each time it crosses the shock front at $x=0$. Adapted from~\cite{Baring1997}}
+    \caption[DSA Monte Carlo]{Monte Carlo simulation of a test particle near the shock front. The particle position wildly varies (solid line), but its velocity $v_i$ (blue line) increases each time it crosses the shock front at $x=0$. Adapted from~\cite{Baring1997}}
     \labfig{dsa_mc}
 \end{marginfigure}
+
+In the downstream region, they will again be scattered collisionlessly, and receive a small net energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{2}{3}\frac{w}{c}$ (see below). This energy gain results in a higher velocity $v_2$. After some time, the particle might cross the shock front again, this time into the upstream region. From the now isotropized particle's frame, the upstream region will again rush in with $0.75~v_s$, and the process repeats, resulting in another gain in energy, and a higher $v_3$~\sidecite{Urosevic2019}, with an average round-trip energy gain of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$. See Fig.~\ref{fig:dsa_mc} for a Monte Carlo simulation of a test particle crossing a shock front multiple times, accumulating a higher and higher velocity over time (blue line).
+
+We still need to motivate the net energy gain per crossing of $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{2}{3}\frac{w}{c}$. This can be explained as follows: First, one needs to switch to the test particle frame, i.e.\ perform a Lorentz transformation. The energy of the test particle will be:
 
 \begin{equation}
     E' = \gamma_{w}(E+p_x w),
 \end{equation}
 
-where x is the coordinate perpendicular to the shock. The shock is non-relativistic ($w<<c$ and $\gamma_w\approx1$), but the test particles are, so $E\approx pc$ and $p_x \approx E/c \cos(\theta)$. From this it follows that
+where x is the coordinate perpendicular to the shock. The shock is non-relativistic ($w<<c$ and $\gamma_w\approx1$), but the test particle is, so $E\approx pc$ and $p_x \approx E/c \cos(\theta)$. From this it follows that
 
 \begin{equation}
     \Delta E = E' - E = E+\frac{E}{c}w\cos{\theta}-E = pw\cos{\theta}
@@ -305,36 +305,36 @@ To obtain the differential energy spectrum, we differentiate with respect to $E$
 
 The result is a power law with index $\frac{\ln P}{\ln \beta}$, which is indeed what was already stipulated by experimental data.
 
-We already know that $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$. With this, $\beta = \frac{E}{E_0} = 1 + \frac{4}{3}\frac{w}{c}$. What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by~\cite{Longair2011} (and originally presented by~\sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $n w=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4} n v_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$.
+We already know that $\big\langle\frac{\Delta E}{E}\big\rangle = \frac{4}{3}\frac{w}{c}$ per round trip. With this, $\beta = \frac{E}{E_0} = 1 + \frac{4}{3}\frac{w}{c}$. What is missing is an expression for $P$. To obtain this, we need to estimate the rate at which particles drop out of the system or are `swept away'. As argued by~\cite{Longair2011} (and originally presented by~\sidecite{Bell1978}), the average number of particles crossing the shock is $\frac{1}{4} n c$, with $n$ being the particle number density. This is true in both directions up- and downstream. The difference though is that downstream particles are `advected' away from the shock further downstream and out of the system, as they are isotropic in that frame. The dropout rate is $n w=\frac{1}{4}nv_s$. From this it follows that the fraction of particles lost (per unit time) is $\frac{1}{4} n v_s/\frac{1}{4}nc = v_s/c$. The survival probability $P$ is thus $P=(1-v_s/c)$.
 
 With that, we can compute
 \begin{equation}
-    \ln P = \ln ( 1-\frac{v_s}{c}) \simeq -\frac{v_s}{c}
+    \ln P = \ln \big( 1-\frac{v_s}{c}\big) \simeq -\frac{v_s}{c}
 \end{equation}
 and
 \begin{equation}
-    \ln \beta = \ln(1+\frac{4}{3}\frac{w}{c}) \simeq \frac{4}{3}\frac{w}{c} = \frac{v_s}{c}.
+    \ln \beta = \ln \bigl( 1+\frac{4}{3}\frac{w}{c} \bigr)  \simeq \frac{4}{3}\frac{w}{c} = \frac{v_s}{c}.
 \end{equation}
 This gives us $\frac{\ln P}{\ln \beta} \simeq -1$. Inserting this into Eq.~\ref{eqn:diff_e_spec} yields
 \begin{equation}
     N(E)~\text{d} E \propto E^{-2}~\text{d} E.
 \end{equation}
 
-Therefore, the resulting differential energy spectrum has a spectral index of 2. This somewhat differs from the experimentally found spectral index of 2.7 up to the knee. This can be explained by the fact there are several assumptions at play here: The shock is assumed to be non-relativistic, in an ideal gas and constant escape probability. Inefficiencies in the shock, and the inclusion of shock-amplified magnetic fields can both harden the spectral index~\cite{Spurio2018}.
+Therefore, the resulting differential energy spectrum has a spectral index of 2, a value that somewhat differs from the experimentally found spectral index of 2.7 up to the knee. This can be explained by the fact there are several assumptions at play here: The shock is assumed to be non-relativistic, situated in an ideal gas and with a constant escape probability. Inefficiencies in the shock, and the inclusion of shock-amplified magnetic fields can both harden the spectral index~\cite{Spurio2018}.
 
 \subsection{Interaction and Neutrino Production}\label{cr_interactions}
 As discussed above, the observed cosmic ray spectrum is readily explained by astrophysical shocks, as these account for the power-law structure of the energy distribution.
 
-The particles accelerated within shocks might now interact with either hadrons and photons in their vicinity or on their way to Earth. For simplicity, this section focuses on the interaction of cosmic ray protons, but it applies to heavier nuclei as well.
+The particles accelerated within shocks might now interact with either hadrons and photons in their vicinity or on their way to Earth. For simplicity, this section focuses on the interaction of cosmic-ray protons, but it applies to heavier nuclei as well.
 
 \begin{description}
-    \item[$pp$ interactions] When cosmic ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produce lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
+    \item[$pp$ interactions] When cosmic-ray protons encounter gas, either at the source location or while crossing the universe, they can interact with this gas, here assumed to consist of protons only for simplicity. The resulting $pp$ interactions produce lots of unstable hadrons, which decay. Those decays are dominated by pion production. Ignoring all secondary hadrons $X$ (which can also decay via pions), possible decay channels of these pions are:
 
           \begin{eqnarray}
-              \pi^\pm + X &\contour{black}{$\rightarrow$}& \mu^\pm + \nu_\mu (\bar{\nu}_\mu)~~~ \contour{black}{$\rightarrow$} ~~~ e^\pm + \nu_e(\bar{\nu}_e) + \bar{\nu}_\mu(\nu_\mu)\\
-              \pi^0 + X &\contour{black}{$\rightarrow$}& 2\gamma
+              \pi^\pm + X &\contour{black}{$\rightarrow$}& \mu^\pm + \nu_\mu (\bar{\nu}_\mu)~~~ \contour{black}{$\rightarrow$} ~~~ e^\pm + \nu_e(\bar{\nu}_e) + \bar{\nu}_\mu(\nu_\mu)\text{,}\\
+              \pi^0 + X &\contour{black}{$\rightarrow$}& 2\gamma.
           \end{eqnarray}
-          As can be seen, $\pi^\pm$ decay into muons and a muon (anti-)neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-)neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to Earth washes out this initial difference, with an expected flavor content of $1:1:1$~\cite{Workman2022}.
+          As can be seen, $\pi^\pm$ decay into muons and a muon (anti-) neutrino. Those muons will decay into electrons (positrons), electron (anti-)neutrinos and muon (anti-) neutrinos. The decay of the neutral $\pi^0$ does not generate neutrinos. For pion decays, an average neutrino flavor content of $\nu_e$:$\nu_\mu$:$\nu_\tau = 1:2:0$ is expected. Neutrino oscillation on the way to Earth washes out this initial difference, with an expected flavor content of $1:1:1$~\cite{Workman2022}.
 
 
           The energy of the pion decay products is expected to trace the initial proton energy spectrum. If the proton interaction rate is fairly independent of their energy, they will then lose a fraction of their energy. This energy will then be converted into the production of pions, and subsequently muons. With this, the resulting neutrino spectrum is expected to have a similar shape as the initial cosmic ray spectrum.\todo{source or rephrase}
