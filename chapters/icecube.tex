@@ -15,7 +15,7 @@ Cherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenk
     \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the left figure, a particle traveling along the red path emits Cherenkov radiation at the Cherenkov angle $\theta_\text{C}$. As the radiation is emitted at different points in space and time ($\text{A}_3$ to $\text{A}_0$, radiation shown as blue circles), it forms a mutual, cone-shaped wavefront. In the figure on the right, all radiation is cancelled out by destructive interference (all circles are contained within the first one on the left, as the particle is not moving faster than light in the medium). Adapted from~\cite{LAnnunziata2020}.}
     \labfig{cherenkov}
 \end{figure}
-
+\todo{figure: reihenfolge umdrehen}
 When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized. When they relax back to the ground state, the atoms emit electromagnetic radiation.
 
 For non-relativistic particles, this radiation destructively interferes with itself, canceling out all signals (see the bottom panel of Fig.~\ref{fig:cherenkov}). But if the particle is traveling faster than the speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a cone-shaped wavefront gets created (see left panel of Fig.~\ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation.
@@ -32,11 +32,11 @@ If the medium is ice, to first order the refractive index $n$ is $\approx1.31$.\
     \caption[Cherenkov spectrum]{Cherenkov spectrum for a particle with $v=0.8 \,c_0$ in water. The intensity peaks around $\SI{4e15}{\Hz}$, corresponding to a wavelength of \SI{75}{\nm}, lying at the high-frequency end of the UV spectrum. Adapted from~\cite{Fulop1992}.}
     \labfig{cherenkov_spectrum}
 \end{marginfigure}
-Cherenkov radiation has a smooth spectrum, with a relative intensity roughly proportional to the frequency. Note that the refractive index of a medium also depends on the frequency, dropping below 1 in the X-ray. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and its intensity peaks in the Ultra Violet (UV), before it sharply drops off in the X-ray regime~\sidecite{Fulop1992}, see Fig.~\ref{fig:cherenkov_spectrum}.
+Cherenkov radiation has a smooth spectrum, with a relative intensity roughly proportional to the frequency. The refractive index of a medium also depends on the frequency, dropping below 1 in the X-ray\todo{in ice?}. From this it follows that Cherenkov radiation appears blue to the human eye (the high-frequency part dominates) and its intensity peaks in the Ultra Violet (UV), before it sharply drops off in the X-ray regime~\sidecite{Fulop1992}, see Fig.~\ref{fig:cherenkov_spectrum}.
 
 \section{Instrumentation}
 
-IceCube detects neutrinos by observing the optical and UV part of their secondary particle Cherenkov spectrum (see Section~\ref{cherenkov_radiation} above) with DOMs in the ice. To understand how this is done, one first needs to look at the working principle of a Photomultiplier Tube (PMT), the basic instrument within the DOMs.
+IceCube detects neutrinos by observing the optical and UV part of their secondary particle Cherenkov spectrum with 5160 DOMs in the ice. To understand how this is done, one first needs to look at the working principle of a Photomultiplier Tube (PMT), the basic instrument within the DOMs.
 
 \subsection{Photomultiplier Tubes}
 PMTs are devices used to detect very faint light signals by amplifying them. They consist of vacuum tubes and were successfully realized for the first time in the 1930s~\sidecite{Iams1935}.
