@@ -21,7 +21,7 @@ All other possible sources are not captured by this follow-up program, because t
 \section{Alert Cuts}\label{alert_cuts}
 Two factors motivate imposing additional cuts on the alert stream received via GCN notices: We only have limited telescope time, and too large uncertainty areas would result in the significance of potential counterparts dropping too much. As outlined in Section~\ref{ic_event_selection}, there are two alert streams: Gold alerts with an average purity of \SI{50}{\percent} (\SI{36}{\percent} of all non-retracted alerts so far belonged to that category), and bronze alerts with an average purity of \SI{30}{\percent} (\SI{64}{\percent} of all alerts).
 
-In general, we only follow up if the reported bounding rectangle comprising the \SI{90}{\percent} uncertainty region (see Section~\ref{millipede}) covers less than \SI{40}{\square\deg}. All gold alerts making this cut qualify for follow-up. There is a more stringent cut on the uncertainty areas of bronze alerts, requiring their bounding rectangle to be $<\SI{10}{\square\deg}$ in size. To avoid contamination by foreground stars, we implemented a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
+In general, we only follow up if the reported bounding rectangle comprising the \SI{90}{\percent} uncertainty region (see Section~\ref{millipede}) covers less than \SI{30}{\square\deg}. All gold alerts making this cut qualify for follow-up. There is a more stringent cut on the uncertainty areas of bronze alerts, requiring their bounding rectangle to be $<\SI{10}{\square\deg}$ in size. To avoid contamination by foreground stars, we implemented a cut on galactic latitude of $|b|>\SI{10}{\degree}$.
 
 \section{Observation Planning with \texttt{planobs}}\label{planobs}
 
