@@ -1,7 +1,7 @@
 \setchapterimage[7cm]{at2019fdr/AT2019fdr.jpg}
 \chapter{Candidate TDE \emph{AT2019fdr}: A Possible Source?}\label{at2019fdr}
 \labch{AT2019fdr}
-\emph{AT2019fdr}\marginnote{Light from the candidate TDE \textit{AT2019fdr} illuminating the surrounding dust in an artistic impression. Image credit: DESY and Science Communication Lab.} emerged as a candidate when following up the high-energy IceCube neutrino \emph{IC200530A}. The gold alert\sidenote{See Section~\ref{ic_event_selection}} neutrino was detected on May 30, 2020 with a \SI{90}{\percent} rectangular uncertainty area of \SI{25.4}{\square\deg}, a signalness of 0.59 and an estimated neutrino energy of \SI{82.2}{\tera\eV}~\cite{IC200530A1}.
+\emph{AT2019fdr}\marginnote{Light from the candidate TDE \textit{AT2019fdr} illuminating the surrounding dust in an artistic impression. Image credit: DESY and Science Communication Lab.} emerged as a candidate when following up the high-energy IceCube neutrino \emph{IC200530A}. The gold alert (see Section~\ref{ic_event_selection}) neutrino was detected on May 30, 2020 with a \SI{90}{\percent} rectangular uncertainty area of \SI{25.4}{\square\deg}, a signalness of 0.59 and an estimated neutrino energy of \SI{82.2}{\tera\eV}~\cite{IC200530A1}.
 
 Two more sources were initially published by us as candidate sources (\textit{SN2020lls} and \textit{SN2020lam}), but both could be ruled out with follow-up observations. For details on these events, see Section~\ref{SN2020lls} and~\ref{SN2020lam}. This left \emph{AT2019fdr} as the only remaining neutrino source candidate, a long-lived optical transient located at RA $= 257.278575$ and Dec $= +26.855758$, with a distance of \SI{1.72}{\degree} to the reported neutrino best-fit location.
 
@@ -123,7 +123,7 @@ All WIRC measurements were reduced using a custom pipeline (see~\sidecite{De2020
 
 As another galaxy lies close to \emph{AT2019fdr}'s host galaxy (angular separation: \SI{7}{\arcsec}), I performed a manual flux extraction with \texttt{GALFIT}~\sidecite{Peng2002}. This two-dimensional fitting algorithm allows defining different galactic types and components, as well as point sources, and simultaneously fit the science images with these source types.
 
-To improve photometric accuracy, I first derived the point spread function\sidenote{See Section~\ref{psfphot}} of individual stacked images with \texttt{photutils}~\sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy}~\sidecite{PriceWhelan2022}. All stars within the surrounding of \emph{AT2019fdr} were selected for this. From this selection, I visually selected a subset of stars neither too dim nor too bright (see Fig.~\ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, I calculated the PSF of the image.
+To improve photometric accuracy, I first derived the point spread function (see Section~\ref{psfphot}) of individual stacked images with \texttt{photutils}~\sidecite{Bradley2020}, a package for the Python astronomy toolkit \texttt{astropy}~\sidecite{PriceWhelan2022}. All stars within the surrounding of \emph{AT2019fdr} were selected for this. From this selection, I visually selected a subset of stars neither too dim nor too bright (see Fig.~\ref{fig:at2019fdr_nir_starselection} for an example). Using these stars, I calculated the PSF of the image.
 
 \begin{figure*}[htb]
     \includegraphics{at2019fdr/P200_third_epoch_H_stargrid.pdf}
@@ -143,7 +143,7 @@ I then ingested the resulting PSF into \texttt{GALFIT}. Two Sérsic  profiles de
 
 I fixed all parameters except for the point source flux after fitting one epoch (reference epoch). The point source flux was then fit in the remaining three epochs. Unfortunately, the choice of reference epoch had an impact on the point source flux values. This can be explained by differing observing conditions at different epochs. To account for this variation, both epoch 1 and epoch 4 were used as reference epochs. I used the difference in the resulting transient flux (when using epoch 1 as reference epoch on the one hand, and when using epoch 4 as such on the other hand) as systematic uncertainty on the extracted transient flux~\cite{Reusch2022}.
 
-As there was no image without transient flux available, I added the point source flux to the host galaxy flux, and then subtracted the synthetic host model\sidenote{See Section~\ref{synthetic_host_model}.}. The model-subtracted AB magnitudes derived by this procedure are shown in Table~\ref{tab:p200_nir}.
+As there was no image without transient flux available, I added the point source flux to the host galaxy flux, and then subtracted the synthetic host model (see Section~\ref{synthetic_host_model}). The model-subtracted AB magnitudes derived by this procedure are shown in Table~\ref{tab:p200_nir}.
 
 \subsection{\textit{WISE} Detections}
 

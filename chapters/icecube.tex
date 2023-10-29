@@ -10,15 +10,16 @@ The basic operational principle of IceCube (and already of AMANDA) is the detect
 Cherenkov radiation was first detected in 1934 by Soviet scientist Pavel Cherenkov~\sidecite{Cherenkov1934}. It occurs when charged particles travel within a medium with a velocity exceeding the speed of light in that very medium. The refractive index in a medium is defined as $n=\frac{c_0}{c_m}$, where $c_0$ is the speed of light in vacuum and $c_m$ is the phase velocity of light in that medium. Note that the phase velocity of light in a medium can exceed $c_0$, so $n<1$ is possible.
 
 \begin{figure}
-    \includegraphics[width=0.49\textwidth]{ic/ic_cherenkov1.pdf}
     \includegraphics[width=0.49\textwidth]{ic/ic_cherenkov2.pdf}
-    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the left figure, a particle traveling along the red path emits Cherenkov radiation at the Cherenkov angle $\theta_\text{C}$. As the radiation is emitted at different points in space and time ($\text{A}_3$ to $\text{A}_0$, radiation shown as blue circles), it forms a mutual, cone-shaped wavefront. In the figure on the right, all radiation is cancelled out by destructive interference (all circles are contained within the first one on the left, as the particle is not moving faster than light in the medium). Adapted from~\cite{LAnnunziata2020}.}
+    \includegraphics[width=0.49\textwidth]{ic/ic_cherenkov1.pdf}
+    % \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the left figure, a particle traveling along the red path emits Cherenkov radiation at the Cherenkov angle $\theta_\text{C}$. As the radiation is emitted at different points in space and time ($\text{A}_3$ to $\text{A}_0$, radiation shown as blue circles), it forms a mutual, cone-shaped wavefront. In the figure on the right, all radiation is cancelled out by destructive interference (all circles are contained within the first one on the left, as the particle is not moving faster than light in the medium). Adapted from~\cite{LAnnunziata2020}.}
+    \caption[Cherenkov radiation]{The principle of Cherenkov radiation. In the left diagram, a particle travels through a medium along the red line and is not moving faster than light within that medium. All radiation from different points in space and time ($\text{A}_3$ to $\text{A}_0$, radiation shown as blue circles) is cancelled out by destructive interference (all circles are contained within the first one on the left). Right diagram: The particle does emit Cherenkov radiation, as the different circles form a mutual, cone-shaped wavefront, radiating away at the Cherenkov angle $\theta_\text{C}$. Adapted from ~\cite{LAnnunziata2020}.}
     \labfig{cherenkov}
 \end{figure}
-\todo{figure: reihenfolge umdrehen}
+
 When charged particles cross an electrically neutral dielectric medium, atoms along the particle's path are briefly polarized. When they relax back to the ground state, the atoms emit electromagnetic radiation.
 
-For non-relativistic particles, this radiation destructively interferes with itself, canceling out all signals (see the bottom panel of Fig.~\ref{fig:cherenkov}). But if the particle is traveling faster than the speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a cone-shaped wavefront gets created (see left panel of Fig.~\ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation.
+For non-relativistic particles, this radiation destructively interferes with itself, canceling out all signals (left panel of Fig.~\ref{fig:cherenkov}). But if the particle is traveling faster than the speed of light within the medium $c_m$, this destructive interference does not happen. Rather, a cone-shaped wavefront gets created (right panel of Fig.~\ref{fig:cherenkov}). This wavefront constitutes Cherenkov radiation.
 
 If the particle has speed $v=\beta c_0$, the angle $\theta$ between the particle trajectory and the direction of the Cherenkov radiation can be calculated as~\sidecite{LAnnunziata2020}
 
