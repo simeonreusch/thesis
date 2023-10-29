@@ -86,21 +86,21 @@ The Flasher Board houses 12 LEDs operating at a wavelength of \SI{\sim400}{\nm}.
 \subsection{Detector Layout}
 In total, approximately 5800 DOM units were built and tested, 300 failing tests and the rest being delivered to the South Pole. The vast majority of these were ultimately deployed (5160 in total). The final detector layout (since the last drilling campaign 2010/2011, see below) consists of 86 strings. The DOMs were deployed along those strings, like pearls on a necklace. Each string contains 60 DOMs, with an average horizontal spacing between strings of \SI{125}{\meter}~\cite{Aartsen2017}.
 
+\begin{marginfigure}
+    \includegraphics{ic/ic_top_view.pdf}
+    \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. From~\cite{Ahlers2018a}.}
+    \labfig{ic_top_down}
+\end{marginfigure}
+
 The instrumented part of the strings starts at \SI{1450}{\m} below surface, with one DOM every \SI{17}{\m} to a depth of \SI{2450}{\m}, just above the bedrock at a depth of \SI{2820}{\m}. In Fig.~\ref{fig:ic_sideon} the layout of the in-ice array can be seen. The strings follow a roughly hexagonal layout (see Fig.~\ref{fig:ic_top_down}), with a side length of \SI{1}{\km\squared}. The total instrumented volume of glacial ice is thus \SI{1}{\km\cubed}~\cite{Aartsen2017}. Of the 5160 deployed DOMs, 92 are dead as of March 2023, a loss of \SI{1.7}{\percent}\sidenote{This is better than the predicted failure percentage, which was projected to be \SI{2}{\percent} by 2023~\cite{Aartsen2017}.}.
 
 One can see in Fig.~\ref{fig:ic_top_down} that there is a region in the center of the detector which is more densely instrumented: The strings are closer to each other, and also the spacing between DOMs on these strings is reduced from \SI{17}{\m} to \SIrange{7}{10}{\m}. This part of the detector is DeepCore, designed to have a lower energy threshold of \SI{10}{\GeV}, a significant improvement over the \SI{100}{\GeV} for the rest of the detector. The DOMs within DeepCore are also modified for this goal, as they are equipped with PMTs that have a \SI{35}{\percent} higher QE compared to the `normal' DOMs~\cite{Aartsen2017}.
 
 \begin{figure}[htbp]
     \includegraphics[width=1.\textwidth]{ic/ic_side_view_font.pdf}
-    \caption[IceCube side-on]{Side view of the IceCube detector, showing the instrumented array deep in the Antarctic glacial ice. In the center on top is the IceCube Laboratory, where data processing takes place. From~\cite{Ahlers2018a}.}
+    \caption[IceCube side-on]{Side-on view of the IceCube detector, showing the instrumented array deep in the Antarctic glacial ice. In the center on top is the IceCube Laboratory, where data processing takes place. From~\cite{Ahlers2018a}.}
     \labfig{ic_sideon}
 \end{figure}
-
-\begin{marginfigure}
-    \includegraphics{ic/ic_top_view.pdf}
-    \caption[IceCube top-down view]{Top-down view of the IceCube detector, spanning \SI{1}{\square\km} on the surface. From~\cite{Ahlers2018a}.}
-    \labfig{ic_top_down}
-\end{marginfigure}
 
 \subsection{Deployment}
 
@@ -274,31 +274,29 @@ Since 2016, IceCube hosts a realtime alert program, providing the astrophysical 
 
 \subsection{Background}\label{background}
 
-When searching for the sources of astrophysical neutrinos, there are two major sources of background events in the IceCube detector. Both stem from secondary cosmic-ray particles from the Earth's atmosphere.
+When searching for the sources of astrophysical neutrinos, there are two major sources of background events in the IceCube detector.
 
 \begin{figure}[htb]
-    \includegraphics[width=0.8\textwidth]{ic/ic_background.pdf}
-    \caption[Background events]{Background events in the detector. Cosmic rays hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dashed blue arrows). When constraining to \textit{up-going} events from the northern hemisphere, the detector is shielded from atmospheric muons, but not atmospheric neutrinos, as these can traverse the Earth. Adapted from~\cite{Ahlers2018a}.}
+    \includegraphics[width=0.85\textwidth]{ic/ic_background.pdf}
+    \caption[Background events]{Background events in the detector. Cosmic rays (red arrows) hit the atmosphere around the globe and produce muons (solid blue arrows), as well as neutrinos (dotted blue arrows). When constraining to \textit{up-going} events from the northern hemisphere, the detector is shielded from atmospheric muons, but not atmospheric neutrinos, as these can traverse the Earth. Adapted from~\cite{Ahlers2018a}.}
     \labfig{ic_background}
 \end{figure}
 
-\begin{marginfigure}
+Both types of background events stem from secondary cosmic-ray particles created within the Earth's atmosphere, showering down on the surface.
+
+\begin{marginfigure}[-1cm]
     \includegraphics[width=0.8\textwidth]{ic/ic_muon_free_path.pdf}
     \caption[Muon free path in ice]{Free path length for \SI{1}{\peta\eV} muons in ice. The mean free path in ice is slightly longer than in rock. Adapted from~\cite{Chirkin2004}.}
     \labfig{ic_muon_free_path}
 \end{marginfigure}
 
 \begin{description}
-    \item[Atmospheric Muons] are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e.\ the northern hemisphere. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig.~\ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller~\sidecite{Chirkin2004} than the distance they have to cross (see Fig.~\ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going~\sidecite{Ahlers2018a}.
-
-          One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability~\sidecite{Aartsen2017c}.
+    \item[Atmospheric Muons] are created by cosmic rays hitting the atmosphere. One can efficiently filter this background by restricting the analysis to \textit{up-going} muon tracks. These are tracks that come from the bottom of the detector, i.e.\ the northern hemisphere. Atmospheric muons stemming from cosmic-ray events in the northern hemisphere are filtered out by the Earth's core (see Fig.~\ref{fig:ic_background}), as the mean free path of muons within the Earth is much smaller than the distance they have to cross (\sidecite[20pt]{Chirkin2004}, see Fig.~\ref{fig:ic_muon_free_path}). Note that due to light scattering within the ice, some down-going tracks can be misclassified as up-going~\sidecite[27pt]{Ahlers2018a}.
+          \\
+          \\
+          One complication here stems from the fact that the Earth starts to become opaque for neutrinos of higher energies. Studies interested in \si{\peta\eV} neutrinos therefore must deal with the fact that these get the more suppressed the longer their path through the Earth is. For example, a \SI{1}{\peta\eV} neutrino with a zenith angle of \SI{140}{\degree} is absorbed with \SI{90}{\percent} probability~\sidecite[-10pt]{Aartsen2017c}.
           \pagebreak
 
-          %   \begin{figure}[htb]
-          %       \includegraphics[width=0.5\textwidth]{ic/ic_absorption_earth.pdf}
-          %       \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. From~\cite{Aartsen2017c}.}
-          %       \labfig{ic_absorption_earth}
-          %   \end{figure}
           \begin{marginfigure}
               \includegraphics{ic/ic_absorption_earth.pdf}
               \caption[Neutrino absorption in the Earth]{Neutrino transmission probability through the Earth. The longer the distance traveled (higher zenith angles) and the higher the neutrino energy, the more likely is absorption. Adapted from~\cite{Aartsen2017c}.}
@@ -346,7 +344,7 @@ Each notice contains the discovery time, a unique event number, the reconstructe
 
 This information is later appended by \texttt{Millipede}, a computationally more demanding, but more sophisticated reconstruction (see Section~\ref{millipede}). The results of these reconstructions (i.e.\ the angular uncertainty) are typically distributed a few hours after the initial notice in the form of a GCN circular, and an updated GCN notice~\cite{Blaufuss2019}.
 
-As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the Gold and Bronze alert streams in June 2019, this amounts to 2.2 non-retracted alerts per month\sidenote{This is quite close to the 2.5 alerts per month predicted in~\cite{Blaufuss2019}.} (0.8 Gold alerts, 1.4 Bronze alerts). For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see~\cite{Abbasi2023}.
+As of March 2023, a total of 106 events have been distributed in this format, with 7 later being retracted. Since the start of the Gold and Bronze alert streams in June 2019, this amounts to 2.2 non-retracted alerts per month, with 0.8 Gold alerts and 1.4 Bronze alerts---this is quite close to the 2.5 alerts per month predicted in~\sidecite{Blaufuss2019}. For a full list of all high-energy neutrino alerts issued by IceCube, not only those since introduction of the Gold and Bronze format, see~\cite{Abbasi2023}.
 
 If the neutrino is most likely astrophysical and its origin reasonably well pinpointed, one can scan the sky localization with a telescope and look for potential sources of the neutrino. But where to obtain optical images from? The telescope used for this, the Zwicky Transient Facility, will be described in Chapter~\ref{ztf}.
 
