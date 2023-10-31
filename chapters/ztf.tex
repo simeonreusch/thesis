@@ -153,12 +153,12 @@ After astrometric calibration, one needs to extract sources contained in the ima
     \labfig{seeing}
 \end{figure}
 
-The PSF describes the way an ideal point source is smeared out spatially after being subjected to atmospheric and optical effects in the telescope, and seeing is the FWHM of the PSF. The algorithm used to reconstruct the PSF of a ZTF exposure is \texttt{DAOphot}~\sidecite{Stetson1987}. It fits an analytic Gaussian profile to all point sources within an image. After subtracting this profile, it is iteratively updated with the residuals after subtraction.\todo{besser formulieren} The background estimate needed for this procedure is extracted from the most common brightness value of a histogram of evenly distributed pixels within the image~\cite{Stetson1987}.
+The PSF describes the way an ideal point source is smeared out spatially after being subjected to atmospheric and optical effects in the telescope, and seeing is the FWHM of the PSF. The algorithm used to reconstruct the PSF of a ZTF exposure is \texttt{DAOphot}~\sidecite{Stetson1987}. It fits an analytic Gaussian profile to all point sources within an image, and subtracts this analytic model. After subtraction, the model is updated with the residuals remaining. This process is repeated until the residuals are reasonably small. The background estimate needed for this procedure is extracted from the most common brightness value of a histogram of evenly distributed pixels within the image~\cite{Stetson1987}.
 
 After the PSF has been reconstructed, one can measure the brightness of all objects contained in the image. To do so, the global PSF is scaled to the source with a least-squares fit, and then its flux is extracted by integrating over the source's PSF profile ~\cite{Stetson1987}.
 
 \subsection{Photometric Calibration and Magnitudes}\label{magnitudes}
-\marginnote{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal}~\cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured Calspec standard stars. For details, see~\cite{Magnier2020}.}
+\marginnote[-1.5cm]{Of course, PS1 needs to be calibrated in itself. That is done in two steps: A self-consistent relative calibration is created with \texttt{Ubercal}~\cite{Schlafly2012}. This relative calibration is in turn anchored to precisely measured Calspec standard stars. For details, see~\cite{Magnier2020}.}
 
 Not only the source positions in the images need to be calibrated (astrometric calibration), but their brightness as well (photometric calibration). This means that one needs to convert the flux values derived by integrating over the PSF to physical flux.
 
@@ -192,6 +192,8 @@ Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross-section (i.e.\ 
 \begin{equation}\label{eqn:mag}
     m_\text{cal} = m_\text{instr} + \text{ZP}.
 \end{equation}
+
+\pagebreak
 
 To do this, all extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one could to first order calculate $m_\text{cal}$.
 
