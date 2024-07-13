@@ -145,7 +145,7 @@ With these six pieces of information---the two transmit timestamps, the two rece
 
 \begin{marginfigure}
     \includegraphics{ic/ic_track.png}
-    \caption[Track event in IceCube]{Cascade event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
+    \caption[Track event in IceCube]{Track event: The long track allows for good angular reconstruction, with high uncertainty on the event energy. From \url{masterclass.icecube.wisc.edu}.}
     \labfig{ic_track}
 \end{marginfigure}
 \begin{marginfigure}
@@ -175,7 +175,7 @@ This likelihood is denoted $\mathcal{L}(\vec{x}|\vec{a})$. If the components $x_
     \mathcal{L}(\vec{x}|\vec{a}) = \prod_i p(x_i|\vec{a}).
 \end{equation}
 
-Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. The reconstruction consists in obtaining the set of unknown track parameters $\vec{a}$ that maximizes the likelihood $\mathcal{L}$ (or, for technical reasons, minimizes $-\log{\mathcal{L}}$).
+Here, $p(x_i|\vec{a})$ is the probability density function (PDF) of measuring $x_i$ given a set of parameters $\vec{a}$. The reconstruction consists of obtaining the set of unknown track parameters $\vec{a}$ that maximizes the likelihood $\mathcal{L}$ (or, for technical reasons, minimizes $-\log{\mathcal{L}}$).
 
 \subsection{Parametrization}
 
@@ -203,7 +203,7 @@ As the position of the DOM is known, $t_\text{res}$ is the most significant obse
 
 
 \subsection{First (Single) Photoelectron Fit}
-Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM\@. One approximation is to only regard the first photon hitting an individual DOM, as it is usually less scattered than the average photon. If the reconstruction is using this simplification, it is called Single Photoelectron (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
+Matters can be simplified further. While the muon is traveling and emitting Cherenkov light, multiple photons can hit each DOM\@. One approximation is to only regard the first photon hitting an individual DOM, as it has usually been scattered less than the average photon. If the reconstruction is using this simplification, it is called Single Photoelectron (SPE) fit. The likelihood function for this is\sidenote{As stated above, this already includes the reduction of $x_i$ to $t_{\text{res},i}$.}
 
 \begin{equation}
     \mathcal{L}_\text{1st}(\vec{x}|\vec{a}) = \prod_i^\text{1st hits} p(t_{\text{res},i}|\vec{a}=d_i, \eta_i,\ldots),
@@ -270,7 +270,7 @@ Due to the systematic uncertainties involved, Wilk's theorem does not apply here
 However, resimulations of newer high-energy neutrino events have shown that the method of scaling up the errors with correction values obtained from resimulating \emph{IC160427A} does in some cases not faithfully capture the errors of those newer resimulations: They are sometimes under- and sometimes overestimated, depending on the topography of the event. For details on this, see~\cite{Gualda2021}.
 
 \section{The Realtime Alert Program}\label{ic_alert_program}
-Since 2016, IceCube hosts a realtime alert program, providing the astrophysical community with low-latency and high-quality astrophysical neutrino alerts~\cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, named `Gold' and `Bronze', were created~\sidecite{Blaufuss2019}. As these were designed based on cuts reducing the IceCube background, one needs to understand the background contamination first.
+Since 2016, IceCube hosts a realtime alert program, providing the astrophysical community with low-latency and high-quality astrophysical neutrino alerts~\cite{Aartsen2017a}. This program saw a major revision in 2019, when two new alert streams, named `Gold' and `Bronze', were created~\sidecite{Blaufuss2019} (`Silver' has been reserved for a Cascade stream that never saw the light of day). As these were designed based on cuts reducing the IceCube background, one needs to understand the background contamination first.
 
 \subsection{Background}\label{background}
 

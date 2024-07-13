@@ -187,7 +187,7 @@ As one can see, a source with constant spectral flux density $f_{\nu,0} = \SI{36
     \labdef{abmag}
     $m = -2.5 \log_{10}{\frac{\int{f_\nu(h \nu)^{-1}A(\nu)\,d\nu}}{\int{\SI{3631}{\jansky}(h \nu)^{-1}A(\nu)\,d\nu }}}$
 \end{definition}
-Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross-section (i.e.\ the chance of an incoming photon to produce an electron in the detector\sidenote{More general, $A(\nu)$ is $A(\nu,\theta,t)$, also depending on the angle of the incoming photon and therefore the atmospheric column along the line of sight, as well as time.}). ZTF does not use a precisely modeled response function $A(\nu)$, but relies on PS1. To first order, ZTF magnitudes are tied to the PS1 system via their zero point:
+Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross-section (i.e.\ the chance of an incoming photon to produce an electron in the detector\sidenote{More general, $A(\nu)$ is $A(\nu,\theta,t)$, also depending on the angle of the incoming photon and therefore the atmospheric column along the line of sight, as well as time.}). ZTF does not use a precisely modeled response function $A(\nu)$, but relies on PS1. To first order, ZTF magnitudes are tied to the PS1 system via their zero point (ZP), which is an arbitrary offset that needs to be calculated for each image:
 
 \begin{equation}\label{eqn:mag}
     m_\text{cal} = m_\text{instr} + \text{ZP}.
@@ -195,7 +195,7 @@ Here, $h$ is Planck's constant and $A(\nu)$ is the capture cross-section (i.e.\ 
 
 \pagebreak
 
-To do this, all extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one could to first order calculate $m_\text{cal}$.
+To obtain $m_\text{cal}$, all extracted sources are spatially matched to the PS1 calibrator catalog. After creating a one-to-one relation between ZTF stars and PS calibrator stars, one can to first order calculate $m_\text{cal}$.
 
 But there is a potential complication: The ZTF and PS1 filters are fairly similar, but do not exactly match. Eq.~\ref{eqn:mag} assumes a constant spectrum which is not the case for most celestial objects. Therefore, an object will have slightly different brightness values when measured through the ZTF and the corresponding PS1 filter. To account for this, a linear, filter-dependent color correction $c_f$ needs to be applied:
 
@@ -207,7 +207,7 @@ where $\text{PS1}_\text{clr}$ is filter dependent ($g_\text{PS1}-r_\text{PS1}$ f
 In the photometric calibration step, $\text{ZP}_f$ and $c_f$ are chosen to globally minimize $\Delta m_f = \text{ZP}_f + c_f \times \text{PS1}_\text{clr}$ for all calibrator stars in the respective image~\cite{Masci2019a}.
 
 \subsection{Image Subtraction}\label{ztf_image_subtraction}
-Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many of the science goals concern observing sources that are new or changing. To do so, one needs to detect changes in the nightly observations with regard to reference images. From all new science images, these reference images are subtracted (see Fig.~\ref{fig:img_subtraction}). All remaining detections constitute temporal evolution with respect to the epoch of reference image creation. All reference images in ZTF are stacked images of 15--40 individual high-quality images, most of them created early after the start of telescope operations. Quality criteria for the individual images comprise good seeing, low errors on the astrometric and photometric calibrations, as well as background levels falling into filter-specific ranges~\cite{Masci2019}.
+Because ZTF is a survey telescope deeply rooted in time-domain astronomy, many of the science goals concern observing sources that are new or changing. To do so, one needs to detect changes in the nightly observations with regard to reference images. From all new science images, these reference images are subtracted (see Fig.~\ref{fig:img_subtraction}). All remaining detections constitute a temporal evolution with respect to the epoch of reference image creation. All reference images in ZTF are stacked images of 15--40 individual high-quality images, most of them created early after the start of telescope operations. Quality criteria for the individual images comprise good seeing, low errors on the astrometric and photometric calibrations, as well as background levels falling into filter-specific ranges~\cite{Masci2019}.
 
 \texttt{SWarp}~\sidecite{Bertin2010} is used to interpolate and resample the reference image onto the science image, while subsequent subtraction and PSF photometry (see Section~\ref{psfphot}) is performed with the \texttt{ZOGY} algorithm~\sidecite{Zackay2016}.
 
