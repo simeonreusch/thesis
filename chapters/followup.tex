@@ -141,7 +141,7 @@ In addition to the PDF file, the draft of a GCN Circular is created, pre-filled 
 The code can either be run locally, or through the interaction with a bot running on Slack. This bot is hosted by the author on a virtual private server. The endpoint exposed to Slack is run with \texttt{gunicorn}\sidenote{\url{https://gunicorn.org}}, a Python WSGI server, behind an \texttt{nginx} reverse proxy. The bot can parse the names of IceCube alert neutrinos and gravitational wave event names, extract the information from the GCN or GW map and upload the overview PDF and the GCN draft to Slack.
 
 \section{Forced Photometry with \texttt{fpbot}}\label{fpbot}
-The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot}~\sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon on \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
+The last step in the pipeline is the acquisition of forced photometry. This is achieved with \texttt{fpbot}~\sidecite{Reusch2023a}, a forced photometry pipeline written by the author for ZTF, built upon \texttt{ztflc}\sidenote{\url{https://github.com/mickaelrigault/ztflc}}.
 
 \subsection{Forced Photometry Explained}
 The usual extraction of transient flux, as performed by the ZTF imaging pipeline (see section~\ref{ztf_image_subtraction}), cannot a priori know at which position to expect flux in the difference image. In the case of ZTF, there is a signal-to-noise threshold of $5$. When the flux detected at a position in the image exceeds that threshold, an alert is generated.
@@ -276,7 +276,7 @@ The blackbody temperature, inferred from the optical/UV datapoints, was measured
 
 \begin{figure*}[htb]
     \includegraphics{fu/at0219dsg_lc.pdf}
-    \caption[\textit{AT2019dsg} optical/UV light curve]{Optical (rotated red squares and green crosses) and UV (all other datapoints) light curve of \textit{AT2019dsg}. The neutrino arrival time of \textit{IC191001A} is marked with a black dotted line. From~\cite{Stein2021}}
+    \caption[\textit{AT2019dsg} optical/UV light curve]{Optical (rotated red squares and green crosses) and UV (all other datapoints) light curve of \textit{AT2019dsg}. The neutrino arrival time of \textit{IC191001A} is marked with a black dotted line. From~\cite{Stein2021}.}
     \labfig{at2019dsg_lc}
 \end{figure*}
 
