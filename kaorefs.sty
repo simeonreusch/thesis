@@ -10,7 +10,7 @@
 
 % Pass this package's options to hyperref and varioref
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{varioref}}
-\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{hyperref}}
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption, bookmarksnumbered=true}{hyperref}}
 \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{cleveref}}
 \ProcessOptions\relax
 
