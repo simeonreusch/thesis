@@ -1,5 +1,8 @@
 # Optical Follow-Up of High-Energy Neutrinos
 
+## Download
+The thesis can be downloaded [here](https://short.simeonreusch.com/thesis).
+
 ## Abstract
 This thesis is concerned with the origin of high-energy neutrinos detected by the IceCube Observatory at the South Pole since a decade. It summarizes the young field of neutrino astronomy and details the systematic high-energy neutrino follow-up program we have been conducting with the Zwicky Transient Facility (ZTF), an optical survey telescope, for the past four years.
 
